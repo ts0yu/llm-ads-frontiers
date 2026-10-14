@@ -87,9 +87,11 @@ def regions(atlas: dict):
     A region cut off by a time or cell budget (``stop_reason == "truncated"``) holds
     only a prefix of its answers, so it is reported as unresolved, not analysed.
     """
-    if "cells" in atlas:  # simplex-atlas-v1: weight = polygon area / simplex area
+    if atlas.get("schema") == "simplex-atlas-v1":  # weight = polygon area / simplex area
         total = float(atlas.get("stats", {}).get("simplex_area", 0.5))
-        items = [(c, float(c["area"]) / total) for c in atlas["cells"]]
+        # Generator output stores "cells"; scripts/publish_atlases.py renames them "leaves".
+        cells = atlas["cells"] if "cells" in atlas else atlas["leaves"]
+        items = [(c, float(c["area"]) / total) for c in cells]
     else:  # bid-atlas-v1: weight = interval length in lambda
         items = [(leaf, float(leaf["hi"]) - float(leaf["lo"]))
                  for leaf in sorted(atlas["leaves"], key=lambda leaf: leaf["lo"])]
@@ -146,7 +148,7 @@ def analyze(atlas: dict) -> dict:
         "variant_names": {k: round(v, 6)
                           for k, v in sorted(variants.items(), key=lambda kv: -kv[1])},
     }
-    if "leaves" in atlas and rows:
+    if atlas.get("schema") == "bid-atlas-v1" and rows:
         report["endpoints"] = {"lambda_to_0": rows[0][2], "lambda_to_1": rows[-1][2]}
     return report
 
@@ -173,7 +175,8 @@ def main(argv=None) -> int:
     parser.add_argument("paths", nargs="+")
     parser.add_argument("--output", help="write the JSON report here")
     args = parser.parse_args(argv)
-    rows = [dict(file=str(f.name), **analyze(d)) for f, d in iter_atlases(args.paths)]
+    rows = [dict(file=f"{f.parent.name}/{f.name}", **analyze(d))
+            for f, d in iter_atlases(args.paths)]
     if not rows:
         print("no text bid atlases found", file=sys.stderr)
         return 1
@@ -184,7 +187,7 @@ def main(argv=None) -> int:
         s = r["share"]
         exact = ",".join(f"{v:.2f}" for k, v in s.items() if k.startswith("exact:"))
         rest = "   ".join(f"{s[c]:.3f}" for c in columns)
-        print(f"{r['file'][:30]:30} {str(r['mode'])[:11]:11} {r['regions']:7}  {exact:18}  {rest}")
+        print(f"{r['file'][-30:]:30} {str(r['mode'])[:11]:11} {r['regions']:7}  {exact:18}  {rest}")
     if args.output:
         report = {"schema": "atlas-text-analysis-v1",
                   "note": __doc__.split("\n\n")[2].strip(), "atlases": rows}

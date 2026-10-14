@@ -1,0 +1,1981 @@
+{
+ "schema": "atlas-text-analysis-v1",
+ "note": "For every text atlas (two-bidder ``bid-atlas-v1`` with ``kind == \"text\"``, or\nthree-bidder ``simplex-atlas-v1``) this reports shares of the bid space: of\nlambda = a/(a+b) in (0, 1] (a leaf weighs hi - lo), or of the bid simplex (a cell\nweighs its area over the simplex area):",
+ "atlases": [
+  {
+   "file": "live-fort-mason/live-defaults-seed1.json",
+   "schema_in": "bid-atlas-v1",
+   "mode": "live_model",
+   "scenario": "live-defaults",
+   "seed": 1,
+   "bidders": [
+    "Bayview Hotel",
+    "Lantern House"
+   ],
+   "regions": 28,
+   "distinct_texts": 28,
+   "verification_status": "all_match",
+   "share": {
+    "exact:A": 0.389628,
+    "exact:B": 0.148968,
+    "multiple": 0.0,
+    "neither": 0.461403,
+    "unsupported_number": 0.913132,
+    "unsupported_rating": 0.460142,
+    "variant_name": 0.637165,
+    "unresolved": 0.0
+   },
+   "unsupported_number_regions": [
+    {
+     "region": 0,
+     "weight": 0.0244906774933632,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 3,
+     "weight": 0.009554904784412233,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 5,
+     "weight": 0.039144490113190544,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 4,
+     "weight": 0.03998408765545636,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 6,
+     "weight": 0.0026914524243479843,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 10,
+     "weight": 0.03583405415693186,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 11,
+     "weight": 0.03310286443313859,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 8,
+     "weight": 0.048422705129712695,
+     "numbers": [
+      "1.5",
+      "4.6"
+     ]
+    },
+    {
+     "region": 7,
+     "weight": 0.01679375630814761,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 1,
+     "weight": 0.17903775899837804,
+     "numbers": [
+      "1.5",
+      "2023",
+      "4.3"
+     ]
+    },
+    {
+     "region": 13,
+     "weight": 0.010302668840546314,
+     "numbers": [
+      "3.9"
+     ]
+    },
+    {
+     "region": 16,
+     "weight": 0.0782840554430626,
+     "numbers": [
+      "24",
+      "4.8",
+      "7"
+     ]
+    },
+    {
+     "region": 20,
+     "weight": 0.010068154310099109,
+     "numbers": [
+      "1.5",
+      "2",
+      "4.8"
+     ]
+    },
+    {
+     "region": 19,
+     "weight": 0.02895987510077891,
+     "numbers": [
+      "1",
+      "4.8"
+     ]
+    },
+    {
+     "region": 21,
+     "weight": 0.012055257318544288,
+     "numbers": [
+      "4.8",
+      "45",
+      "60"
+     ]
+    },
+    {
+     "region": 18,
+     "weight": 0.020555387128345592,
+     "numbers": [
+      "1",
+      "1.5",
+      "4.8"
+     ]
+    },
+    {
+     "region": 15,
+     "weight": 0.11369882763559003,
+     "numbers": [
+      "2024"
+     ]
+    },
+    {
+     "region": 12,
+     "weight": 0.006238292837402071,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 22,
+     "weight": 0.009503259369586514,
+     "numbers": [
+      "1.5",
+      "100",
+      "2"
+     ]
+    },
+    {
+     "region": 23,
+     "weight": 0.027774350559263916,
+     "numbers": [
+      "1.5",
+      "2",
+      "4.5"
+     ]
+    },
+    {
+     "region": 25,
+     "weight": 0.044681882223956526,
+     "numbers": [
+      "1.5",
+      "2",
+      "4.5"
+     ]
+    },
+    {
+     "region": 24,
+     "weight": 0.06377457812574261,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 26,
+     "weight": 0.058179145921605446,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    }
+   ],
+   "unsupported_ratings": {
+    "3.9": 0.010303,
+    "4.3": 0.179038,
+    "4.5": 0.072456,
+    "4.6": 0.048423,
+    "4.8": 0.149923
+   },
+   "variant_names": {
+    "Bay Area Hotel": 0.476139,
+    "Lantern Hotels": 0.157119,
+    "Bay Area\u2019s Lantern Hotel": 0.144232,
+    "Lantern Hotel": 0.026872,
+    "Bayview Lodge": 0.016794
+   },
+   "endpoints": {
+    "lambda_to_0": "For your conference at Fort Mason, Lantern House is a great choice\u2014located right in the area, it offers a quiet courtyard for relaxation and provides luggage storage, which is convenient for travelers.  \n\nTo get from SFO to Fort Mason, Uber is a reliable and convenient option. The drive typically takes about 1.5 to 2 hours, depending on traffic. You can book your ride in advance or use the app at the airport.  \n\nLantern House is well",
+    "lambda_to_1": "For your conference at Fort Mason in San Francisco, Bayview Hotel is an excellent choice. Located in the Fort Mason area, it offers beautiful views of San Francisco Bay and boasts a 4.9-star rating on Google. \n\nTo get from SFO on October 11th, Uber is a convenient and reliable option. Your Uber ride will take you directly from the airport to Bayview Hotel, with a smooth and comfortable journey through the city.  \n\nBook your stay at"
+   }
+  },
+  {
+   "file": "live-fort-mason/live-defaults-seed2.json",
+   "schema_in": "bid-atlas-v1",
+   "mode": "live_model",
+   "scenario": "live-defaults",
+   "seed": 2,
+   "bidders": [
+    "Bayview Hotel",
+    "Lantern House"
+   ],
+   "regions": 31,
+   "distinct_texts": 31,
+   "verification_status": "all_match",
+   "share": {
+    "exact:A": 0.543569,
+    "exact:B": 0.216223,
+    "multiple": 0.0,
+    "neither": 0.240207,
+    "unsupported_number": 0.847032,
+    "unsupported_rating": 0.099998,
+    "variant_name": 0.281833,
+    "unresolved": 0.0
+   },
+   "unsupported_number_regions": [
+    {
+     "region": 0,
+     "weight": 0.18480268442987968,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 4,
+     "weight": 0.024257034725099436,
+     "numbers": [
+      "1.5",
+      "101",
+      "2",
+      "80"
+     ]
+    },
+    {
+     "region": 3,
+     "weight": 0.007163671864035326,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 9,
+     "weight": 0.015047132279894737,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 12,
+     "weight": 0.03314023438778346,
+     "numbers": [
+      "1"
+     ]
+    },
+    {
+     "region": 14,
+     "weight": 0.03263128853054187,
+     "numbers": [
+      "1.5"
+     ]
+    },
+    {
+     "region": 13,
+     "weight": 0.010989610221893709,
+     "numbers": [
+      "1.5"
+     ]
+    },
+    {
+     "region": 7,
+     "weight": 0.024567879950837535,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 15,
+     "weight": 0.028468923554560432,
+     "numbers": [
+      "10"
+     ]
+    },
+    {
+     "region": 18,
+     "weight": 0.0100007357014823,
+     "numbers": [
+      "24"
+     ]
+    },
+    {
+     "region": 6,
+     "weight": 0.010560741466342227,
+     "numbers": [
+      "10"
+     ]
+    },
+    {
+     "region": 5,
+     "weight": 0.041625434035691855,
+     "numbers": [
+      "4"
+     ]
+    },
+    {
+     "region": 1,
+     "weight": 0.008495436689732294,
+     "numbers": [
+      "24"
+     ]
+    },
+    {
+     "region": 20,
+     "weight": 0.04023548857332748,
+     "numbers": [
+      "10"
+     ]
+    },
+    {
+     "region": 22,
+     "weight": 0.01259020736456884,
+     "numbers": [
+      "1.5",
+      "2",
+      "30",
+      "4.3"
+     ]
+    },
+    {
+     "region": 24,
+     "weight": 0.04578197788115934,
+     "numbers": [
+      "1.5",
+      "2",
+      "3.9"
+     ]
+    },
+    {
+     "region": 23,
+     "weight": 0.009468783725120944,
+     "numbers": [
+      "1.5"
+     ]
+    },
+    {
+     "region": 26,
+     "weight": 0.02838039003922377,
+     "numbers": [
+      "1",
+      "100"
+     ]
+    },
+    {
+     "region": 29,
+     "weight": 0.024028198492487052,
+     "numbers": [
+      "100"
+     ]
+    },
+    {
+     "region": 28,
+     "weight": 0.0730831905661995,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 25,
+     "weight": 0.17026447893090446,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 30,
+     "weight": 0.011448267799622047,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    }
+   ],
+   "unsupported_ratings": {
+    "3.9": 0.045782,
+    "4": 0.041625,
+    "4.3": 0.01259
+   },
+   "variant_names": {
+    "Lantern Bay": 0.240207,
+    "Lantern Bayview": 0.041625
+   },
+   "endpoints": {
+    "lambda_to_0": "For your conference at Fort Mason in San Francisco, Lantern House is a great option\u2014located right in the area, it offers a quiet courtyard for relaxation and provides luggage storage, which is convenient for travelers with packed bags.  \n\nTo get from SFO to Fort Mason, Uber is a reliable and efficient choice. The ride typically takes about 1.5 to 2 hours, depending on traffic, and will drop you off near the Fort Mason Center or the nearby Fort Mason area",
+    "lambda_to_1": "For your conference at Fort Mason in San Francisco, Bayview Hotel is an excellent choice. Located in the Fort Mason area, it offers stunning views of San Francisco Bay and boasts a 4.9-star rating on Google.  \n\nTo get from SFO to Bayview Hotel, Uber is a convenient and reliable option. The drive takes approximately 1.5 to 2 hours, depending on traffic, and Uber provides door-to-door service with real-time tracking.  \n\nBook your"
+   }
+  },
+  {
+   "file": "live-fort-mason/live-defaults-seed3.json",
+   "schema_in": "bid-atlas-v1",
+   "mode": "live_model",
+   "scenario": "live-defaults",
+   "seed": 3,
+   "bidders": [
+    "Bayview Hotel",
+    "Lantern House"
+   ],
+   "regions": 39,
+   "distinct_texts": 39,
+   "verification_status": "all_match",
+   "share": {
+    "exact:A": 0.1851,
+    "exact:B": 0.165143,
+    "multiple": 0.0,
+    "neither": 0.649757,
+    "unsupported_number": 0.682877,
+    "unsupported_rating": 0.182225,
+    "variant_name": 0.717756,
+    "unresolved": 0.0
+   },
+   "unsupported_number_regions": [
+    {
+     "region": 4,
+     "weight": 0.029041787103371686,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 3,
+     "weight": 0.009027813170660592,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 7,
+     "weight": 0.0011534367743796237,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 9,
+     "weight": 0.0770021718287015,
+     "numbers": [
+      "1",
+      "1.5"
+     ]
+    },
+    {
+     "region": 13,
+     "weight": 0.002350284606749131,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 10,
+     "weight": 0.012928355425709803,
+     "numbers": [
+      "1.5"
+     ]
+    },
+    {
+     "region": 17,
+     "weight": 0.008734127462883712,
+     "numbers": [
+      "1"
+     ]
+    },
+    {
+     "region": 16,
+     "weight": 0.002716004011172446,
+     "numbers": [
+      "1"
+     ]
+    },
+    {
+     "region": 15,
+     "weight": 0.04051480648670769,
+     "numbers": [
+      "1",
+      "2023"
+     ]
+    },
+    {
+     "region": 21,
+     "weight": 0.0353838939646729,
+     "numbers": [
+      "2023",
+      "24"
+     ]
+    },
+    {
+     "region": 22,
+     "weight": 0.04303396250992475,
+     "numbers": [
+      "2023",
+      "24"
+     ]
+    },
+    {
+     "region": 20,
+     "weight": 0.048433291330829964,
+     "numbers": [
+      "20",
+      "4.5"
+     ]
+    },
+    {
+     "region": 23,
+     "weight": 0.05265970015545984,
+     "numbers": [
+      "20",
+      "4.5"
+     ]
+    },
+    {
+     "region": 24,
+     "weight": 0.004966098330871249,
+     "numbers": [
+      "20",
+      "4.5",
+      "70",
+      "90"
+     ]
+    },
+    {
+     "region": 19,
+     "weight": 0.006212203074280831,
+     "numbers": [
+      "1"
+     ]
+    },
+    {
+     "region": 27,
+     "weight": 0.035181998701304895,
+     "numbers": [
+      "1"
+     ]
+    },
+    {
+     "region": 29,
+     "weight": 0.044236297990768114,
+     "numbers": [
+      "2.5"
+     ]
+    },
+    {
+     "region": 18,
+     "weight": 0.0026526841561783643,
+     "numbers": [
+      "24",
+      "7"
+     ]
+    },
+    {
+     "region": 32,
+     "weight": 0.05817040778837601,
+     "numbers": [
+      "1.5",
+      "2",
+      "4.6"
+     ]
+    },
+    {
+     "region": 33,
+     "weight": 0.017995135031611875,
+     "numbers": [
+      "1.5",
+      "2",
+      "4.6"
+     ]
+    },
+    {
+     "region": 1,
+     "weight": 0.06112477855495679,
+     "numbers": [
+      "1",
+      "1.5",
+      "24"
+     ]
+    },
+    {
+     "region": 37,
+     "weight": 0.003514453759916991,
+     "numbers": [
+      "1.5",
+      "2",
+      "24",
+      "7"
+     ]
+    },
+    {
+     "region": 36,
+     "weight": 0.03774635708206109,
+     "numbers": [
+      "1",
+      "1.5",
+      "2024"
+     ]
+    },
+    {
+     "region": 38,
+     "weight": 0.014472506100229321,
+     "numbers": [
+      "1.5",
+      "2024"
+     ]
+    },
+    {
+     "region": 35,
+     "weight": 0.033624917464924575,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    }
+   ],
+   "unsupported_ratings": {
+    "4.5": 0.106059,
+    "4.6": 0.076166
+   },
+   "variant_names": {
+    "Lantern Hotel": 0.717756
+   },
+   "endpoints": {
+    "lambda_to_0": "For your conference at Fort Mason in San Francisco, Lantern House is a great choice. Located in the Fort Mason area, it offers a quiet courtyard for a peaceful stay and provides luggage storage, which is convenient for travelers with packed bags.  \n\nTo get from SFO on October 11th: Uber is a reliable option and widely available. Simply open the Uber app, select your pickup location at SFO, and choose a route to Fort Mason or the Lantern House. The",
+    "lambda_to_1": "For your conference at Fort Mason in San Francisco, Bayview Hotel is an excellent choice. Located in the Fort Mason area, it offers beautiful views of San Francisco Bay and enjoys a 4.9-star rating on Google. \n\nYou can reach Bayview Hotel from SFO International Airport on October 11th via Uber, which is a convenient and reliable option. Simply use the Uber app to book a ride to the hotel.  \n\nBook your stay at bayviewhotel.com"
+   }
+  },
+  {
+   "file": "live-fort-mason/live-defaults-seed4.json",
+   "schema_in": "bid-atlas-v1",
+   "mode": "live_model",
+   "scenario": "live-defaults",
+   "seed": 4,
+   "bidders": [
+    "Bayview Hotel",
+    "Lantern House"
+   ],
+   "regions": 34,
+   "distinct_texts": 34,
+   "verification_status": "all_match",
+   "share": {
+    "exact:A": 0.096997,
+    "exact:B": 0.505893,
+    "multiple": 0.0,
+    "neither": 0.39711,
+    "unsupported_number": 0.664493,
+    "unsupported_rating": 0.030788,
+    "variant_name": 0.508038,
+    "unresolved": 0.0
+   },
+   "unsupported_number_regions": [
+    {
+     "region": 3,
+     "weight": 0.0011808177532030006,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 4,
+     "weight": 0.03752663282542856,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 2,
+     "weight": 0.009602032837483065,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 8,
+     "weight": 0.01494152700171314,
+     "numbers": [
+      "1.5"
+     ]
+    },
+    {
+     "region": 6,
+     "weight": 0.0538464705367635,
+     "numbers": [
+      "45",
+      "60"
+     ]
+    },
+    {
+     "region": 13,
+     "weight": 0.03193375537743248,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 14,
+     "weight": 0.003880827714579649,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 12,
+     "weight": 0.154236013337802,
+     "numbers": [
+      "1.5",
+      "2.5"
+     ]
+    },
+    {
+     "region": 16,
+     "weight": 0.073911550962527,
+     "numbers": [
+      "15"
+     ]
+    },
+    {
+     "region": 15,
+     "weight": 3.896513448531369e-05,
+     "numbers": [
+      "1",
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 17,
+     "weight": 0.014102874761965478,
+     "numbers": [
+      "45",
+      "60"
+     ]
+    },
+    {
+     "region": 5,
+     "weight": 0.030456129825747857,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 1,
+     "weight": 0.0286755880133448,
+     "numbers": [
+      "45"
+     ]
+    },
+    {
+     "region": 20,
+     "weight": 0.006584628217398358,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 22,
+     "weight": 0.015797287527764214,
+     "numbers": [
+      "1.5",
+      "2",
+      "4"
+     ]
+    },
+    {
+     "region": 29,
+     "weight": 0.05170672250846253,
+     "numbers": [
+      "480"
+     ]
+    },
+    {
+     "region": 30,
+     "weight": 0.013963688251393713,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 31,
+     "weight": 0.05814553364393327,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 28,
+     "weight": 0.014990754256607675,
+     "numbers": [
+      "1.5",
+      "2",
+      "4.8"
+     ]
+    },
+    {
+     "region": 33,
+     "weight": 0.048971630428769286,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    }
+   ],
+   "unsupported_ratings": {
+    "4": 0.015797,
+    "4.8": 0.014991
+   },
+   "variant_names": {
+    "Bay Area Hotel": 0.508038,
+    "Lantern Hotel": 0.004871
+   },
+   "endpoints": {
+    "lambda_to_0": "For your conference at Fort Mason in San Francisco, Lantern House is a great choice. Located in the Fort Mason area, it offers a quiet courtyard and luggage storage\u2014ideal for business travelers.  \n\nTo get from SFO to Lantern House, Uber is a convenient option. It provides a reliable and timely ride, especially during your arrival on October 11th. Simply download the app, request a ride to your destination in Fort Mason, and follow the directions.",
+    "lambda_to_1": "For your conference at Fort Mason in San Francisco, Bayview Hotel is an excellent choice. Located in the Fort Mason area, it offers beautiful views of San Francisco Bay and a stellar 4.9-star rating on Google. It\u2019s conveniently situated for your conference activities and provides a comfortable, scenic stay.\n\nTo get from SFO on October 11th: Uber is a convenient option and widely available. Simply open the Uber app, enter your pickup location at SFO,"
+   }
+  },
+  {
+   "file": "live-fort-mason/live-defaults-seed5.json",
+   "schema_in": "bid-atlas-v1",
+   "mode": "live_model",
+   "scenario": "live-defaults",
+   "seed": 5,
+   "bidders": [
+    "Bayview Hotel",
+    "Lantern House"
+   ],
+   "regions": 29,
+   "distinct_texts": 29,
+   "verification_status": "skipped_time_budget",
+   "share": {
+    "exact:A": 0.680215,
+    "exact:B": 0.236194,
+    "multiple": 0.0,
+    "neither": 0.083591,
+    "unsupported_number": 0.769652,
+    "unsupported_rating": 0.157009,
+    "variant_name": 0.083591,
+    "unresolved": 0.0
+   },
+   "unsupported_number_regions": [
+    {
+     "region": 0,
+     "weight": 0.013489317883091267,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 5,
+     "weight": 0.043769278832657466,
+     "numbers": [
+      "1.5",
+      "120",
+      "2",
+      "80"
+     ]
+    },
+    {
+     "region": 4,
+     "weight": 0.01621471509152883,
+     "numbers": [
+      "1.5",
+      "2"
+     ]
+    },
+    {
+     "region": 3,
+     "weight": 0.03278873939147964,
+     "numbers": [
+      "45",
+      "60"
+     ]
+    },
+    {
+     "region": 6,
+     "weight": 0.04277625961679232,
+     "numbers": [
+      "1.5",
+      "2",
+      "24"
+     ]
+    },
+    {
+     "region": 7,
+     "weight": 0.006880796307225934,
+     "numbers": [
+      "1.5",
+      "2",
+      "24"
+     ]
+    },
+    {
+     "region": 9,
+     "weight": 0.007775053477476868,
+     "numbers": [
+      "1.5",
+      "2",
+      "24"
+     ]
+    },
+    {
+     "region": 8,
+     "weight": 0.028792401814496826,
+     "numbers": [
+      "24"
+     ]
+    },
+    {
+     "region": 10,
+     "weight": 0.004328252461829996,
+     "numbers": [
+      "24"
+     ]
+    },
+    {
+     "region": 12,
+     "weight": 0.004680113204902581,
+     "numbers": [
+      "24"
+     ]
+    },
+    {
+     "region": 11,
+     "weight": 0.034699200314381784,
+     "numbers": [
+      "24"
+     ]
+    },
+    {
+     "region": 2,
+     "weight": 0.08359052592242278,
+     "numbers": [
+      "1.5",
+      "2",
+      "24"
+     ]
+    },
+    {
+     "region": 1,
+     "weight": 0.004060727335001735,
+     "numbers": [
+      "10"
+     ]
+    },
+    {
+     "region": 16,
+     "weight": 0.007904836821957195,
+     "numbers": [
+      "45",
+      "60"
+     ]
+    },
+    {
+     "region": 15,
+     "weight": 0.041822058587628885,
+     "numbers": [
+      "40",
+      "45",
+      "60"
+     ]
+    },
+    {
+     "region": 20,
+     "weight": 0.05097456793279398,
+     "numbers": [
+      "40",
+      "45",
+      "60"
+     ]
+    },
+    {
+     "region": 19,
+     "weight": 0.09260286785403327,
+     "numbers": [
+      "1",
+      "20",
+      "24",
+      "7"
+     ]
+    },
+    {
+     "region": 22,
+     "weight": 0.021729738533455834,
+     "numbers": [
+      "20",
+      "24",
+      "7",
+      "90"
+     ]
+    },
+    {
+     "region": 21,
+     "weight": 0.060876557857924896,
+     "numbers": [
+      "20",
+      "200",
+      "24",
+      "7"
+     ]
+    },
+    {
+     "region": 14,
+     "weight": 0.00539377455739809,
+     "numbers": [
+      "1.5",
+      "2",
+      "4"
+     ]
+    },
+    {
+     "region": 23,
+     "weight": 0.0020028964754840173,
+     "numbers": [
+      "4.8",
+      "45"
+     ]
+    },
+    {
+     "region": 13,
+     "weight": 0.016386056319936615,
+     "numbers": [
+      "2024",
+      "4.7"
+     ]
+    },
+    {
+     "region": 26,
+     "weight": 0.13322602743614342,
+     "numbers": [
+      "4.8"
+     ]
+    },
+    {
+     "region": 25,
+     "weight": 0.01288755422802812,
+     "numbers": [
+      "1",
+      "1.5"
+     ]
+    }
+   ],
+   "unsupported_ratings": {
+    "4": 0.005394,
+    "4.7": 0.016386,
+    "4.8": 0.135229
+   },
+   "variant_names": {
+    "Lantern Bay": 0.083591
+   },
+   "endpoints": {
+    "lambda_to_0": "For your conference at Fort Mason in San Francisco, Lantern House is a great option\u2014located right in the Fort Mason area, it offers a peaceful courtyard and luggage storage, which is convenient for business travelers.  \n\nTo get from SFO to Lantern House:  \nUber is a reliable and convenient choice. The drive typically takes about 1.5 to 2 hours, depending on traffic, and the fare will be clearly displayed in-app.  \n\nSince Lantern House is centrally located near",
+    "lambda_to_1": "For your conference at Fort Mason in San Francisco, Bayview Hotel is an excellent choice. Located right in the Fort Mason area, it offers beautiful views of San Francisco Bay and a stellar 4.9-star rating on Google. \n\nYou can reach the hotel from SFO on October 11th via Uber, which is a convenient and reliable option. Simply open the Uber app, enter your pickup location at SFO, and select the destination as Bayview Hotel. The"
+   }
+  },
+  {
+   "file": "live-transit-hotel/transit-hotel-seed1.json",
+   "schema_in": "bid-atlas-v1",
+   "mode": "live_model",
+   "scenario": "transit-hotel",
+   "seed": 1,
+   "bidders": [
+    "HarborHop",
+    "Lantern House"
+   ],
+   "regions": 31,
+   "distinct_texts": 31,
+   "verification_status": "all_match",
+   "share": {
+    "exact:A": 0.517788,
+    "exact:B": 0.632135,
+    "multiple": 0.149923,
+    "neither": 0.0,
+    "unsupported_number": 0.0,
+    "unsupported_rating": 0.0,
+    "variant_name": 0.248954,
+    "unresolved": 0.0
+   },
+   "unsupported_number_regions": [],
+   "unsupported_ratings": {},
+   "variant_names": {
+    "Lantern Bay": 0.248954,
+    "Lantern Bay\u2019s": 0.080578
+   },
+   "endpoints": {
+    "lambda_to_0": "Enjoy a peaceful weekend at Lantern House in the Harbor District\u2014its quiet courtyard offers serenity. Need extra space? Use their luggage storage. A calm, practical stay perfect for a relaxed getaway.",
+    "lambda_to_1": "Enjoy a step-free, bike-friendly ride from Central Station to the Harbor District with HarborHop! Perfect for weekend visits\u2014easy access, no stairs, and room for your bike. A smooth, sustainable way to explore."
+   }
+  },
+  {
+   "file": "live-transit-hotel/transit-hotel-seed2.json",
+   "schema_in": "bid-atlas-v1",
+   "mode": "live_model",
+   "scenario": "transit-hotel",
+   "seed": 2,
+   "bidders": [
+    "HarborHop",
+    "Lantern House"
+   ],
+   "regions": 25,
+   "distinct_texts": 25,
+   "verification_status": "all_match",
+   "share": {
+    "exact:A": 0.58255,
+    "exact:B": 0.44587,
+    "multiple": 0.080606,
+    "neither": 0.052186,
+    "unsupported_number": 0.0,
+    "unsupported_rating": 0.0,
+    "variant_name": 0.041625,
+    "unresolved": 0.0
+   },
+   "unsupported_number_regions": [],
+   "unsupported_ratings": {},
+   "variant_names": {
+    "Use Lantern\u2019s": 0.041625
+   },
+   "endpoints": {
+    "lambda_to_0": "Enjoy a peaceful weekend at Lantern House in the Harbor District\u2014its quiet courtyard offers perfect relaxation. Need to store luggage? We\u2019ve got you covered. A serene retreat for a restful getaway.",
+    "lambda_to_1": "Enjoy a seamless weekend in the Harbor District with HarborHop! Its step-free boarding and bike space make access easy and convenient from Central Station\u2014perfect for a stress-free, active visit."
+   }
+  },
+  {
+   "file": "live-transit-hotel/transit-hotel-seed3.json",
+   "schema_in": "bid-atlas-v1",
+   "mode": "live_model",
+   "scenario": "transit-hotel",
+   "seed": 3,
+   "bidders": [
+    "HarborHop",
+    "Lantern House"
+   ],
+   "regions": 29,
+   "distinct_texts": 29,
+   "verification_status": "all_match",
+   "share": {
+    "exact:A": 0.445388,
+    "exact:B": 0.450598,
+    "multiple": 0.028242,
+    "neither": 0.132257,
+    "unsupported_number": 0.0,
+    "unsupported_rating": 0.0,
+    "variant_name": 0.254229,
+    "unresolved": 0.0
+   },
+   "unsupported_number_regions": [],
+   "unsupported_ratings": {},
+   "variant_names": {
+    "Central Lantern": 0.147454,
+    "Lanterns House": 0.073674,
+    "Lantern Point": 0.02392,
+    "Lantern Harbor Shuttle": 0.009182
+   },
+   "endpoints": {
+    "lambda_to_0": "Enjoy a peaceful weekend at Lantern House in the Harbor District\u2014its quiet courtyard offers calm, and luggage storage makes your stay hassle-free. Perfect for a relaxed getaway with no extra stress!",
+    "lambda_to_1": "Enjoy a stress-free weekend in the Harbor District! Take the step-free, bicycle-friendly HarborHop shuttle from Central Station\u2014perfect for exploring without hassle. Ride the eco-friendly electric shuttle and make your visit easier, greener, and more convenient."
+   }
+  },
+  {
+   "file": "live-transit-hotel/transit-hotel-seed4.json",
+   "schema_in": "bid-atlas-v1",
+   "mode": "live_model",
+   "scenario": "transit-hotel",
+   "seed": 4,
+   "bidders": [
+    "HarborHop",
+    "Lantern House"
+   ],
+   "regions": 31,
+   "distinct_texts": 31,
+   "verification_status": "all_match",
+   "share": {
+    "exact:A": 0.264699,
+    "exact:B": 0.436492,
+    "multiple": 0.040477,
+    "neither": 0.339287,
+    "unsupported_number": 0.0,
+    "unsupported_rating": 0.0,
+    "variant_name": 0.205792,
+    "unresolved": 0.0
+   },
+   "unsupported_number_regions": [],
+   "unsupported_ratings": {},
+   "variant_names": {
+    "Harbor District\u2019s Lantern Square": 0.152746,
+    "Use Lantern Transit\u2019s Harbor": 0.034449,
+    "Lantern Bay Hotel": 0.017238,
+    "Lantern Promenade": 0.001359
+   },
+   "endpoints": {
+    "lambda_to_0": "Enjoy a peaceful weekend at Lantern House in the Harbor District\u2014its quiet courtyard offers serenity. Need to store luggage? They offer luggage storage. A calm retreat, perfect for relaxation and easy access to the harbor area.",
+    "lambda_to_1": "Explore the Harbor District easily with HarborHop! Enjoy step-free boarding and bike storage on your way from Central Station. A convenient, eco-friendly way to get around your weekend stay."
+   }
+  },
+  {
+   "file": "live-transit-hotel/transit-hotel-seed5.json",
+   "schema_in": "bid-atlas-v1",
+   "mode": "live_model",
+   "scenario": "transit-hotel",
+   "seed": 5,
+   "bidders": [
+    "HarborHop",
+    "Lantern House"
+   ],
+   "regions": 34,
+   "distinct_texts": 34,
+   "verification_status": "skipped_time_budget",
+   "share": {
+    "exact:A": 0.675057,
+    "exact:B": 0.667238,
+    "multiple": 0.376279,
+    "neither": 0.033983,
+    "unsupported_number": 0.0,
+    "unsupported_rating": 0.0,
+    "variant_name": 0.255042,
+    "unresolved": 0.0
+   },
+   "unsupported_number_regions": [],
+   "unsupported_ratings": {},
+   "variant_names": {
+    "Lantern Street": 0.146415,
+    "Lantern Central Station": 0.050521,
+    "Lantern Point": 0.033983,
+    "Lantern Bay": 0.024122
+   },
+   "endpoints": {
+    "lambda_to_0": "Enjoy a peaceful weekend at Lantern House in the Harbor District\u2014its quiet courtyard offers calm, and luggage storage makes your stay hassle-free. Perfect for a relaxed getaway with no extra worries.",
+    "lambda_to_1": "Explore the Harbor District easily with HarborHop! Enjoy step-free boarding and bike space\u2014perfect for a weekend visit. Ride the electric shuttle from Central Station for a smooth, convenient journey."
+   }
+  },
+  {
+   "file": "live-competing-hotels/competing-hotels-seed1.json",
+   "schema_in": "bid-atlas-v1",
+   "mode": "live_model",
+   "scenario": "competing-hotels",
+   "seed": 1,
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel"
+   ],
+   "regions": 21,
+   "distinct_texts": 21,
+   "verification_status": "all_match",
+   "share": {
+    "exact:A": 0.52288,
+    "exact:B": 0.262313,
+    "multiple": 0.0,
+    "neither": 0.214806,
+    "unsupported_number": 0.0,
+    "unsupported_rating": 0.0,
+    "variant_name": 0.3681,
+    "unresolved": 0.0
+   },
+   "unsupported_number_regions": [],
+   "unsupported_ratings": {},
+   "variant_names": {
+    "Tideglass Inn": 0.229741,
+    "Lantern's Caf\u00e9": 0.144298,
+    "Lantern Lane": 0.050639,
+    "Tidewick Hotel\u2019s": 0.037787,
+    "Use Lantern Bay\u2019s": 0.03179,
+    "Tidewick Hotel": 0.018144
+   },
+   "endpoints": {
+    "lambda_to_0": "Stay at Tideglass Hotel beside Central Station for a relaxed weekend. Enjoy the rooftop reading room and use their luggage storage. It\u2019s convenient, quiet, and perfect for a peaceful stay without hassle.",
+    "lambda_to_1": "Stay at Lantern House for a peaceful weekend in the Harbor District. Enjoy a quiet courtyard and relax with luggage storage\u2014perfect for a stress-free stay."
+   }
+  },
+  {
+   "file": "live-competing-hotels/competing-hotels-seed10.json",
+   "schema_in": "bid-atlas-v1",
+   "mode": "live_model",
+   "scenario": "competing-hotels",
+   "seed": 10,
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel"
+   ],
+   "regions": 26,
+   "distinct_texts": 26,
+   "verification_status": "skipped_time_budget",
+   "share": {
+    "exact:A": 0.76631,
+    "exact:B": 0.185458,
+    "multiple": 0.036043,
+    "neither": 0.084275,
+    "unsupported_number": 0.0,
+    "unsupported_rating": 0.0,
+    "variant_name": 0.179219,
+    "unresolved": 0.0
+   },
+   "unsupported_number_regions": [],
+   "unsupported_ratings": {},
+   "variant_names": {
+    "Tidepoint Hotel": 0.100361,
+    "Tideglass Inn": 0.078859
+   },
+   "endpoints": {
+    "lambda_to_0": "Stay at Tideglass Hotel beside Central Station for a relaxed weekend. Enjoy the rooftop reading room and use their luggage storage. It\u2019s close, convenient, and perfect for a peaceful stay with easy access to the district.",
+    "lambda_to_1": "For a peaceful weekend in the Harbor District, try Lantern House. Its quiet courtyard offers calm, and luggage storage is handy. Perfect for a relaxed stay without hassle."
+   }
+  },
+  {
+   "file": "live-competing-hotels/competing-hotels-seed2.json",
+   "schema_in": "bid-atlas-v1",
+   "mode": "live_model",
+   "scenario": "competing-hotels",
+   "seed": 2,
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel"
+   ],
+   "regions": 20,
+   "distinct_texts": 20,
+   "verification_status": "all_match",
+   "share": {
+    "exact:A": 0.366816,
+    "exact:B": 0.299962,
+    "multiple": 0.0,
+    "neither": 0.333223,
+    "unsupported_number": 0.0,
+    "unsupported_rating": 0.0,
+    "variant_name": 0.483122,
+    "unresolved": 0.0
+   },
+   "unsupported_number_regions": [],
+   "unsupported_ratings": {},
+   "variant_names": {
+    "Lantern Bay": 0.445932,
+    "Tideglass Co": 0.076761,
+    "Lantern Bay Inn": 0.03719,
+    "Lantern Bay\u2019s": 0.020902
+   },
+   "endpoints": {
+    "lambda_to_0": "Stay at Tideglass Hotel beside Central Station for a relaxing weekend. Enjoy the rooftop reading room and use their luggage storage. It\u2019s perfect for a quiet, convenient stay near the heart of the district.",
+    "lambda_to_1": "Stay at Lantern House in the Harbor District for a peaceful weekend. Enjoy the quiet courtyard and use their luggage storage for a stress-free visit. It\u2019s a calm, practical choice for a relaxing getaway."
+   }
+  },
+  {
+   "file": "live-competing-hotels/competing-hotels-seed3.json",
+   "schema_in": "bid-atlas-v1",
+   "mode": "live_model",
+   "scenario": "competing-hotels",
+   "seed": 3,
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel"
+   ],
+   "regions": 19,
+   "distinct_texts": 19,
+   "verification_status": "all_match",
+   "share": {
+    "exact:A": 0.167502,
+    "exact:B": 0.292721,
+    "multiple": 0.0,
+    "neither": 0.539777,
+    "unsupported_number": 0.0,
+    "unsupported_rating": 0.0,
+    "variant_name": 0.680893,
+    "unresolved": 0.0
+   },
+   "unsupported_number_regions": [],
+   "unsupported_ratings": {},
+   "variant_names": {
+    "Lantern Inn": 0.439527,
+    "Tideglass Inn": 0.224019,
+    "Lantern Bay": 0.038612
+   },
+   "endpoints": {
+    "lambda_to_0": "Stay at Tideglass Hotel beside Central Station for a relaxed weekend. Enjoy the rooftop reading room and use their luggage storage. It\u2019s a convenient, peaceful choice right in the heart of the Harbor District.",
+    "lambda_to_1": "Stay at Lantern House for a peaceful weekend in the Harbor District. Enjoy a quiet courtyard and reliable luggage storage\u2014perfect for a relaxed visit. It\u2019s a simple, practical choice for a comfortable stay."
+   }
+  },
+  {
+   "file": "live-competing-hotels/competing-hotels-seed4.json",
+   "schema_in": "bid-atlas-v1",
+   "mode": "live_model",
+   "scenario": "competing-hotels",
+   "seed": 4,
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel"
+   ],
+   "regions": 22,
+   "distinct_texts": 22,
+   "verification_status": "all_match",
+   "share": {
+    "exact:A": 0.216884,
+    "exact:B": 0.301319,
+    "multiple": 0.0,
+    "neither": 0.481797,
+    "unsupported_number": 0.0,
+    "unsupported_rating": 0.0,
+    "variant_name": 0.600869,
+    "unresolved": 0.0
+   },
+   "unsupported_number_regions": [],
+   "unsupported_ratings": {},
+   "variant_names": {
+    "Lantern Bay": 0.353656,
+    "Lantern Stay": 0.153522,
+    "Tideglass Inn": 0.093692
+   },
+   "endpoints": {
+    "lambda_to_0": "Stay at Tideglass Hotel beside Central Station for a peaceful weekend. Enjoy the rooftop reading room and use their luggage storage. It\u2019s perfectly located for a relaxed, convenient visit.",
+    "lambda_to_1": "For a peaceful weekend in the Harbor District, try Lantern House. Its quiet courtyard offers calm, and luggage storage is handy. A simple, relaxing stay with no fuss\u2014perfect for unwinding."
+   }
+  },
+  {
+   "file": "live-competing-hotels/competing-hotels-seed5.json",
+   "schema_in": "bid-atlas-v1",
+   "mode": "live_model",
+   "scenario": "competing-hotels",
+   "seed": 5,
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel"
+   ],
+   "regions": 29,
+   "distinct_texts": 29,
+   "verification_status": "all_match",
+   "share": {
+    "exact:A": 0.155769,
+    "exact:B": 0.217781,
+    "multiple": 0.0,
+    "neither": 0.62645,
+    "unsupported_number": 0.0,
+    "unsupported_rating": 0.0,
+    "variant_name": 0.783428,
+    "unresolved": 0.0
+   },
+   "unsupported_number_regions": [],
+   "unsupported_ratings": {},
+   "variant_names": {
+    "Lantern Inn": 0.609721,
+    "Tideglass Inn": 0.173707,
+    "Tideglass Restaurant": 0.077142,
+    "Tideglass Suites": 0.07259,
+    "Tideglass Bay": 0.005158
+   },
+   "endpoints": {
+    "lambda_to_0": "Stay at Tideglass Hotel beside Central Station for a relaxed weekend. Enjoy the rooftop reading room and use their luggage storage\u2014perfect for a stress-free visit with easy access to the district.",
+    "lambda_to_1": "Stay at Lantern House for a peaceful weekend in the Harbor District. Enjoy a quiet courtyard and relax with luggage storage. It\u2019s perfect for a calm, practical getaway."
+   }
+  },
+  {
+   "file": "live-competing-hotels/competing-hotels-seed6.json",
+   "schema_in": "bid-atlas-v1",
+   "mode": "live_model",
+   "scenario": "competing-hotels",
+   "seed": 6,
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel"
+   ],
+   "regions": 24,
+   "distinct_texts": 24,
+   "verification_status": "all_match",
+   "share": {
+    "exact:A": 0.533513,
+    "exact:B": 0.432495,
+    "multiple": 0.067195,
+    "neither": 0.101187,
+    "unsupported_number": 0.0,
+    "unsupported_rating": 0.0,
+    "variant_name": 0.417697,
+    "unresolved": 0.0
+   },
+   "unsupported_number_regions": [],
+   "unsupported_ratings": {},
+   "variant_names": {
+    "Tideglass Inn": 0.352716,
+    "Tidehaven Hotel": 0.06498,
+    "Lantern Bay": 0.053755,
+    "Lantern Point": 0.036414,
+    "Lantern Lane": 0.008915,
+    "Lantern View": 0.002104
+   },
+   "endpoints": {
+    "lambda_to_0": "Stay at Tideglass Hotel beside Central Station for a convenient weekend visit. Enjoy the rooftop reading room and use their luggage storage\u2014perfect for a relaxed, practical stay in the Harbor District.",
+    "lambda_to_1": "Stay at Lantern House for a peaceful weekend in the Harbor District. Enjoy a quiet courtyard and relax with luggage storage\u2014perfect for a stress-free getaway. Simply arrive, unwind, and let the calm surroundings recharge you."
+   }
+  },
+  {
+   "file": "live-competing-hotels/competing-hotels-seed7.json",
+   "schema_in": "bid-atlas-v1",
+   "mode": "live_model",
+   "scenario": "competing-hotels",
+   "seed": 7,
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel"
+   ],
+   "regions": 18,
+   "distinct_texts": 18,
+   "verification_status": "all_match",
+   "share": {
+    "exact:A": 0.446503,
+    "exact:B": 0.501746,
+    "multiple": 0.0,
+    "neither": 0.051752,
+    "unsupported_number": 0.0,
+    "unsupported_rating": 0.0,
+    "variant_name": 0.294907,
+    "unresolved": 0.0
+   },
+   "unsupported_number_regions": [],
+   "unsupported_ratings": {},
+   "variant_names": {
+    "Lantern Bay Inn": 0.275072,
+    "Tide Street Hotel": 0.029757,
+    "Tide\u2019s Bay Hotel": 0.019835
+   },
+   "endpoints": {
+    "lambda_to_0": "Stay at Tideglass Hotel beside Central Station for a relaxed weekend. Enjoy the rooftop reading room and use their luggage storage. It\u2019s convenient, calm, and perfect for a peaceful stay right in the heart of the Harbor District.",
+    "lambda_to_1": "Stay at Lantern House in the Harbor District for a peaceful weekend. Enjoy the quiet courtyard and use their luggage storage\u2014perfect for a relaxed, stress-free visit."
+   }
+  },
+  {
+   "file": "live-competing-hotels/competing-hotels-seed8.json",
+   "schema_in": "bid-atlas-v1",
+   "mode": "live_model",
+   "scenario": "competing-hotels",
+   "seed": 8,
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel"
+   ],
+   "regions": 21,
+   "distinct_texts": 21,
+   "verification_status": "all_match",
+   "share": {
+    "exact:A": 0.74117,
+    "exact:B": 0.284621,
+    "multiple": 0.044995,
+    "neither": 0.019205,
+    "unsupported_number": 0.0,
+    "unsupported_rating": 0.0,
+    "variant_name": 0.372267,
+    "unresolved": 0.0
+   },
+   "unsupported_number_regions": [],
+   "unsupported_ratings": {},
+   "variant_names": {
+    "Tide\u2019s Edge Hotel": 0.180008,
+    "Lantern Inn": 0.165839,
+    "Glass Hotel": 0.10869,
+    "Tideglass Park": 0.026421,
+    "Tideglass Bay Hotel\u2019s": 0.019205,
+    "Tide's Edge Hotel": 0.010469
+   },
+   "endpoints": {
+    "lambda_to_0": "Stay at Tideglass Hotel beside Central Station for a serene weekend. Enjoy the rooftop reading room and use their luggage storage. It\u2019s close, convenient, and perfect for a peaceful stay without travel hassle.",
+    "lambda_to_1": "Stay at Lantern House for a peaceful weekend in the Harbor District. Enjoy a quiet courtyard and use their luggage storage\u2014perfect for a relaxed, stress-free stay."
+   }
+  },
+  {
+   "file": "live-competing-hotels/competing-hotels-seed9.json",
+   "schema_in": "bid-atlas-v1",
+   "mode": "live_model",
+   "scenario": "competing-hotels",
+   "seed": 9,
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel"
+   ],
+   "regions": 17,
+   "distinct_texts": 17,
+   "verification_status": "all_match",
+   "share": {
+    "exact:A": 0.21539,
+    "exact:B": 0.252443,
+    "multiple": 0.0,
+    "neither": 0.532167,
+    "unsupported_number": 0.0,
+    "unsupported_rating": 0.0,
+    "variant_name": 0.719456,
+    "unresolved": 0.0
+   },
+   "unsupported_number_regions": [],
+   "unsupported_ratings": {},
+   "variant_names": {
+    "Lantern Lodge": 0.719456,
+    "Tideglass Caf\u00e9": 0.035983
+   },
+   "endpoints": {
+    "lambda_to_0": "Stay at Tideglass Hotel beside Central Station for a relaxing weekend. Enjoy the rooftop reading room and use their luggage storage. It\u2019s a convenient, calm spot right in the heart of the Harbor District.",
+    "lambda_to_1": "Stay at Lantern House for a peaceful weekend in the Harbor District. Enjoy a quiet courtyard and reliable luggage storage\u2014perfect for a relaxed, stress-free getaway."
+   }
+  },
+  {
+   "file": "live-three-hotels/atlas-seed1.json",
+   "schema_in": "simplex-atlas-v1",
+   "mode": "live_model",
+   "scenario": "three-hotels",
+   "seed": 1,
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel",
+    "Saltmarsh Inn"
+   ],
+   "regions": 276,
+   "distinct_texts": 153,
+   "verification_status": null,
+   "share": {
+    "exact:A": 0.001049,
+    "exact:B": 0.080922,
+    "exact:C": 0.012291,
+    "multiple": 0.0,
+    "neither": 0.658844,
+    "unsupported_number": 0.0,
+    "unsupported_rating": 0.0,
+    "variant_name": 0.659893,
+    "unresolved": 0.246894
+   },
+   "unsupported_number_regions": [],
+   "unsupported_ratings": {},
+   "variant_names": {
+    "Lantern Bay Hotel": 0.251173,
+    "Lantern Bay Inn": 0.188833,
+    "Saltwell Inn": 0.132179,
+    "Saltwell Hotel": 0.052408,
+    "Lantern Bay": 0.033721,
+    "Tide Point Hotel": 0.003268,
+    "Lantern's Lanes": 0.001922,
+    "Lantern\u2019s Edge": 0.001579,
+    "Tide House": 0.000201
+   }
+  },
+  {
+   "file": "live-three-hotels/atlas-seed2.json",
+   "schema_in": "simplex-atlas-v1",
+   "mode": "live_model",
+   "scenario": "three-hotels",
+   "seed": 2,
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel",
+    "Saltmarsh Inn"
+   ],
+   "regions": 308,
+   "distinct_texts": 204,
+   "verification_status": null,
+   "share": {
+    "exact:A": 0.132776,
+    "exact:B": 0.088331,
+    "exact:C": 0.241245,
+    "multiple": 0.012641,
+    "neither": 0.200797,
+    "unsupported_number": 0.000106,
+    "unsupported_rating": 0.0,
+    "variant_name": 0.196458,
+    "unresolved": 0.349492
+   },
+   "unsupported_number_regions": [
+    {
+     "region": 289,
+     "weight": 0.00010632043026137517,
+     "numbers": [
+      "9"
+     ]
+    }
+   ],
+   "unsupported_ratings": {},
+   "variant_names": {
+    "Saltwick Inn": 0.109275,
+    "Saltwell Inn": 0.076602,
+    "Lantern Point": 0.030862,
+    "Tideglass View Hotel": 0.028485,
+    "Lantern Hotel": 0.018212,
+    "Saltmarsh Hotel": 0.01139,
+    "Lanterns House": 0.005906,
+    "Lantern Street": 0.005508,
+    "Lantern Umbrellas": 0.002754,
+    "Glass Hotel": 0.001715,
+    "Lantern Umbrella\u2019s": 0.001663,
+    "Tideview Hotel\u2019s": 0.001529,
+    "Lantern\u2019s Umbrella Luggage Service": 0.001203,
+    "Tideglass Park": 0.000526,
+    "Lantern Point\u2019s": 0.000506,
+    "Lantern Umbrella": 0.000138,
+    "Tideglass Market": 0.000106,
+    "Lantern\u2019s Umbrella Lending Service": 8.2e-05
+   }
+  },
+  {
+   "file": "live-three-hotels/atlas-seed3.json",
+   "schema_in": "simplex-atlas-v1",
+   "mode": "live_model",
+   "scenario": "three-hotels",
+   "seed": 3,
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel",
+    "Saltmarsh Inn"
+   ],
+   "regions": 310,
+   "distinct_texts": 187,
+   "verification_status": null,
+   "share": {
+    "exact:A": 0.158228,
+    "exact:B": 0.300842,
+    "exact:C": 0.192743,
+    "multiple": 0.128765,
+    "neither": 0.149782,
+    "unsupported_number": 0.006536,
+    "unsupported_rating": 0.0,
+    "variant_name": 0.217929,
+    "unresolved": 0.327189
+   },
+   "unsupported_number_regions": [
+    {
+     "region": 53,
+     "weight": 0.005153742219471846,
+     "numbers": [
+      "15"
+     ]
+    },
+    {
+     "region": 62,
+     "weight": 0.00016968779786735722,
+     "numbers": [
+      "5"
+     ]
+    },
+    {
+     "region": 63,
+     "weight": 0.0008818819730135319,
+     "numbers": [
+      "5"
+     ]
+    },
+    {
+     "region": 66,
+     "weight": 0.0003307982439712531,
+     "numbers": [
+      "5"
+     ]
+    }
+   ],
+   "unsupported_ratings": {},
+   "variant_names": {
+    "Tideglass Inn": 0.168978,
+    "Lanterns House": 0.016398,
+    "Tide\u2019s End Saltwater Inn": 0.010964,
+    "Breeze Inn\u2019s": 0.00935,
+    "Silt Inn": 0.005731,
+    "Choose Tideglass": 0.003115,
+    "Saltmarsh Stays": 0.002832,
+    "Lanterns Inn": 0.000561,
+    "Saltmarsh Hotel": 0.000527,
+    "Simmer Inn": 0.000242,
+    "Starlight Inn": 0.00019,
+    "Saltwater Breeze Inn": 0.000146,
+    "Use Lantern Walk": 0.000114,
+    "Lantern Lounge": 2.7e-05
+   }
+  },
+  {
+   "file": "live-three-hotels-depth/atlas-seed1.json",
+   "schema_in": "simplex-atlas-v1",
+   "mode": "live_model",
+   "scenario": "three-hotels",
+   "seed": 1,
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel",
+    "Saltmarsh Inn"
+   ],
+   "regions": 196,
+   "distinct_texts": 124,
+   "verification_status": null,
+   "share": {
+    "exact:A": 0.007529,
+    "exact:B": 0.008841,
+    "exact:C": 0.001032,
+    "multiple": 0.0,
+    "neither": 0.504754,
+    "unsupported_number": 0.00048,
+    "unsupported_rating": 0.0,
+    "variant_name": 0.514628,
+    "unresolved": 0.477843
+   },
+   "unsupported_number_regions": [
+    {
+     "region": 129,
+     "weight": 0.00030402494170866934,
+     "numbers": [
+      "24"
+     ]
+    },
+    {
+     "region": 135,
+     "weight": 0.00017597468029378893,
+     "numbers": [
+      "24"
+     ]
+    }
+   ],
+   "unsupported_ratings": {},
+   "variant_names": {
+    "Lantern Bay Hotel": 0.365127,
+    "Lantern Bay Inn": 0.100958,
+    "Lantern Bay": 0.048543,
+    "Tide Inn's": 0.003701,
+    "Tide Point Hotel": 0.003268,
+    "Saltmarsh Courtyard's": 0.001812,
+    "Saltmarsh Courtyard": 0.001032,
+    "Salt Lane Hotel": 0.00048
+   }
+  },
+  {
+   "file": "live-three-hotels-depth/atlas-seed2.json",
+   "schema_in": "simplex-atlas-v1",
+   "mode": "live_model",
+   "scenario": "three-hotels",
+   "seed": 2,
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel",
+    "Saltmarsh Inn"
+   ],
+   "regions": 96,
+   "distinct_texts": 70,
+   "verification_status": null,
+   "share": {
+    "exact:A": 0.062558,
+    "exact:B": 0.003879,
+    "exact:C": 0.0,
+    "multiple": 0.0,
+    "neither": 0.012866,
+    "unsupported_number": 0.0,
+    "unsupported_rating": 0.0,
+    "variant_name": 0.01587,
+    "unresolved": 0.920697
+   },
+   "unsupported_number_regions": [],
+   "unsupported_ratings": {},
+   "variant_names": {
+    "Tidecrest Hotel": 0.008864,
+    "Tidecrest Inn": 0.006921,
+    "Lantern\u2019s House": 0.001701,
+    "Lanterns House": 0.001497,
+    "Lantern's House": 0.000881,
+    "Tideglass Park": 8.4e-05
+   }
+  },
+  {
+   "file": "live-three-hotels-depth/atlas-seed3.json",
+   "schema_in": "simplex-atlas-v1",
+   "mode": "live_model",
+   "scenario": "three-hotels",
+   "seed": 3,
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel",
+    "Saltmarsh Inn"
+   ],
+   "regions": 76,
+   "distinct_texts": 59,
+   "verification_status": null,
+   "share": {
+    "exact:A": 0.078607,
+    "exact:B": 0.0,
+    "exact:C": 0.0,
+    "multiple": 0.0,
+    "neither": 0.130403,
+    "unsupported_number": 0.0,
+    "unsupported_rating": 0.0,
+    "variant_name": 0.186333,
+    "unresolved": 0.790991
+   },
+   "unsupported_number_regions": [],
+   "unsupported_ratings": {},
+   "variant_names": {
+    "Tideglass Inn": 0.175369,
+    "Tide\u2019s End Saltwater Inn": 0.010964,
+    "Lantern Row": 0.006642
+   }
+  },
+  {
+   "file": "live-three-hotels-depth/atlas-seed4.json",
+   "schema_in": "simplex-atlas-v1",
+   "mode": "live_model",
+   "scenario": "three-hotels",
+   "seed": 4,
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel",
+    "Saltmarsh Inn"
+   ],
+   "regions": 144,
+   "distinct_texts": 83,
+   "verification_status": null,
+   "share": {
+    "exact:A": 0.092245,
+    "exact:B": 0.020344,
+    "exact:C": 0.0,
+    "multiple": 0.0,
+    "neither": 0.087576,
+    "unsupported_number": 0.0,
+    "unsupported_rating": 0.0,
+    "variant_name": 0.087576,
+    "unresolved": 0.799834
+   },
+   "unsupported_number_regions": [],
+   "unsupported_ratings": {},
+   "variant_names": {
+    "Lantern Bay": 0.076596,
+    "Lantern Point": 0.01098
+   }
+  }
+ ]
+}

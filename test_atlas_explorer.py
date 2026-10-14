@@ -120,8 +120,9 @@ class AtlasFixtureTests(unittest.TestCase):
             self.assertEqual(kinds, {("bid-atlas-v1", "text"), ("bid-atlas-v1", "image"),
                                      ("simplex-atlas-v1", "text")}, prefix)
         self.assertLess(size_of("model-test-"), 1_500_000)
-        # Live atlases carry real leaf images (downscaled on publish); keep the repo bounded.
-        self.assertLess(size_of("live-"), 25_000_000)
+        # Live atlases carry real leaf images (downscaled on publish) and three-bidder
+        # step records; keep the repo bounded.
+        self.assertLess(size_of("live-"), 40_000_000)
 
     def test_two_bidder_leaves_partition_and_respect_contest_uniforms(self):
         for path, atlas in PAIRS.items():

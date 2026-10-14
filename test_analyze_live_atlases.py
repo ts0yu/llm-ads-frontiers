@@ -87,6 +87,10 @@ class AnalyzeLiveAtlasesTest(unittest.TestCase):
         self.assertAlmostEqual(share["unsupported_number"], 0.2)
         self.assertEqual(set(report["variant_names"]), {"The Saltmarsh Lodge"})
         self.assertNotIn("endpoints", report)
+        # The published form (scripts/publish_atlases.py) renames "cells" to "leaves".
+        published = dict(simplex, leaves=simplex["cells"])
+        del published["cells"]
+        self.assertEqual(analyze_mod.analyze(published)["share"], share)
 
     def test_exact_names_are_not_variants(self):
         brands = ("Bayview Hotel", "Lantern House")
@@ -104,7 +108,8 @@ class AnalyzeLiveAtlasesTest(unittest.TestCase):
             self.assertEqual(code, 0)
             report = json.loads(out.read_text())
             self.assertEqual(report["schema"], "atlas-text-analysis-v1")
-            self.assertEqual([a["file"] for a in report["atlases"]], ["a.json"])
+            self.assertEqual([a["file"] for a in report["atlases"]],
+                             [f"{Path(tmp).name}/a.json"])
 
 
 if __name__ == "__main__":

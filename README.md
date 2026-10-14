@@ -170,7 +170,7 @@ versions; pip resolves within the ranges in `pyproject.toml`.
 
 The CPU auction reference only needs `pip install -r requirements.txt`.
 Without the inference dependencies, decoder tests are explicitly skipped.
-The complete suite has 141 tests. The 38 Milestone 1 tests are described here:
+The complete suite has 160 tests. The 38 Milestone 1 tests are described here:
 all 11 original auction tests, two prompt tests,
 and eleven decoder tests using tiny randomly initialized Qwen models. These
 synthetic models test mechanics and cache correctness, not text quality.

@@ -24,7 +24,7 @@ label underneath is a noisy zero-shot heuristic, not ground truth.*
 | `live-fort-mason`: the Live Lab default prompt (Fort Mason, Bayview Hotel vs Lantern House) | Qwen/Qwen3-4B-Instruct-2507 @ `cdbee75f…`, fp32, T=96, temperature 0.8 | seeds 1–5 | 28–39 leaves (bound 97) | seeds 1–4: 6/6 match each, payment error 0.0; seed 5: skipped (time budget) |
 | `live-transit-hotel`: HarborHop vs Lantern House | same | seeds 1–5 | 25–34 leaves | seeds 1–4: 6/6 each; seed 5: skipped |
 | `live-competing-hotels`: Lantern House vs Tideglass Hotel | same | seeds 1–10 | 17–29 leaves | seeds 1–9: 6/6 each; seed 10: skipped |
-| `live-three-hotels`: Lantern House, Tideglass Hotel, Saltmarsh Inn (3 bidders) | same, T=64 | SIMPLEX_SEEDS | SIMPLEX_CELLS | SIMPLEX_CHECKS |
+| `live-three-hotels`: Lantern House, Tideglass Hotel, Saltmarsh Inn (3 bidders) | same, T=64 | seeds 1–3, `--order area`, 300 s each (plus seeds 1–4 depth-first, 240 s each, as `live-three-hotels-depth`) | 276–310 cells (area order), 76–196 (depth-first); budget-truncated, so lower bounds | 3/3 sampled cells per seed match tokens and charges |
 | `live-image-cafe`, `-cafe-more`, `-beach`, `-park`: SDXL, two sponsors per scene | stabilityai/stable-diffusion-xl-base-1.0 @ `46216598…`, fp16, Euler ancestral, 30 steps, guidance 6 | 3 scenes × 3 seeds, plus café seeds 4–6 | 28–31 leaves (bound 31) | 1 leaf per seed re-run: latents identical (max diff 0.0) |
 
 Wall-clock times on this run, with up to four jobs sharing one GPU (so these
@@ -55,7 +55,7 @@ sheet. Shares of λ ∈ (0, 1], from `scripts/analyze_live_atlases.py`
 | Fort Mason | 5 | 8–65% | 8–72% | 3–46% |
 | Transit + hotel | 5 | 0–34% | 4–25% | 0% |
 | Competing hotels | 10 | 2–63% | 18–78% | 0% |
-| Three hotels (simplex area, resolved part) | THREE_SEEDS | THREE_NEITHER | THREE_VARIANT | 0% |
+| Three hotels (simplex area, resolved part) | 3 (area order) | 22–88% of the resolved area | 30–88% of the resolved area | 0% |
 
 Examples, quoted from the stored leaves:
 
@@ -92,16 +92,26 @@ out; the atlas makes it visible instead.
 
 ## Finding 3: three bidders break the 1 + T bound on a real model
 
+![Atlas Explorer: three hotels, seed 2, area order](img/live-three-hotels-explorer.jpg)
+
+*Seed 2 in the Atlas Explorer. Hue: the hotel each cell's answer names first,
+grey if it names none exactly. Cross-hatched: unresolved within the 300 s
+budget.*
+
 With three sponsors, the atlas splits the bid triangle into convex cells. For
-T = 64 tokens, the two-bidder bound would be 65 answers. Seed 1 has
-SIMPLEX_SEED1_CELLS cells, consistent with the O(T²) growth derived in
-`simplex_atlas.py`.
+T = 64 tokens, the two-bidder bound would be 65 answers. The area-order atlases
+have 276, 308 and 310 cells while still leaving a quarter to a third of the
+triangle unresolved, so the full counts are higher. This is consistent with the
+O(T²) growth derived in `simplex_atlas.py`.
 
 Search order matters under a time budget. Depth-first, the default, spent each
 240 s budget deep in small corners and left 48–92% of the triangle unresolved
 (seeds 1–4, `live-three-hotels-depth`). The new `--order area` expands the
 largest open region first, keeping at most 32 branches (KV caches) live.
-SIMPLEX_AREA_SENTENCE A complete atlas is the same partition under either
+With 300 s per seed it resolved 75%, 65% and 67% of the triangle (seeds 1–3),
+against 52%, 8%, 21% and 20% for depth-first with 240 s (seeds 1–4). The
+budgets differ, so this is not a controlled comparison. On the tiny test model
+with an equal 6-cell budget, area order resolves 53% against 11%. A complete atlas is the same partition under either
 order; `test_simplex_atlas.py` checks this on a tiny model. Unresolved cells
 are stored as prefixes with `truncation: {"reason": "time_budget"}` and are
 never counted as answers.
@@ -145,4 +155,8 @@ identical regeneration on other hardware or software.
 
 ## Cost
 
-GPU_COST_SENTENCE
+This run used about 46 minutes of one H100 (13:51–14:36 UTC) at $0.084 per
+minute, about $3.90; the node was stopped by hand when the last export
+finished. The earlier overnight wake (setup and downloads) cost about $1.45.
+The provider showed $9.56 spent this month and $20.08 of prepaid credit left
+afterwards. Nothing ran beyond the owner's balance.

@@ -712,6 +712,60 @@
    "model": "Qwen/Qwen3-4B-Instruct-2507",
    "run": "live-three-hotels-depth",
    "source": "three-hotels/atlas-seed4.json"
+  },
+  {
+   "id": "live-three-hotels/atlas-seed1",
+   "title": "Three competing hotels · seed 1",
+   "schema": "simplex-atlas-v1",
+   "kind": "text",
+   "mode": "live_model",
+   "path": "live-three-hotels/atlas-seed1.json",
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel",
+    "Saltmarsh Inn"
+   ],
+   "leaves": 276,
+   "seed": 1,
+   "model": "Qwen/Qwen3-4B-Instruct-2507",
+   "run": "live-three-hotels",
+   "source": "three-hotels-area/atlas-seed1.json"
+  },
+  {
+   "id": "live-three-hotels/atlas-seed2",
+   "title": "Three competing hotels · seed 2",
+   "schema": "simplex-atlas-v1",
+   "kind": "text",
+   "mode": "live_model",
+   "path": "live-three-hotels/atlas-seed2.json",
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel",
+    "Saltmarsh Inn"
+   ],
+   "leaves": 308,
+   "seed": 2,
+   "model": "Qwen/Qwen3-4B-Instruct-2507",
+   "run": "live-three-hotels",
+   "source": "three-hotels-area/atlas-seed2.json"
+  },
+  {
+   "id": "live-three-hotels/atlas-seed3",
+   "title": "Three competing hotels · seed 3",
+   "schema": "simplex-atlas-v1",
+   "kind": "text",
+   "mode": "live_model",
+   "path": "live-three-hotels/atlas-seed3.json",
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel",
+    "Saltmarsh Inn"
+   ],
+   "leaves": 310,
+   "seed": 3,
+   "model": "Qwen/Qwen3-4B-Instruct-2507",
+   "run": "live-three-hotels",
+   "source": "three-hotels-area/atlas-seed3.json"
   }
  ]
 }
