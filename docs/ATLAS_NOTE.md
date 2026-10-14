@@ -111,13 +111,19 @@ steps an exponential race, `argmin E_i/b_i`, picks the winner:
 - the winner w pays `E_w * max_{j != w} b_j/E_j`;
 - expected payment equals the two-bidder formula against one merged rival
   bidding `sum_{j != i} b_j`;
-- for n = 2 it reproduces `auction.py` exactly on 4,000 random cases.
+- for n = 2 it reproduces `auction.py` on 4,000 random cases: the same tokens
+  and winners, and payments equal to 1e-12 relative (the race goes through
+  exp and log).
 
 Two differences appear for n ≥ 3:
 - Residual supports can overlap, so a winner may pay for a race whose token a
   rival would also have produced.
-- The 1 + T bound fails. Atlas cells are convex polygons in the bid simplex, and
-  their count can grow like `T^(n-1)` (128 cells at T = 32 on a tiny model).
+- The 1 + T bound fails. Atlas cells are convex polygons in the bid simplex.
+  Each contested step cuts along pieces of the hyperplanes
+  `lambda_i/E_i = lambda_j/E_j` (for n = 3, three rays from one apex), so the
+  count is at most `O(T^(n-1))` for fixed n. That is an upper bound, not a
+  measured growth rate: in the three-sponsor city walk, mean cells go from
+  116.5 at T = 20 to 461.6 at T = 80 (§5).
 
 ## 5. Findings on synthetic generators
 
@@ -164,9 +170,15 @@ is checked against a direct race at its centroid in `test_playground.py`.
 gives `P_i(lambda)` and the expected-charge factors `K_i(lambda)` exactly for
 those seeds: `E[pay_A] = b*K_A`, `E[pay_B] = a*K_B`.
 
-The per-token mechanism is truthful for a sponsor who values each contested
-win at v: bid v. That follows from Myerson's payment identity and matches
-`expected_payments`. Sponsors who value whole outcomes instead face this:
+At one fixed prefix, a sponsor who values a contested win at v maximizes its
+expected utility at that step by bidding v: the threshold payment is Myerson's
+payment identity, and its expectation is `expected_payments`. This does not
+extend to a whole generation, even for a sponsor that values every contested
+win at v. The bid also moves the path, and with it which steps are contested
+and how many. In the city walk (60 seeds, v = 2 against b = 1), bidding about
+0.98 gives an expected utility of 41.5 credits, against 23.1 for bidding 2
+(`test_playground.py`, checked by direct generations). Sponsors who value whole
+outcomes face this:
 - **City walk** (A wants the walk to pass its shop, B wants it to pass the
   other): best responses never settle within 60 rounds. A needs `lambda >= 0.67`
   and B needs `lambda <= 0.32`. Bids escalate about ×4.2 per round until one
@@ -179,8 +191,8 @@ win at v: bid v. That follows from Myerson's payment identity and matches
 
 **Fixing the cycle (`docs/OUTCOME_BIDDING.md`, `walkthrough/mechanism_lab.mjs`).**
 Exact search over the step functions, on 1000 seeds per world, finds no
-equilibrium in which both sponsors bid positive amounts, in any of 8
-configurations. Results for the city walk with both outcomes worth 40:
+equilibrium of the unmodified token auction in which both sponsors bid positive
+amounts, in any of 8 configurations. Results for the city walk with both outcomes worth 40:
 
 | Mechanism | Bidding | Revenue | Welfare | Notes |
 |---|---|---:|---:|---|

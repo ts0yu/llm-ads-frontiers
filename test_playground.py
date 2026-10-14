@@ -133,6 +133,39 @@ console.log(JSON.stringify({ report, thresholdFailures }));
 """
 
 
+PER_STEP_VALUE_CHECK = """
+import { buildAtlas, drawTapes, TwoBidderAuction } from './walkthrough/atlas_core.mjs';
+import { cityWalk } from './walkthrough/playground_worlds.mjs';
+import { prepareLab } from './walkthrough/mechanism_lab.mjs';
+const gen = cityWalk(), T = 80, seeds = 60, v = 2, b = 1;
+// Independent oracle: direct generations; A values each contested step it wins at v.
+const utility = a => {
+  let total = 0;
+  for (let s = 1; s <= seeds; s += 1) {
+    const tapes = drawTapes(s, T);
+    let state = gen.init();
+    for (let k = 0; k < T && !gen.done(state); k += 1) {
+      const [pA, pB] = gen.dists(state);
+      const out = new TwoBidderAuction(pA, pB).resolve(a, b, tapes[k]);
+      if (out.branch === 'A') total += v - out.payment_a;
+      state = gen.apply(state, out.option);
+    }
+  }
+  return total / seeds;
+};
+const atlases = [];
+for (let s = 1; s <= seeds; s += 1) atlases.push(buildAtlas(gen, s, T));
+const P = prepareLab(atlases, () => true, () => true).pieces;
+const u = j => v * P.NA[j] - b * P.KA[j];
+let best = 0;
+for (let j = 1; j < P.lo.length; j += 1) if (u(j) > u(best)) best = j;
+const lam = (P.lo[best] + P.hi[best]) / 2;
+const deviation = b * lam / (1 - lam);
+console.log(JSON.stringify({ truthful: utility(v), deviation, deviant: utility(deviation),
+  atlas: u(best) }));
+"""
+
+
 @unittest.skipUnless(NODE, "Node.js is required for browser checks")
 class PlaygroundTests(unittest.TestCase):
     def run_node(self, source: str) -> str:
@@ -192,6 +225,17 @@ class PlaygroundTests(unittest.TestCase):
                 self.assertEqual(row["mismatches"], 0)
                 self.assertLess(row["payError"], 1e-12)
                 self.assertAlmostEqual(row["areaSum"], 0.5, places=12)
+
+    def test_bidding_value_per_won_step_is_not_optimal_over_a_whole_generation(self):
+        # MECHANISM.md: at ONE fixed prefix, a bidder valuing a contested win at v
+        # maximizes E[(v - b u/(1-u)) 1{u < a/(a+b)}] at a = v. Over a generation the
+        # bid also moves the path, hence which and how many steps are contested, so
+        # per-step truthfulness does not extend: in the city walk a lower bid wins
+        # more contested steps in total. Oracle: direct generations, not the atlas.
+        result = json.loads(self.run_node(PER_STEP_VALUE_CHECK))
+        self.assertAlmostEqual(result["deviant"], result["atlas"], places=9)
+        self.assertLess(result["deviation"], 2.0)
+        self.assertGreater(result["deviant"] - result["truthful"], 5.0)
 
     def test_bid_game_curves_equal_direct_averages(self):
         result = json.loads(self.run_node(GAME_CHECK))

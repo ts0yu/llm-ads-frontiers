@@ -148,7 +148,8 @@ footer{margin-top:28px;font-size:12px;color:var(--muted)}
 
   <section class="panel" id="game" hidden>
     <h2>When sponsors value outcomes, what do they bid?</h2>
-    <p class="story" style="max-width:760px">The auction is truthful per token: a sponsor who values each contested step it wins at v credits should bid v.
+    <p class="story" style="max-width:760px">The auction is truthful one step at a time: at a fixed prefix, a sponsor who values winning that contested step at v credits should bid v.
+      Over a whole generation that guarantee is gone, because the bid also changes which later steps are contested.
       Sponsors usually value an outcome of the whole generation instead (the walk passes my storefront, the jingle sounds like my label).
       Averaging exact atlases over many seeds gives P(outcome) and expected payments as exact step functions of λ for those seeds.
       Here each sponsor best-responds to the other's bid, using those functions.</p>
@@ -656,7 +657,7 @@ function renderGame() {
       : d.status === 'cycle'
         ? `No resting point: best responses repeat a ${d.cycleLength}-round cycle. Each sponsor keeps switching between pushing λ toward its own outcome and backing off when the rival's bid makes that too expensive (last a = ${last.a.toPrecision(3)}, b = ${last.b.toPrecision(3)}).`
         : `Bids move without settling within ${pts.length - 1} rounds (last a = ${last.a.toPrecision(3)}, b = ${last.b.toPrecision(3)}).`;
-  $('g-verdict').innerHTML = `<p>${story}</p><p>Exploratory analysis of synthetic generators, not an equilibrium proof. Best responses pick the midpoint of the best constant piece of λ, and the seeds are a sample of tapes. Per-token truthfulness still holds; this concerns sponsors who value whole outcomes.</p>`;
+  $('g-verdict').innerHTML = `<p>${story}</p><p>Exploratory analysis of synthetic generators, not an equilibrium proof. Best responses pick the midpoint of the best constant piece of λ, and the seeds are a sample of tapes. Per-step truthfulness (at a fixed prefix) still holds; this concerns sponsors who value whole outcomes.</p>`;
 }
 for (const id of ['g-run', 'g-world']) $(id).addEventListener(id === 'g-run' ? 'click' : 'change', renderGame);
 

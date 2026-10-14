@@ -168,7 +168,8 @@ versions; pip resolves within the ranges in `pyproject.toml`.
 
 The CPU auction reference only needs `pip install -r requirements.txt`.
 Without the inference dependencies, decoder tests are explicitly skipped.
-The complete suite has 44 tests (six in `test_atlas_explorer.py`, below): all 11 original auction tests, two prompt tests,
+The complete suite has 141 tests. The 38 Milestone 1 tests are described here:
+all 11 original auction tests, two prompt tests,
 and eleven decoder tests using tiny randomly initialized Qwen models. These
 synthetic models test mechanics and cache correctness, not text quality.
 Three additional walkthrough tests check archived evidence fidelity, the source
@@ -184,11 +185,16 @@ cover both directions of private edits and common task/instruction edits.
 The new checks verify that the no-ad observer matches a full-prefix forward,
 leaves auction tokens/tapes/payments unchanged, includes no-ad candidates in the
 display table, and preserves both outputs if the independent answer fails.
-Six Atlas Explorer tests check that the synthetic fixtures partition (0, 1] (or
+Seven Atlas Explorer tests check that the synthetic fixtures partition (0, 1] (or
 tile the simplex) consistently with every recorded contest uniform, that the
 `/atlas_data/` route serves only data files inside that folder, and (with Node)
 that the browser's charges, (lo, hi] leaf lookup, outcome switch counts and
 three-bidder race charges match a Python reference built on `auction.py`.
+The remaining moonshot tests (`test_atlas.py`, `test_auction_n.py`,
+`test_simplex_atlas.py`, `test_gaussian_auction.py`, `test_diffusion_atlas.py`,
+`test_playground.py`, `test_mechanism_lab.py`, `test_publish_atlases.py`) cover
+the atlas generators, the N-bidder race, the Gaussian coupling and the
+browser playground; see MOONSHOTS.md.
 
 ## Run a live smoke test
 
