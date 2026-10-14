@@ -14,7 +14,7 @@
       },
       "contested_share_at_lambda_half": 0.7626188291004423,
       "outcomes": {
-        "passes Rosso Roasters": {
+        "passes Brindlewick Coffee": {
           "constant": 0,
           "increasing": 1798,
           "decreasing": 0,
@@ -23,7 +23,7 @@
           "mean_switches": 1.205,
           "max_switches": 5
         },
-        "passes Inkwell Books": {
+        "passes Quillmere Books": {
           "constant": 0,
           "increasing": 0,
           "decreasing": 1548,

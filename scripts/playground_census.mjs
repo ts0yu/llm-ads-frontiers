@@ -6,8 +6,8 @@ import { cityWalk, melody, blueShare, PITCHES, REST } from '../walkthrough/playg
 const seeds = Number(process.argv[2] || 2000);
 const worlds = [
   ['city', cityWalk(), 80, {
-    'passes Rosso Roasters': l => l.state.visited[0],
-    'passes Inkwell Books': l => l.state.visited[1],
+    'passes Brindlewick Coffee': l => l.state.visited[0],
+    'passes Quillmere Books': l => l.state.visited[1],
     'reaches the venue': l => l.stop === 'done',
   }],
   ['melody', melody(), 32, {

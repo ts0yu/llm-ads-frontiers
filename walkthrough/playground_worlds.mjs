@@ -10,8 +10,8 @@ export const CITY = {
   start: [0, 7],
   goal: [14, 2],
   sponsors: [
-    { name: 'Rosso Roasters', kind: 'café', at: [4, 1] },
-    { name: 'Inkwell Books', kind: 'bookshop', at: [10, 8] },
+    { name: 'Brindlewick Coffee', kind: 'café', at: [4, 1] },
+    { name: 'Quillmere Books', kind: 'bookshop', at: [10, 8] },
   ],
   // Closed blocks (parks) that streets route around.
   parks: [[6, 3], [7, 3], [6, 4], [7, 4], [6, 5], [7, 5], [11, 4], [12, 4]],
@@ -87,7 +87,7 @@ export const noteName = option => (option === REST ? 'rest' : `${NAMES[PITCHES[o
 
 export const COMPOSERS = [
   {
-    name: 'Sunny Day Records',
+    name: 'Halcyonne Records',
     mood: 'bright major, rising steps and arpeggios',
     // Pitch-class weights: C major with emphasis on the C-E-G triad.
     scale: { 0: 3.2, 2: 1.6, 4: 2.8, 5: 1.1, 7: 3.0, 9: 1.5, 11: 0.9 },
@@ -96,7 +96,7 @@ export const COMPOSERS = [
     rest: 0.04,
   },
   {
-    name: 'Nightjar Blues',
+    name: 'Velvetmoth Blues',
     mood: 'minor blues, blue notes and falling phrases',
     // C minor blues: C, E♭, F, F♯ (blue), G, B♭.
     scale: { 0: 3.0, 3: 2.8, 5: 1.8, 6: 1.3, 7: 2.4, 10: 2.2, 2: 0.4 },
