@@ -90,7 +90,7 @@ and one won by B charges B `S*lambda*(1-u)/u`.
   Unlike n = 2, residual supports can overlap for n >= 3, so a winner can pay
   for winning the race even when a rival's win would have produced the same
   token. The 1 + T bound also does not carry over: each contested step adds a
-  fan of three rays, and cell counts can grow like T^(n-1).
+  fan of three rays, and cell counts are bounded by O(T^(n-1)), not O(T).
   For n = 2, setting `u = E_A/(E_A+E_B)` (which is Uniform(0,1)) recovers
   `auction.py` exactly, payments included. In the simplex, the winner regions
   at a step are convex cones meeting at `lambda ∝ E`, so atlas cells are convex

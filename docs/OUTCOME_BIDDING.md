@@ -17,7 +17,10 @@ the "Fixing the cycle" tab of `walkthrough/playground.html`.
 The reference auction (MECHANISM.md) is a per-step mechanism. At each contested
 step, A's candidate wins iff the contest uniform `u < lambda = a/(a+b)`, and the
 winner pays its critical bid (`b u/(1-u)` for A). For a bidder that values each
-contested win at `v`, bidding `v` is optimal at that step.
+contested win at `v`, bidding `v` is optimal at that step, holding the prefix
+fixed. It is not optimal over a whole generation in general: the bid also
+changes which later steps are contested (`test_playground.py` has a city-walk
+counterexample).
 
 Sponsors usually value an *outcome* of the whole generation instead: "the walk
 passes my storefront", "the jingle sounds like my label". For a fixed set of
@@ -154,9 +157,9 @@ higher on hard wins (u > 1/2). A step with `u < (r/2)/(b+r)` is won for free.
 
 **Result: bounded, mostly near-stationary bidding, rarely an exact equilibrium.**
 In all 320 pseudo-bid runs, no sponsor dropped out: lambda' never left
-[0.005, 0.995], and late-path bid levels stayed at or above 0.42. Exact fixed
-points (pure equilibria) were reached in 40 of the 320 runs, mostly in melody. Elsewhere bids keep
-moving inside a narrow band:
+[0.005, 0.995], and late-path bid levels stayed at or above 0.41. Exact fixed
+points (pure equilibria) were reached in 40 of the 320 runs, all of them in
+melody. Elsewhere bids keep moving inside a narrow band:
 
 | city (40, 40) | lambda' late in path | cycle-avg welfare | cycle-avg revenue | exact NE? |
 |---|---|---|---|---|
@@ -212,9 +215,10 @@ original allocation rule with bids equal to reported values,
 `x_A(z) = P_A(z/(z+V_B))`, and symmetrically for B with
 `x_B(z) = P_B(V_A/(V_A+z))`. The integral is exact: piece j maps to the report
 interval `(V_B lo/(1-lo), V_B hi/(1-hi)]`. By Myerson's lemma this is
-dominant-strategy truthful iff `x_A` is nondecreasing and `x_B` nonincreasing,
-that is, iff the seed-averaged P_A is nondecreasing and P_B nonincreasing in
-lambda.
+dominant-strategy truthful iff each sponsor's allocation is nondecreasing in
+its own report. For B a larger report z lowers lambda, so `x_A` and `x_B` must
+both be nondecreasing in z, that is, the seed-averaged P_A must be
+nondecreasing and P_B nonincreasing in lambda.
 
 - The averaged curves are *almost* monotone. City has 110 drops in P_A and 257
   rises in P_B among 23 854 pieces, each at most 0.001 (one seed in 1000). The
