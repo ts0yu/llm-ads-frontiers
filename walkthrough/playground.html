@@ -61,6 +61,7 @@ h3{font-size:13px;margin:16px 0 8px;letter-spacing:.02em}
 .outcome .row{display:flex;justify-content:space-between;font-size:12px;gap:8px;margin-bottom:4px}
 .outcome .pill{font:10px var(--mono);padding:2px 6px;border-radius:4px;background:var(--soft)}
 .outcome .pill.bad{background:var(--b-soft);color:var(--b)}
+.rate{width:100%;border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums}.rate th,.rate td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:right}.rate th:first-child,.rate td:first-child{text-align:left}.rate th{font-weight:500;color:var(--muted)}
 .band{height:12px;border-radius:3px;overflow:hidden;display:flex;background:var(--soft)}
 .band span{height:100%}
 .legend{display:flex;flex-wrap:wrap;gap:12px;font-size:11px;color:var(--muted);margin-top:10px}
@@ -148,7 +149,8 @@ footer{margin-top:28px;font-size:12px;color:var(--muted)}
     <div class="grid" style="margin-top:6px">
       <div><h3 id="g-curve-title"></h3><div id="g-curves"></div>
         <div class="legend"><span><i class="sw" style="background:var(--a)"></i>P(A's outcome)</span><span><i class="sw" style="background:var(--b)"></i>P(B's outcome)</span><span><i class="sw" style="background:var(--ink)"></i>A's expected utility at this b (right axis)</span></div></div>
-      <div><h3>Alternating best responses, from a = b = 1</h3><div id="g-path"></div><div class="story" id="g-verdict" style="margin-top:10px"></div></div>
+      <div><h3>Alternating best responses, from a = b = 1</h3><div id="g-path"></div><div class="story" id="g-verdict" style="margin-top:10px"></div>
+        <h3>Rate card for A at this b</h3><div id="g-rate"></div></div>
     </div>
   </section>
 
@@ -210,7 +212,7 @@ footer{margin-top:28px;font-size:12px;color:var(--muted)}
 
 <script type="module">
 import { buildAtlas, leafAt, leafPayments, outcomeProfile } from './atlas_core.mjs';
-import { aggregate, bestResponseA, dynamics } from './bid_game.mjs';
+import { aggregate, bestResponseA, dynamics, rateCard } from './bid_game.mjs';
 import { buildSimplexAtlas, cellAt, cellPayments, centroid } from './atlas_core_n.mjs';
 import { CITY, CITY3, cityWalk, melody, blueShare, noteName, PITCHES, REST, COMPOSERS } from './playground_worlds.mjs';
 
@@ -573,6 +575,11 @@ function renderGame() {
   g += `<path d="${step((p, i) => util[i], yu)}" fill="none" stroke="${css('--ink')}" stroke-width="1.6" stroke-dasharray="4 3"/>`;
   g += `<line x1="${x(br.lambda)}" x2="${x(br.lambda)}" y1="${T}" y2="${H - B}" stroke="${css('--ink')}" stroke-width="1" stroke-dasharray="2 2"/>`;
   $('g-curves').innerHTML = g + `</svg><p class="story">At b = ${b}, A's best response is λ = ${br.lambda.toFixed(3)} (bid a = ${br.bid.toPrecision(3)}), with expected utility ${br.utility.toFixed(2)} credits. Utility axis on the right runs from ${umin.toFixed(1)} to ${umax.toFixed(1)}.</p>`;
+  const card = rateCard(game, 'A', b);
+  $('g-rate').innerHTML = `<table class="rate"><thead><tr><th>Chance of A's outcome</th><th>cheapest λ</th><th>A's bid</th><th>expected charge</th><th>value − charge</th></tr></thead><tbody>${card.map(r => r.reachable
+    ? `<tr><td>≥ ${Math.round(r.target * 100)}% (gets ${(100 * r.probability).toFixed(1)}%)</td><td>${r.lambda.toFixed(3)}</td><td>${r.bid.toPrecision(3)}</td><td>${r.expectedCharge.toFixed(2)}</td><td>${(VA * r.probability - r.expectedCharge).toFixed(2)}</td></tr>`
+    : `<tr><td>≥ ${Math.round(r.target * 100)}%</td><td colspan="4">not reachable at any bid for these seeds</td></tr>`).join('')}</tbody></table>
+    <p class="story">Exact for the ${seeds} sampled seeds: expected charge is b × K<sub>A</sub>(λ), averaged over seeds. Value − charge uses A's outcome value above.</p>`;
   // Dynamics on a log scale.
   const d = dynamics(game, VA, VB, 1, 1, 40);
   const pts = d.path;

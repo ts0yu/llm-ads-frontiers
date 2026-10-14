@@ -97,3 +97,22 @@ export function piecesAt(game, lambda) {
   for (const p of game.pieces) if (lambda > p.lo && lambda <= p.hi) return p;
   return game.pieces[0];
 }
+
+// Rate card: for each target probability, the cheapest constant piece of lambda
+// where the outcome's probability reaches the target, given the rival's bid.
+// side 'A' uses (PA, KA) with E[pay] = rival * KA; side 'B' uses (PB, KB).
+export function rateCard(game, side, rival, targets = [0.25, 0.5, 0.75, 0.9]) {
+  return targets.map(target => {
+    let best = null;
+    for (const p of game.pieces) {
+      const prob = side === 'A' ? p.PA : p.PB;
+      if (prob + 1e-12 < target) continue;
+      const cost = rival * (side === 'A' ? p.KA : p.KB);
+      if (!best || cost < best.cost) best = { piece: p, prob, cost };
+    }
+    if (!best) return { target, reachable: false };
+    const lam = best.piece.mid;
+    const bid = side === 'A' ? rival * lam / (1 - lam) : rival * (1 - lam) / lam;
+    return { target, reachable: true, probability: best.prob, expectedCharge: best.cost, lambda: lam, bid };
+  });
+}
