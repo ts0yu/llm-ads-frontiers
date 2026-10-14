@@ -1,0 +1,87 @@
+{
+  "mode": "synthetic_generators",
+  "seeds": 2000,
+  "prng": "mulberry32",
+  "worlds": {
+    "city": {
+      "max_steps": 80,
+      "bound": 81,
+      "leaves": {
+        "mean": 24.8065,
+        "median": 25,
+        "max": 38,
+        "min": 13
+      },
+      "contested_share_at_lambda_half": 0.7626188291004423,
+      "outcomes": {
+        "passes Rosso Roasters": {
+          "constant": 0,
+          "increasing": 1798,
+          "decreasing": 0,
+          "non_monotone": 202,
+          "non_monotone_rate": 0.101,
+          "mean_switches": 1.205,
+          "max_switches": 5
+        },
+        "passes Inkwell Books": {
+          "constant": 0,
+          "increasing": 0,
+          "decreasing": 1548,
+          "non_monotone": 452,
+          "non_monotone_rate": 0.226,
+          "mean_switches": 1.481,
+          "max_switches": 5
+        },
+        "reaches the venue": {
+          "constant": 583,
+          "increasing": 0,
+          "decreasing": 0,
+          "non_monotone": 1417,
+          "non_monotone_rate": 0.7085,
+          "mean_switches": 1.782,
+          "max_switches": 8
+        }
+      }
+    },
+    "melody": {
+      "max_steps": 32,
+      "bound": 33,
+      "leaves": {
+        "mean": 19.6485,
+        "median": 20,
+        "max": 28,
+        "min": 12
+      },
+      "contested_share_at_lambda_half": 0.58421875,
+      "outcomes": {
+        "blue share > 30%": {
+          "constant": 24,
+          "increasing": 0,
+          "decreasing": 1747,
+          "non_monotone": 229,
+          "non_monotone_rate": 0.1145,
+          "mean_switches": 1.229,
+          "max_switches": 5
+        },
+        "blue share < 15%": {
+          "constant": 0,
+          "increasing": 1859,
+          "decreasing": 0,
+          "non_monotone": 141,
+          "non_monotone_rate": 0.0705,
+          "mean_switches": 1.144,
+          "max_switches": 5
+        },
+        "ends on C": {
+          "constant": 986,
+          "increasing": 129,
+          "decreasing": 256,
+          "non_monotone": 629,
+          "non_monotone_rate": 0.3145,
+          "mean_switches": 1.033,
+          "max_switches": 7
+        }
+      }
+    }
+  }
+}
