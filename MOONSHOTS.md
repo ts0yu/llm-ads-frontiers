@@ -45,6 +45,10 @@ and one won by B charges B `S*lambda*(1-u)/u`.
 - **Outcome-level threshold prices**. When an outcome indicator is monotone in
   lambda for a seed, its critical lambda is a leaf boundary. Exploratory, with
   no truthfulness claim.
+- **Outcome-level bidding.** When sponsors value outcomes, best responses in the
+  token auction cycle. `docs/OUTCOME_BIDDING.md` and
+  `walkthrough/mechanism_lab.mjs` analyze reserves, a platform pseudo-bid and
+  outcome-level mechanisms (VCG over lambda or leaves, Myerson on the atlas).
 
 ## 3. Generalizations
 
