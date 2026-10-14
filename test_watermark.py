@@ -8,6 +8,7 @@ about real text, robustness to editing, or real advertisers.
 
 import math
 import unittest
+from pathlib import Path
 
 import numpy as np
 
@@ -72,6 +73,33 @@ class KeyedDrawTests(unittest.TestCase):
         for i, m in enumerate(mixture):
             sd = math.sqrt(n * m * (1 - m)) or 1.0
             self.assertLess(abs(counts[i] - n * m), 5 * sd, (i, counts, mixture))
+
+    def test_floor_keying_changes_attribution_not_the_distribution(self):
+        floor_keys = wm.demo_keys(BIDDERS, "floor")
+        self.assertEqual(wm.shared_role(floor_keys, None), "platform")
+        self.assertEqual(wm.shared_role(floor_keys, "B"), "B")
+        self.assertEqual(wm.shared_role(self.keys, "B"), "platform")
+        with self.assertRaises(ValueError):
+            wm.WatermarkKeys(b"p", b"a", b"b", shared="sometimes")
+        rng = np.random.default_rng(5)
+        p_a = np.array([0.4, 0.3, 0.2, 0.1, 0.0])
+        p_b = np.array([0.35, 0.05, 0.2, 0.1, 0.3])
+        auction = TwoBidderAuction(p_a, p_b)
+        lam, n = 0.6, 30000
+        counts = np.zeros(len(p_a))
+        for k in range(n):
+            tape = RandomTape.draw(rng)
+            reference = auction.resolve(lam, 1 - lam, tape)
+            keyed, role = wm.resolve(auction, lam, 1 - lam, tape, floor_keys, [k, 1], "A")
+            self.assertEqual((keyed.branch, keyed.payment_a, keyed.payment_b),
+                             (reference.branch, reference.payment_a, reference.payment_b))
+            self.assertEqual(role, "A" if keyed.branch in ("shared", "A") else "B")
+            counts[keyed.token_id] += 1
+        mixture = lam * p_a + (1 - lam) * p_b
+        for i, m in enumerate(mixture):
+            sd = math.sqrt(n * m * (1 - m)) or 1.0
+            self.assertLess(abs(counts[i] - n * m), 5 * sd, (i, counts, mixture))
+        self.assertEqual(floor_keys.manifest()["shared_tokens"], "floor")
 
     def test_gamma_tail_and_manifest_hide_the_keys(self):
         self.assertAlmostEqual(wm.gamma_upper_tail(1, 2.0), math.exp(-2.0))
@@ -201,6 +229,49 @@ class WatermarkAtlasTests(unittest.TestCase):
                     self.assertIn("watermark", record["sampler"])
                 self.assertTrue(all(r["matches_direct_run"]
                                     for r in verify(atlas, self.model, self.tokenizer, n=2)))
+
+
+    def test_floor_variant_atlases_are_exact_and_follow_the_last_contest_winner(self):
+        floor_keys = wm.demo_keys(BIDDERS, "floor")
+        for span in (False, True):
+            atlas = build_atlas(self.model, self.tokenizer, PROMPTS, BIDDERS, seed=2,
+                                temperature=1.0, max_tokens=14, mode="synthetic_model_test",
+                                span_hold=span, watermark=floor_keys)
+            self.assertEqual(atlas["manifest"]["watermark"]["shared_tokens"], "floor")
+            for leaf in atlas["leaves"]:
+                floor = None
+                for step in leaf["steps"]:
+                    if step["branch"] == "shared":
+                        self.assertEqual(step["key"], floor or "platform")
+                    if step["branch"] in ("A", "B"):
+                        floor = step["branch"]
+                lam = (leaf["lo"] + leaf["hi"]) / 2
+                record = verify_point(atlas, leaf, lam, 1 - lam, self.model, self.tokenizer,
+                                      workdir=None, kind="midpoint")
+                self.assertTrue(record["matches_direct_run"], (span, leaf["id"]))
+
+    def test_evaluation_script_reports_shares_false_alarms_and_edits(self):
+        import importlib.util
+
+        spec = importlib.util.spec_from_file_location(
+            "watermark_eval", Path(__file__).resolve().parent / "scripts" / "watermark_eval.py")
+        evaluation = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(evaluation)
+        common = dict(temperature=1.0, max_tokens=14, mode="synthetic_model_test")
+        marked = build_atlas(self.model, self.tokenizer, PROMPTS, BIDDERS, seed=1,
+                             watermark=self.keys, **common)
+        plain = build_atlas(self.model, self.tokenizer, PROMPTS, BIDDERS, seed=1, **common)
+        report = evaluation.evaluate([("marked", marked)], [("plain", plain)], alpha=0.01)
+        row = report["atlases"][0]
+        for role in wm.ROLES:
+            self.assertGreaterEqual(row["drew_share"][role], 0.0)
+            self.assertLessEqual(row["detected_share"][role], 1.0 + 1e-12)
+        self.assertEqual(len(report["probes"]), len(evaluation.PROBE_LAMBDAS))
+        self.assertIn("substitute:0.1", report["summary"]["robustness_detection_rate"])
+        self.assertEqual(report["summary"]["null_atlases"], 1)
+        rng = np.random.default_rng(0)
+        self.assertEqual(evaluation.edit([1, 2, 3, 4], "truncate", 2, rng), [1, 2])
+        self.assertEqual(len(evaluation.edit(list(range(100)), "substitute", 0.5, rng)), 100)
 
 
 if __name__ == "__main__":

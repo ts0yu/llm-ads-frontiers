@@ -175,6 +175,7 @@ def build_atlas(
         branch.decoder = None  # Do not keep a second reference while running.
         steps = branch.steps
         state = branch.extra.get("span_state")
+        floor = branch.extra.get("floor")
         while stop_reason != "eos" and len(decoder.generated) < max_tokens:
             step = len(decoder.generated)
             p_a, p_b = decoder.distributions(temperature)
@@ -213,7 +214,7 @@ def build_atlas(
                 allocation = step_auction.resolve(1.0, 1.0, tape)
             else:
                 allocation, _ = wm.resolve(step_auction, 1.0, 1.0, tape, watermark,
-                                           decoder.generated)
+                                           decoder.generated, floor)
             u = tape.contest
             record = {
                 "step": step,
@@ -266,11 +267,11 @@ def build_atlas(
                     child_record = {**record, "branch": "A", "token_id": allocation.candidate_a}
                     if watermark is not None:
                         child_record["key"] = "A"
-                    child_extra = {}
+                    child_extra = {"floor": "A"}
                     if span_hold:
                         child_state = state.after(splits[-1]["a_token_text"], "A")
                         child_record["span"] = child_state.as_record()
-                        child_extra = {"span_state": child_state}
+                        child_extra["span_state"] = child_state
                     child_steps = [*steps, child_record]
                     stack.append(
                         _Branch(
@@ -299,7 +300,10 @@ def build_atlas(
                 state = state.after(piece, record["branch"])
                 record["span"] = state.as_record()
             if watermark is not None:
-                record["key"] = {"shared": "platform"}.get(record["branch"], record["branch"])
+                record["key"] = (wm.shared_role(watermark, floor) if record["branch"] == "shared"
+                                 else record["branch"])
+            if record["branch"] in ("A", "B"):
+                floor = record["branch"]
             steps.append(record)
             decoder.advance(record["token_id"])
             advances += 1
@@ -913,8 +917,9 @@ def main(argv: list[str] | None = None, *, mode: str = "live_model") -> None:
     )
     parser.add_argument(
         "--watermark",
-        choices=("demo",),
-        help="Keyed sponsor watermark (docs/WATERMARK.md) with PUBLIC demo keys.",
+        choices=("demo", "demo-floor"),
+        help="Keyed sponsor watermark (docs/WATERMARK.md) with PUBLIC demo keys; "
+        "demo-floor draws shared tokens with the most recent contest winner's key.",
     )
     parser.add_argument("--output", type=Path, default=Path("artifacts/atlas"))
     args = parser.parse_args(argv)
@@ -941,7 +946,9 @@ def main(argv: list[str] | None = None, *, mode: str = "live_model") -> None:
     title, user_prompt = _display(label, inputs)
     if args.span_hold:
         title = f"{title} · span hold"
-    keys = wm.demo_keys(bidders) if args.watermark == "demo" else None
+    keys = None
+    if args.watermark:
+        keys = wm.demo_keys(bidders, "floor" if args.watermark == "demo-floor" else "platform")
     if keys is not None:
         title = f"{title} · watermarked"
     args.output.mkdir(parents=True, exist_ok=True)

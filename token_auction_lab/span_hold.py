@@ -168,6 +168,7 @@ def run(
     keyed draws and records which role's key drew each emitted token.
     """
     state = SpanState()
+    floor = None  # winner of the most recent contest (watermark "floor" attribution)
     steps: list[dict] = []
     payment_a = payment_b = 0.0
     stop_reason = "length"
@@ -192,7 +193,7 @@ def run(
                 allocation = auction.resolve(bid_a, bid_b, tapes[step])
             else:
                 allocation, role = wm.resolve(auction, bid_a, bid_b, tapes[step], watermark,
-                                              decoder.generated)
+                                              decoder.generated, floor)
             payment_a += allocation.payment_a
             payment_b += allocation.payment_b
             branch, token = allocation.branch, allocation.token_id
@@ -204,6 +205,8 @@ def run(
                 record["released"] = {"token_id": proposal["token_id"], "piece": proposal["piece"]}
             piece = token_piece(tokenizer, decoder.generated, token)
         state = state.after(piece, branch)
+        if branch in ("A", "B"):
+            floor = branch
         if hold:
             record["span"] = state.as_record()
         if watermark is not None:

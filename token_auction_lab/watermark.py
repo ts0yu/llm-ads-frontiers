@@ -20,8 +20,12 @@ The argmin is over random keyed variables, not over probabilities.
 
 Roles: the shared distribution uses the platform key; A's residual (when A's
 candidate is drawn) uses A's key; B's uses B's key. Under span hold the owner's
-proposals use the owner's key. The emitted token carries a high ``r`` under the
-key that drew it and a uniform ``r`` under every other key.
+proposals use the owner's key. With ``shared="floor"`` a shared token is drawn
+with the key of the sponsor that won the most recent contest on this path (the
+platform key before any contest). Any key gives an exact draw, so this changes
+attribution, not the distribution: a sponsor's key then marks the tokens written
+while it held the floor, not only the tokens it won. The emitted token carries a
+high ``r`` under the key that drew it and a uniform ``r`` under every other key.
 
 Detection: score each generated token with ``-ln(1 - r)`` under a key, skipping
 repeated (context, token) pairs. Without that key's influence the scores are
@@ -61,6 +65,11 @@ class WatermarkKeys:
     a: bytes
     b: bytes
     source: str = "private"
+    shared: str = "platform"  # "platform" or "floor" (see module docstring)
+
+    def __post_init__(self) -> None:
+        if self.shared not in ("platform", "floor"):
+            raise ValueError("shared must be 'platform' or 'floor'.")
 
     def key(self, role: str) -> bytes:
         return {"platform": self.platform, "A": self.a, "B": self.b}[role]
@@ -75,12 +84,13 @@ class WatermarkKeys:
             "context_tokens": CONTEXT_TOKENS,
             "key_source": self.source,
             "key_fingerprints": self.fingerprints(),
+            "shared_tokens": self.shared,
             "note": "Token draws use keyed exponential races; branch, contest uniform and "
             "payments are the reference auction's. Keys are not stored here.",
         }
 
 
-def demo_keys(bidders: Sequence[str]) -> WatermarkKeys:
+def demo_keys(bidders: Sequence[str], shared: str = "platform") -> WatermarkKeys:
     """PUBLIC research keys, derived from fixed strings. Not secret; demo use only."""
 
     def derive(role: str) -> bytes:
@@ -89,7 +99,8 @@ def demo_keys(bidders: Sequence[str]) -> WatermarkKeys:
         ).digest()
 
     return WatermarkKeys(
-        derive("platform"), derive(f"A|{bidders[0]}"), derive(f"B|{bidders[1]}"), DEMO_SOURCE
+        derive("platform"), derive(f"A|{bidders[0]}"), derive(f"B|{bidders[1]}"), DEMO_SOURCE,
+        shared,
     )
 
 
@@ -100,7 +111,7 @@ def keys_for_manifest(manifest: dict, bidders: Sequence[str],
     if keys is None:
         if spec["key_source"] != DEMO_SOURCE:
             raise ValueError("This atlas used private keys; pass them explicitly.")
-        keys = demo_keys(bidders)
+        keys = demo_keys(bidders, spec.get("shared_tokens", "platform"))
     if keys.fingerprints() != spec["key_fingerprints"]:
         raise ValueError("Watermark key fingerprints do not match the atlas manifest.")
     return keys
@@ -148,25 +159,36 @@ def keyed_draw(weights: np.ndarray, key: bytes, context: Sequence[int]) -> int:
     return exp_sample(weights / total, keyed_uniforms(key, context, len(weights)))
 
 
+def shared_role(keys: WatermarkKeys, floor: str | None) -> str:
+    """Whose key draws a shared token: the platform's, or the floor holder's."""
+    return floor if keys.shared == "floor" and floor in ("A", "B") else "platform"
+
+
 def keyed_candidates(auction: TwoBidderAuction, keys: WatermarkKeys,
-                     context: Sequence[int]) -> dict[str, int | None]:
+                     context: Sequence[int], floor: str | None = None) -> dict[str, int | None]:
     """Keyed draws from the shared part and from each residual. Independent of bids."""
     common = np.minimum(auction.p_a, auction.p_b)
     residual_a, residual_b = auction.p_a - common, auction.p_b - common
+    shared_key = keys.key(shared_role(keys, floor))
     return {
-        "platform": keyed_draw(common, keys.platform, context) if common.sum() > 0 else None,
+        "platform": keyed_draw(common, shared_key, context) if common.sum() > 0 else None,
         "A": keyed_draw(residual_a, keys.a, context) if residual_a.sum() > 0 else None,
         "B": keyed_draw(residual_b, keys.b, context) if residual_b.sum() > 0 else None,
     }
 
 
 def resolve(auction: TwoBidderAuction, bid_a: float, bid_b: float, tape: RandomTape,
-            keys: WatermarkKeys, context: Sequence[int]) -> tuple[Allocation, str]:
-    """Reference branch and payments; keyed token. Returns (allocation, drawing role)."""
+            keys: WatermarkKeys, context: Sequence[int],
+            floor: str | None = None) -> tuple[Allocation, str]:
+    """Reference branch and payments; keyed token. Returns (allocation, drawing role).
+
+    ``floor`` is the winner of the most recent contest on this path (or None); it
+    matters only when ``keys.shared == "floor"``.
+    """
     reference = auction.resolve(bid_a, bid_b, tape)
-    picks = keyed_candidates(auction, keys, context)
+    picks = keyed_candidates(auction, keys, context, floor)
     if reference.branch == "shared":
-        return replace(reference, token_id=picks["platform"]), "platform"
+        return replace(reference, token_id=picks["platform"]), shared_role(keys, floor)
     token = picks["A"] if reference.branch == "A" else picks["B"]
     return replace(reference, token_id=token, candidate_a=picks["A"],
                    candidate_b=picks["B"]), reference.branch
@@ -216,6 +238,29 @@ def detect(token_ids: Sequence[int], keys: WatermarkKeys) -> dict:
             "p_value": gamma_upper_tail(n, total),
             "token_scores": scores,
         }
+    return result
+
+
+def detect_pooled(texts: Sequence[Sequence[int]], keys: WatermarkKeys) -> dict:
+    """One test per role over several answers (e.g. one campaign's answers).
+
+    (context, token) pairs repeated across or within answers are scored once, so
+    shared prefixes do not count twice. The null is again Gamma(n, 1).
+    """
+    result = {}
+    for role in ROLES:
+        seen, total = set(), []
+        for token_ids in texts:
+            for t, token in enumerate(token_ids):
+                pair = (tuple(token_ids[max(0, t - CONTEXT_TOKENS):t]), int(token))
+                if pair in seen:
+                    continue
+                seen.add(pair)
+                total.append(-math.log1p(-keyed_uniform(keys.key(role), pair[0], pair[1])))
+        score = math.fsum(total)
+        result[role] = {"tokens_scored": len(total), "score": score,
+                        "mean_score": score / len(total) if total else None,
+                        "p_value": gamma_upper_tail(len(total), score)}
     return result
 
 
