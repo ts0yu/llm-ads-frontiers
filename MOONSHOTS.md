@@ -63,7 +63,16 @@ and one won by B charges B `S*lambda*(1-u)/u`.
   branch, each bidder draws `E_i ~ Exp(1)` and the winner is
   `argmin E_i / b_i`, so bidder i wins with probability `b_i / sum(b)`, and the
   marginal is exactly `sum(lambda_i p_i)`. Raising `b_i` can only switch the
-  winner to i. The winner pays its critical bid `E_i * min_{j != i} b_j/E_j`.
+  winner to i. The winner w pays its critical bid `E_w * max_{j != w} b_j/E_j`
+  (w wins iff `E_w/b_w < min_j E_j/b_j`). An earlier draft of this note said
+  `min`; the two agree only for n = 2. The implementation and tests use `max`.
+  Expected payment depends only on the bidder's own bid and the sum of the
+  others' bids: `d*B*[log(1+b_i/B) - b_i/(b_i+B)]` with `B = sum_{j != i} b_j`,
+  the two-bidder formula against one merged rival.
+  Unlike n = 2, residual supports can overlap for n >= 3, so a winner can pay
+  for winning the race even when a rival's win would have produced the same
+  token. The 1 + T bound also does not carry over: each contested step adds a
+  fan of three rays, and cell counts can grow like T^(n-1).
   For n = 2, setting `u = E_A/(E_A+E_B)` (which is Uniform(0,1)) recovers
   `auction.py` exactly, payments included. In the simplex, the winner regions
   at a step are convex cones meeting at `lambda ∝ E`, so atlas cells are convex
