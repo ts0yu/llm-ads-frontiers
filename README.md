@@ -11,6 +11,29 @@ uses full-vocabulary probabilities at a fixed temperature, without argmax,
 logit averaging, or top-k/top-p filtering. The top-token table is for inspection
 only. See [MECHANISM.md](MECHANISM.md) for the payment derivation and its limits.
 
+## Moonshots: exact bid atlases
+
+A research extension, built on top of the unchanged two-bidder demo. For one
+random seed, the auction's whole response to bids can be computed exactly:
+every answer the bids can buy, at most 1 + T of them for a T-token answer, with
+exact charges and outcome curves. Start here:
+
+- [docs/ATLAS_NOTE.md](docs/ATLAS_NOTE.md): the research note, with results,
+  proofs and nonclaims.
+- [MOONSHOTS.md](MOONSHOTS.md): the design, the JSON schemas and the labels.
+- **Atlas Playground**, `/playground.html`: computed live in the browser on
+  synthetic, non-LLM generators. It has a sponsored city walk, a two-label
+  melody you can play, a three-sponsor bid triangle and an outcome-level
+  bidding game.
+- **Atlas Explorer**, `/atlas.html`: replays stored atlases (text, image and
+  three-bidder).
+- Generators with CLIs:
+  - `python -m token_auction_lab.atlas` (two-bidder text);
+  - `python -m token_auction_lab.simplex_atlas` (three-bidder text);
+  - `python -m token_auction_lab.diffusion_atlas` (two-bidder SDXL images).
+- `scripts/run_moonshots.sh` runs all live-model stages on a Mac, a CUDA
+  machine or CPU.
+
 ## Open the local interface
 
 From this checkout:
