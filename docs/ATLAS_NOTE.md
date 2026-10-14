@@ -177,6 +177,27 @@ win at v: bid v. That follows from Myerson's payment identity and matches
 - **Scale:** utilities are homogeneous of degree 1 in values and bids, so bid
   levels scale with values (max bid 1.8, 7.4, 28.1 for values 10, 40, 160).
 
+**Fixing the cycle (`docs/OUTCOME_BIDDING.md`, `walkthrough/mechanism_lab.mjs`).**
+Exact search over the step functions, on 1000 seeds per world, finds no
+equilibrium in which both sponsors bid positive amounts, in any of 8
+configurations. Results for the city walk with both outcomes worth 40:
+
+| Mechanism | Bidding | Revenue | Welfare | Notes |
+|---|---|---:|---:|---|
+| Token auction, best responses | keeps moving | (cycles) | (cycles) | escalation and drop-out cycle |
+| Hard reserve r = 2 | settles | 20.4 | 40.0 | one sponsor takes everything |
+| Platform pseudo-bid r = 10 | bounded | 25.6 | 51.8 | output stays in the mixture family; few exact equilibria |
+| Outcome VCG over one λ | truthful (dominant) | 28.0 | 52.0 | best single λ |
+| Outcome VCG, leaf per seed | truthful (dominant) | 6.5 | 73.5 | selects generations instead of sampling one mixture |
+| λ = V_A/(V_A+V_B), Myerson | truthful after repair | 38.2 | 51.2 | keeps the original mixture exactly |
+
+A reserve stabilizes bidding by making one sponsor take everything. A
+platform pseudo-bid keeps bids bounded but pulls λ toward ½. The
+outcome-level mechanisms use the atlas to choose λ from reported values and
+work best. Welfare is the expected value of the outcomes that occur.
+Literature references in that document were written from memory and should
+be checked before external use.
+
 ## 6. Software
 
 | Piece | Where |
