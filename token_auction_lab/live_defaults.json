@@ -17,5 +17,7 @@
   ],
   "seed": 7,
   "temperature": 0.8,
-  "max_tokens": 96
+  "max_tokens": 4096,
+  "continuation_tokens": 3,
+  "continuation_threshold": 0.98
 }

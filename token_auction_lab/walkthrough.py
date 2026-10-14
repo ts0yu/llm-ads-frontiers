@@ -126,7 +126,8 @@ class Handler(BaseHTTPRequestHandler):
         )
 
     def do_POST(self):
-        if urlsplit(self.path).path != "/api/live/run":
+        route = urlsplit(self.path).path
+        if route not in {"/api/live/run", "/api/live/stop"}:
             self.respond({"error": "Unknown route."}, status=404)
             return
         if not self.local_request() or self.headers.get("Content-Type", "").split(";")[0] != "application/json":
@@ -137,9 +138,14 @@ class Handler(BaseHTTPRequestHandler):
             if not 0 < length <= 65536:
                 raise ValueError("Input must be a JSON object of at most 64 KiB.")
             payload = json.loads(self.rfile.read(length))
-            run_id = self.server.live.start(payload)
-            self.respond({"run_id": run_id, "status": "loading"}, status=202)
-        except BusyError as error:
+            if route == "/api/live/stop":
+                if not isinstance(payload, dict):
+                    raise ValueError("Expected an input object.")
+                self.respond(self.server.live.stop(payload.get("run_id")))
+            else:
+                run_id = self.server.live.start(payload)
+                self.respond({"run_id": run_id, "status": "loading"}, status=202)
+        except (BusyError, StaleRunError) as error:
             self.respond({"error": str(error)}, status=409)
         except (ValueError, TypeError) as error:
             self.respond({"error": str(error)}, status=400)

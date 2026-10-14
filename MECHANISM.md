@@ -1,4 +1,4 @@
-# Two-bidder construction
+# Two-bidder reference construction
 
 Research context: Dütting et al., *Mechanism Design for Large Language Models*,
 arXiv:2310.10826v3, especially Sections 3.3 and 4.2 [1]. The concrete common-mass
@@ -97,6 +97,49 @@ Zero/zero bids are rejected by the auction core: route them to a separate no-ad
 baseline. Use simulated credits. Floating-point arithmetic is not a production
 payment ledger. Account caps, refunds, filtering, reserves, and adaptive bids
 require additional mechanism analysis.
+
+## Experimental winner continuation (October 14, 2026)
+
+The live interface also offers a user-requested extension, enabled by default
+with three extra tokens and a 98% confidence threshold. Set extra tokens to zero
+to use the reference construction above. The auction core and its tests are
+unchanged; the extension changes how its decisions are used across tokens.
+
+After a **contested** A or B win at step `s`, grant that winner an allowance of
+up to `L` immediately following tokens (`L=3` by default). At each new prefix:
+
+1. Recompute both full-vocabulary distributions using the configured temperature.
+2. If the previous winner assigns a token probability **at least** `h` (`h=.98`
+   by default), emit that token deterministically, attribute it to that winner,
+   charge both bidders zero, and consume one allowance token.
+3. At the first confidence miss, or after `L` carried tokens, expire the allowance
+   and run a fresh reference auction at that same step. A fresh contested win
+   grants a new allowance; a shared outcome grants none. Carried tokens never
+   renew an allowance. The threshold must be greater than .5, so at most one
+   token qualifies.
+
+Append every chosen ID, including a carried EOS, to both advertiser contexts and
+the read-only no-ad observer. EOS, the safety limit, and manual stop still apply.
+No separate ad-free answer is generated. The explicit zero-bid baseline never
+uses continuation.
+Settings and bids remain fixed during the round and never enter model prompts.
+
+On a carried step the actual output distribution is a point mass, **not** the
+bid-weighted mixture `q`. Events and the inspector retain `p_A`, `p_B`, and the
+hypothetical auction `q`, and separately report actual output probability. Each
+carried event records the original win's step, ordinal, confidence, threshold,
+remaining allowance, and zero charges. No auction tape is drawn for that step;
+the next fresh auction consumes the next tape. The inspector links back to the
+original win instead of presenting a current-step bid counterfactual that would
+ignore the history-dependent entitlement.
+
+This is a heuristic to keep high-confidence continuations together, not a claim
+that a phrase or message will finish correctly. Confidence is a next-token
+probability after temperature, not a factual-accuracy score. It changes the
+sequence distribution and grants additional influence for free. The reference
+mixture identity, local incentive analysis, and expected-payment formulas do not
+establish guarantees for this extended sequence mechanism. Model hallucinations
+and unsuccessful completions remain visible and unedited.
 
 ## Reference
 
