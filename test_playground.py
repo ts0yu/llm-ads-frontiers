@@ -96,6 +96,43 @@ console.log(JSON.stringify({ mean: m, se: sd / Math.sqrt(N) }));
 """
 
 
+SIMPLEX_CHECK = """
+import { buildSimplexAtlas, runDirectRace, cellPayments, centroid, criticalBid, raceWinner }
+  from './walkthrough/atlas_core_n.mjs';
+import { mulberry32 } from './walkthrough/atlas_core.mjs';
+import { CITY3, cityWalk } from './walkthrough/playground_worlds.mjs';
+const gen = cityWalk(CITY3), T = 60, report = [], rand = mulberry32(7);
+for (const seed of [1, 2, 3]) {
+  const atlas = buildSimplexAtlas(gen, seed, T);
+  let mismatches = 0, payError = 0, areaSum = 0;
+  for (const c of atlas.cells) {
+    areaSum += c.area;
+    const [x, y] = centroid(c.poly);
+    const bids = [x, y, 1 - x - y].map(v => 2.5 * v);
+    const d = runDirectRace(gen, seed, T, bids);
+    if (d.options.join(',') !== c.options.join(',')) mismatches += 1;
+    cellPayments(c, bids).forEach((v, i) => {
+      payError = Math.max(payError, Math.abs(v - d.paid[i]));
+    });
+  }
+  const truncated = atlas.truncated;
+  report.push({ seed, cells: atlas.cells.length, mismatches, payError, areaSum, truncated });
+}
+// The critical bid is a threshold: just above it the winner still wins, just below it loses.
+let thresholdFailures = 0;
+for (let t = 0; t < 500; t += 1) {
+  const E = [rand() + 0.01, rand() + 0.01, rand() + 0.01];
+  const bids = [rand(), rand(), rand()];
+  const w = raceWinner(E, bids), c = criticalBid(E, bids, w);
+  const up = [...bids], down = [...bids];
+  up[w] = c * (1 + 1e-9); down[w] = c * (1 - 1e-9);
+  const bad = raceWinner(E, up) !== w || raceWinner(E, down) === w || c > bids[w] + 1e-12;
+  if (bad) thresholdFailures += 1;
+}
+console.log(JSON.stringify({ report, thresholdFailures }));
+"""
+
+
 @unittest.skipUnless(NODE, "Node.js is required for browser checks")
 class PlaygroundTests(unittest.TestCase):
     def run_node(self, source: str) -> str:
@@ -144,6 +181,17 @@ class PlaygroundTests(unittest.TestCase):
         # E[#answers - 1] = integral over lambda of E[#contested steps]; MOONSHOTS.md 1.1.
         result = json.loads(self.run_node(IDENTITY_CHECK))
         self.assertLess(abs(result["mean"]), 4 * result["se"] + 1e-9)
+
+    def test_three_sponsor_cells_equal_direct_races(self):
+        result = json.loads(self.run_node(SIMPLEX_CHECK))
+        self.assertEqual(result["thresholdFailures"], 0)
+        for row in result["report"]:
+            with self.subTest(seed=row["seed"]):
+                self.assertFalse(row["truncated"])
+                self.assertGreater(row["cells"], 1)
+                self.assertEqual(row["mismatches"], 0)
+                self.assertLess(row["payError"], 1e-12)
+                self.assertAlmostEqual(row["areaSum"], 0.5, places=12)
 
     def test_bid_game_curves_equal_direct_averages(self):
         result = json.loads(self.run_node(GAME_CHECK))

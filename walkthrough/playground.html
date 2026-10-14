@@ -8,16 +8,16 @@
 <style>
 :root{
   --bg:#f6f4ee;--panel:#fffdf8;--ink:#1d2b29;--muted:#66726c;--line:#dedcd2;--soft:#ecebe3;
-  --a:#2557d6;--a-soft:#dbe6ff;--b:#c2620a;--b-soft:#ffe7cf;--shared:#7b8580;--park:#cfe3c4;--park-ink:#5c7a4f;
+  --a:#2557d6;--a-soft:#dbe6ff;--c:#1f8a5b;--c-soft:#d6f2e3;--b:#c2620a;--b-soft:#ffe7cf;--shared:#7b8580;--park:#cfe3c4;--park-ink:#5c7a4f;
   --street:#e2dfd5;--accent:#1d2b29;--mono:ui-monospace,SFMono-Regular,Menlo,monospace;
   --sans:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--serif:Georgia,"Times New Roman",serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#111615;--panel:#18201e;--ink:#e8ece6;--muted:#9aa69f;--line:#2b3532;--soft:#202a27;
-  --a:#7aa2ff;--a-soft:#1d2b4f;--b:#ffad5c;--b-soft:#43301d;--shared:#9aa39e;--park:#21382a;--park-ink:#8fbf86;--street:#26302d;--accent:#e8ece6;color-scheme:dark}}
+  --a:#7aa2ff;--a-soft:#1d2b4f;--c:#5fd39a;--c-soft:#173b2a;--b:#ffad5c;--b-soft:#43301d;--shared:#9aa39e;--park:#21382a;--park-ink:#8fbf86;--street:#26302d;--accent:#e8ece6;color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#111615;--panel:#18201e;--ink:#e8ece6;--muted:#9aa69f;--line:#2b3532;--soft:#202a27;
-  --a:#7aa2ff;--a-soft:#1d2b4f;--b:#ffad5c;--b-soft:#43301d;--shared:#9aa39e;--park:#21382a;--park-ink:#8fbf86;--street:#26302d;--accent:#e8ece6;color-scheme:dark}
+  --a:#7aa2ff;--a-soft:#1d2b4f;--c:#5fd39a;--c-soft:#173b2a;--b:#ffad5c;--b-soft:#43301d;--shared:#9aa39e;--park:#21382a;--park-ink:#8fbf86;--street:#26302d;--accent:#e8ece6;color-scheme:dark}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
@@ -101,9 +101,35 @@ footer{margin-top:28px;font-size:12px;color:var(--muted)}
   <div class="tabs" role="tablist">
     <button id="tab-city" role="tab" aria-pressed="true">City walk</button>
     <button id="tab-melody" role="tab" aria-pressed="false">Melody</button>
+    <button id="tab-three" role="tab" aria-pressed="false">Three sponsors</button>
     <button id="tab-game" role="tab" aria-pressed="false">Bidding game</button>
     <button id="theme" style="margin-left:auto" aria-label="Toggle light or dark theme">Theme ◐</button>
   </div>
+
+  <section class="panel" id="three" hidden>
+    <h2>Three sponsors: every route, over the whole bid triangle</h2>
+    <p class="story" style="max-width:760px">Each point in the triangle is a split of the bids between three shops. The N-bidder version of the auction
+      gives the overlap of all three walking preferences away for free, then runs an exponential race on contested steps: the winner is
+      argmin E<sub>i</sub>/b<sub>i</sub> and pays E<sub>w</sub>·max<sub>j≠w</sub> b<sub>j</sub>/E<sub>j</sub>. For one seed, every bid split
+      inside a polygon buys exactly the same route. The 1 + T bound no longer holds with three bidders: one contested step can cut several cells.</p>
+    <div class="controls">
+      <label>Seed <input id="t-seed" type="number" min="1" value="1"></label>
+      <button id="t-reroll">New seed ⟳</button>
+      <label>Budget a+b+c <input id="t-budget" type="number" min="0.01" step="0.5" value="3"></label>
+      <label>Colour cells by <select id="t-color"><option value="visits">shops the route passes</option><option value="winner">who won the most contests</option><option value="length">route length</option></select></label>
+    </div>
+    <div class="grid">
+      <div><div id="t-tri" style="touch-action:none;cursor:crosshair"></div><div class="story" id="t-legend"></div></div>
+      <div><div id="t-map"></div>
+        <div class="stats" style="margin-top:10px">
+          <div class="stat"><div class="v" id="t-cells"></div><div class="k">cells (convex polygons)</div></div>
+          <div class="stat"><div class="v" id="t-distinct"></div><div class="k">distinct routes</div></div>
+        </div>
+        <div class="stats" style="margin-top:10px;grid-template-columns:repeat(3,1fr)" id="t-pay"></div>
+        <div class="story" id="t-story" style="margin-top:10px"></div>
+      </div>
+    </div>
+  </section>
 
   <section class="panel" id="game" hidden>
     <h2>When sponsors value outcomes, what do they bid?</h2>
@@ -185,7 +211,8 @@ footer{margin-top:28px;font-size:12px;color:var(--muted)}
 <script type="module">
 import { buildAtlas, leafAt, leafPayments, outcomeProfile } from './atlas_core.mjs';
 import { aggregate, bestResponseA, dynamics } from './bid_game.mjs';
-import { CITY, cityWalk, melody, blueShare, noteName, PITCHES, REST, COMPOSERS } from './playground_worlds.mjs';
+import { buildSimplexAtlas, cellAt, cellPayments, centroid } from './atlas_core_n.mjs';
+import { CITY, CITY3, cityWalk, melody, blueShare, noteName, PITCHES, REST, COMPOSERS } from './playground_worlds.mjs';
 
 const $ = id => document.getElementById(id);
 const css = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
@@ -378,16 +405,128 @@ $('sweep').addEventListener('click', () => {
   let x = 0.001; $('sweep').textContent = 'Stop ■';
   sweepTimer = setInterval(() => { x += 0.004; if (x > 1) x = 0.001; setLambda(x); }, 40);
 });
-for (const name of ['city', 'melody', 'game']) {
+for (const name of ['city', 'melody', 'three', 'game']) {
   $(`tab-${name}`).addEventListener('click', () => {
-    for (const n of ['city', 'melody', 'game']) $(`tab-${n}`).setAttribute('aria-pressed', String(n === name));
+    for (const n of ['city', 'melody', 'three', 'game']) $(`tab-${n}`).setAttribute('aria-pressed', String(n === name));
     $('game').hidden = name !== 'game';
-    $('main-grid').hidden = name === 'game';
+    $('three').hidden = name !== 'three';
+    $('main-grid').hidden = name === 'game' || name === 'three';
     if (name === 'game') { renderGame(); return; }
+    if (name === 'three') { buildThree(); return; }
     current = name;
     build();
   });
 }
+
+
+// ---------- Three sponsors ----------
+const city3 = cityWalk(CITY3);
+const T3 = 80;
+let atlas3 = null;
+let point3 = [1 / 3, 1 / 3];
+const sponsorColor = i => css(['--a', '--b', '--c'][i]);
+
+function buildThree() {
+  const seed = Math.max(1, Math.floor(Number($('t-seed').value) || 1));
+  atlas3 = buildSimplexAtlas(city3, seed, T3);
+  $('t-cells').textContent = atlas3.cells.length;
+  $('t-distinct').textContent = new Set(atlas3.cells.map(c => c.options.join(','))).size;
+  drawThree();
+}
+
+function cellFill(cell, mode) {
+  if (mode === 'winner') {
+    const wins = [0, 0, 0];
+    for (const s of cell.steps) if (s.branch === 'contested') wins[s.winner] += 1;
+    const total = wins.reduce((a, b) => a + b, 0) || 1;
+    return `color-mix(in oklab, color-mix(in oklab, ${sponsorColor(0)} ${Math.round(100 * wins[0] / Math.max(1e-9, wins[0] + wins[1]))}%, ${sponsorColor(1)}) ${Math.round(100 * (1 - wins[2] / total))}%, ${sponsorColor(2)})`;
+  }
+  if (mode === 'length') {
+    const t = Math.min(1, (cell.state.path.length - 20) / 60);
+    return `color-mix(in oklab, ${css('--ink')} ${Math.round(15 + 70 * t)}%, ${css('--panel')})`;
+  }
+  const v = cell.state.visited;
+  const on = [0, 1, 2].filter(i => v[i]);
+  if (!on.length) return css('--soft');
+  if (on.length === 1) return sponsorColor(on[0]);
+  if (on.length === 2) return `color-mix(in oklab, ${sponsorColor(on[0])}, ${sponsorColor(on[1])})`;
+  return css('--ink');
+}
+
+function drawThree() {
+  if (!atlas3) return;
+  const W = 520, H = 470, pad = 30;
+  // Vertices: A at top, B bottom-left, C bottom-right.
+  const VA = [W / 2, pad + 14], VB = [pad, H - pad - 10], VC = [W - pad, H - pad - 10];
+  const toXY = ([x, y]) => { const z = 1 - x - y; return [x * VA[0] + y * VB[0] + z * VC[0], x * VA[1] + y * VB[1] + z * VC[1]]; };
+  const mode = $('t-color').value;
+  let g = `<svg id="t-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Bid triangle partitioned into route cells">`;
+  for (const c of atlas3.cells) {
+    const pts = c.poly.map(p => toXY(p).map(v => v.toFixed(2)).join(',')).join(' ');
+    g += `<polygon points="${pts}" fill="${cellFill(c, mode)}" stroke="${css('--panel')}" stroke-width="0.35" opacity="0.92"/>`;
+  }
+  const cur = cellAt(atlas3, point3);
+  g += `<polygon points="${cur.poly.map(p => toXY(p).join(',')).join(' ')}" fill="none" stroke="${css('--ink')}" stroke-width="2"/>`;
+  const [px, py] = toXY(point3);
+  g += `<circle cx="${px}" cy="${py}" r="7" fill="${css('--panel')}" stroke="${css('--ink')}" stroke-width="2.5"/>`;
+  CITY3.sponsors.forEach((sp, i) => {
+    const [x, y] = [VA, VB, VC][i];
+    g += `<text x="${x}" y="${i ? y + 22 : y - 4}" text-anchor="${i === 0 ? 'middle' : i === 1 ? 'start' : 'end'}" font-size="13" font-weight="600" fill="${sponsorColor(i)}">${sp.name} only</text>`;
+  });
+  $('t-tri').innerHTML = g + '</svg>';
+  const svg = $('t-svg');
+  const pick = e => {
+    const r = svg.getBoundingClientRect();
+    const X = (e.clientX - r.left) * W / r.width, Y = (e.clientY - r.top) * H / r.height;
+    // Solve barycentric coordinates for (X, Y).
+    const det = (VB[1] - VC[1]) * (VA[0] - VC[0]) + (VC[0] - VB[0]) * (VA[1] - VC[1]);
+    let a = ((VB[1] - VC[1]) * (X - VC[0]) + (VC[0] - VB[0]) * (Y - VC[1])) / det;
+    let b = ((VC[1] - VA[1]) * (X - VC[0]) + (VA[0] - VC[0]) * (Y - VC[1])) / det;
+    a = Math.min(1, Math.max(0, a)); b = Math.min(1 - a, Math.max(0, b));
+    point3 = [Math.max(1e-6, a), Math.max(1e-6, b)];
+    if (1 - point3[0] - point3[1] < 1e-6) point3 = [point3[0] - 1e-6, point3[1]];
+    drawThree();
+  };
+  svg.addEventListener('pointerdown', e => { svg.setPointerCapture(e.pointerId); pick(e); });
+  svg.addEventListener('pointermove', e => { if (e.buttons) pick(e); });
+  const legend = mode === 'visits'
+    ? CITY3.sponsors.map((sp, i) => `<span><i class="sw" style="background:${sponsorColor(i)}"></i>passes ${sp.name}</span>`).join(' ') + ` <span>blended colour: passes those two</span> <span><i class="sw" style="background:${css('--ink')}"></i>passes all three</span> <span><i class="sw" style="background:${css('--soft')}"></i>none</span>`
+    : mode === 'winner' ? 'Hue mixes the three sponsors by how many contested steps each won in that cell.' : 'Darker cells are longer routes.';
+  const shares = [0, 1, 2].map(i => atlas3.cells.filter(c => c.state.visited[i]).reduce((s, c) => s + c.area, 0) / 0.5);
+  $('t-legend').innerHTML = `<div class="legend">${legend}</div><p>Share of all bid splits whose route passes each shop: ${CITY3.sponsors.map((sp, i) => `<b style="color:${sponsorColor(i)}">${sp.name}</b> ${(100 * shares[i]).toFixed(1)}%`).join(' · ')}.</p>`;
+  drawThreeMap(cur);
+}
+
+function drawThreeMap(cell) {
+  const { width, height, parks, start, goal } = CITY3;
+  const s = 36, pad = 26, X = x => pad + x * s, Y = y => pad + y * s;
+  const W = pad * 2 + (width - 1) * s, H = pad * 2 + (height - 1) * s;
+  let g = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Route for the selected bid split">`;
+  for (let y = 0; y < height; y++) g += `<line x1="${X(0)}" x2="${X(width - 1)}" y1="${Y(y)}" y2="${Y(y)}" stroke="${css('--street')}" stroke-width="7" stroke-linecap="round"/>`;
+  for (let x = 0; x < width; x++) g += `<line y1="${Y(0)}" y2="${Y(height - 1)}" x1="${X(x)}" x2="${X(x)}" stroke="${css('--street')}" stroke-width="7" stroke-linecap="round"/>`;
+  for (const [x, y] of parks) g += `<rect x="${X(x) - s / 2 + 3}" y="${Y(y) - s / 2 + 3}" width="${s - 6}" height="${s - 6}" rx="6" fill="${css('--park')}"/>`;
+  cell.steps.forEach((st, i) => {
+    const p = cell.state.path[i], q = cell.state.path[i + 1];
+    const color = st.branch === 'contested' ? sponsorColor(st.winner) : css('--shared');
+    g += `<line x1="${X(p[0])}" y1="${Y(p[1])}" x2="${X(q[0])}" y2="${Y(q[1])}" stroke="${color}" stroke-width="5" stroke-linecap="round"/>`;
+  });
+  CITY3.sponsors.forEach((sp, i) => {
+    const [x, y] = sp.at;
+    g += `<circle cx="${X(x)}" cy="${Y(y)}" r="10" fill="${css('--panel')}" stroke="${sponsorColor(i)}" stroke-width="3"/><text x="${X(x)}" y="${Y(y) + (y === 0 ? 26 : -15)}" text-anchor="middle" font-size="10" font-weight="600" fill="${sponsorColor(i)}">${sp.name}</text>`;
+  });
+  g += `<circle cx="${X(start[0])}" cy="${Y(start[1])}" r="7" fill="${css('--ink')}"/><rect x="${X(goal[0]) - 7}" y="${Y(goal[1]) - 7}" width="14" height="14" rx="3" fill="${css('--ink')}"/>`;
+  $('t-map').innerHTML = g + '</svg>';
+  const S = Math.max(0.01, Number($('t-budget').value) || 3);
+  const lam = [point3[0], point3[1], 1 - point3[0] - point3[1]];
+  const bids = lam.map(v => v * S);
+  const paid = cellPayments(cell, bids);
+  $('t-pay').innerHTML = CITY3.sponsors.map((sp, i) => `<div class="stat"><div class="v" style="color:${sponsorColor(i)}">${paid[i].toFixed(3)}</div><div class="k">${sp.name} bids ${bids[i].toFixed(2)}, pays (simulated)</div></div>`).join('');
+  const contested = cell.steps.filter(x => x.branch === 'contested').length;
+  $('t-story').innerHTML = `<p>Bid shares ${lam.map(v => v.toFixed(3)).join(' : ')}. This cell covers ${(100 * cell.area / 0.5).toFixed(2)}% of the triangle; ${contested} of ${cell.steps.length} steps were contested${cell.stop === 'done' ? '' : `, and the walk hit the ${T3}-step cap`}. Payments are exact for any point in the cell but vary within it, because the strongest rival can change.</p>`;
+}
+for (const id of ['t-seed', 't-color']) $(id).addEventListener('change', id === 't-seed' ? buildThree : drawThree);
+$('t-budget').addEventListener('input', drawThree);
+$('t-reroll').addEventListener('click', () => { $('t-seed').value = 1 + Math.floor(Math.random() * 9999); buildThree(); });
 
 const gameCache = new Map();
 function gameFor(world, seeds) {
@@ -471,7 +610,7 @@ $('theme').addEventListener('click', () => {
   const root = document.documentElement;
   const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
   root.dataset.theme = dark ? 'light' : 'dark';
-  if ($('game').hidden) build(); else renderGame();
+  if (!$('game').hidden) renderGame(); else if (!$('three').hidden) drawThree(); else build();
 });
 build();
 </script>

@@ -64,7 +64,7 @@ export function cityWalk(world = CITY, { pull = 1.6, temperature = 0.55, revisit
   return {
     world,
     init: () => ({ at: world.start, path: [world.start], visited: world.sponsors.map(s => near(world.start, s.at)) }),
-    dists: state => [policy(state, 0), policy(state, 1)],
+    dists: state => world.sponsors.map((_, i) => policy(state, i)),
     apply(state, move) {
       const [dx, dy] = MOVES[move];
       const at = [state.at[0] + dx, state.at[1] + dy];
@@ -77,6 +77,12 @@ export function cityWalk(world = CITY, { pull = 1.6, temperature = 0.55, revisit
     done: state => state.at[0] === world.goal[0] && state.at[1] === world.goal[1],
   };
 }
+
+// The same city with a third sponsor, for three-bidder atlases.
+export const CITY3 = {
+  ...CITY,
+  sponsors: [...CITY.sponsors, { name: 'Tansy Market', kind: 'grocer', at: [12, 0] }],
+};
 
 // ---------- Melody: two composers share one keyboard, note by note ----------
 // Options: MIDI pitches 57..81 (A3..A5) plus a rest.
