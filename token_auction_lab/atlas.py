@@ -35,6 +35,7 @@ import torch
 
 import auction as auction_module
 from auction import RandomTape, TwoBidderAuction
+from token_auction_lab import watermark as wm
 from token_auction_lab.decoder import Context, SharedPrefixDecoder
 from token_auction_lab.prompts import ADVERTISER_PROMPT_POLICY, prompt_hash
 from token_auction_lab.runner import RoundConfig, eos_ids, run_round
@@ -127,6 +128,7 @@ def build_atlas(
     title: str | None = None,
     user_prompt: str | None = None,
     span_hold: bool = False,
+    watermark: wm.WatermarkKeys | None = None,
 ) -> dict:
     """Interval search over lambda in (0, 1]. ``fork`` is "copy" or "replay".
 
@@ -134,6 +136,8 @@ def build_atlas(
     briefs) are display fields for the Atlas Explorer; they do not affect decoding.
     ``span_hold`` selects the opt-in span-hold sampler (token_auction_lab.span_hold);
     held steps do not depend on bids, so the interval search is unchanged.
+    ``watermark`` replaces token draws by keyed draws (token_auction_lab.watermark);
+    branches, contest uniforms and payments stay the reference auction's.
     """
     if len(prompts) != 2 or len(bidders) != 2:
         raise ValueError("The atlas is defined for exactly two bidders and two contexts.")
@@ -178,7 +182,8 @@ def build_atlas(
             tape = tapes[step]
             proposal = None
             if span_hold:
-                proposal = hold_proposal(state, p_a, p_b, holds[step], tokenizer, decoder.generated)
+                proposal = hold_proposal(state, p_a, p_b, holds[step], tokenizer, decoder.generated,
+                                         watermark)
                 if proposal and proposal["keep"]:
                     held = {
                         "step": step,
@@ -193,6 +198,8 @@ def build_atlas(
                     }
                     state = state.after(proposal["piece"], held["branch"])
                     held["span"] = state.as_record()
+                    if watermark is not None:
+                        held["key"] = state.owner
                     steps.append(held)
                     decoder.advance(held["token_id"])
                     advances += 1
@@ -202,7 +209,11 @@ def build_atlas(
                 if proposal:
                     state = state.released()
             # Candidates and the shared/contested branch do not depend on bids.
-            allocation = step_auction.resolve(1.0, 1.0, tape)
+            if watermark is None:
+                allocation = step_auction.resolve(1.0, 1.0, tape)
+            else:
+                allocation, _ = wm.resolve(step_auction, 1.0, 1.0, tape, watermark,
+                                           decoder.generated)
             u = tape.contest
             record = {
                 "step": step,
@@ -253,6 +264,8 @@ def build_atlas(
                         }
                     )
                     child_record = {**record, "branch": "A", "token_id": allocation.candidate_a}
+                    if watermark is not None:
+                        child_record["key"] = "A"
                     child_extra = {}
                     if span_hold:
                         child_state = state.after(splits[-1]["a_token_text"], "A")
@@ -285,6 +298,8 @@ def build_atlas(
                 piece = token_piece(tokenizer, decoder.generated, record["token_id"])
                 state = state.after(piece, record["branch"])
                 record["span"] = state.as_record()
+            if watermark is not None:
+                record["key"] = {"shared": "platform"}.get(record["branch"], record["branch"])
             steps.append(record)
             decoder.advance(record["token_id"])
             advances += 1
@@ -322,6 +337,9 @@ def build_atlas(
             "sampler": "auction.TwoBidderAuction + token_auction_lab.span_hold",
             "span_hold": span_hold_manifest(),
         }
+    if watermark is not None:
+        sampler["sampler"] += " + token_auction_lab.watermark"
+        sampler["watermark"] = watermark.manifest()
     atlas = {
         "schema": SCHEMA,
         "kind": "text",
@@ -516,7 +534,7 @@ def verify_point(
     expected = payments(leaf, bid_a, bid_b)
     manifest = atlas["manifest"]
     prompts = [(p["text"], list(p["token_ids"])) for p in manifest["prompts"]]
-    if "span_hold" in manifest:
+    if "span_hold" in manifest or "watermark" in manifest:
         return _verify_point_span(atlas, leaf, bid_a, bid_b, model, tokenizer, prompts, kind)
     config = RoundConfig(
         bid_a,
@@ -572,9 +590,13 @@ def verify_point(
 def _verify_point_span(atlas, leaf, bid_a, bid_b, model, tokenizer, prompts, kind) -> dict:
     expected = payments(leaf, bid_a, bid_b)
     started = time.perf_counter()
+    manifest = atlas["manifest"]
+    keys = (wm.keys_for_manifest(manifest, atlas["bidders"])
+            if "watermark" in manifest else None)
     result = span_hold_generate(
         model, tokenizer, prompts, bid_a, bid_b, seed=atlas["seed"],
-        temperature=atlas["manifest"]["temperature"], max_tokens=atlas["max_steps"],
+        temperature=manifest["temperature"], max_tokens=atlas["max_steps"],
+        hold="span_hold" in manifest, watermark=keys,
     )
     steps_match = len(result["steps"]) == len(leaf["steps"]) and all(
         direct["branch"] == step["branch"]
@@ -582,6 +604,7 @@ def _verify_point_span(atlas, leaf, bid_a, bid_b, model, tokenizer, prompts, kin
         and direct["u"] == step["u"]
         and direct["shared_mass"] == step["shared_mass"]
         and direct.get("span") == step.get("span")
+        and direct.get("key") == step.get("key")
         for direct, step in zip(result["steps"], leaf["steps"])
     )
     error_a = abs(result["payment_a"] - expected["payment_a"])
@@ -594,7 +617,9 @@ def _verify_point_span(atlas, leaf, bid_a, bid_b, model, tokenizer, prompts, kin
         "lambda": expected["lambda"],
         "bid_a": bid_a,
         "bid_b": bid_b,
-        "sampler": "span_hold.generate",
+        "sampler": "span_hold.generate"
+        + ("" if "span_hold" in manifest else " (no hold)")
+        + (" + watermark" if keys is not None else ""),
         "token_ids_match": tokens_match,
         "text_match": result["text"] == leaf["text"],
         "stop_reason_match": result["stop_reason"] == leaf["stop_reason"],
@@ -886,6 +911,11 @@ def main(argv: list[str] | None = None, *, mode: str = "live_model") -> None:
         action="store_true",
         help="Opt-in span-hold sampler (docs/SPAN_HOLD.md) instead of the reference sampler.",
     )
+    parser.add_argument(
+        "--watermark",
+        choices=("demo",),
+        help="Keyed sponsor watermark (docs/WATERMARK.md) with PUBLIC demo keys.",
+    )
     parser.add_argument("--output", type=Path, default=Path("artifacts/atlas"))
     args = parser.parse_args(argv)
     if args.local_files_only and not re.fullmatch(r"[0-9a-f]{40}", args.revision or ""):
@@ -911,6 +941,9 @@ def main(argv: list[str] | None = None, *, mode: str = "live_model") -> None:
     title, user_prompt = _display(label, inputs)
     if args.span_hold:
         title = f"{title} · span hold"
+    keys = wm.demo_keys(bidders) if args.watermark == "demo" else None
+    if keys is not None:
+        title = f"{title} · watermarked"
     args.output.mkdir(parents=True, exist_ok=True)
     index_path = args.output / "index.json"
     index = {
@@ -950,6 +983,7 @@ def main(argv: list[str] | None = None, *, mode: str = "live_model") -> None:
             title=title,
             user_prompt=user_prompt,
             span_hold=args.span_hold,
+            watermark=keys,
         )
         atlas["analysis"] = analyze(atlas)
         atlas["verification_status"] = "pending"

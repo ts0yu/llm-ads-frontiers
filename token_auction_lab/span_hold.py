@@ -41,6 +41,7 @@ import numpy as np
 import torch
 
 from auction import RandomTape, TwoBidderAuction, _cdf, _pick
+from token_auction_lab import watermark as wm
 from token_auction_lab.decoder import SharedPrefixDecoder
 from token_auction_lab.runner import eos_ids
 from token_auction_lab.token_text import decode_text, token_piece
@@ -126,12 +127,20 @@ def owner_token(p: np.ndarray, u: float) -> int:
     return _pick(_cdf(np.asarray(p, dtype=np.float64)), u)
 
 
-def hold_proposal(state: SpanState, p_a, p_b, hold_u: float, tokenizer, generated):
-    """The owner's proposal and whether it is emitted. Independent of bids."""
+def hold_proposal(state: SpanState, p_a, p_b, hold_u: float, tokenizer, generated,
+                  watermark: wm.WatermarkKeys | None = None):
+    """The owner's proposal and whether it is emitted. Independent of bids.
+
+    With ``watermark`` the owner's proposal is a keyed draw under the owner's key
+    (token_auction_lab.watermark) instead of the inverse-CDF draw with ``hold_u``.
+    """
     if state.owner is None:
         return None
     p = p_a if state.owner == "A" else p_b
-    token = owner_token(p, hold_u)
+    if watermark is None:
+        token = owner_token(p, hold_u)
+    else:
+        token = wm.keyed_draw(p, watermark.key(state.owner), generated)
     piece = token_piece(tokenizer, generated, token)
     keep = state.held < MAX_HOLD and continues_span(state.span, piece)
     return {"token_id": token, "piece": piece, "keep": keep}
@@ -148,11 +157,15 @@ def run(
     stops: set[int],
     temperature: float,
     max_tokens: int,
+    hold: bool = True,
+    watermark: wm.WatermarkKeys | None = None,
 ) -> dict:
     """The span-hold loop on any decoder with ``distributions``, ``advance``, ``generated``.
 
     Payments are the reference ``TwoBidderAuction.resolve`` charges at contested
-    steps, summed in step order; held steps charge nothing.
+    steps, summed in step order; held steps charge nothing. ``hold=False`` disables
+    holding (the reference per-token sampler); ``watermark`` replaces token draws by
+    keyed draws and records which role's key drew each emitted token.
     """
     state = SpanState()
     steps: list[dict] = []
@@ -161,9 +174,12 @@ def run(
     for step in range(max_tokens):
         p_a, p_b = decoder.distributions(temperature)
         auction = TwoBidderAuction(p_a, p_b)
-        proposal = hold_proposal(state, p_a, p_b, holds[step], tokenizer, decoder.generated)
+        proposal = hold_proposal(state, p_a, p_b, holds[step], tokenizer, decoder.generated,
+                                 watermark) if hold else None
+        role = None
         if proposal and proposal["keep"]:
             branch, token = f"hold_{state.owner}", proposal["token_id"]
+            role = state.owner
             record = {"step": step, "branch": branch, "u": tapes[step].contest,
                       "hold_u": holds[step], "shared_mass": auction.shared_mass,
                       "disagreement": auction.disagreement, "token_id": token,
@@ -172,7 +188,11 @@ def run(
         else:
             if proposal:
                 state = state.released()
-            allocation = auction.resolve(bid_a, bid_b, tapes[step])
+            if watermark is None:
+                allocation = auction.resolve(bid_a, bid_b, tapes[step])
+            else:
+                allocation, role = wm.resolve(auction, bid_a, bid_b, tapes[step], watermark,
+                                              decoder.generated)
             payment_a += allocation.payment_a
             payment_b += allocation.payment_b
             branch, token = allocation.branch, allocation.token_id
@@ -184,7 +204,10 @@ def run(
                 record["released"] = {"token_id": proposal["token_id"], "piece": proposal["piece"]}
             piece = token_piece(tokenizer, decoder.generated, token)
         state = state.after(piece, branch)
-        record["span"] = state.as_record()
+        if hold:
+            record["span"] = state.as_record()
+        if watermark is not None:
+            record["key"] = role
         steps.append(record)
         decoder.advance(token)
         if token in stops:
@@ -212,15 +235,20 @@ def generate(
     seed: int,
     temperature: float,
     max_tokens: int,
+    hold: bool = True,
+    watermark: wm.WatermarkKeys | None = None,
 ) -> dict:
-    """One direct span-hold generation at a fixed bid pair (the atlas's oracle)."""
+    """One direct span-hold generation at a fixed bid pair (the atlas's oracle).
+
+    ``hold`` and ``watermark`` select the same options as ``run``.
+    """
     if len(prompts) != 2:
         raise ValueError("Span hold is defined for exactly two advertiser contexts.")
     decoder = SharedPrefixDecoder(model, [list(ids) for _, ids in prompts])
     result = run(
         decoder, tokenizer, bid_a, bid_b, tapes=draw_tapes(seed, max_tokens),
         holds=hold_uniforms(seed, max_tokens), stops=eos_ids(model, tokenizer),
-        temperature=temperature, max_tokens=max_tokens,
+        temperature=temperature, max_tokens=max_tokens, hold=hold, watermark=watermark,
     )
     decoder.assert_shared_suffix()
     return result
