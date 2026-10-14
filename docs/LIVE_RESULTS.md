@@ -38,9 +38,29 @@ Every SDXL atlas has 28–31 leaves, close to the 1 + T = 31 bound: nearly every
 one of the 30 denoising steps is contested. As λ moves from 0 to 1, the scene
 changes between the two sponsors' prompts in discrete steps: the teal café
 turns red, the purple kiosk turns yellow, the orange audio billboard becomes a
-green cycling one. Early-step splits change the layout; late-step splits change
-details. This is the Gaussian maximal coupling of `gaussian_auction.py` at work
-on a real diffusion model.
+green cycling one. This is the Gaussian maximal coupling of `gaussian_auction.py`
+at work on a real diffusion model.
+
+Measured over all 12 seeds (356 splits):
+
+- **Almost every step is contested.** The two prompts' noise proposals sit a
+  median 6.1 noise widths apart (range 2.9–38). The shared mass is
+  `2·(1 − Φ(δ/2))`: about 0.2% at the median and at most 15%. So the two
+  sponsors almost never agree on a step for free.
+- **Early contests change the layout; late ones change details.** Compare the
+  two final images whose histories diverge at a given step (mean absolute
+  grey-level difference, 0–255, at 128×128 px). Divergence at steps 1–5 gives
+  21.7. Steps 6–10 give 6.1, steps 11–15 give 2.1, and steps 21–30 give 0.3–0.4.
+- **The hand-over is not always clean.** CLIP's top label switches exactly
+  once between the two sponsors in 6 of 12 seeds; in the others it flips 2–5
+  times along λ. The image's look need not be monotone in the bid, as with
+  text. CLIP is noisy, so this is an upper bound on real flips.
+![All 31 leaves of café seed 1 in λ order](img/live-cafe-seed1-all-leaves.jpg)
+![Divergence at step 2 versus step 25](img/live-early-vs-late-split.jpg)
+
+- **Leaf order in λ is not step order.** In café seed 1, the step-1 contest
+  splits at λ ≈ 0.958, so the last two leaves (λ > 0.958) have a different
+  street layout from everything below them.
 
 ## Finding 2: the middle of the bid range blends brands and invents facts
 
