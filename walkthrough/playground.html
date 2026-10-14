@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atlas Playground</title>
+<meta name="description" content="Exact bid atlases for non-language generators: every route and every melody that two bidders' money can buy, for one random seed.">
+<style>
+:root{
+  --bg:#f6f4ee;--panel:#fffdf8;--ink:#1d2b29;--muted:#66726c;--line:#dedcd2;--soft:#ecebe3;
+  --a:#2557d6;--a-soft:#dbe6ff;--b:#c2620a;--b-soft:#ffe7cf;--shared:#7b8580;--park:#cfe3c4;--park-ink:#5c7a4f;
+  --street:#e2dfd5;--accent:#1d2b29;--mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--serif:Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111615;--panel:#18201e;--ink:#e8ece6;--muted:#9aa69f;--line:#2b3532;--soft:#202a27;
+  --a:#7aa2ff;--a-soft:#1d2b4f;--b:#ffad5c;--b-soft:#43301d;--shared:#9aa39e;--park:#21382a;--park-ink:#8fbf86;--street:#26302d;--accent:#e8ece6}}
+:root[data-theme="dark"]{
+  --bg:#111615;--panel:#18201e;--ink:#e8ece6;--muted:#9aa69f;--line:#2b3532;--soft:#202a27;
+  --a:#7aa2ff;--a-soft:#1d2b4f;--b:#ffad5c;--b-soft:#43301d;--shared:#9aa39e;--park:#21382a;--park-ink:#8fbf86;--street:#26302d;--accent:#e8ece6}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+button,input{font:inherit;color:inherit}
+button{border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:8px 14px;cursor:pointer}
+button:hover{border-color:var(--ink)}
+button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+:focus-visible{outline:3px solid var(--a);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 20px 60px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:22px}
+h1{font:400 clamp(34px,5vw,56px)/1.02 var(--serif);letter-spacing:-.035em;margin:0 0 10px}
+h1 em{color:var(--a);font-style:italic}
+.lede{max-width:720px;color:var(--muted);margin:0}
+.badges{display:flex;flex-wrap:wrap;gap:6px}
+.badge{font:10px/1.4 var(--mono);letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);border-radius:4px;padding:4px 8px;color:var(--muted);background:var(--panel)}
+.badge.warn{border-color:var(--b);color:var(--b)}
+.tabs{display:flex;gap:6px;margin:6px 0 18px}
+.grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:18px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
+.stage svg{width:100%;height:auto;display:block}
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px}
+.controls label{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.controls input[type=number]{width:72px;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg)}
+.scrub{margin-top:14px}
+.scrub-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:12px;color:var(--muted)}
+.scrub-head strong{font:600 15px var(--mono);color:var(--ink)}
+.track{position:relative;height:46px;margin-top:8px;touch-action:none;cursor:ew-resize;user-select:none}
+.track svg{position:absolute;inset:0;width:100%;height:100%}
+.knob{position:absolute;top:-4px;width:4px;height:54px;margin-left:-2px;background:var(--ink);border-radius:2px;pointer-events:none;box-shadow:0 0 0 3px var(--bg)}
+.ends{display:flex;justify-content:space-between;font:11px var(--mono);color:var(--muted);margin-top:6px}
+.ends .a{color:var(--a)}.ends .b{color:var(--b)}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{background:var(--soft);border-radius:10px;padding:12px}
+.stat .v{font:600 22px var(--mono);letter-spacing:-.02em}
+.stat .k{font-size:11px;color:var(--muted);line-height:1.35}
+.v.a{color:var(--a)}.v.b{color:var(--b)}
+h2{font:400 22px var(--serif);margin:0 0 10px;letter-spacing:-.02em}
+h3{font-size:13px;margin:16px 0 8px;letter-spacing:.02em}
+.outcome{margin:8px 0 12px}
+.outcome .row{display:flex;justify-content:space-between;font-size:12px;gap:8px;margin-bottom:4px}
+.outcome .pill{font:10px var(--mono);padding:2px 6px;border-radius:4px;background:var(--soft)}
+.outcome .pill.bad{background:var(--b-soft);color:var(--b)}
+.band{height:12px;border-radius:3px;overflow:hidden;display:flex;background:var(--soft)}
+.band span{height:100%}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:11px;color:var(--muted);margin-top:10px}
+.sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.story{font-size:13px;color:var(--muted)}
+.story p{margin:0 0 10px}
+.mono{font-family:var(--mono);font-size:12px}
+.steps{display:flex;flex-wrap:wrap;gap:3px;margin-top:8px}
+.steps span{font:10px var(--mono);padding:2px 5px;border-radius:3px;background:var(--soft);color:var(--shared)}
+.steps span.A{background:var(--a-soft);color:var(--a)}.steps span.B{background:var(--b-soft);color:var(--b)}
+.steps span.split{outline:1.5px solid var(--ink)}
+details{margin-top:18px}
+summary{cursor:pointer;font-weight:600}
+footer{margin-top:28px;font-size:12px;color:var(--muted)}
+@media (max-width:860px){.grid{grid-template-columns:1fr}.ends span:nth-child(2){display:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.route-current{stroke-dasharray:6 5;animation:march 1.2s linear infinite}
+@keyframes march{to{stroke-dashoffset:-22}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Every outcome <em>money can buy</em>, exactly.</h1>
+      <p class="lede">Two sponsors each have a preferred next-step distribution. The two-bidder token auction
+        from <span class="mono">auction.py</span> picks each step. For one random seed, every bid ratio
+        λ&nbsp;=&nbsp;a/(a+b) maps to one of at most 1&nbsp;+&nbsp;T outcomes, and the boundaries between them are
+        exactly the contest uniforms. No language model here: these are a city walk and a melody.</p>
+    </div>
+    <div class="badges">
+      <span class="badge warn">Synthetic generators</span>
+      <span class="badge">Sponsored simulation · simulated credits</span>
+      <span class="badge">Computed live in your browser</span>
+    </div>
+  </header>
+
+  <div class="tabs" role="tablist">
+    <button id="tab-city" role="tab" aria-pressed="true">City walk</button>
+    <button id="tab-melody" role="tab" aria-pressed="false">Melody</button>
+    <button id="theme" style="margin-left:auto" aria-label="Toggle light or dark theme">Theme ◐</button>
+  </div>
+
+  <div class="grid">
+    <section class="panel stage">
+      <div class="controls">
+        <label>Seed <input id="seed" type="number" min="1" value="1"></label>
+        <button id="reroll">New seed ⟳</button>
+        <button id="sweep">Sweep λ ▶</button>
+        <button id="play" hidden>Play melody ♪</button>
+        <label>Budget a+b <input id="budget" type="number" min="0.01" step="0.5" value="2"></label>
+      </div>
+      <div id="view"></div>
+      <div class="scrub">
+        <div class="scrub-head"><span>Bid ratio λ = a/(a+b)</span><strong id="lambda-out"></strong></div>
+        <div class="track" id="track" tabindex="0" role="slider" aria-label="Bid ratio lambda" aria-valuemin="0" aria-valuemax="1">
+          <svg id="track-svg" preserveAspectRatio="none"></svg><div class="knob" id="knob"></div>
+        </div>
+        <div class="ends"><span class="b" id="end-b"></span><span>each band is one distinct outcome · ticks are contest uniforms u</span><span class="a" id="end-a"></span></div>
+      </div>
+    </section>
+
+    <aside class="panel">
+      <h2 id="title"></h2>
+      <div class="stats">
+        <div class="stat"><div class="v" id="n-out"></div><div class="k">distinct outcomes over all bid ratios</div></div>
+        <div class="stat"><div class="v" id="bound"></div><div class="k">guaranteed bound 1 + T</div></div>
+        <div class="stat"><div class="v a" id="pay-a"></div><div class="k" id="pay-a-k"></div></div>
+        <div class="stat"><div class="v b" id="pay-b"></div><div class="k" id="pay-b-k"></div></div>
+      </div>
+      <h3>Outcome profiles over λ</h3>
+      <div id="outcomes"></div>
+      <h3>This outcome, step by step</h3>
+      <div class="legend"><span><i class="sw" style="background:var(--shared)"></i>shared (free, bid-independent)</span><span><i class="sw" style="background:var(--a)"></i>won by A</span><span><i class="sw" style="background:var(--b)"></i>won by B</span><span><i class="sw" style="outline:1.5px solid var(--ink)"></i>split point</span></div>
+      <div class="steps" id="steps"></div>
+      <div class="story" style="margin-top:14px" id="story"></div>
+    </aside>
+  </div>
+
+  <details>
+    <summary>How this is exact, and what it does not show</summary>
+    <div class="story" style="margin-top:10px">
+      <p>At each step the auction splits probability mass into a common part (sampled for free, ignoring bids)
+      and a contested part. In the contested part, A's candidate wins exactly when the step's contest uniform u is
+      below λ. The random tape is drawn per step from the seed, never from the bids, so the whole outcome depends
+      on the bids only through λ. Starting from λ ∈ (0, 1], the search follows one branch until a contested step
+      whose u falls inside the current interval, then splits it at u. All live branches share the same u at a
+      given step, so at most one of them splits per step: at most 1 + T outcomes.</p>
+      <p>Each step is stable for both bidders: raising your bid only ever switches that step to your candidate.
+      Whole outcomes need not be monotone, and the "Outcome profiles" panel measures this exactly for this
+      seed. A non-monotone badge means some bid increase makes that outcome <em>less</em> likely to occur for this seed.</p>
+      <p>Not shown or claimed: advertiser value, truthful bidding over whole outcomes, or real money. The two
+      policies are small hand-written functions. The browser PRNG (mulberry32) is not NumPy's, so these tapes do
+      not match Python runs. The Python atlas modules handle real models.</p>
+    </div>
+  </details>
+  <footer>Token Auction Lab · Atlas Playground · two-bidder reference mechanism (MECHANISM.md) · exactness checked by <span class="mono">test_playground.py</span></footer>
+</div>
+
+<script type="module">
+import { buildAtlas, leafAt, leafPayments, outcomeProfile } from './atlas_core.mjs';
+import { CITY, cityWalk, melody, blueShare, noteName, PITCHES, REST, COMPOSERS } from './playground_worlds.mjs';
+
+const $ = id => document.getElementById(id);
+const css = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+const fmt = (x, d = 3) => (Number.isFinite(x) ? x.toFixed(d) : '—');
+
+const worlds = {
+  city: {
+    title: 'A walk to the conference',
+    gen: cityWalk(), T: 80,
+    a: CITY.sponsors[0], b: CITY.sponsors[1],
+    outcomes: [
+      { label: `passes ${CITY.sponsors[0].name}`, test: l => l.state.visited[0] },
+      { label: `passes ${CITY.sponsors[1].name}`, test: l => l.state.visited[1] },
+      { label: 'reaches the venue within T steps', test: l => l.stop === 'done' },
+    ],
+  },
+  melody: {
+    title: 'A 32-note jingle, two labels',
+    gen: melody(), T: 32,
+    a: { name: COMPOSERS[0].name }, b: { name: COMPOSERS[1].name },
+    outcomes: [
+      { label: 'blue-note share above 30%', test: l => blueShare(l.state.notes) > 0.3 },
+      { label: 'ends on C (tonic)', test: l => { const s = l.state.notes.filter(n => n !== REST); return s.length && PITCHES[s.at(-1)] % 12 === 0; } },
+      { label: 'opens on the same 4 notes as λ=1', test: (l, atlas) => JSON.stringify(l.options.slice(0, 4)) === JSON.stringify(atlas.leaves.at(-1).options.slice(0, 4)) },
+    ],
+  },
+};
+
+let current = 'city';
+let atlas;
+let lambda = 0.5;
+let sweepTimer = null;
+
+function build() {
+  const w = worlds[current];
+  const seed = Math.max(1, Math.floor(Number($('seed').value) || 1));
+  atlas = buildAtlas(w.gen, seed, w.T);
+  $('title').textContent = w.title;
+  $('n-out').textContent = atlas.leaves.length;
+  $('bound').textContent = atlas.bound;
+  $('end-b').textContent = `λ→0 · only ${w.b.name}`;
+  $('end-a').textContent = `λ=1 · only ${w.a.name}`;
+  $('play').hidden = current !== 'melody';
+  drawTrack();
+  drawOutcomes();
+  update();
+}
+
+function leafColor(i, n) {
+  // Interpolate B → A across leaves in λ order.
+  const t = n <= 1 ? 1 : i / (n - 1);
+  return `color-mix(in oklab, ${css('--b')} ${Math.round((1 - t) * 100)}%, ${css('--a')})`;
+}
+
+function drawTrack() {
+  const svg = $('track-svg');
+  const W = 1000, H = 46;
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  const n = atlas.leaves.length;
+  svg.innerHTML = atlas.leaves.map((l, i) =>
+    `<rect x="${l.lo * W}" y="8" width="${Math.max(0.6, (l.hi - l.lo) * W)}" height="30" fill="${leafColor(i, n)}" opacity="${0.25 + 0.6 * ((i % 2) ? 0.8 : 1)}"/>`).join('')
+    + atlas.splits.map(s => `<line x1="${s.u * W}" x2="${s.u * W}" y1="2" y2="44" stroke="${css('--ink')}" stroke-width="1.2" opacity=".55"><title>split at step ${s.step}: u = ${s.u.toFixed(4)}</title></line>`).join('');
+}
+
+function drawOutcomes() {
+  const w = worlds[current];
+  $('outcomes').innerHTML = w.outcomes.map(o => {
+    const p = outcomeProfile(atlas, l => o.test(l, atlas));
+    const segs = atlas.leaves.map((l, i) => `<span style="width:${(l.hi - l.lo) * 100}%;background:${p.values[i] ? css('--ink') : 'transparent'}"></span>`).join('');
+    const pill = p.shape === 'non-monotone' ? `<span class="pill bad">non-monotone · ${p.switches} switches</span>`
+      : `<span class="pill">${p.shape}${p.critical != null ? ` · switches at λ=${p.critical.toFixed(3)}` : ''}</span>`;
+    return `<div class="outcome"><div class="row"><span>${o.label} <span class="muted">(${(p.measure * 100).toFixed(1)}% of λ)</span></span>${pill}</div><div class="band">${segs}</div></div>`;
+  }).join('');
+}
+
+function update() {
+  const w = worlds[current];
+  const leaf = leafAt(atlas, lambda);
+  const idx = atlas.leaves.indexOf(leaf);
+  const S = Math.max(0.01, Number($('budget').value) || 2);
+  const a = lambda * S, b = (1 - lambda) * S;
+  const pay = leafPayments(leaf, a, b);
+  $('lambda-out').textContent = `${lambda.toFixed(3)}  ·  bids a=${a.toFixed(2)}, b=${b.toFixed(2)}  ·  outcome ${idx + 1}/${atlas.leaves.length}`;
+  $('knob').style.left = `${lambda * 100}%`;
+  $('track').setAttribute('aria-valuenow', lambda.toFixed(3));
+  $('pay-a').textContent = fmt(pay.a);
+  $('pay-b').textContent = fmt(pay.b);
+  $('pay-a-k').textContent = `${w.a.name} pays (simulated credits)`;
+  $('pay-b-k').textContent = `${w.b.name} pays (simulated credits)`;
+  const label = current === 'city' ? (s => ['N', 'E', 'S', 'W'][s.option]) : (s => noteName(s.option));
+  $('steps').innerHTML = leaf.steps.map(s =>
+    `<span class="${s.branch === 'shared' ? '' : s.branch}${atlas.splits.some(x => x.step === s.step && (x.u === leaf.lo || x.u === leaf.hi)) ? ' split' : ''}" title="step ${s.step}${s.u != null ? ` · u=${s.u.toFixed(4)}` : ''} · shared mass ${s.shared_mass.toFixed(3)}">${label(s)}</span>`).join('');
+  const contested = leaf.steps.filter(s => s.branch !== 'shared').length;
+  $('story').innerHTML = `<p>${contested} of ${leaf.steps.length} steps were contested. This outcome holds for every λ in
+    <span class="mono">(${leaf.lo.toFixed(4)}, ${leaf.hi.toFixed(4)}]</span>${leaf.stop === 'done' ? '' : `, and it hit the ${w.T}-step cap before finishing`}.
+    Its edges are the contest uniforms of the steps where neighbouring outcomes first diverge.</p>`;
+  if (current === 'city') drawCity(leaf); else drawMelody(leaf);
+}
+
+function drawCity(leaf) {
+  const { width, height, parks, start, goal, sponsors } = CITY;
+  const s = 52, pad = 30;
+  const X = x => pad + x * s, Y = y => pad + y * s;
+  const W = pad * 2 + (width - 1) * s, H = pad * 2 + (height - 1) * s;
+  let g = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="City map with walking routes">`;
+  for (let y = 0; y < height; y++) g += `<line x1="${X(0)}" x2="${X(width - 1)}" y1="${Y(y)}" y2="${Y(y)}" stroke="${css('--street')}" stroke-width="10" stroke-linecap="round"/>`;
+  for (let x = 0; x < width; x++) g += `<line y1="${Y(0)}" y2="${Y(height - 1)}" x1="${X(x)}" x2="${X(x)}" stroke="${css('--street')}" stroke-width="10" stroke-linecap="round"/>`;
+  for (const [x, y] of parks) g += `<rect x="${X(x) - s / 2 + 4}" y="${Y(y) - s / 2 + 4}" width="${s - 8}" height="${s - 8}" rx="8" fill="${css('--park')}"/>`;
+  const pathD = path => path.map(([x, y], i) => `${i ? 'L' : 'M'}${X(x)},${Y(y)}`).join(' ');
+  const n = atlas.leaves.length;
+  atlas.leaves.forEach((l, i) => {
+    if (l === leaf) return;
+    g += `<path d="${pathD(l.state.path)}" fill="none" stroke="${leafColor(i, n)}" stroke-width="2.2" opacity=".28" stroke-linejoin="round"/>`;
+  });
+  // Current route, segment colored by who won that step.
+  leaf.steps.forEach((st, i) => {
+    const p = leaf.state.path[i], q = leaf.state.path[i + 1];
+    const color = st.branch === 'A' ? css('--a') : st.branch === 'B' ? css('--b') : css('--shared');
+    g += `<line x1="${X(p[0])}" y1="${Y(p[1])}" x2="${X(q[0])}" y2="${Y(q[1])}" stroke="${color}" stroke-width="6" stroke-linecap="round"/>`;
+  });
+  sponsors.forEach((sp, i) => {
+    const col = i ? css('--b') : css('--a');
+    const [x, y] = sp.at;
+    g += `<g><circle cx="${X(x)}" cy="${Y(y)}" r="15" fill="${css('--panel')}" stroke="${col}" stroke-width="3"/><text x="${X(x)}" y="${Y(y) + 5}" text-anchor="middle" font-size="14" fill="${col}">${i ? '📚' : '☕'}</text>
+      <text x="${X(x)}" y="${Y(y) - 22}" text-anchor="middle" font-size="12" font-weight="600" fill="${col}">${sp.name}</text></g>`;
+  });
+  g += `<circle cx="${X(start[0])}" cy="${Y(start[1])}" r="9" fill="${css('--ink')}"/><text x="${X(start[0]) + 14}" y="${Y(start[1]) + 22}" font-size="12" fill="${css('--muted')}">hotel</text>`;
+  g += `<rect x="${X(goal[0]) - 10}" y="${Y(goal[1]) - 10}" width="20" height="20" rx="4" fill="${css('--ink')}"/><text x="${X(goal[0]) - 4}" y="${Y(goal[1]) + 28}" text-anchor="end" font-size="12" fill="${css('--muted')}">conference</text>`;
+  const end = leaf.state.at;
+  g += `<circle cx="${X(end[0])}" cy="${Y(end[1])}" r="6" fill="none" stroke="${css('--ink')}" stroke-width="2"/>`;
+  $('view').innerHTML = g + '</svg>';
+}
+
+function drawMelody(leaf) {
+  const notes = leaf.state.notes;
+  const cw = 28, rh = 12, top = 14, rows = PITCHES.length;
+  const W = 40 + notes.length * cw, H = top * 2 + rows * rh;
+  let g = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Piano roll">`;
+  PITCHES.forEach((p, r) => {
+    const y = top + (rows - 1 - r) * rh;
+    const black = [1, 3, 6, 8, 10].includes(p % 12);
+    g += `<rect x="40" y="${y}" width="${W - 40}" height="${rh}" fill="${black ? css('--soft') : 'transparent'}"/>`;
+    if (p % 12 === 0) g += `<text x="34" y="${y + rh - 1}" text-anchor="end" font-size="9" fill="${css('--muted')}">C${Math.floor(p / 12) - 1}</text>`;
+  });
+  // Ghost notes from every other outcome.
+  atlas.leaves.forEach(l => { if (l !== leaf) l.state.notes.forEach((n, i) => { if (n !== REST) g += `<rect x="${40 + i * cw + 3}" y="${top + (rows - 1 - n) * rh + 1}" width="${cw - 6}" height="${rh - 2}" rx="2" fill="${css('--muted')}" opacity=".08"/>`; }); });
+  leaf.steps.forEach((st, i) => {
+    const n = notes[i];
+    const col = st.branch === 'A' ? css('--a') : st.branch === 'B' ? css('--b') : css('--shared');
+    if (n === REST) g += `<text x="${40 + i * cw + cw / 2}" y="${H - 2}" text-anchor="middle" font-size="9" fill="${col}">rest</text>`;
+    else g += `<rect class="note" data-i="${i}" x="${40 + i * cw + 2}" y="${top + (rows - 1 - n) * rh}" width="${cw - 4}" height="${rh}" rx="2.5" fill="${col}"/>`;
+  });
+  $('view').innerHTML = g + '</svg>';
+}
+
+let audio;
+function playMelody() {
+  const leaf = leafAt(atlas, lambda);
+  audio = audio || new (window.AudioContext || window.webkitAudioContext)();
+  const t0 = audio.currentTime + 0.05, beat = 0.19;
+  leaf.state.notes.forEach((n, i) => {
+    if (n === REST) return;
+    const osc = audio.createOscillator(), gain = audio.createGain();
+    osc.type = leaf.steps[i].branch === 'B' ? 'sawtooth' : 'triangle';
+    osc.frequency.value = 440 * 2 ** ((PITCHES[n] - 69) / 12);
+    const t = t0 + i * beat;
+    gain.gain.setValueAtTime(0, t);
+    gain.gain.linearRampToValueAtTime(0.16, t + 0.015);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + beat * 0.95);
+    osc.connect(gain).connect(audio.destination);
+    osc.start(t); osc.stop(t + beat);
+  });
+}
+
+function setLambda(x) { lambda = Math.min(1, Math.max(1e-6, x)); update(); }
+function fromPointer(e) { const r = $('track').getBoundingClientRect(); setLambda((e.clientX - r.left) / r.width); }
+$('track').addEventListener('pointerdown', e => { $('track').setPointerCapture(e.pointerId); fromPointer(e); });
+$('track').addEventListener('pointermove', e => { if (e.buttons) fromPointer(e); });
+$('track').addEventListener('keydown', e => {
+  const leaf = leafAt(atlas, lambda), i = atlas.leaves.indexOf(leaf);
+  if (e.key === 'ArrowRight' && i < atlas.leaves.length - 1) { const l = atlas.leaves[i + 1]; setLambda((l.lo + l.hi) / 2); e.preventDefault(); }
+  if (e.key === 'ArrowLeft' && i > 0) { const l = atlas.leaves[i - 1]; setLambda((l.lo + l.hi) / 2); e.preventDefault(); }
+});
+$('seed').addEventListener('change', build);
+$('budget').addEventListener('input', update);
+$('reroll').addEventListener('click', () => { $('seed').value = 1 + Math.floor(Math.random() * 9999); build(); });
+$('play').addEventListener('click', playMelody);
+$('sweep').addEventListener('click', () => {
+  if (sweepTimer) { clearInterval(sweepTimer); sweepTimer = null; $('sweep').textContent = 'Sweep λ ▶'; return; }
+  let x = 0.001; $('sweep').textContent = 'Stop ■';
+  sweepTimer = setInterval(() => { x += 0.004; if (x > 1) x = 0.001; setLambda(x); }, 40);
+});
+for (const name of ['city', 'melody']) {
+  $(`tab-${name}`).addEventListener('click', () => {
+    current = name;
+    for (const n of ['city', 'melody']) $(`tab-${n}`).setAttribute('aria-pressed', String(n === name));
+    build();
+  });
+}
+$('theme').addEventListener('click', () => {
+  const root = document.documentElement;
+  const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  root.dataset.theme = dark ? 'light' : 'dark';
+  build();
+});
+build();
+</script>
+</body>
+</html>
