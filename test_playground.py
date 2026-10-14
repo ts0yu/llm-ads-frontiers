@@ -48,6 +48,32 @@ console.log(JSON.stringify(report));
 """
 
 
+GAME_CHECK = """
+import { buildAtlas, runDirect, mulberry32 } from './walkthrough/atlas_core.mjs';
+import { cityWalk } from './walkthrough/playground_worlds.mjs';
+import { aggregate, piecesAt } from './walkthrough/bid_game.mjs';
+const gen = cityWalk(), T = 80, seeds = 25;
+const atlases = [];
+for (let s = 1; s <= seeds; s += 1) atlases.push(buildAtlas(gen, s, T));
+const game = aggregate(atlases, l => l.state.visited[0], l => l.state.visited[1]);
+const rand = mulberry32(99);
+let worst = 0;
+for (let i = 0; i < 30; i += 1) {
+  const lam = 0.001 + 0.998 * rand(), S = 0.5 + 2 * rand(), a = lam * S, b = (1 - lam) * S;
+  let pa = 0, pb = 0, payA = 0, payB = 0;
+  for (let s = 1; s <= seeds; s += 1) {
+    const d = runDirect(gen, s, T, a, b);
+    pa += d.state.visited[0] ? 1 : 0; pb += d.state.visited[1] ? 1 : 0;
+    payA += d.paidA; payB += d.paidB;
+  }
+  const p = piecesAt(game, lam);
+  worst = Math.max(worst, Math.abs(p.PA - pa / seeds), Math.abs(p.PB - pb / seeds),
+    Math.abs(b * p.KA - payA / seeds), Math.abs(a * p.KB - payB / seeds));
+}
+console.log(JSON.stringify({ worst, pieces: game.pieces.length }));
+"""
+
+
 @unittest.skipUnless(NODE, "Node.js is required for browser checks")
 class PlaygroundTests(unittest.TestCase):
     def run_node(self, source: str) -> str:
@@ -91,6 +117,11 @@ class PlaygroundTests(unittest.TestCase):
             self.assertEqual(got["branch"], ref.branch)
             self.assertAlmostEqual(got["payment_a"], ref.payment_a, places=12)
             self.assertAlmostEqual(got["payment_b"], ref.payment_b, places=12)
+
+    def test_bid_game_curves_equal_direct_averages(self):
+        result = json.loads(self.run_node(GAME_CHECK))
+        self.assertGreater(result["pieces"], 1)
+        self.assertLess(result["worst"], 1e-9)
 
     def test_every_atlas_leaf_equals_a_direct_generation(self):
         report = json.loads(self.run_node(ATLAS_CHECK))

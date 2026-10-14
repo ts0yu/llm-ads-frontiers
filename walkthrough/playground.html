@@ -19,6 +19,7 @@
   --bg:#111615;--panel:#18201e;--ink:#e8ece6;--muted:#9aa69f;--line:#2b3532;--soft:#202a27;
   --a:#7aa2ff;--a-soft:#1d2b4f;--b:#ffad5c;--b-soft:#43301d;--shared:#9aa39e;--park:#21382a;--park-ink:#8fbf86;--street:#26302d;--accent:#e8ece6;color-scheme:dark}
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
 button,input{font:inherit;color:inherit}
 button{border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:8px 14px;cursor:pointer}
@@ -39,6 +40,7 @@ h1 em{color:var(--a);font-style:italic}
 .stage svg{width:100%;height:auto;display:block}
 .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px}
 .controls label{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.controls select{padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg)}
 .controls input[type=number]{width:72px;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg)}
 .scrub{margin-top:14px}
 .scrub-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:12px;color:var(--muted)}
@@ -99,10 +101,32 @@ footer{margin-top:28px;font-size:12px;color:var(--muted)}
   <div class="tabs" role="tablist">
     <button id="tab-city" role="tab" aria-pressed="true">City walk</button>
     <button id="tab-melody" role="tab" aria-pressed="false">Melody</button>
+    <button id="tab-game" role="tab" aria-pressed="false">Bidding game</button>
     <button id="theme" style="margin-left:auto" aria-label="Toggle light or dark theme">Theme ◐</button>
   </div>
 
-  <div class="grid">
+  <section class="panel" id="game" hidden>
+    <h2>When sponsors value outcomes, what do they bid?</h2>
+    <p class="story" style="max-width:760px">The auction is truthful per token: a sponsor who values each contested step it wins at v credits should bid v.
+      Sponsors usually value an outcome of the whole generation instead (the walk passes my storefront, the jingle sounds like my label).
+      Averaging exact atlases over many seeds gives P(outcome) and expected payments as exact step functions of λ for those seeds.
+      Here each sponsor best-responds to the other's bid, using those functions.</p>
+    <div class="controls">
+      <label>World <select id="g-world"><option value="city">City walk</option><option value="melody">Melody</option></select></label>
+      <label>Seeds <input id="g-seeds" type="number" min="10" max="1000" value="200"></label>
+      <label>Value of A's outcome <input id="g-va" type="number" min="0" step="1" value="40"></label>
+      <label>Value of B's outcome <input id="g-vb" type="number" min="0" step="1" value="40"></label>
+      <label>B's bid b <input id="g-b" type="number" min="0.0001" step="0.1" value="1"></label>
+      <button id="g-run">Recompute</button>
+    </div>
+    <div class="grid" style="margin-top:6px">
+      <div><h3 id="g-curve-title"></h3><div id="g-curves"></div>
+        <div class="legend"><span><i class="sw" style="background:var(--a)"></i>P(A's outcome)</span><span><i class="sw" style="background:var(--b)"></i>P(B's outcome)</span><span><i class="sw" style="background:var(--ink)"></i>A's expected utility at this b (right axis)</span></div></div>
+      <div><h3>Alternating best responses, from a = b = 1</h3><div id="g-path"></div><div class="story" id="g-verdict" style="margin-top:10px"></div></div>
+    </div>
+  </section>
+
+  <div class="grid" id="main-grid">
     <section class="panel stage">
       <div class="controls">
         <label>Seed <input id="seed" type="number" min="1" value="1"></label>
@@ -160,6 +184,7 @@ footer{margin-top:28px;font-size:12px;color:var(--muted)}
 
 <script type="module">
 import { buildAtlas, leafAt, leafPayments, outcomeProfile } from './atlas_core.mjs';
+import { aggregate, bestResponseA, dynamics } from './bid_game.mjs';
 import { CITY, cityWalk, melody, blueShare, noteName, PITCHES, REST, COMPOSERS } from './playground_worlds.mjs';
 
 const $ = id => document.getElementById(id);
@@ -353,18 +378,100 @@ $('sweep').addEventListener('click', () => {
   let x = 0.001; $('sweep').textContent = 'Stop ■';
   sweepTimer = setInterval(() => { x += 0.004; if (x > 1) x = 0.001; setLambda(x); }, 40);
 });
-for (const name of ['city', 'melody']) {
+for (const name of ['city', 'melody', 'game']) {
   $(`tab-${name}`).addEventListener('click', () => {
+    for (const n of ['city', 'melody', 'game']) $(`tab-${n}`).setAttribute('aria-pressed', String(n === name));
+    $('game').hidden = name !== 'game';
+    $('main-grid').hidden = name === 'game';
+    if (name === 'game') { renderGame(); return; }
     current = name;
-    for (const n of ['city', 'melody']) $(`tab-${n}`).setAttribute('aria-pressed', String(n === name));
     build();
   });
 }
+
+const gameCache = new Map();
+function gameFor(world, seeds) {
+  const key = `${world}|${seeds}`;
+  if (!gameCache.has(key)) {
+    const w = worlds[world];
+    const atlases = [];
+    for (let s = 1; s <= seeds; s += 1) atlases.push(buildAtlas(w.gen, s, w.T));
+    const tests = world === 'city'
+      ? [l => l.state.visited[0], l => l.state.visited[1]]
+      : [l => blueShare(l.state.notes) < 0.15, l => blueShare(l.state.notes) > 0.3];
+    gameCache.set(key, aggregate(atlases, ...tests));
+  }
+  return gameCache.get(key);
+}
+
+function renderGame() {
+  const world = $('g-world').value;
+  const seeds = Math.min(1000, Math.max(10, Math.floor(Number($('g-seeds').value) || 200)));
+  const VA = Math.max(0, Number($('g-va').value) || 0), VB = Math.max(0, Number($('g-vb').value) || 0);
+  const b = Math.max(1e-4, Number($('g-b').value) || 1);
+  const game = gameFor(world, seeds);
+  const names = world === 'city'
+    ? [`walk passes ${CITY.sponsors[0].name}`, `walk passes ${CITY.sponsors[1].name}`]
+    : ['jingle sounds major (blue share < 15%)', 'jingle sounds blue (blue share > 30%)'];
+  $('g-curve-title').textContent = `A wants: ${names[0]} · B wants: ${names[1]} · ${seeds} seeds`;
+  // Curves over lambda.
+  const W = 560, H = 250, L = 40, R = 46, T = 12, B = 30;
+  const x = l => L + l * (W - L - R), y = p => T + (1 - p) * (H - T - B);
+  const util = game.pieces.map(p => VA * p.PA - b * p.KA);
+  const umax = Math.max(...util, 1e-9), umin = Math.min(...util, 0);
+  const yu = u => T + (1 - (u - umin) / (umax - umin || 1)) * (H - T - B);
+  const step = (f, scale) => game.pieces.map((p, i) => `${i ? 'L' : 'M'}${x(p.lo).toFixed(1)},${scale(f(p, i)).toFixed(1)} L${x(p.hi).toFixed(1)},${scale(f(p, i)).toFixed(1)}`).join(' ');
+  const br = bestResponseA(game, VA, b);
+  let g = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Outcome probabilities and utility over lambda">`;
+  for (const t of [0, 0.25, 0.5, 0.75, 1]) {
+    g += `<line x1="${x(0)}" x2="${x(1)}" y1="${y(t)}" y2="${y(t)}" stroke="${css('--line')}"/>`;
+    g += `<text x="${L - 6}" y="${y(t) + 4}" text-anchor="end" font-size="10" fill="${css('--muted')}">${t}</text>`;
+    g += `<text x="${x(t)}" y="${H - 10}" text-anchor="middle" font-size="10" fill="${css('--muted')}">λ=${t}</text>`;
+  }
+  g += `<text x="${W - R + 6}" y="${yu(umax) + 14}" font-size="10" fill="${css('--muted')}">${umax.toFixed(1)}</text><text x="${W - R + 6}" y="${yu(umin) - 4}" font-size="10" fill="${css('--muted')}">${umin.toFixed(1)}</text>`;
+  g += `<path d="${step(p => p.PA, y)}" fill="none" stroke="${css('--a')}" stroke-width="2"/>`;
+  g += `<path d="${step(p => p.PB, y)}" fill="none" stroke="${css('--b')}" stroke-width="2"/>`;
+  g += `<path d="${step((p, i) => util[i], yu)}" fill="none" stroke="${css('--ink')}" stroke-width="1.6" stroke-dasharray="4 3"/>`;
+  g += `<line x1="${x(br.lambda)}" x2="${x(br.lambda)}" y1="${T}" y2="${H - B}" stroke="${css('--ink')}" stroke-width="1" stroke-dasharray="2 2"/>`;
+  $('g-curves').innerHTML = g + `</svg><p class="story">At b = ${b}, A's best response is λ = ${br.lambda.toFixed(3)} (bid a = ${br.bid.toPrecision(3)}), with expected utility ${br.utility.toFixed(2)} credits. Utility axis on the right runs from ${umin.toFixed(1)} to ${umax.toFixed(1)}.</p>`;
+  // Dynamics on a log scale.
+  const d = dynamics(game, VA, VB, 1, 1, 40);
+  const pts = d.path;
+  const lv = v => Math.log10(Math.max(v, 1e-12));
+  const lo = Math.min(...pts.flatMap(p => [lv(p.a), lv(p.b)])), hi = Math.max(...pts.flatMap(p => [lv(p.a), lv(p.b)]));
+  const W2 = 520, H2 = 220;
+  const px = i => 40 + i * (W2 - 60) / Math.max(1, pts.length - 1), py = v => 12 + (1 - (lv(v) - lo) / (hi - lo || 1)) * (H2 - 40);
+  let h = `<svg viewBox="0 0 ${W2} ${H2}" role="img" aria-label="Bids over best-response rounds, log scale">`;
+  for (let e = Math.ceil(lo); e <= Math.floor(hi); e += Math.max(1, Math.ceil((hi - lo) / 5))) h += `<line x1="40" x2="${W2 - 20}" y1="${py(10 ** e)}" y2="${py(10 ** e)}" stroke="${css('--line')}"/><text x="34" y="${py(10 ** e) + 4}" text-anchor="end" font-size="10" fill="${css('--muted')}">1e${e}</text>`;
+  h += `<polyline points="${pts.map((p, i) => `${px(i)},${py(p.a)}`).join(' ')}" fill="none" stroke="${css('--a')}" stroke-width="2"/>`;
+  h += `<polyline points="${pts.map((p, i) => `${px(i)},${py(p.b)}`).join(' ')}" fill="none" stroke="${css('--b')}" stroke-width="2"/>`;
+  h += `<text x="${W2 / 2}" y="${H2 - 6}" text-anchor="middle" font-size="10" fill="${css('--muted')}">best-response round</text>`;
+  $('g-path').innerHTML = h + '</svg>';
+  const last = pts.at(-1);
+  const exits = pts.slice(1).filter(p => p.lambda > 0.995 || p.lambda < 0.005).length;
+  const growth = [];
+  for (let i = 2; i < pts.length; i += 1) {
+    const prev = Math.max(pts[i - 1].a, pts[i - 1].b), cur = Math.max(pts[i].a, pts[i].b);
+    if (cur > prev) growth.push(cur / prev);
+  }
+  growth.sort((x, y) => x - y);
+  const median = growth.length ? growth[Math.floor(growth.length / 2)] : 1;
+  const story = d.status === 'converged'
+    ? `Best responses settle at a = ${last.a.toPrecision(3)}, b = ${last.b.toPrecision(3)} (λ = ${last.lambda.toFixed(3)}).`
+    : exits >= 2
+      ? `No resting point: while both outcomes are worth fighting for, bids escalate by about ×${median.toFixed(1)} per round. When one sponsor's outcome stops paying for its expected charges, that sponsor drops to a near-zero bid (${exits} drop-outs in ${pts.length - 1} rounds), the other then needs only a tiny bid, and the escalation restarts. This is an Edgeworth-style cycle. Allocation depends only on the ratio λ, but each charge scales with the rival's bid level.`
+      : d.status === 'cycle'
+        ? `No resting point: best responses repeat a ${d.cycleLength}-round cycle. Each sponsor keeps switching between pushing λ toward its own outcome and backing off when the rival's bid makes that too expensive (last a = ${last.a.toPrecision(3)}, b = ${last.b.toPrecision(3)}).`
+        : `Bids move without settling within ${pts.length - 1} rounds (last a = ${last.a.toPrecision(3)}, b = ${last.b.toPrecision(3)}).`;
+  $('g-verdict').innerHTML = `<p>${story}</p><p>Exploratory analysis of synthetic generators, not an equilibrium proof. Best responses pick the midpoint of the best constant piece of λ, and the seeds are a sample of tapes. Per-token truthfulness still holds; this concerns sponsors who value whole outcomes.</p>`;
+}
+for (const id of ['g-run', 'g-world']) $(id).addEventListener(id === 'g-run' ? 'click' : 'change', renderGame);
+
 $('theme').addEventListener('click', () => {
   const root = document.documentElement;
   const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
   root.dataset.theme = dark ? 'light' : 'dark';
-  build();
+  if ($('game').hidden) build(); else renderGame();
 });
 build();
 </script>
