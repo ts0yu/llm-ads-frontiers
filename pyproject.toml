@@ -23,7 +23,9 @@ py-modules = ["auction"]
 include = ["token_auction_lab*"]
 
 [tool.setuptools.package-data]
-token_auction_lab = ["fact_sheets.json", "fact_sheets_n.json", "live_defaults.json"]
+token_auction_lab = [
+    "fact_sheets.json", "fact_sheets_n.json", "live_defaults.json", "image_scenes.json",
+]
 
 [tool.ruff]
 line-length = 100

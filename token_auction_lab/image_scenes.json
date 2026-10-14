@@ -1,0 +1,46 @@
+{
+ "schema": "image-scenes-v1",
+ "note": "FICTIONAL advertisers with deliberately visual identities (colour, product shape). Brand names are labels for the atlas only and are NOT placed in prompts, so the model cannot draw on any real company that happens to share a name. Names were coined for this demo and have not been checked against trademark registers. Each advertiser prompt is the shared scene text plus that advertiser's private visual brief; the negative (unconditional) prompt is shared. Bids never enter prompts.",
+ "negative_prompt": "text, letters, words, watermark, signature, real brand logo, blurry, lowres, deformed, cropped",
+ "scenes": {
+  "cafe": {
+   "title": "Street cafe terrace",
+   "shared": "photo of a sunny cobblestone street cafe terrace, small round tables, people chatting over coffee, morning light, 35mm",
+   "advertisers": [
+    {"name": "Carmello Roastworks", "brief": "bright crimson red awning, red paper coffee cups, red chairs"},
+    {"name": "Tidewick Tea Bar", "brief": "deep teal awning, teal paper cups, teal chairs"}
+   ],
+   "clip_labels": {
+    "Carmello Roastworks": "a street cafe with a red awning and red cups",
+    "Tidewick Tea Bar": "a street cafe with a teal awning and teal cups",
+    "neutral": "a street cafe with plain white awning and white cups"
+   }
+  },
+  "beach": {
+   "title": "Beach kiosk",
+   "shared": "photo of a wooden beach kiosk on white sand, cooler of cold soda cans, surfers walking by, bright summer afternoon",
+   "advertisers": [
+    {"name": "Zestrel Lemon Soda", "brief": "lemon yellow soda cans with lemon slices, yellow striped parasol"},
+    {"name": "Bluvane Berry Soda", "brief": "blueberry purple-blue soda cans with blueberries, blue striped parasol"}
+   ],
+   "clip_labels": {
+    "Zestrel Lemon Soda": "a beach kiosk with yellow lemon soda cans and a yellow parasol",
+    "Bluvane Berry Soda": "a beach kiosk with blue blueberry soda cans and a blue parasol",
+    "neutral": "a beach kiosk with silver soda cans and a white parasol"
+   }
+  },
+  "park": {
+   "title": "City park billboard",
+   "shared": "photo of a green city park path with joggers and benches, a large billboard beside the path, overcast daylight",
+   "advertisers": [
+    {"name": "Fernlight Cycles", "brief": "billboard shows a leaf green bicycle on a green background"},
+    {"name": "Emberly Audio", "brief": "billboard shows bright orange headphones on an orange background"}
+   ],
+   "clip_labels": {
+    "Fernlight Cycles": "a park billboard showing a green bicycle",
+    "Emberly Audio": "a park billboard showing orange headphones",
+    "neutral": "a blank white billboard in a park"
+   }
+  }
+ }
+}
