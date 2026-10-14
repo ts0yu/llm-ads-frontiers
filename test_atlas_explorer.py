@@ -17,6 +17,7 @@ from urllib.request import urlopen
 import numpy as np
 
 from auction import RandomTape, TwoBidderAuction
+from token_auction_lab.auction_n import critical_bid
 from token_auction_lab.walkthrough import ATLAS_DATA, ROOT, Handler, atlas_path
 
 INDEX = json.loads((ATLAS_DATA / "index.json").read_text())
@@ -50,7 +51,8 @@ def race_charges(leaf, lam, total):
         i, E = step["winner"], step["E"]
         ratios = [lam[j] / E[j] for j in range(len(lam))]
         assert max(range(len(lam)), key=ratios.__getitem__) == i, (leaf["id"], step["step"])
-        charges[i] += E[i] * min(total * lam[j] / E[j] for j in range(len(lam)) if j != i)
+        bids = [total * x for x in lam]
+        charges[i] += critical_bid(E, bids, i)
     return charges
 
 

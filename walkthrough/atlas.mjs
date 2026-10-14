@@ -136,15 +136,16 @@ export function cellIndexAt(leaves, point) {
   return leaves.findIndex(leaf => pointInPolygon(leaf.polygon, point));
 }
 
-/** Exponential-race charges: the winner pays E_i * min_{j != i} b_j / E_j, with b = S * lambda. */
+/** Exponential-race charges: the winner pays its critical bid E_i * max_{j != i} b_j / E_j, with b = S * lambda. */
 export function raceCharges(leaf, lambda, S = 1) {
   const n = lambda.length, charges = new Array(n).fill(0), wins = new Array(n).fill(0);
   for (const step of leaf.steps) {
     if (step.winner == null || !step.E) continue;
     const i = step.winner;
     wins[i] += 1;
-    let critical = Infinity;
-    for (let j = 0; j < n; j += 1) if (j !== i) critical = Math.min(critical, (S * lambda[j]) / step.E[j]);
+    // i wins iff E_i/b_i < min_j E_j/b_j, so its threshold bid is E_i * max_j b_j/E_j.
+    let critical = 0;
+    for (let j = 0; j < n; j += 1) if (j !== i) critical = Math.max(critical, (S * lambda[j]) / step.E[j]);
     charges[i] += step.E[i] * critical;
   }
   return { charges, wins, contested: wins.reduce((x, y) => x + y, 0) };
@@ -950,7 +951,7 @@ function updateSimplex(cellChanged = true) {
   }
   $('#cell-facts').innerHTML = `
     <div class="charges three">${state.atlas.bidders.map((b, i) => `<div class="charge ${BIDDER_CLASSES[i]}"><span class="who ${BIDDER_CLASSES[i]}"><i></i>${esc(b)}</span><b class="mono">${credits(c.charges[i])}</b><small>${c.wins[i]} won</small></div>`).join('')}</div>
-    <p class="formula small muted">Simulated credits. Each contest's winner i pays its critical bid E_i · min over j≠i of b_j / E_j (exponential race).</p>
+    <p class="formula small muted">Simulated credits. Each contest's winner i pays its critical bid E_i · max over j≠i of b_j / E_j (exponential race).</p>
     <dl class="facts"><div><dt>Steps</dt><dd>${leaf.steps.length} <small>${leaf.steps.length - c.contested} shared · ${c.contested} contested</small></dd></div><div><dt>Polygon</dt><dd>${leaf.polygon.length} vertices</dd></div><div><dt>Outcomes</dt><dd>${state.keys.map(k => `<span class="truth ${leaf.outcomes[k] ? 'yes' : ''}">${leaf.outcomes[k] ? '●' : '○'} ${esc(prettyKey(k))}</span>`).join('<br>')}</dd></div></dl>`;
 }
 
