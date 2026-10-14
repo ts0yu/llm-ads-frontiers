@@ -205,6 +205,9 @@ The platform chooses lambda, or a leaf, using the atlas. Token charges are
 replaced by outcome charges. The token sampler still produces the generation,
 and bids still never enter prompts.
 
+A Python port that runs (c1)-(c3) on stored `bid-atlas-v1` files (text or
+image) is `token_auction_lab/outcome_auction.py`; see `docs/OUTCOME_AUCTION.md`.
+
 **(c1) Proportional allocation with outcome-level Myerson payments.** Keep the
 original allocation rule with bids equal to reported values,
 `lambda = V_A/(V_A+V_B)`. Charge
