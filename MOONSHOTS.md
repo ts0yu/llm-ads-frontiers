@@ -30,6 +30,20 @@ branch splits per step: a T-step generation has **at most 1 + T distinct
 outputs over all bid ratios**. This is deterministic, not a high-probability
 estimate.
 
+**Expected number of answers.** Over random tapes,
+`E[#answers] = 1 + integral_0^1 E[#contested steps at bid ratio lambda] d lambda`.
+Proof: `#answers - 1` counts split steps. At step k the live branches partition
+`(0,1]`, and the one containing `u_k` is exactly the generation at
+`lambda = u_k`. It splits iff step k is contested there (endpoint ties have
+probability zero). That generation's first k steps use only tapes `0..k-1`,
+and contestedness at step k uses the branch uniform of tape k. Both are
+independent of `u_k`, which is uniform. So `P(split at k)` equals the
+lambda-average of `P(step k contested at lambda)`. Summing over k gives the
+identity. It holds in expectation, not per seed, and `test_playground.py`
+checks it statistically. In the synthetic playground worlds (2000 seeds,
+`results/playground_census.json`) answers average 24.8 of a possible 81 for
+the city walk and 19.6 of 33 for the melody.
+
 Each leaf records, per step, the branch label and `u`. The exact charges are
 then available for any bid pair in the leaf: with `S = a+b` and `lambda`
 inside the leaf, a contested step won by A charges A `S*(1-lambda)*u/(1-u)`,

@@ -74,6 +74,28 @@ console.log(JSON.stringify({ worst, pieces: game.pieces.length }));
 """
 
 
+IDENTITY_CHECK = """
+import { buildAtlas } from './walkthrough/atlas_core.mjs';
+import { melody } from './walkthrough/playground_worlds.mjs';
+const gen = melody(), T = 32, N = 400;
+const leaves = [], contested = [];
+for (let s = 1; s <= N; s += 1) {
+  const atlas = buildAtlas(gen, s, T);
+  leaves.push(atlas.leaves.length - 1);
+  let c = 0;
+  for (const l of atlas.leaves) {
+    c += (l.hi - l.lo) * l.steps.filter(x => x.branch !== 'shared').length;
+  }
+  contested.push(c);
+}
+const mean = xs => xs.reduce((a, b) => a + b, 0) / xs.length;
+const diffs = leaves.map((x, i) => x - contested[i]);
+const m = mean(diffs);
+const sd = Math.sqrt(mean(diffs.map(d => (d - m) ** 2)));
+console.log(JSON.stringify({ mean: m, se: sd / Math.sqrt(N) }));
+"""
+
+
 @unittest.skipUnless(NODE, "Node.js is required for browser checks")
 class PlaygroundTests(unittest.TestCase):
     def run_node(self, source: str) -> str:
@@ -117,6 +139,11 @@ class PlaygroundTests(unittest.TestCase):
             self.assertEqual(got["branch"], ref.branch)
             self.assertAlmostEqual(got["payment_a"], ref.payment_a, places=12)
             self.assertAlmostEqual(got["payment_b"], ref.payment_b, places=12)
+
+    def test_expected_answers_equal_integrated_contested_steps(self):
+        # E[#answers - 1] = integral over lambda of E[#contested steps]; MOONSHOTS.md 1.1.
+        result = json.loads(self.run_node(IDENTITY_CHECK))
+        self.assertLess(abs(result["mean"]), 4 * result["se"] + 1e-9)
 
     def test_bid_game_curves_equal_direct_averages(self):
         result = json.loads(self.run_node(GAME_CHECK))
