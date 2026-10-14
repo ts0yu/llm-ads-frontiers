@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What Bids Can Buy</title>
+<meta name="description" content="An explorable explanation of exact bid atlases for token auctions: every answer a pair of bids can buy, at most 1 + T of them.">
+<style>
+/* Layout: one reading column with full-width figures; live demos sit between paragraphs. */
+:root{
+  --bg:#f5f3ec;--paper:#fffdf7;--ink:#1c2826;--muted:#5f6c66;--line:#dcd9ce;--soft:#ebe9e0;
+  --a:#2557d6;--a-soft:#dbe6ff;--b:#c2620a;--b-soft:#ffe7cf;--c:#1f8a5b;--shared:#7b8580;
+  --park:#cfe3c4;--street:#e2dfd5;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#101514;--paper:#161d1b;--ink:#e6ebe5;--muted:#9aa69f;--line:#2a3431;--soft:#1e2725;
+  --a:#7aa2ff;--a-soft:#1d2b4f;--b:#ffad5c;--b-soft:#43301d;--c:#5fd39a;--shared:#9aa39e;--park:#21382a;--street:#26302d;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#101514;--paper:#161d1b;--ink:#e6ebe5;--muted:#9aa69f;--line:#2a3431;--soft:#1e2725;
+  --a:#7aa2ff;--a-soft:#1d2b4f;--b:#ffad5c;--b-soft:#43301d;--c:#5fd39a;--shared:#9aa39e;--park:#21382a;--street:#26302d;color-scheme:dark}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 var(--serif);-webkit-font-smoothing:antialiased}
+.col{max-width:720px;margin:0 auto;padding-block:0;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wide{max-width:1060px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{padding-block:56px 18px}
+.kicker{font:600 11px/1.4 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{font:400 clamp(40px,7vw,76px)/1 var(--serif);letter-spacing:-.035em;margin:14px 0 18px;text-wrap:balance}
+h1 em{color:var(--a)}
+h2{font:400 32px/1.15 var(--serif);letter-spacing:-.02em;margin:56px 0 12px;text-wrap:balance}
+p{margin:0 0 16px}
+.lede{font-size:21px;line-height:1.5;color:var(--muted)}
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
+.badge{font:10px/1.4 var(--mono);letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);border-radius:4px;padding:4px 8px;color:var(--muted);background:var(--paper)}
+.badge.warn{border-color:var(--b);color:var(--b)}
+figure{margin:22px 0 28px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px}
+figure svg{display:block;width:100%;height:auto}
+figcaption{font:13px/1.5 var(--sans);color:var(--muted);margin-top:10px}
+.ctrl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font:13px var(--sans);margin-bottom:8px}
+.ctrl input[type=range]{flex:1;min-width:180px;accent-color:var(--a)}
+.ctrl output{font:600 13px var(--mono);min-width:7ch}
+button{font:13px var(--sans);color:inherit;border:1px solid var(--line);background:var(--paper);border-radius:8px;padding:7px 12px;cursor:pointer}
+button:hover{border-color:var(--ink)}
+:focus-visible{outline:3px solid var(--a);outline-offset:3px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.num{font:600 34px/1 var(--mono);letter-spacing:-.02em}
+.small{font:13px/1.5 var(--sans);color:var(--muted)}
+.mono{font-family:var(--mono);font-size:.86em}
+table{width:100%;border-collapse:collapse;font:14px/1.4 var(--sans);font-variant-numeric:tabular-nums}
+th,td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:right}th:first-child,td:first-child{text-align:left}th{font-weight:500;color:var(--muted)}
+.callout{border-left:3px solid var(--a);padding:6px 0 6px 16px;margin:20px 0;font-size:19px}
+.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:18px 0 40px}
+.links a{display:block;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--paper);text-decoration:none;color:inherit;font:14px/1.45 var(--sans)}
+.links a strong{display:block;font:17px var(--serif);margin-bottom:4px}
+footer{padding-block:30px 60px;font:12px var(--sans);color:var(--muted)}
+@media (max-width:700px){.two{grid-template-columns:1fr}body{font-size:16px}.lede{font-size:18px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header class="col">
+  <div class="kicker">Token Auction Lab · research note</div>
+  <h1>What can a pair of bids <em>buy</em>?</h1>
+  <p class="lede">Two advertisers share one generated answer. At every step a token auction mixes their preferred next steps in proportion to their bids. For one random seed, we can now list every answer any pair of bids can produce, exactly, with what each would cost.</p>
+  <div class="badges"><span class="badge warn">Live demos use synthetic generators</span><span class="badge">Simulated credits</span><span class="badge">No model runs on this page</span></div>
+</header>
+
+<main>
+<section class="col">
+  <h2>One comparison per step</h2>
+  <p>At each step the two advertisers' next-step distributions mostly agree. That overlap is sampled for free and ignores the bids. On the part they disagree about, each side proposes a candidate and one uniform random number <i>u</i> settles the contest: A's candidate wins exactly when <i>u</i> &lt; λ, where λ = a/(a+b) is A's share of the bids. The winner pays the bid at which it would have lost, its critical bid.</p>
+  <p>The random numbers are drawn from the seed, step by step, before anyone bids. So for a fixed seed the bids enter the whole generation only through λ, one comparison at a time.</p>
+  <figure>
+    <div class="ctrl"><label for="s1-l">λ</label><input id="s1-l" type="range" min="0.001" max="0.999" step="0.001" value="0.42"><output id="s1-o"></output></div>
+    <svg id="s1" viewBox="0 0 640 120" role="img" aria-label="Contest uniforms of one route compared with lambda"></svg>
+    <figcaption>One synthetic walk, 40 steps. Each dot is a contested step at height <i>u</i>; grey ticks are shared steps. Drag λ: steps with <i>u</i> below the line go to A, the rest to B. Moving λ past a dot changes that step, and every later step can change with it.</figcaption>
+  </figure>
+</section>
+
+<section class="col">
+  <h2>At most 1 + T answers</h2>
+  <p>Follow every λ in (0, 1] at once. Start with one interval. Whenever a contested step's <i>u</i> falls strictly inside an interval, split it there and continue both halves. Every live interval reads the same <i>u</i> at step k, and the intervals never overlap, so at most one interval splits per step. A T-step answer therefore has <b>at most 1 + T versions</b> across all bids. Each one comes with exact charges, because within an interval every contest result is fixed.</p>
+  <figure>
+    <div class="ctrl"><button id="s2-play">Replay the search ▶</button><span class="small" id="s2-status"></span></div>
+    <svg id="s2" viewBox="0 0 640 210" role="img" aria-label="Interval search splitting lambda into answers"></svg>
+    <figcaption>The interval search on one seed of the synthetic city walk. Each row is a step; colored bars are the live intervals; a split appears where a contest uniform lands inside an interval.</figcaption>
+  </figure>
+  <p>The expected number of answers also has a clean form. Over random seeds,
+  <span class="mono">E[#answers] = 1 + ∫₀¹ E[#contested steps at λ] dλ</span>, because the interval that splits at step k is the generation at λ = <i>u<sub>k</sub></i>, which cannot see <i>u<sub>k</sub></i> in advance. Over 2000 seeds of the city walk that averages 24.8 answers out of a possible 81.</p>
+</section>
+
+<section class="wide">
+  <figure>
+    <div class="ctrl"><label for="s3-l">Bid share of the café, λ</label><input id="s3-l" type="range" min="0.001" max="1" step="0.001" value="0.5"><output id="s3-o"></output><button id="s3-seed">New seed ⟳</button></div>
+    <div class="two"><svg id="s3-map" viewBox="0 0 400 290" role="img" aria-label="City map and the route bought at this lambda"></svg>
+      <div><svg id="s3-track" viewBox="0 0 400 70" role="img" aria-label="Answers along lambda"></svg><div id="s3-info" class="small"></div></div></div>
+    <figcaption>Synthetic city walk: a café (blue) and a bookshop (orange) each pull the walker toward their door. Faint lines are every other route this seed can produce. The middle of the bid range often produces walkers that dither between both shops and run out of steps, a non-language version of an incoherent answer.</figcaption>
+  </figure>
+</section>
+
+<section class="col">
+  <h2>Per token stable, per answer not</h2>
+  <p>Raising your bid can only switch a contested step to your own candidate. That is the property the mechanism is built on. It does not carry over to whole answers: once one token changes, every later distribution changes too. The atlas measures this exactly for each seed instead of assuming it.</p>
+  <table><thead><tr><th>Synthetic outcome</th><th>Seeds where it is not monotone in λ</th></tr></thead>
+    <tbody>
+      <tr><td>Walk passes the café</td><td>10.1%</td></tr>
+      <tr><td>Walk passes the bookshop</td><td>22.6%</td></tr>
+      <tr><td>Walk reaches the venue in time</td><td>70.9%</td></tr>
+      <tr><td>Jingle is mostly blue notes</td><td>11.5%</td></tr>
+      <tr><td>Jingle ends on C</td><td>31.5%</td></tr>
+    </tbody></table>
+  <p class="small">2000 seeds per world (<span class="mono">results/playground_census.json</span>). Hand-written policies, not language models.</p>
+</section>
+
+<section class="col">
+  <h2>Three advertisers: a triangle of answers</h2>
+  <p>With three bidders the overlap of all three distributions stays free, and contested steps become a race: each bidder draws an exponential clock E<sub>i</sub>, the smallest E<sub>i</sub>/b<sub>i</sub> wins, and the winner pays E<sub>w</sub>·max<sub>j≠w</sub> b<sub>j</sub>/E<sub>j</sub>. For two bidders this is exactly the auction above. Bids are now a point in a triangle and answers are convex polygons. Here the 1 + T bound breaks: one contested step can cut several cells, and cell counts grow roughly quadratically.</p>
+  <figure>
+    <svg id="s4" viewBox="0 0 520 300" role="img" aria-label="Bid triangle partitioned into route cells"></svg>
+    <figcaption>One seed of a three-shop walk: every bid split inside a polygon buys the same route. Colour shows which shops the route passes; blended colours mean two shops, dark means all three. The full interactive version is in the Atlas Playground.</figcaption>
+  </figure>
+</section>
+
+<section class="col">
+  <h2>Outcome buyers never settle</h2>
+  <p>Per token, the auction is truthful: if each contested token you win is worth v credits to you, bidding v is optimal. Advertisers usually want an outcome instead, for example "the answer recommends my hotel". Averaging atlases over many seeds turns each outcome's probability and each expected charge into an exact step function of λ, so best responses can be computed exactly.</p>
+  <p>In the synthetic city walk they cycle. The café needs λ ≥ 0.67 and the bookshop λ ≤ 0.32, so each outbids the other, about ×4 per round, until one outcome stops paying for itself. That sponsor drops to almost nothing and the escalation restarts. Allocation depends only on the ratio of bids while each charge scales with the rival's level, so nothing anchors the bid level.</p>
+  <p class="callout">Exact answer atlases turn "what does this bid buy?" from a sampling question into a lookup, and they show where per-token guarantees stop.</p>
+</section>
+
+<section class="col">
+  <h2>Beyond text</h2>
+  <p>Nothing here needs a language model, only two next-step distributions. Diffusion samplers qualify too. An Euler-ancestral step draws from a Gaussian whose spread is set by the noise schedule, not by the prompt, so two advertisers' prompts give two Gaussians of equal shape. These have an exact maximal coupling along the line between their means, with the same branch, contest and payments. The repository includes that coupling and an exact image atlas for SDXL, tested on tiny models. Real-model atlases for Qwen3-4B text and SDXL images are scripted but have not been run yet.</p>
+  <div class="links">
+    <a href="playground.html"><strong>Atlas Playground</strong>City walk, melody, three-sponsor triangle and the bidding game, computed live.</a>
+    <a href="atlas.html"><strong>Atlas Explorer</strong>Replay stored atlases for text, images and three bidders.</a>
+    <a href="#nonclaims"><strong>What this does not show</strong>Truthfulness over answers, advertiser value, real money.</a>
+  </div>
+  <h2 id="nonclaims">Nonclaims</h2>
+  <p class="small">Demos on this page run hand-written synthetic generators in your browser with a seeded PRNG; they are not language models. No truthful-bidding or equilibrium claim is made for whole answers; the bidding results are exploratory best-response dynamics on sampled seeds. All charges are simulated credits; nothing is billed or settled. Brands are fictional.</p>
+</section>
+</main>
+<footer class="col">Token Auction Lab · two-bidder mechanism after Dütting et al., <span class="mono">arXiv:2310.10826</span> · details in <span class="mono">docs/ATLAS_NOTE.md</span></footer>
+
+<script type="module">
+import { buildAtlas, leafAt, drawTapes } from './atlas_core.mjs';
+import { CITY, CITY3, cityWalk } from './playground_worlds.mjs';
+import { buildSimplexAtlas } from './atlas_core_n.mjs';
+
+const $ = id => document.getElementById(id);
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const gen = cityWalk();
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ---- Section 1: contest dots vs lambda ----
+const atlas1 = buildAtlas(gen, 3, 80);
+function drawS1() {
+  const lam = Number($('s1-l').value);
+  $('s1-o').textContent = lam.toFixed(3);
+  const leaf = leafAt(atlas1, lam);
+  const steps = leaf.steps.slice(0, 40);
+  const W = 640, H = 120, x = i => 14 + i * (W - 28) / 39, y = u => 10 + (1 - u) * (H - 30);
+  let g = `<line x1="0" x2="${W}" y1="${y(lam)}" y2="${y(lam)}" stroke="${css('--ink')}" stroke-dasharray="4 3"/>`;
+  g += `<text x="${W - 4}" y="${y(lam) - 5}" text-anchor="end" font-size="11" font-family="sans-serif" fill="${css('--ink')}">λ</text>`;
+  steps.forEach((s, i) => {
+    if (s.branch === 'shared') g += `<line x1="${x(i)}" x2="${x(i)}" y1="${H - 14}" y2="${H - 6}" stroke="${css('--shared')}" stroke-width="2"/>`;
+    else g += `<circle cx="${x(i)}" cy="${y(s.u)}" r="5" fill="${s.branch === 'A' ? css('--a') : css('--b')}"/>`;
+  });
+  $('s1').innerHTML = g;
+}
+$('s1-l').addEventListener('input', drawS1);
+
+// ---- Section 2: animated interval search ----
+const atlas2 = buildAtlas(gen, 5, 80);
+let timer = null;
+function drawS2(upto) {
+  const W = 640, H = 210, rows = 80;
+  const x = l => 10 + l * (W - 20);
+  const rowH = (H - 20) / rows;
+  let g = '';
+  // For each step k, the live intervals are the leaves' ancestors; approximate with leaves whose split happened before k.
+  const leaves = [...atlas2.leaves];
+  for (let k = 0; k < Math.min(upto, rows); k += 1) {
+    // Intervals alive at step k: merge leaves that had not yet split from each other.
+    const cuts = atlas2.splits.filter(s => s.step < k).map(s => s.u).sort((a, b) => a - b);
+    const edges = [0, ...cuts, 1];
+    for (let i = 0; i + 1 < edges.length; i += 1) {
+      const t = (i + 0.5) / (edges.length - 1);
+      g += `<rect x="${x(edges[i]) + 0.5}" y="${10 + k * rowH}" width="${Math.max(0.5, x(edges[i + 1]) - x(edges[i]) - 1)}" height="${Math.max(1, rowH - 0.6)}" fill="color-mix(in oklab, ${css('--b')} ${Math.round((1 - t) * 100)}%, ${css('--a')})" opacity=".75"/>`;
+    }
+    for (const s of atlas2.splits.filter(s => s.step === k)) g += `<circle cx="${x(s.u)}" cy="${10 + (k + 0.5) * rowH}" r="3" fill="${css('--ink')}"/>`;
+  }
+  $('s2').innerHTML = g;
+  const done = atlas2.splits.filter(s => s.step < upto).length + 1;
+  $('s2-status').textContent = `step ${Math.min(upto, rows)} · ${done} answer${done > 1 ? 's' : ''} so far · ${atlas2.leaves.length} in total`;
+}
+$('s2-play').addEventListener('click', () => {
+  clearInterval(timer);
+  if (reduce) { drawS2(80); return; }
+  let k = 0;
+  timer = setInterval(() => { k += 1; drawS2(k); if (k >= 80) clearInterval(timer); }, 45);
+});
+
+// ---- Section 3: map + track ----
+let seed3 = 1, atlas3 = buildAtlas(gen, seed3, 80);
+function mix(i, n) { const t = n <= 1 ? 1 : i / (n - 1); return `color-mix(in oklab, ${css('--b')} ${Math.round((1 - t) * 100)}%, ${css('--a')})`; }
+function drawS3() {
+  const lam = Number($('s3-l').value);
+  $('s3-o').textContent = lam.toFixed(3);
+  const leaf = leafAt(atlas3, lam);
+  const { width, height, parks, start, goal, sponsors } = CITY;
+  const s = 26, pad = 18, X = v => pad + v * s, Y = v => pad + v * s;
+  let g = '';
+  for (let yy = 0; yy < height; yy++) g += `<line x1="${X(0)}" x2="${X(width - 1)}" y1="${Y(yy)}" y2="${Y(yy)}" stroke="${css('--street')}" stroke-width="5" stroke-linecap="round"/>`;
+  for (let xx = 0; xx < width; xx++) g += `<line y1="${Y(0)}" y2="${Y(height - 1)}" x1="${X(xx)}" x2="${X(xx)}" stroke="${css('--street')}" stroke-width="5" stroke-linecap="round"/>`;
+  for (const [px, py] of parks) g += `<rect x="${X(px) - s / 2 + 2}" y="${Y(py) - s / 2 + 2}" width="${s - 4}" height="${s - 4}" rx="4" fill="${css('--park')}"/>`;
+  const path = p => p.map(([px, py], i) => `${i ? 'L' : 'M'}${X(px)},${Y(py)}`).join(' ');
+  atlas3.leaves.forEach((l, i) => { if (l !== leaf) g += `<path d="${path(l.state.path)}" fill="none" stroke="${mix(i, atlas3.leaves.length)}" stroke-width="1.4" opacity=".3"/>`; });
+  leaf.steps.forEach((st, i) => {
+    const p = leaf.state.path[i], q = leaf.state.path[i + 1];
+    g += `<line x1="${X(p[0])}" y1="${Y(p[1])}" x2="${X(q[0])}" y2="${Y(q[1])}" stroke="${st.branch === 'A' ? css('--a') : st.branch === 'B' ? css('--b') : css('--shared')}" stroke-width="4" stroke-linecap="round"/>`;
+  });
+  sponsors.forEach((sp, i) => g += `<circle cx="${X(sp.at[0])}" cy="${Y(sp.at[1])}" r="8" fill="${css('--paper')}" stroke="${i ? css('--b') : css('--a')}" stroke-width="3"/>`);
+  g += `<circle cx="${X(start[0])}" cy="${Y(start[1])}" r="6" fill="${css('--ink')}"/><rect x="${X(goal[0]) - 6}" y="${Y(goal[1]) - 6}" width="12" height="12" rx="2" fill="${css('--ink')}"/>`;
+  $('s3-map').innerHTML = g;
+  const W = 400;
+  let t = atlas3.leaves.map((l, i) => `<rect x="${l.lo * W}" y="10" width="${Math.max(0.6, (l.hi - l.lo) * W)}" height="30" fill="${mix(i, atlas3.leaves.length)}" opacity="${l === leaf ? 1 : 0.45}"/>`).join('');
+  t += `<line x1="${lam * W}" x2="${lam * W}" y1="4" y2="46" stroke="${css('--ink')}" stroke-width="2.5"/>`;
+  t += `<text x="0" y="62" font-size="11" font-family="sans-serif" fill="${css('--b')}">only the bookshop</text><text x="${W}" y="62" text-anchor="end" font-size="11" font-family="sans-serif" fill="${css('--a')}">only the café</text>`;
+  $('s3-track').innerHTML = t;
+  const idx = atlas3.leaves.indexOf(leaf) + 1;
+  $('s3-info').innerHTML = `<p><span class="num">${atlas3.leaves.length}</span> distinct routes for seed ${seed3} (bound ${atlas3.bound}).</p><p>This is route ${idx}, bought by every λ in (${leaf.lo.toFixed(3)}, ${leaf.hi.toFixed(3)}]. It ${leaf.state.visited[0] ? 'passes' : 'misses'} the café and ${leaf.state.visited[1] ? 'passes' : 'misses'} the bookshop${leaf.stop === 'done' ? '' : ', and never reaches the venue within 80 steps'}.</p>`;
+}
+$('s3-l').addEventListener('input', drawS3);
+$('s3-seed').addEventListener('click', () => { seed3 = 1 + Math.floor(Math.random() * 9999); atlas3 = buildAtlas(gen, seed3, 80); drawS3(); });
+
+// ---- Section 4: triangle ----
+function drawS4() {
+  const atlas = buildSimplexAtlas(cityWalk(CITY3), 2, 80);
+  const W = 520, H = 300, VA = [W / 2, 16], VB = [40, H - 16], VC = [W - 40, H - 16];
+  const toXY = ([x, y]) => { const z = 1 - x - y; return [x * VA[0] + y * VB[0] + z * VC[0], x * VA[1] + y * VB[1] + z * VC[1]]; };
+  const col = i => css(['--a', '--b', '--c'][i]);
+  let g = '';
+  for (const c of atlas.cells) {
+    const on = [0, 1, 2].filter(i => c.state.visited[i]);
+    const fill = !on.length ? css('--soft') : on.length === 1 ? col(on[0]) : on.length === 2 ? `color-mix(in oklab, ${col(on[0])}, ${col(on[1])})` : css('--ink');
+    g += `<polygon points="${c.poly.map(p => toXY(p).map(v => v.toFixed(1)).join(',')).join(' ')}" fill="${fill}" stroke="${css('--paper')}" stroke-width="0.3"/>`;
+  }
+  $('s4').innerHTML = g;
+}
+
+function drawAll() { drawS1(); drawS2(80); drawS3(); drawS4(); }
+drawAll();
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', drawAll);
+</script>
+</body>
+</html>
