@@ -1,0 +1,422 @@
+{
+ "competing-hotels": {
+  "sampler": "span-hold-v1",
+  "seeds": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10
+  ],
+  "pairs": [
+   {
+    "seed": 1,
+    "variant_name:reference": 0.3681,
+    "neither:reference": 0.214806,
+    "unsupported_rating:reference": 0.0,
+    "unsupported_number:reference": 0.0,
+    "variant_name:span-hold-v1": 0.0,
+    "neither:span-hold-v1": 0.0,
+    "unsupported_rating:span-hold-v1": 0.0,
+    "unsupported_number:span-hold-v1": 0.0,
+    "variant_names:reference": {
+     "Tideglass Inn": 0.229741,
+     "Lantern's Café": 0.144298,
+     "Lantern Lane": 0.050639,
+     "Tidewick Hotel’s": 0.037787,
+     "Use Lantern Bay’s": 0.03179,
+     "Tidewick Hotel": 0.018144
+    },
+    "variant_names:span-hold-v1": {}
+   },
+   {
+    "seed": 2,
+    "variant_name:reference": 0.483122,
+    "neither:reference": 0.333223,
+    "unsupported_rating:reference": 0.0,
+    "unsupported_number:reference": 0.0,
+    "variant_name:span-hold-v1": 0.0,
+    "neither:span-hold-v1": 0.0,
+    "unsupported_rating:span-hold-v1": 0.0,
+    "unsupported_number:span-hold-v1": 0.0,
+    "variant_names:reference": {
+     "Lantern Bay": 0.445932,
+     "Tideglass Co": 0.076761,
+     "Lantern Bay Inn": 0.03719,
+     "Lantern Bay’s": 0.020902
+    },
+    "variant_names:span-hold-v1": {}
+   },
+   {
+    "seed": 3,
+    "variant_name:reference": 0.680893,
+    "neither:reference": 0.539777,
+    "unsupported_rating:reference": 0.0,
+    "unsupported_number:reference": 0.0,
+    "variant_name:span-hold-v1": 0.0,
+    "neither:span-hold-v1": 0.0,
+    "unsupported_rating:span-hold-v1": 0.0,
+    "unsupported_number:span-hold-v1": 0.0,
+    "variant_names:reference": {
+     "Lantern Inn": 0.439527,
+     "Tideglass Inn": 0.224019,
+     "Lantern Bay": 0.038612
+    },
+    "variant_names:span-hold-v1": {}
+   },
+   {
+    "seed": 4,
+    "variant_name:reference": 0.600869,
+    "neither:reference": 0.481797,
+    "unsupported_rating:reference": 0.0,
+    "unsupported_number:reference": 0.0,
+    "variant_name:span-hold-v1": 0.0,
+    "neither:span-hold-v1": 0.0,
+    "unsupported_rating:span-hold-v1": 0.0,
+    "unsupported_number:span-hold-v1": 0.0,
+    "variant_names:reference": {
+     "Lantern Bay": 0.353656,
+     "Lantern Stay": 0.153522,
+     "Tideglass Inn": 0.093692
+    },
+    "variant_names:span-hold-v1": {}
+   },
+   {
+    "seed": 5,
+    "variant_name:reference": 0.783428,
+    "neither:reference": 0.62645,
+    "unsupported_rating:reference": 0.0,
+    "unsupported_number:reference": 0.0,
+    "variant_name:span-hold-v1": 0.0,
+    "neither:span-hold-v1": 0.0,
+    "unsupported_rating:span-hold-v1": 0.0,
+    "unsupported_number:span-hold-v1": 0.0,
+    "variant_names:reference": {
+     "Lantern Inn": 0.609721,
+     "Tideglass Inn": 0.173707,
+     "Tideglass Restaurant": 0.077142,
+     "Tideglass Suites": 0.07259,
+     "Tideglass Bay": 0.005158
+    },
+    "variant_names:span-hold-v1": {}
+   },
+   {
+    "seed": 6,
+    "variant_name:reference": 0.417697,
+    "neither:reference": 0.101187,
+    "unsupported_rating:reference": 0.0,
+    "unsupported_number:reference": 0.0,
+    "variant_name:span-hold-v1": 0.0,
+    "neither:span-hold-v1": 0.0,
+    "unsupported_rating:span-hold-v1": 0.0,
+    "unsupported_number:span-hold-v1": 0.0,
+    "variant_names:reference": {
+     "Tideglass Inn": 0.352716,
+     "Tidehaven Hotel": 0.06498,
+     "Lantern Bay": 0.053755,
+     "Lantern Point": 0.036414,
+     "Lantern Lane": 0.008915,
+     "Lantern View": 0.002104
+    },
+    "variant_names:span-hold-v1": {}
+   },
+   {
+    "seed": 7,
+    "variant_name:reference": 0.294907,
+    "neither:reference": 0.051752,
+    "unsupported_rating:reference": 0.0,
+    "unsupported_number:reference": 0.0,
+    "variant_name:span-hold-v1": 0.0,
+    "neither:span-hold-v1": 0.0,
+    "unsupported_rating:span-hold-v1": 0.0,
+    "unsupported_number:span-hold-v1": 0.0,
+    "variant_names:reference": {
+     "Lantern Bay Inn": 0.275072,
+     "Tide Street Hotel": 0.029757,
+     "Tide’s Bay Hotel": 0.019835
+    },
+    "variant_names:span-hold-v1": {}
+   },
+   {
+    "seed": 8,
+    "variant_name:reference": 0.372267,
+    "neither:reference": 0.019205,
+    "unsupported_rating:reference": 0.0,
+    "unsupported_number:reference": 0.0,
+    "variant_name:span-hold-v1": 0.0,
+    "neither:span-hold-v1": 0.0,
+    "unsupported_rating:span-hold-v1": 0.0,
+    "unsupported_number:span-hold-v1": 0.0,
+    "variant_names:reference": {
+     "Tide’s Edge Hotel": 0.180008,
+     "Lantern Inn": 0.165839,
+     "Glass Hotel": 0.10869,
+     "Tideglass Park": 0.026421,
+     "Tideglass Bay Hotel’s": 0.019205,
+     "Tide's Edge Hotel": 0.010469
+    },
+    "variant_names:span-hold-v1": {}
+   },
+   {
+    "seed": 9,
+    "variant_name:reference": 0.719456,
+    "neither:reference": 0.532167,
+    "unsupported_rating:reference": 0.0,
+    "unsupported_number:reference": 0.0,
+    "variant_name:span-hold-v1": 0.0,
+    "neither:span-hold-v1": 0.0,
+    "unsupported_rating:span-hold-v1": 0.0,
+    "unsupported_number:span-hold-v1": 0.0,
+    "variant_names:reference": {
+     "Lantern Lodge": 0.719456,
+     "Tideglass Café": 0.035983
+    },
+    "variant_names:span-hold-v1": {}
+   },
+   {
+    "seed": 10,
+    "variant_name:reference": 0.179219,
+    "neither:reference": 0.084275,
+    "unsupported_rating:reference": 0.0,
+    "unsupported_number:reference": 0.0,
+    "variant_name:span-hold-v1": 0.0,
+    "neither:span-hold-v1": 0.0,
+    "unsupported_rating:span-hold-v1": 0.0,
+    "unsupported_number:span-hold-v1": 0.0,
+    "variant_names:reference": {
+     "Tidepoint Hotel": 0.100361,
+     "Tideglass Inn": 0.078859
+    },
+    "variant_names:span-hold-v1": {}
+   }
+  ],
+  "mean": {
+   "variant_name:reference": 0.4899958,
+   "variant_name:span-hold-v1": 0.0,
+   "neither:reference": 0.29846389999999995,
+   "neither:span-hold-v1": 0.0,
+   "unsupported_rating:reference": 0.0,
+   "unsupported_rating:span-hold-v1": 0.0,
+   "unsupported_number:reference": 0.0,
+   "unsupported_number:span-hold-v1": 0.0
+  },
+  "seeds_lower_variant": 10
+ },
+ "live-defaults": {
+  "sampler": "span-hold-v1",
+  "seeds": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "pairs": [
+   {
+    "seed": 1,
+    "variant_name:reference": 0.637165,
+    "neither:reference": 0.461403,
+    "unsupported_rating:reference": 0.460142,
+    "unsupported_number:reference": 0.913132,
+    "variant_name:span-hold-v1": 0.0,
+    "neither:span-hold-v1": 0.0,
+    "unsupported_rating:span-hold-v1": 0.044606,
+    "unsupported_number:span-hold-v1": 0.848473,
+    "variant_names:reference": {
+     "Bay Area Hotel": 0.476139,
+     "Lantern Hotels": 0.157119,
+     "Bay Area’s Lantern Hotel": 0.144232,
+     "Lantern Hotel": 0.026872,
+     "Bayview Lodge": 0.016794
+    },
+    "variant_names:span-hold-v1": {}
+   },
+   {
+    "seed": 2,
+    "variant_name:reference": 0.281833,
+    "neither:reference": 0.240207,
+    "unsupported_rating:reference": 0.099998,
+    "unsupported_number:reference": 0.847032,
+    "variant_name:span-hold-v1": 0.0,
+    "neither:span-hold-v1": 0.0,
+    "unsupported_rating:span-hold-v1": 0.0,
+    "unsupported_number:span-hold-v1": 0.89054,
+    "variant_names:reference": {
+     "Lantern Bay": 0.240207,
+     "Lantern Bayview": 0.041625
+    },
+    "variant_names:span-hold-v1": {}
+   },
+   {
+    "seed": 3,
+    "variant_name:reference": 0.717756,
+    "neither:reference": 0.649757,
+    "unsupported_rating:reference": 0.182225,
+    "unsupported_number:reference": 0.682877,
+    "variant_name:span-hold-v1": 0.0,
+    "neither:span-hold-v1": 0.0,
+    "unsupported_rating:span-hold-v1": 0.0,
+    "unsupported_number:span-hold-v1": 0.579714,
+    "variant_names:reference": {
+     "Lantern Hotel": 0.717756
+    },
+    "variant_names:span-hold-v1": {}
+   },
+   {
+    "seed": 4,
+    "variant_name:reference": 0.508038,
+    "neither:reference": 0.39711,
+    "unsupported_rating:reference": 0.030788,
+    "unsupported_number:reference": 0.664493,
+    "variant_name:span-hold-v1": 0.0,
+    "neither:span-hold-v1": 0.0,
+    "unsupported_rating:span-hold-v1": 0.0,
+    "unsupported_number:span-hold-v1": 0.769728,
+    "variant_names:reference": {
+     "Bay Area Hotel": 0.508038,
+     "Lantern Hotel": 0.004871
+    },
+    "variant_names:span-hold-v1": {}
+   },
+   {
+    "seed": 5,
+    "variant_name:reference": 0.083591,
+    "neither:reference": 0.083591,
+    "unsupported_rating:reference": 0.157009,
+    "unsupported_number:reference": 0.769652,
+    "variant_name:span-hold-v1": 0.0,
+    "neither:span-hold-v1": 0.0,
+    "unsupported_rating:span-hold-v1": 0.0,
+    "unsupported_number:span-hold-v1": 0.669057,
+    "variant_names:reference": {
+     "Lantern Bay": 0.083591
+    },
+    "variant_names:span-hold-v1": {}
+   }
+  ],
+  "mean": {
+   "variant_name:reference": 0.4456766,
+   "variant_name:span-hold-v1": 0.0,
+   "neither:reference": 0.3664136,
+   "neither:span-hold-v1": 0.0,
+   "unsupported_rating:reference": 0.18603240000000001,
+   "unsupported_rating:span-hold-v1": 0.0089212,
+   "unsupported_number:reference": 0.7754372,
+   "unsupported_number:span-hold-v1": 0.7515024
+  },
+  "seeds_lower_variant": 5
+ },
+ "transit-hotel": {
+  "sampler": "span-hold-v1",
+  "seeds": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "pairs": [
+   {
+    "seed": 1,
+    "variant_name:reference": 0.248954,
+    "neither:reference": 0.0,
+    "unsupported_rating:reference": 0.0,
+    "unsupported_number:reference": 0.0,
+    "variant_name:span-hold-v1": 0.0,
+    "neither:span-hold-v1": 0.0,
+    "unsupported_rating:span-hold-v1": 0.0,
+    "unsupported_number:span-hold-v1": 0.093992,
+    "variant_names:reference": {
+     "Lantern Bay": 0.248954,
+     "Lantern Bay’s": 0.080578
+    },
+    "variant_names:span-hold-v1": {}
+   },
+   {
+    "seed": 2,
+    "variant_name:reference": 0.041625,
+    "neither:reference": 0.052186,
+    "unsupported_rating:reference": 0.0,
+    "unsupported_number:reference": 0.0,
+    "variant_name:span-hold-v1": 0.0,
+    "neither:span-hold-v1": 0.0,
+    "unsupported_rating:span-hold-v1": 0.0,
+    "unsupported_number:span-hold-v1": 0.0,
+    "variant_names:reference": {
+     "Use Lantern’s": 0.041625
+    },
+    "variant_names:span-hold-v1": {}
+   },
+   {
+    "seed": 3,
+    "variant_name:reference": 0.254229,
+    "neither:reference": 0.132257,
+    "unsupported_rating:reference": 0.0,
+    "unsupported_number:reference": 0.0,
+    "variant_name:span-hold-v1": 0.0,
+    "neither:span-hold-v1": 0.0,
+    "unsupported_rating:span-hold-v1": 0.0,
+    "unsupported_number:span-hold-v1": 0.303336,
+    "variant_names:reference": {
+     "Central Lantern": 0.147454,
+     "Lanterns House": 0.073674,
+     "Lantern Point": 0.02392,
+     "Lantern Harbor Shuttle": 0.009182
+    },
+    "variant_names:span-hold-v1": {}
+   },
+   {
+    "seed": 4,
+    "variant_name:reference": 0.205792,
+    "neither:reference": 0.339287,
+    "unsupported_rating:reference": 0.0,
+    "unsupported_number:reference": 0.0,
+    "variant_name:span-hold-v1": 0.0,
+    "neither:span-hold-v1": 0.0,
+    "unsupported_rating:span-hold-v1": 0.0,
+    "unsupported_number:span-hold-v1": 0.0,
+    "variant_names:reference": {
+     "Harbor District’s Lantern Square": 0.152746,
+     "Use Lantern Transit’s Harbor": 0.034449,
+     "Lantern Bay Hotel": 0.017238,
+     "Lantern Promenade": 0.001359
+    },
+    "variant_names:span-hold-v1": {}
+   },
+   {
+    "seed": 5,
+    "variant_name:reference": 0.255042,
+    "neither:reference": 0.033983,
+    "unsupported_rating:reference": 0.0,
+    "unsupported_number:reference": 0.0,
+    "variant_name:span-hold-v1": 0.0,
+    "neither:span-hold-v1": 0.0,
+    "unsupported_rating:span-hold-v1": 0.0,
+    "unsupported_number:span-hold-v1": 0.0,
+    "variant_names:reference": {
+     "Lantern Street": 0.146415,
+     "Lantern Central Station": 0.050521,
+     "Lantern Point": 0.033983,
+     "Lantern Bay": 0.024122
+    },
+    "variant_names:span-hold-v1": {}
+   }
+  ],
+  "mean": {
+   "variant_name:reference": 0.20112839999999998,
+   "variant_name:span-hold-v1": 0.0,
+   "neither:reference": 0.1115426,
+   "neither:span-hold-v1": 0.0,
+   "unsupported_rating:reference": 0.0,
+   "unsupported_rating:span-hold-v1": 0.0,
+   "unsupported_number:reference": 0.0,
+   "unsupported_number:span-hold-v1": 0.0794656
+  },
+  "seeds_lower_variant": 5
+ }
+}

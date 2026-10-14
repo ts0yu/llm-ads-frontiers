@@ -110,6 +110,42 @@ an advertiser buying a mixed λ may pay for text that names neither sponsor.
 Repairing the text with another model would hide this, so AGENTS.md rules it
 out; the atlas makes it visible instead.
 
+## Fix for finding 2: span hold removes the blended names
+
+[SPAN_HOLD.md](SPAN_HOLD.md) describes an opt-in sampler. The winner of a contest
+keeps writing the word or name its token starts, from its own distribution, so a
+contest cannot land inside a brand name.
+
+It was re-run on the same prompts, seeds and settings as above, on the same H100
+(about 16 minutes, 2026-10-14). All 20 span-hold atlases matched direct span-hold
+re-runs (`verification_status: all_match`). Only 6–10% of steps were held.
+
+Mean share of the bid range (`results/span_hold_comparison.json`):
+
+| Scenario (paired seeds) | Variant brand name: reference → span hold | Neither exact name | Star rating in no fact sheet | Other number in no fact sheet |
+|---|---|---|---|---|
+| Fort Mason (5) | 44.6% → 0% | 36.6% → 0% | 18.6% → 0.9% | 77.5% → 75.2% |
+| Transit + hotel (5) | 20.1% → 0% | 11.2% → 0% | 0% → 0% | 0% → 7.9% |
+| Competing hotels (10) | 49.0% → 0% | 29.8% → 0% | 0% → 0% | 0% → 0% |
+
+Variant names fell in every one of the 20 paired seeds.
+
+What it does not fix:
+
+- **Invented facts, as opposed to invented names.** Travel times and fares in the
+  Fort Mason answers stay at about 75% of λ; they appear at the extreme bids too,
+  so they come from each context, not from the mixing. Transit gained "15" and
+  "100" on 8% of λ.
+- **Attributes still mix across words.** For example, "a quiet rooftop courtyard"
+  combines one hotel's courtyard with the other's rooftop.
+- **One residual rating.** Fort Mason seed 1 still shows a 4.3 or 4.8 rating on 4%
+  of λ, written by one sponsor's own context.
+
+Span hold also moves where the brand changes hands. In Fort Mason seed 1,
+"Bayview Hotel" appears for every λ above 0.116 under span hold, against mostly above 0.64 for the
+exact name under the reference sampler. So it changes what a bid buys, not just
+the spelling.
+
 ## Finding 3: three bidders break the 1 + T bound on a real model
 
 ![Atlas Explorer: three hotels, seed 2, area order](img/live-three-hotels-explorer.jpg)
