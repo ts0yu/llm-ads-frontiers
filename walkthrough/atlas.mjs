@@ -32,7 +32,8 @@ export function chargesAt(leaf, lambda, S = 1) {
     if (step.branch === 'A') { wonA += 1; a += S * (1 - lambda) * step.u / (1 - step.u); }
     else if (step.branch === 'B') { wonB += 1; b += S * lambda * (1 - step.u) / step.u; }
   }
-  return { a, b, wonA, wonB, contested: wonA + wonB, shared: leaf.steps.length - wonA - wonB };
+  const held = leaf.steps.filter(step => step.branch.startsWith('hold_')).length;  // span hold: no contest, no charge
+  return { a, b, wonA, wonB, held, contested: wonA + wonB, shared: leaf.steps.length - wonA - wonB - held };
 }
 
 /** Splits whose uniform equals the leaf's lower / upper boundary. */
@@ -466,7 +467,7 @@ function renderCards() {
   $('#cards').innerHTML = state.leaves.map((leaf, i) => {
     const dots = state.keys.filter(k => typeof leaf.outcomes[k] === 'boolean').map(k => `<span class="dot ${leaf.outcomes[k] ? 'on' : ''}" style="--yes:${keyColor(k)}" title="${esc(prettyKey(k))}: ${leaf.outcomes[k]}"></span>`).join('');
     const body = image && leaf.image ? `<img src="${esc(new URL(leaf.image, state.atlasUrl).pathname)}" alt="Answer ${i + 1} image">` : `<p>${esc(leaf.text || '(no text recorded)')}</p>`;
-    return `<button class="card" data-leaf="${i}" style="--seg:${leafColor(leaf)}"><span class="card-head"><b>${i + 1}</b><span class="mono">(${fmt(leaf.lo, 3)}, ${fmt(leaf.hi, 3)}]</span><span class="mini"><i style="left:${leaf.lo * 100}%;width:${Math.max(1.5, (leaf.hi - leaf.lo) * 100)}%"></i></span></span>${body}<span class="card-foot">${dots}<span class="muted">${leaf.steps.filter(s => s.branch !== 'shared').length} contests</span></span></button>`;
+    return `<button class="card" data-leaf="${i}" style="--seg:${leafColor(leaf)}"><span class="card-head"><b>${i + 1}</b><span class="mono">(${fmt(leaf.lo, 3)}, ${fmt(leaf.hi, 3)}]</span><span class="mini"><i style="left:${leaf.lo * 100}%;width:${Math.max(1.5, (leaf.hi - leaf.lo) * 100)}%"></i></span></span>${body}<span class="card-foot">${dots}<span class="muted">${leaf.steps.filter(s => s.branch === 'A' || s.branch === 'B').length} contests${leaf.steps.some(s => s.branch.startsWith('hold_')) ? ` · ${leaf.steps.filter(s => s.branch.startsWith('hold_')).length} held` : ''}</span></span></button>`;
   }).join('');
 }
 
@@ -597,7 +598,7 @@ function renderLedger(leaf) {
     </div>
     <p class="formula small muted">Simulated credits, summed per contest: A pays S(1−λ)·u/(1−u); B pays S·λ·(1−u)/u.</p>
     <dl class="facts">
-      <div><dt>Steps</dt><dd>${leaf.steps.length} <small>${c.shared} shared · ${c.contested} contested</small></dd></div>
+      <div><dt>Steps</dt><dd>${leaf.steps.length} <small>${c.shared} shared · ${c.contested} contested${c.held ? ` · ${c.held} held by the span owner` : ''}</small></dd></div>
       <div><dt>Interval width</dt><dd>${pct(leaf.hi - leaf.lo)} <small>of all bid ratios</small></dd></div>
       <div><dt>Stop</dt><dd>${esc(leaf.stop_reason || '—')}</dd></div>
     </dl>
@@ -794,7 +795,7 @@ function renderTape() {
   const bandTop = h - bottom + 6, bandH = 14;
   leaf.steps.forEach((s, k) => {
     const d = Math.max(0, Math.min(1, 1 - (s.shared_mass ?? 1)));
-    root.append(svg('rect', { x: x(k) - 1.5, width: 3, y: bandTop + bandH * (1 - d), height: Math.max(0.5, bandH * d), class: `mass ${s.branch === 'shared' ? 'shared' : s.branch.toLowerCase()}` }));
+    root.append(svg('rect', { x: x(k) - 1.5, width: 3, y: bandTop + bandH * (1 - d), height: Math.max(0.5, bandH * d), class: `mass ${s.branch === 'shared' ? 'shared' : s.branch.startsWith('hold_') ? `${s.branch.slice(5).toLowerCase()} hold` : s.branch.toLowerCase()}` }));
   });
   const line = svg('g', { id: 'tape-lambda' });
   line.append(svg('line', { x1: left, x2: w - right, y1: y(state.lambda), y2: y(state.lambda), class: 'lambda-line' }));

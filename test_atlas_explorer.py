@@ -38,7 +38,9 @@ def python_charges(leaf, lam, total):
     auction = TwoBidderAuction([1.0, 0.0], [0.0, 1.0])
     a = b = 0.0
     for step in leaf["steps"]:
-        if step["branch"] == "shared":
+        # Held span-hold steps (docs/SPAN_HOLD.md) have no contest uniform comparison
+        # and no charge, exactly like shared steps.
+        if step["branch"] == "shared" or step["branch"].startswith("hold_"):
             continue
         result = auction.resolve(total * lam, total * (1 - lam), RandomTape(.5, .5, .5, step["u"]))
         assert result.branch == step["branch"], (leaf["id"], step, lam)

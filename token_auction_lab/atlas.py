@@ -38,6 +38,9 @@ from auction import RandomTape, TwoBidderAuction
 from token_auction_lab.decoder import Context, SharedPrefixDecoder
 from token_auction_lab.prompts import ADVERTISER_PROMPT_POLICY, prompt_hash
 from token_auction_lab.runner import RoundConfig, eos_ids, run_round
+from token_auction_lab.span_hold import SpanState, hold_proposal, hold_uniforms
+from token_auction_lab.span_hold import generate as span_hold_generate
+from token_auction_lab.span_hold import manifest_entry as span_hold_manifest
 from token_auction_lab.token_text import token_piece
 
 SCHEMA = "bid-atlas-v1"
@@ -123,11 +126,14 @@ def build_atlas(
     on_progress: Callable[[dict], None] | None = None,
     title: str | None = None,
     user_prompt: str | None = None,
+    span_hold: bool = False,
 ) -> dict:
     """Interval search over lambda in (0, 1]. ``fork`` is "copy" or "replay".
 
     ``title`` and ``user_prompt`` (the shared user task, without advertiser
     briefs) are display fields for the Atlas Explorer; they do not affect decoding.
+    ``span_hold`` selects the opt-in span-hold sampler (token_auction_lab.span_hold);
+    held steps do not depend on bids, so the interval search is unchanged.
     """
     if len(prompts) != 2 or len(bidders) != 2:
         raise ValueError("The atlas is defined for exactly two bidders and two contexts.")
@@ -141,12 +147,14 @@ def build_atlas(
     prefixes = [list(ids) for _, ids in prompts]
     stops = eos_ids(model, tokenizer)
     tapes = draw_tapes(seed, max_tokens)
+    holds = hold_uniforms(seed, max_tokens) if span_hold else None
     leaves: dict[int, dict] = {
         0: {"id": 0, "lo": 0.0, "hi": 1.0, "parent": None, "split_step": None}
     }
     splits: list[dict] = []
     advances = 0
-    stack = [_Branch(0, SharedPrefixDecoder(model, prefixes), [], [])]
+    stack = [_Branch(0, SharedPrefixDecoder(model, prefixes), [], [],
+                     extra={"span_state": SpanState()} if span_hold else {})]
     while stack:
         branch = stack.pop()
         leaf = leaves[branch.leaf]
@@ -162,11 +170,37 @@ def build_atlas(
                 stop_reason = "eos"
         branch.decoder = None  # Do not keep a second reference while running.
         steps = branch.steps
+        state = branch.extra.get("span_state")
         while stop_reason != "eos" and len(decoder.generated) < max_tokens:
             step = len(decoder.generated)
             p_a, p_b = decoder.distributions(temperature)
             step_auction = TwoBidderAuction(p_a, p_b)
             tape = tapes[step]
+            proposal = None
+            if span_hold:
+                proposal = hold_proposal(state, p_a, p_b, holds[step], tokenizer, decoder.generated)
+                if proposal and proposal["keep"]:
+                    held = {
+                        "step": step,
+                        "branch": f"hold_{state.owner}",
+                        "u": tape.contest,
+                        "hold_u": holds[step],
+                        "shared_mass": step_auction.shared_mass,
+                        "disagreement": step_auction.disagreement,
+                        "token_id": proposal["token_id"],
+                        "candidate_a": None,
+                        "candidate_b": None,
+                    }
+                    state = state.after(proposal["piece"], held["branch"])
+                    held["span"] = state.as_record()
+                    steps.append(held)
+                    decoder.advance(held["token_id"])
+                    advances += 1
+                    if held["token_id"] in stops:
+                        stop_reason = "eos"
+                    continue
+                if proposal:
+                    state = state.released()
             # Candidates and the shared/contested branch do not depend on bids.
             allocation = step_auction.resolve(1.0, 1.0, tape)
             u = tape.contest
@@ -180,6 +214,8 @@ def build_atlas(
                 "candidate_a": allocation.candidate_a,
                 "candidate_b": allocation.candidate_b,
             }
+            if proposal:
+                record["released"] = {"token_id": proposal["token_id"], "piece": proposal["piece"]}
             if allocation.branch != "shared":
                 lo, hi = leaf["lo"], leaf["hi"]
                 if u <= lo:  # every lambda in (lo, hi] exceeds u: A wins
@@ -216,10 +252,13 @@ def build_atlas(
                             "prefix_text": decode_text(tokenizer, decoder.generated),
                         }
                     )
-                    child_steps = [
-                        *steps,
-                        {**record, "branch": "A", "token_id": allocation.candidate_a},
-                    ]
+                    child_record = {**record, "branch": "A", "token_id": allocation.candidate_a}
+                    child_extra = {}
+                    if span_hold:
+                        child_state = state.after(splits[-1]["a_token_text"], "A")
+                        child_record["span"] = child_state.as_record()
+                        child_extra = {"span_state": child_state}
+                    child_steps = [*steps, child_record]
                     stack.append(
                         _Branch(
                             child_id,
@@ -227,6 +266,7 @@ def build_atlas(
                             list(decoder.generated),
                             child_steps,
                             pending=allocation.candidate_a,
+                            extra=child_extra,
                         )
                     )
                     record.update(branch="B", token_id=allocation.candidate_b)
@@ -241,6 +281,10 @@ def build_atlas(
                                 "pending": len(stack),
                             }
                         )
+            if span_hold:
+                piece = token_piece(tokenizer, decoder.generated, record["token_id"])
+                state = state.after(piece, record["branch"])
+                record["span"] = state.as_record()
             steps.append(record)
             decoder.advance(record["token_id"])
             advances += 1
@@ -272,6 +316,12 @@ def build_atlas(
                 }
             )
     ordered = sorted(leaves.values(), key=lambda value: value["lo"])
+    sampler = {"sampler": "auction.TwoBidderAuction"}
+    if span_hold:
+        sampler = {
+            "sampler": "auction.TwoBidderAuction + token_auction_lab.span_hold",
+            "span_hold": span_hold_manifest(),
+        }
     atlas = {
         "schema": SCHEMA,
         "kind": "text",
@@ -297,7 +347,7 @@ def build_atlas(
             "rng": "numpy.PCG64",
             "tape_rule": "Step k uses the k-th RandomTape.draw(numpy.random.default_rng(seed)), "
             "exactly as run_round draws advertiser-round tapes, independent of bids.",
-            "sampler": "auction.TwoBidderAuction",
+            **sampler,
             "eos_token_ids": sorted(stops),
             "sampling_filters": None,
             "fork": fork,
@@ -324,6 +374,10 @@ def check_partition(atlas: dict) -> None:
         raise AssertionError("Every leaf must be a nonempty interval.")
     if len(leaves) > 1 + atlas["max_steps"]:
         raise AssertionError("More leaves than the 1 + T bound.")
+    if "span_hold" not in atlas.get("manifest", {}) and any(
+        step["branch"].startswith("hold_") for leaf in leaves for step in leaf.get("steps", [])
+    ):
+        raise AssertionError("Held steps in an atlas without the span-hold sampler.")
     split_steps = [split["step"] for split in atlas["splits"]]
     if len(set(split_steps)) != len(split_steps):
         raise AssertionError("Two branches split at the same step.")
@@ -358,8 +412,8 @@ def payments(leaf: dict, bid_a: float, bid_b: float) -> dict:
     payment_a = payment_b = 0.0
     contested = 0
     for step in leaf["steps"]:
-        if step["branch"] == "shared":
-            continue
+        if step["branch"] == "shared" or step["branch"].startswith("hold_"):
+            continue  # Shared and held (span-hold) steps have no contest and no charge.
         contested += 1
         u = step["u"]
         a_wins = u < lam
@@ -454,10 +508,16 @@ def verify_point(
     workdir: Path,
     kind: str,
 ) -> dict:
-    """Run run_round at one bid pair and compare it with the atlas leaf."""
+    """Run run_round at one bid pair and compare it with the atlas leaf.
+
+    Span-hold atlases are compared with ``span_hold.generate`` instead, the direct
+    (non-tree) span-hold sampler, since run_round is the reference sampler.
+    """
     expected = payments(leaf, bid_a, bid_b)
     manifest = atlas["manifest"]
     prompts = [(p["text"], list(p["token_ids"])) for p in manifest["prompts"]]
+    if "span_hold" in manifest:
+        return _verify_point_span(atlas, leaf, bid_a, bid_b, model, tokenizer, prompts, kind)
     config = RoundConfig(
         bid_a,
         bid_b,
@@ -506,6 +566,51 @@ def verify_point(
         and result["text"] == leaf["text"]
         and result["stop_reason"] == leaf["stop_reason"],
         "direct_run_seconds": result["seconds"],
+    }
+
+
+def _verify_point_span(atlas, leaf, bid_a, bid_b, model, tokenizer, prompts, kind) -> dict:
+    expected = payments(leaf, bid_a, bid_b)
+    started = time.perf_counter()
+    result = span_hold_generate(
+        model, tokenizer, prompts, bid_a, bid_b, seed=atlas["seed"],
+        temperature=atlas["manifest"]["temperature"], max_tokens=atlas["max_steps"],
+    )
+    steps_match = len(result["steps"]) == len(leaf["steps"]) and all(
+        direct["branch"] == step["branch"]
+        and direct["token_id"] == step["token_id"]
+        and direct["u"] == step["u"]
+        and direct["shared_mass"] == step["shared_mass"]
+        and direct.get("span") == step.get("span")
+        for direct, step in zip(result["steps"], leaf["steps"])
+    )
+    error_a = abs(result["payment_a"] - expected["payment_a"])
+    error_b = abs(result["payment_b"] - expected["payment_b"])
+    tokens_match = result["token_ids"] == leaf["token_ids"]
+    payments_match = max(error_a, error_b) <= PAYMENT_TOLERANCE
+    return {
+        "leaf": leaf["id"],
+        "kind": kind,
+        "lambda": expected["lambda"],
+        "bid_a": bid_a,
+        "bid_b": bid_b,
+        "sampler": "span_hold.generate",
+        "token_ids_match": tokens_match,
+        "text_match": result["text"] == leaf["text"],
+        "stop_reason_match": result["stop_reason"] == leaf["stop_reason"],
+        "steps_match": steps_match,
+        "payment_a_direct": result["payment_a"],
+        "payment_b_direct": result["payment_b"],
+        "payment_a_atlas": expected["payment_a"],
+        "payment_b_atlas": expected["payment_b"],
+        "max_payment_abs_error": max(error_a, error_b),
+        "payments_match": payments_match,
+        "matches_direct_run": tokens_match
+        and payments_match
+        and steps_match
+        and result["text"] == leaf["text"]
+        and result["stop_reason"] == leaf["stop_reason"],
+        "direct_run_seconds": time.perf_counter() - started,
     }
 
 
@@ -776,6 +881,11 @@ def main(argv: list[str] | None = None, *, mode: str = "live_model") -> None:
         default=None,
         help="Do not start a new seed (or its verification) after this budget.",
     )
+    parser.add_argument(
+        "--span-hold",
+        action="store_true",
+        help="Opt-in span-hold sampler (docs/SPAN_HOLD.md) instead of the reference sampler.",
+    )
     parser.add_argument("--output", type=Path, default=Path("artifacts/atlas"))
     args = parser.parse_args(argv)
     if args.local_files_only and not re.fullmatch(r"[0-9a-f]{40}", args.revision or ""):
@@ -799,6 +909,8 @@ def main(argv: list[str] | None = None, *, mode: str = "live_model") -> None:
         label = args.scenario
         metadata.update(scenario=label)
     title, user_prompt = _display(label, inputs)
+    if args.span_hold:
+        title = f"{title} · span hold"
     args.output.mkdir(parents=True, exist_ok=True)
     index_path = args.output / "index.json"
     index = {
@@ -837,6 +949,7 @@ def main(argv: list[str] | None = None, *, mode: str = "live_model") -> None:
             on_progress=progress,
             title=title,
             user_prompt=user_prompt,
+            span_hold=args.span_hold,
         )
         atlas["analysis"] = analyze(atlas)
         atlas["verification_status"] = "pending"

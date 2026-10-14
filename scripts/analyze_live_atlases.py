@@ -137,6 +137,7 @@ def analyze(atlas: dict) -> dict:
         "schema_in": atlas.get("schema"),
         "mode": atlas.get("mode"),
         "scenario": atlas.get("manifest", {}).get("scenario"),
+        "sampler": (atlas.get("manifest", {}).get("span_hold") or {}).get("rule", "reference"),
         "seed": atlas.get("seed"),
         "bidders": brands,
         "regions": len(rows),

@@ -271,6 +271,7 @@ button.bound:hover { border-color: var(--ink); background: var(--surface); }
 .tape-dot.bounding circle { stroke: var(--ink); stroke-width: 2.5; }
 .tape-dot.selected circle { stroke: var(--focus); stroke-width: 4; }
 .mass.shared { fill: var(--line-strong); } .mass.a { fill: var(--a); } .mass.b { fill: var(--b); }
+.mass.hold { opacity: .4; } /* span-hold steps: owner wrote the token, no contest */
 .split-panel h3 { font: 400 26px var(--serif); margin-bottom: 6px; }
 .prefix { font: 16px/1.55 var(--serif); background: var(--surface-2); border-radius: 12px; padding: 12px 14px; margin: 10px 0 12px; color: var(--ink-2); }
 .caret { color: var(--focus); animation: blink 1.1s steps(2) infinite; }

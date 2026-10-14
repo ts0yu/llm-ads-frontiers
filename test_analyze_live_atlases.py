@@ -112,5 +112,24 @@ class AnalyzeLiveAtlasesTest(unittest.TestCase):
                              [f"{Path(tmp).name}/a.json"])
 
 
+class CompareSpanHoldTest(unittest.TestCase):
+    def test_pairs_samplers_by_scenario_and_seed(self):
+        spec = importlib.util.spec_from_file_location(
+            "compare_span_hold", ROOT / "scripts" / "compare_span_hold.py")
+        compare_mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(compare_mod)
+        reference = atlas([(0.0, 0.5, "Stay at Lantern Bayview."), (0.5, 1.0, "Bayview Hotel.")])
+        spanned = atlas([(0.0, 0.5, "Stay at Lantern House."), (0.5, 1.0, "Bayview Hotel.")])
+        spanned["manifest"]["span_hold"] = {"rule": "span-hold-v1"}
+        unpaired = dict(atlas([(0.0, 1.0, "Bayview Hotel.")]), seed=2)
+        rows = [analyze_mod.analyze(a) for a in (reference, spanned, unpaired)]
+        self.assertEqual([r["sampler"] for r in rows], ["reference", "span-hold-v1", "reference"])
+        result = compare_mod.compare(rows)["unit"]
+        self.assertEqual((result["sampler"], result["seeds"]), ("span-hold-v1", [1]))
+        self.assertAlmostEqual(result["mean"]["variant_name:reference"], 0.5)
+        self.assertAlmostEqual(result["mean"]["variant_name:span-hold-v1"], 0.0)
+        self.assertEqual(result["seeds_lower_variant"], 1)
+
+
 if __name__ == "__main__":
     unittest.main()
