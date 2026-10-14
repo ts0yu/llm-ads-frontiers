@@ -41,6 +41,9 @@ buy: at most 1 + T of them, each with exact charges. The research note is
   turns run outputs into explorer data.
 - **Outcome-level bidding:** the escalation and drop-out cycle, and mechanisms
   that fix it. Outcome-level VCG over λ works best.
+- **Outcome auction CLI** (`python -m token_auction_lab.outcome_auction`):
+  sells outcomes such as a brand mention from stored atlases, using VCG,
+  proportional Myerson or per-seed VCG. See [OUTCOME_AUCTION.md](OUTCOME_AUCTION.md).
 - **Theory:**
   - the 1 + T bound;
   - `E[#answers] = 1 + integral of E[#contested steps] d lambda`;
