@@ -157,8 +157,8 @@ section + section, .explainer + #view, #view > section + section { margin-top: 1
 .here-chip.on { color: var(--ink); border-color: color-mix(in oklab, var(--yes) 45%, var(--line)); }
 .here-chip.on i { background: var(--yes); }
 .here-chip.plain { font-family: var(--mono); font-size: 11px; }
-.frame { position: relative; aspect-ratio: 16 / 10; width: min(100%, calc(44vh * 1.6)); align-self: center; border-radius: 12px; overflow: hidden; background: var(--surface-3); margin-bottom: 10px; }
-.frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .28s ease; }
+.frame { position: relative; aspect-ratio: var(--frame-aspect, 1.6); width: min(100%, calc(44vh * var(--frame-aspect, 1.6))); align-self: center; border-radius: 12px; overflow: hidden; background: var(--surface-3); margin-bottom: 10px; }
+.frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; transition: opacity .28s ease; }
 .frame img.front { opacity: 1; }
 
 .ledger .eyebrow { margin-bottom: 10px; }
@@ -210,11 +210,16 @@ button.bound:hover { border-color: var(--ink); background: var(--surface); }
 .thumb::after { content: ""; position: absolute; left: -11px; top: 50%; width: 22px; height: 22px; margin-top: -11px; border-radius: 50%; background: var(--surface); border: 3px solid var(--ink); box-shadow: 0 2px 8px rgb(0 0 0 / 25%); }
 .thumb span { position: absolute; bottom: calc(100% + 6px); left: 0; transform: translateX(-50%); font: 600 12px var(--mono); white-space: nowrap; background: var(--ink); color: var(--surface); padding: 3px 8px; border-radius: 7px; }
 .track.dragging .thumb { transition: none; }
-.ticks { position: relative; height: 42px; }
+.ticks { position: relative; height: 56px; }
 .tick { position: absolute; top: 0; transform: translateX(-50%); border: 0; background: none; padding: 0 3px; display: flex; flex-direction: column; align-items: center; color: var(--muted); }
 .tick i { width: 2px; height: 10px; background: var(--ink-2); border-radius: 1px; }
 .tick span { font: 10.5px var(--mono); line-height: 1.4; }
-.tick.low i { height: 24px; }
+.tick.row-1 i { height: 24px; }
+.tick.row-2 i { height: 38px; }
+.tick.nolabel { padding: 0 2px; }
+.tick.nolabel i { height: 6px; opacity: .7; }
+.tick.nolabel span { visibility: hidden; }
+.tick.nolabel.is-selected span, .tick.nolabel:hover span, .tick.nolabel:focus-visible span { visibility: visible; background: var(--surface); border-radius: 4px; padding: 0 2px; position: relative; z-index: 1; }
 .tick:hover, .tick.is-selected { color: var(--ink); }
 .tick.is-selected i { background: var(--focus); width: 3px; }
 .tick.is-selected span { font-weight: 700; }
@@ -290,7 +295,7 @@ button.bound:hover { border-color: var(--ink); background: var(--surface); }
 .mini { position: relative; flex: 1; height: 5px; border-radius: 3px; background: var(--surface-3); margin-left: auto; min-width: 40px; }
 .mini i { position: absolute; top: 0; bottom: 0; border-radius: 3px; background: var(--ink-2); }
 .card p { margin: 0; font: 14px/1.5 var(--serif); color: var(--ink-2); display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; overflow: hidden; }
-.card img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 8px; background: var(--surface-3); }
+.card img { width: 100%; aspect-ratio: var(--frame-aspect, 1.6); object-fit: contain; border-radius: 8px; background: var(--surface-3); }
 .card-foot { display: flex; align-items: center; gap: 5px; font-size: 11px; margin-top: auto; }
 .card-foot .muted { margin-left: auto; }
 .dot { width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--yes); }

@@ -362,12 +362,13 @@ def verify_leaves(sampler: EulerAncestralBidSampler, seed: int, result: AtlasRes
 def atlas_document(result: AtlasResult, *, seed: int, bidders: list[str], mode: str,
                    manifest: dict, steps: int, images: dict[int, str] | None = None,
                    outcomes: dict[int, dict] | None = None,
-                   verification: list[dict] | None = None) -> dict:
+                   verification: list[dict] | None = None, title: str | None = None) -> dict:
     images, outcomes = images or {}, outcomes or {}
     return {
         "schema": SCHEMA,
         "kind": "image",
         "mode": mode,
+        "title": title,
         "bidders": list(bidders),
         "seed": seed,
         "parameter": "lambda = bid_A / (bid_A + bid_B)",
@@ -412,6 +413,7 @@ def scene_prompts(scenes: dict, scene: str) -> dict:
     ads = spec["advertisers"]
     return {
         "scene": scene,
+        "title": spec.get("title", scene),
         "shared": shared,
         "bidders": [ad["name"] for ad in ads],
         "prompt_a": f"{shared}, {ads[0]['brief']}",
@@ -529,7 +531,10 @@ class ClipScorer:
                                 return_tensors="pt", padding=True).to(self.device)
         probs = self.model(**inputs).logits_per_image.softmax(-1)[0].tolist()
         result = {f"clip:{n}": float(p) for n, p in zip(names, probs)}
-        result["clip_argmax"] = names[int(np.argmax(probs))]
+        top = names[int(np.argmax(probs))]
+        result["clip_argmax"] = top
+        # Boolean per label, so the explorer can draw a band (still a noisy heuristic).
+        result.update({f"clip_top:{n}": n == top for n in names})
         return result
 
 
@@ -594,7 +599,8 @@ def write_atlas(sampler: EulerAncestralBidSampler, *, seed: int, prompts: dict, 
         else []
     doc = atlas_document(result, seed=seed, bidders=prompts["bidders"], mode=mode,
                          manifest=manifest, steps=sampler.steps, images=images,
-                         outcomes=outcomes, verification=verification)
+                         outcomes=outcomes, verification=verification,
+                         title=prompts.get("title"))
     if clip is not None:
         doc["outcome_note"] = ("clip:* values are CLIP zero-shot label probabilities: a noisy "
                                "heuristic for brand visibility, not ground truth.")
@@ -630,7 +636,9 @@ def build_parser() -> argparse.ArgumentParser:
     return p
 
 
-def main(argv: list[str] | None = None) -> int:
+def main(argv: list[str] | None = None, *, mode: str = "live_model") -> int:
+    """``mode`` stays live_model for real pipelines; tiny random pipelines pass
+    synthetic_model_test (scripts/make_model_test_atlases.py)."""
     args = build_parser().parse_args(argv)
     from diffusers import DiffusionPipeline, EulerAncestralDiscreteScheduler
 
@@ -697,7 +705,7 @@ def main(argv: list[str] | None = None) -> int:
         "credits": "simulated",
     }
     index_path = args.output / "index.json"
-    index = {"schema": "bid-atlas-index-v1", "mode": "live_model", "kind": "image",
+    index = {"schema": "bid-atlas-index-v1", "mode": mode, "kind": "image",
              "created": datetime.now(timezone.utc).isoformat(), "atlases": [], "skipped": []}
     for seed in args.seeds:
         if deadline is not None and time.perf_counter() > deadline:
@@ -708,7 +716,7 @@ def main(argv: list[str] | None = None) -> int:
         stem = f"{args.scene}_seed{seed}"
         print(f"[{args.scene} seed {seed}] building atlas ...", flush=True)
         doc = write_atlas(sampler, seed=seed, prompts=prompts, out_dir=args.output, stem=stem,
-                          mode="live_model", manifest={**manifest, "seed": seed},
+                          mode=mode, manifest={**manifest, "seed": seed},
                           decoder=decoder, clip=clip, verify=args.verify,
                           jpeg_quality=args.jpeg_quality, jpeg_size=args.jpeg_size or None,
                           deadline=deadline)

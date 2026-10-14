@@ -44,6 +44,58 @@
    ],
    "leaves": 15,
    "seed": 91
+  },
+  {
+   "id": "model-test-text/transit-hotel-seed3",
+   "title": "A shuttle and a hotel · seed 3",
+   "schema": "bid-atlas-v1",
+   "kind": "text",
+   "mode": "synthetic_model_test",
+   "path": "model-test-text/transit-hotel-seed3.json",
+   "bidders": [
+    "HarborHop",
+    "Lantern House"
+   ],
+   "leaves": 13,
+   "seed": 3,
+   "model": "tiny-random-qwen3-wordlevel (synthetic_model_test)",
+   "run": "model-test-text",
+   "source": "model-test-text/transit-hotel-seed3.json"
+  },
+  {
+   "id": "model-test-simplex/atlas-seed5",
+   "title": "Three competing hotels · seed 5",
+   "schema": "simplex-atlas-v1",
+   "kind": "text",
+   "mode": "synthetic_model_test",
+   "path": "model-test-simplex/atlas-seed5.json",
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel",
+    "Saltmarsh Inn"
+   ],
+   "leaves": 36,
+   "seed": 5,
+   "model": "tiny-random-qwen3-wordlevel (synthetic_model_test)",
+   "run": "model-test-simplex",
+   "source": "model-test-simplex/atlas-seed5.json"
+  },
+  {
+   "id": "model-test-image/cafe_seed2.atlas",
+   "title": "Street cafe terrace · seed 2",
+   "schema": "bid-atlas-v1",
+   "kind": "image",
+   "mode": "synthetic_model_test",
+   "path": "model-test-image/cafe_seed2.atlas.json",
+   "bidders": [
+    "Carmello Roastworks",
+    "Tidewick Tea Bar"
+   ],
+   "leaves": 10,
+   "seed": 2,
+   "model": "tiny-random-sdxl",
+   "run": "model-test-image",
+   "source": "model-test-image/cafe_seed2.atlas.json"
   }
  ]
 }
