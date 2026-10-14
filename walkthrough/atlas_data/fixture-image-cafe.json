@@ -4,8 +4,8 @@
  "mode": "synthetic_fixture",
  "title": "Rainy-street café storefront (placeholder images)",
  "bidders": [
-  "Tidewater Coffee",
-  "Ember Roasters"
+  "Tealbrook Coffee",
+  "Cinderwick Roasters"
  ],
  "seed": 30,
  "parameter": "lambda = bid_A / (bid_A + bid_B)",
@@ -23,8 +23,8 @@
   "sampler": "simulated Euler-ancestral steps",
   "prompts": {
    "user": "A photo of a cozy café storefront on a rainy evening street.",
-   "A": "…with a teal Tidewater Coffee sign.",
-   "B": "…with a red Ember Roasters sign."
+   "A": "…with a teal Tealbrook Coffee sign.",
+   "B": "…with a red Cinderwick Roasters sign."
   },
   "outcome_note": "clip:* values are SYNTHETIC numbers imitating CLIP zero-shot scores, a noisy heuristic even when real.",
   "image_size": [
@@ -215,9 +215,9 @@
     }
    ],
    "outcomes": {
-    "clip:Tidewater Coffee": 0.1655,
-    "clip:Ember Roasters": 0.2859,
-    "clip_top:Tidewater Coffee": false
+    "clip:Tealbrook Coffee": 0.1655,
+    "clip:Cinderwick Roasters": 0.2859,
+    "clip_top:Tealbrook Coffee": false
    }
   },
   {
@@ -401,9 +401,9 @@
     }
    ],
    "outcomes": {
-    "clip:Tidewater Coffee": 0.2067,
-    "clip:Ember Roasters": 0.269,
-    "clip_top:Tidewater Coffee": false
+    "clip:Tealbrook Coffee": 0.2067,
+    "clip:Cinderwick Roasters": 0.269,
+    "clip_top:Tealbrook Coffee": false
    }
   },
   {
@@ -587,9 +587,9 @@
     }
    ],
    "outcomes": {
-    "clip:Tidewater Coffee": 0.2182,
-    "clip:Ember Roasters": 0.2895,
-    "clip_top:Tidewater Coffee": false
+    "clip:Tealbrook Coffee": 0.2182,
+    "clip:Cinderwick Roasters": 0.2895,
+    "clip_top:Tealbrook Coffee": false
    }
   },
   {
@@ -773,9 +773,9 @@
     }
    ],
    "outcomes": {
-    "clip:Tidewater Coffee": 0.2012,
-    "clip:Ember Roasters": 0.2867,
-    "clip_top:Tidewater Coffee": false
+    "clip:Tealbrook Coffee": 0.2012,
+    "clip:Cinderwick Roasters": 0.2867,
+    "clip_top:Tealbrook Coffee": false
    }
   },
   {
@@ -959,9 +959,9 @@
     }
    ],
    "outcomes": {
-    "clip:Tidewater Coffee": 0.1928,
-    "clip:Ember Roasters": 0.278,
-    "clip_top:Tidewater Coffee": false
+    "clip:Tealbrook Coffee": 0.1928,
+    "clip:Cinderwick Roasters": 0.278,
+    "clip_top:Tealbrook Coffee": false
    }
   },
   {
@@ -1145,9 +1145,9 @@
     }
    ],
    "outcomes": {
-    "clip:Tidewater Coffee": 0.2419,
-    "clip:Ember Roasters": 0.2104,
-    "clip_top:Tidewater Coffee": true
+    "clip:Tealbrook Coffee": 0.2419,
+    "clip:Cinderwick Roasters": 0.2104,
+    "clip_top:Tealbrook Coffee": true
    }
   },
   {
@@ -1331,9 +1331,9 @@
     }
    ],
    "outcomes": {
-    "clip:Tidewater Coffee": 0.2696,
-    "clip:Ember Roasters": 0.1874,
-    "clip_top:Tidewater Coffee": true
+    "clip:Tealbrook Coffee": 0.2696,
+    "clip:Cinderwick Roasters": 0.1874,
+    "clip_top:Tealbrook Coffee": true
    }
   },
   {
@@ -1517,9 +1517,9 @@
     }
    ],
    "outcomes": {
-    "clip:Tidewater Coffee": 0.2756,
-    "clip:Ember Roasters": 0.1734,
-    "clip_top:Tidewater Coffee": true
+    "clip:Tealbrook Coffee": 0.2756,
+    "clip:Cinderwick Roasters": 0.1734,
+    "clip_top:Tealbrook Coffee": true
    }
   },
   {
@@ -1703,9 +1703,9 @@
     }
    ],
    "outcomes": {
-    "clip:Tidewater Coffee": 0.3009,
-    "clip:Ember Roasters": 0.1838,
-    "clip_top:Tidewater Coffee": true
+    "clip:Tealbrook Coffee": 0.3009,
+    "clip:Cinderwick Roasters": 0.1838,
+    "clip_top:Tealbrook Coffee": true
    }
   },
   {
@@ -1889,9 +1889,9 @@
     }
    ],
    "outcomes": {
-    "clip:Tidewater Coffee": 0.308,
-    "clip:Ember Roasters": 0.1936,
-    "clip_top:Tidewater Coffee": true
+    "clip:Tealbrook Coffee": 0.308,
+    "clip:Cinderwick Roasters": 0.1936,
+    "clip_top:Tealbrook Coffee": true
    }
   }
  ],

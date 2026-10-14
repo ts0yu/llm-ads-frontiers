@@ -49,7 +49,7 @@ buy: at most 1 + T of them, each with exact charges. The research note is
   - `E[#answers] = 1 + integral of E[#contested steps] d lambda`;
   - for N ≥ 3 bidders, the critical bid is `E_w * max_j b_j/E_j`, and the 1 + T
     bound fails.
-- The full test suite grew from 38 to 154 tests at the last full run. All pass,
+- The full test suite grew from 38 to 155 tests at the last full run. All pass,
   with none skipped for import reasons.
 
 ## What did not happen, and needs you
@@ -62,7 +62,7 @@ buy: at most 1 + T of them, each with exact charges. The research note is
     published into the explorer automatically.
   - Or tell a future session explicitly that copying this repository to the
     givemeanode H100 is approved.
-- **GPU spend:** one wake of about 17 minutes (setup and downloads only),
+- **GPU spend** (you approved spending up to your balance): one wake of about 17 minutes (setup and downloads only),
   roughly $1.45 of your $10.59 balance. The node auto-stopped. Stopping it by
   hand was also blocked by the permission check; it stopped on its own idle
   timer.
@@ -73,6 +73,13 @@ buy: at most 1 + T of them, each with exact charges. The research note is
 
 ## Caveats worth knowing
 
+- **Corrected claim:** the per-token truthfulness of the auction holds at one
+  fixed prefix only. Over a whole generation, a sponsor's bid changes which
+  steps get contested, so bidding its value per won step is not optimal
+  (city walk: bidding value 2 earns 23.1 expected credits, bidding about 0.98
+  earns 41.5). An independent audit caught this; the docs and pages now say
+  so, and a regression test pins it.
+
 - All playground and census results use hand-written synthetic generators,
   not language models. Charges are simulated credits.
 - `test_atlas_explorer.py` (a test file added tonight) skips bid pairs whose
@@ -81,5 +88,5 @@ buy: at most 1 + T of them, each with exact charges. The research note is
   one ulp of rounding legitimately selects the neighbouring answer.
 - `docs/OUTCOME_BIDDING.md` cites arXiv IDs from memory. Check them before
   citing externally.
-- Sponsor names were renamed to clearly coined ones after one sounded like a
-  real company. They have not been checked against trademark registers.
+- Sponsor names in the playground and fixtures were renamed to clearly coined
+  ones after some sounded like real businesses. They have not been checked against trademark registers.

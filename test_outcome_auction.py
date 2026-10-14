@@ -263,14 +263,14 @@ class OutcomeAuctionTests(unittest.TestCase):
 
     def test_numeric_outcome_threshold_on_image_fixture(self):
         result, text = self.run_cli(
-            DATA / "fixture-image-cafe.json", "--value", "Tidewater Coffee=40",
-            "--value", "Ember Roasters=30", "--mechanism", "vcg",
-            "--outcome", "Tidewater Coffee=clip:Tidewater Coffee>=0.2",
-            "--outcome", "Ember Roasters=clip:Ember Roasters>0.25")
+            DATA / "fixture-image-cafe.json", "--value", "Tealbrook Coffee=40",
+            "--value", "Cinderwick Roasters=30", "--mechanism", "vcg",
+            "--outcome", "Tealbrook Coffee=clip:Tealbrook Coffee>=0.2",
+            "--outcome", "Cinderwick Roasters=clip:Cinderwick Roasters>0.25")
         self.assertIn("MODE: synthetic_fixture", text)
         doc = json.loads((DATA / "fixture-image-cafe.json").read_text())
         leaf = direct_leaf(doc, result["results"][0]["lambda"])
-        want_a = leaf["outcomes"]["clip:Tidewater Coffee"] >= 0.2
+        want_a = leaf["outcomes"]["clip:Tealbrook Coffee"] >= 0.2
         self.assertEqual(result["results"][0]["allocation"]["A"], float(want_a))
 
     def test_predicates_and_labels(self):

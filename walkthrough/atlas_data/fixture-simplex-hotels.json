@@ -6,7 +6,7 @@
  "bidders": [
   "Bayview Hotel",
   "Lantern House",
-  "Harbor Loft"
+  "Saltreed Loft"
  ],
  "seed": 91,
  "parameter": "lambda_i = bid_i / sum(bids), barycentric",
@@ -19,7 +19,7 @@
   "numpy": "2.5.4",
   "simulated_credits": true,
   "model": "toy weighted-corpus model (scripts/make_atlas_fixtures.py), not an LLM",
-  "revision": "toy-corpus-sha256:bdff669199815360",
+  "revision": "toy-corpus-sha256:348fc8dbcdb31b8b",
   "tokenizer": "toy word tokenizer; fake token IDs",
   "prompts": {
    "user": "I'm visiting Fort Mason in San Fransisco for a conference. Where should I stay? How should I get there? Uber?"
@@ -99,7 +99,7 @@
     1004,
     2
    ],
-   "text": "Exciting choice for a conference trip! For a hotel close to Fort Mason, consider Harbor Loft and its rooftop reading room. An Uber from SFO is a comfortable choice after your flight. Have a wonderful trip!",
+   "text": "Exciting choice for a conference trip! For a hotel close to Fort Mason, consider Saltreed Loft and its rooftop reading room. An Uber from SFO is a comfortable choice after your flight. Have a wonderful trip!",
    "image": null,
    "stop_reason": "eos",
    "steps": [
@@ -459,7 +459,7 @@
    "outcomes": {
     "mentions:Bayview Hotel": false,
     "mentions:Lantern House": false,
-    "mentions:Harbor Loft": true
+    "mentions:Saltreed Loft": true
    }
   },
   {
@@ -910,7 +910,7 @@
    "outcomes": {
     "mentions:Bayview Hotel": false,
     "mentions:Lantern House": true,
-    "mentions:Harbor Loft": false
+    "mentions:Saltreed Loft": false
    }
   },
   {
@@ -1442,7 +1442,7 @@
    "outcomes": {
     "mentions:Bayview Hotel": true,
     "mentions:Lantern House": false,
-    "mentions:Harbor Loft": false
+    "mentions:Saltreed Loft": false
    }
   },
   {
@@ -1969,7 +1969,7 @@
    "outcomes": {
     "mentions:Bayview Hotel": true,
     "mentions:Lantern House": false,
-    "mentions:Harbor Loft": false
+    "mentions:Saltreed Loft": false
    }
   },
   {
@@ -2505,7 +2505,7 @@
    "outcomes": {
     "mentions:Bayview Hotel": true,
     "mentions:Lantern House": false,
-    "mentions:Harbor Loft": false
+    "mentions:Saltreed Loft": false
    }
   },
   {
@@ -3014,7 +3014,7 @@
    "outcomes": {
     "mentions:Bayview Hotel": false,
     "mentions:Lantern House": true,
-    "mentions:Harbor Loft": false
+    "mentions:Saltreed Loft": false
    }
   },
   {
@@ -3470,7 +3470,7 @@
    "outcomes": {
     "mentions:Bayview Hotel": true,
     "mentions:Lantern House": false,
-    "mentions:Harbor Loft": false
+    "mentions:Saltreed Loft": false
    }
   },
   {
@@ -3921,7 +3921,7 @@
    "outcomes": {
     "mentions:Bayview Hotel": false,
     "mentions:Lantern House": true,
-    "mentions:Harbor Loft": false
+    "mentions:Saltreed Loft": false
    }
   },
   {
@@ -4372,7 +4372,7 @@
    "outcomes": {
     "mentions:Bayview Hotel": true,
     "mentions:Lantern House": false,
-    "mentions:Harbor Loft": false
+    "mentions:Saltreed Loft": false
    }
   },
   {
@@ -4444,7 +4444,7 @@
     1004,
     2
    ],
-   "text": "Exciting choice for a conference trip! For a hotel close to Fort Mason, consider Harbor Loft and its rooftop reading room. An Uber from SFO is a comfortable choice after your flight. Enjoy the conference!",
+   "text": "Exciting choice for a conference trip! For a hotel close to Fort Mason, consider Saltreed Loft and its rooftop reading room. An Uber from SFO is a comfortable choice after your flight. Enjoy the conference!",
    "image": null,
    "stop_reason": "eos",
    "steps": [
@@ -4796,7 +4796,7 @@
    "outcomes": {
     "mentions:Bayview Hotel": false,
     "mentions:Lantern House": false,
-    "mentions:Harbor Loft": true
+    "mentions:Saltreed Loft": true
    }
   },
   {
@@ -5233,7 +5233,7 @@
    "outcomes": {
     "mentions:Bayview Hotel": false,
     "mentions:Lantern House": true,
-    "mentions:Harbor Loft": false
+    "mentions:Saltreed Loft": false
    }
   },
   {
@@ -5689,7 +5689,7 @@
    "outcomes": {
     "mentions:Bayview Hotel": false,
     "mentions:Lantern House": true,
-    "mentions:Harbor Loft": false
+    "mentions:Saltreed Loft": false
    }
   },
   {
@@ -6216,7 +6216,7 @@
    "outcomes": {
     "mentions:Bayview Hotel": true,
     "mentions:Lantern House": false,
-    "mentions:Harbor Loft": false
+    "mentions:Saltreed Loft": false
    }
   },
   {
@@ -6667,7 +6667,7 @@
    "outcomes": {
     "mentions:Bayview Hotel": false,
     "mentions:Lantern House": true,
-    "mentions:Harbor Loft": false
+    "mentions:Saltreed Loft": false
    }
   },
   {
@@ -7203,7 +7203,7 @@
    "outcomes": {
     "mentions:Bayview Hotel": true,
     "mentions:Lantern House": false,
-    "mentions:Harbor Loft": false
+    "mentions:Saltreed Loft": false
    }
   }
  ],
@@ -7325,7 +7325,7 @@
      "cell": 0,
      "winner": 2,
      "token": 1058,
-     "token_text": " Harbor"
+     "token_text": " Saltreed"
     },
     {
      "cell": 6,
@@ -7398,7 +7398,7 @@
      "token_text": " Enjoy"
     }
    ],
-   "prefix_text": "Exciting choice for a conference trip! For a hotel close to Fort Mason, consider Harbor Loft and its rooftop reading room. An Uber from SFO is a comfortable choice after your flight."
+   "prefix_text": "Exciting choice for a conference trip! For a hotel close to Fort Mason, consider Saltreed Loft and its rooftop reading room. An Uber from SFO is a comfortable choice after your flight."
   },
   {
    "step": 37,

@@ -42,7 +42,7 @@ STYLE = {  # stylistic word preferences per brand; anything missing weighs 1
                       "right in": 2.5, "easiest": 2, "Book now at": 2},
     "Lantern House": {"peaceful": 2.5, "unwind": 2.5, "simplest": 2.5, "comfortable": 2,
                       "Hello and welcome": 2, "near": 2, "with luggage": 2},
-    "Harbor Loft": {"practical": 2.5, "close to": 2, "most convenient": 2, "Great": 2},
+    "Saltreed Loft": {"practical": 2.5, "close to": 2, "most convenient": 2, "Great": 2},
 }
 GROUP_RE = re.compile(r"\{([^{}]*)\}")
 
@@ -154,9 +154,9 @@ def hotel_model(brands: list[str], url: str, style_power: float = 1.0) -> SlotMo
             " For a hotel {close to|near} Fort Mason, consider Lantern House and its "
             "{quiet|peaceful} courtyard.",
         ],
-        "Harbor Loft": [
-            " Stay at Harbor Loft, a small hotel near Fort Mason with a rooftop reading room.",
-            " For a hotel {close to|near} Fort Mason, consider Harbor Loft and its rooftop "
+        "Saltreed Loft": [
+            " Stay at Saltreed Loft, a small hotel near Fort Mason with a rooftop reading room.",
+            " For a hotel {close to|near} Fort Mason, consider Saltreed Loft and its rooftop "
             "reading room.",
         ],
     }
@@ -184,9 +184,9 @@ def hotel_model(brands: list[str], url: str, style_power: float = 1.0) -> SlotMo
     if "Bayview Hotel" in brands:
         closers.append((f" {{Book at|Book now at}} {url} and enjoy the bay views.",
                         own(brands.index("Bayview Hotel"), 4.0, .2), ("Bayview Hotel",)))
-    if "Harbor Loft" in brands:
-        closers.append((" Unwind in the Harbor Loft reading room after a long day.",
-                        own(brands.index("Harbor Loft"), 4.0, .2), ("Harbor Loft",)))
+    if "Saltreed Loft" in brands:
+        closers.append((" Unwind in the Saltreed Loft reading room after a long day.",
+                        own(brands.index("Saltreed Loft"), 4.0, .2), ("Saltreed Loft",)))
     return SlotModel(brands, [openers, stays, rides, closers], style_power)
 
 
@@ -314,7 +314,7 @@ def build_text_atlas(seed: int, max_steps: int = 96):
 
 
 # ------------------------------------------------------------------------ image atlas
-IMAGE_BRANDS = ["Tidewater Coffee", "Ember Roasters"]  # A = teal café, B = red café
+IMAGE_BRANDS = ["Tealbrook Coffee", "Cinderwick Roasters"]  # A = teal café, B = red café
 
 
 def image_step(steps: int):
@@ -371,8 +371,8 @@ def build_image_atlas(seed: int, steps: int = 24):
                      "diffusion model",
             "revision": None, "tokenizer": None, "sampler": "simulated Euler-ancestral steps",
             "prompts": {"user": "A photo of a cozy café storefront on a rainy evening street.",
-                        "A": "…with a teal Tidewater Coffee sign.",
-                        "B": "…with a red Ember Roasters sign."},
+                        "A": "…with a teal Tealbrook Coffee sign.",
+                        "B": "…with a red Cinderwick Roasters sign."},
             "outcome_note": "clip:* values are SYNTHETIC numbers imitating CLIP zero-shot "
                             "scores, a noisy heuristic even when real.",
             "image_size": [640, 400], "pillow": pillow_version(),
@@ -513,7 +513,7 @@ def race_step(ps, uniforms, E):
 
 
 def build_simplex_atlas(seed: int, max_steps: int = 96, min_area: float = 1e-12):
-    brands = ["Bayview Hotel", "Lantern House", "Harbor Loft"]
+    brands = ["Bayview Hotel", "Lantern House", "Saltreed Loft"]
     model = hotel_model(brands, "bayviewhotel.com")
     n = len(brands)
     rng = np.random.default_rng(seed)
@@ -650,6 +650,12 @@ def main(argv):
     index = {"schema": "atlas-index-v1", "note": "Paths are relative to this file. Every "
              "entry here is a SYNTHETIC FIXTURE unless its mode says otherwise.",
              "atlases": entries}
+    # Keep entries that other tools published (e.g. scripts/publish_atlases.py).
+    path = OUT / "index.json"
+    if path.exists():
+        ids = {entry["id"] for entry in entries}
+        previous = json.loads(path.read_text()).get("atlases", [])
+        index["atlases"] += [entry for entry in previous if entry.get("id") not in ids]
     (OUT / "index.json").write_text(json.dumps(index, indent=1, ensure_ascii=False) + "\n")
 
 

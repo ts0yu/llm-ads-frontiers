@@ -185,7 +185,7 @@ outcomes face this:
   outcome stops paying for its charges, that sponsor drops to almost nothing
   (8 drop-outs in 60 rounds), and the cycle restarts.
 - **Melody:** a short cycle among `lambda` of about 0.013, 0.19 and 0.20,
-  without drop-outs.
+  with at most one early drop-out (V = 40, round 1).
 - **Scale:** utilities are homogeneous of degree 1 in values and bids, so bid
   levels scale with values (max bid 1.8, 7.4, 28.1 for values 10, 40, 160).
 

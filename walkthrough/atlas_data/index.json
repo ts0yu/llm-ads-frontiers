@@ -24,8 +24,8 @@
    "mode": "synthetic_fixture",
    "path": "fixture-image-cafe.json",
    "bidders": [
-    "Tidewater Coffee",
-    "Ember Roasters"
+    "Tealbrook Coffee",
+    "Cinderwick Roasters"
    ],
    "leaves": 10,
    "seed": 30
@@ -40,7 +40,7 @@
    "bidders": [
     "Bayview Hotel",
     "Lantern House",
-    "Harbor Loft"
+    "Saltreed Loft"
    ],
    "leaves": 15,
    "seed": 91
