@@ -318,9 +318,17 @@ def build_atlas(
     mode: str = "synthetic_model_test",
     manifest: dict | None = None,
     title: str | None = None,
+    order: str = "depth",
+    max_live_branches: int = 32,
 ) -> dict:
-    """Depth-first exact atlas over the bid simplex; returns `simplex-atlas-v1` JSON.
+    """Exact atlas over the bid simplex; returns `simplex-atlas-v1` JSON.
 
+    ``order="depth"`` expands branches depth-first. ``order="area"`` expands the
+    open branch with the largest total cell area first while at most
+    ``max_live_branches`` are open (each holds its own KV caches), and depth-first
+    beyond that. A complete atlas is the same partition under either order (only
+    cell ids differ); under a time or cell budget, ``"area"`` leaves the small
+    regions unresolved instead of whole top-level regions.
     ``title`` is a display field for the Atlas Explorer and does not affect decoding.
     """
     from token_auction_lab.multi_decoder import MultiPrefixDecoder
@@ -330,6 +338,8 @@ def build_atlas(
         raise NotImplementedError("Atlases are implemented for n = 2 and n = 3 bidders.")
     if max_cells < 1 or max_tokens < 1:
         raise ValueError("max_cells and max_tokens must be positive.")
+    if order not in ("depth", "area") or max_live_branches < 1:
+        raise ValueError("order must be 'depth' or 'area' and max_live_branches positive.")
     if not math.isfinite(temperature) or temperature <= 0:
         raise ValueError("Temperature must be finite and positive.")
     bidders = list(bidders or [f"Bidder {i + 1}" for i in range(n)])
@@ -358,8 +368,14 @@ def build_atlas(
             cell.token_ids, cell.stop_reason = list(tokens), reason
             cell.truncation, cell.cache_check = truncation, check
 
+    def take() -> _Branch:
+        if order == "area" and len(stack) <= max_live_branches:
+            sizes = [math.fsum(measure(c.polygon) for c in b.cells) for b in stack]
+            return stack.pop(max(range(len(stack)), key=sizes.__getitem__))
+        return stack.pop()
+
     while stack:
-        branch = stack.pop()
+        branch = take()
         decoder = branch.decoder
         step = len(decoder.generated)
         if step >= max_tokens:
@@ -506,6 +522,10 @@ def build_atlas(
             "forward_passes": forward_passes,
             "elapsed_seconds": elapsed,
             "time_budget_seconds": time_budget_seconds,
+            "search_order": order,
+            "max_live_branches": max_live_branches if order == "area" else None,
+            "resolved_area": math.fsum(measure(c.polygon) for c in ordered
+                                       if c.stop_reason != "truncated"),
             "cache_checked": check_cache,
             "cache_tolerance": tolerance if check_cache else None,
         },
@@ -593,6 +613,8 @@ def write_atlases(
     metadata: dict | None = None,
     log: Callable[[dict], None] | None = None,
     title: str | None = None,
+    order: str = "depth",
+    max_live_branches: int = 32,
 ) -> dict:
     """One JSON per seed, written as each finishes; index.json rewritten after each."""
     from token_auction_lab.prompts import prompt_hash
@@ -622,7 +644,7 @@ def write_atlases(
             model, tokenizer, prefixes, seed=seed, temperature=temperature,
             max_tokens=max_tokens, eos_ids=eos_ids, bidders=bidders, max_cells=max_cells,
             time_budget_seconds=time_budget_seconds, mode=mode, manifest=manifest,
-            title=title,
+            title=title, order=order, max_live_branches=max_live_branches,
         )
         if verify_cells:
             started = time.perf_counter()
@@ -637,6 +659,7 @@ def write_atlases(
             "distinct_outputs": atlas["stats"]["distinct_outputs"],
             "truncated": atlas["stats"]["truncated"],
             "area_total": atlas["stats"]["area_total"],
+            "resolved_area": atlas["stats"]["resolved_area"],
             "elapsed_seconds": atlas["stats"]["elapsed_seconds"],
             "verified": len(atlas["verification"]),
             "verification_ok": all(v["matches_direct_run"] for v in atlas["verification"]),
@@ -669,6 +692,10 @@ def main(argv: Sequence[str] | None = None, *, mode: str = "live_model") -> None
     parser.add_argument("--max-cells", type=int, default=400)
     parser.add_argument("--time-budget-seconds", type=float, default=None,
                         help="Per seed; remaining cells are marked truncated, never dropped.")
+    parser.add_argument("--order", choices=("depth", "area"), default="depth",
+                        help="Branch order; 'area' resolves the largest regions first.")
+    parser.add_argument("--max-live-branches", type=int, default=32,
+                        help="With --order area: open branches (KV caches) before depth-first.")
     args = parser.parse_args(argv)
     if not 1 <= args.max_tokens <= 96:
         parser.error("--max-tokens must be 1..96.")
@@ -703,6 +730,8 @@ def main(argv: Sequence[str] | None = None, *, mode: str = "live_model") -> None
         "model_load_seconds": load_seconds,
         "max_cells": args.max_cells,
         "time_budget_seconds_per_seed": args.time_budget_seconds,
+        "search_order": args.order,
+        "max_live_branches": args.max_live_branches,
         "eos_token_ids": sorted(eos_ids(model, tokenizer)),
     }
     prompts = [render_n(tokenizer, scenario, i) for i in range(3)]
@@ -714,6 +743,7 @@ def main(argv: Sequence[str] | None = None, *, mode: str = "live_model") -> None
         mode=mode, metadata=metadata,
         log=lambda s: print(json.dumps(s), flush=True),
         title=scenario.get("title", args.scenario),
+        order=args.order, max_live_branches=args.max_live_branches,
     )
 
 

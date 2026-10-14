@@ -1,8 +1,9 @@
 # Outcome auctions on stored atlases
 
 Status: research tool. Python, pure numpy, no model loaded. All charges are
-simulated credits. The committed inputs are synthetic (`synthetic_fixture`,
-`synthetic_model_test`). No live-model atlas has been run through it yet.
+simulated credits. Inputs can be synthetic (`synthetic_fixture`,
+`synthetic_model_test`) or live-model atlases; for a live run see
+[LIVE_RESULTS.md](LIVE_RESULTS.md) and `results/live_outcome_auction_competing.json`.
 
 `token_auction_lab/outcome_auction.py` sells **outcomes** instead of tokens.
 Each sponsor reports one value for one checkable outcome of the whole

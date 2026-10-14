@@ -18,6 +18,8 @@ random seed, the auction's whole response to bids can be computed exactly:
 every answer the bids can buy, at most 1 + T of them for a T-token answer, with
 exact charges and outcome curves. Start here:
 
+- [docs/LIVE_RESULTS.md](docs/LIVE_RESULTS.md): the first live-model atlases
+  (Qwen3-4B text, three bidders, SDXL images; H100 run), with figures.
 - [docs/ATLAS_NOTE.md](docs/ATLAS_NOTE.md): the research note, with results,
   proofs and nonclaims.
 - [MOONSHOTS.md](MOONSHOTS.md): the design, the JSON schemas and the labels.
@@ -26,7 +28,7 @@ exact charges and outcome curves. Start here:
   melody you can play, a three-sponsor bid triangle and an outcome-level
   bidding game.
 - **Atlas Explorer**, `/atlas.html`: replays stored atlases (text, image and
-  three-bidder).
+  three-bidder), including the live-model runs.
 - Generators with CLIs:
   - `python -m token_auction_lab.atlas` (two-bidder text);
   - `python -m token_auction_lab.simplex_atlas` (three-bidder text);

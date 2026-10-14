@@ -251,7 +251,7 @@ async function loadIndex() {
   select.innerHTML = state.index.map((e, i) => `<option value="${i}">${esc(e.title)} · ${esc(e.kind)}${e.schema === 'simplex-atlas-v1' ? ' · 3 bidders' : ''} · ${esc(modeInfo(e.mode).short)}</option>`).join('');
   let entry = state.index.find(e => e.path === wanted);
   if (!entry && wanted) { entry = { title: wanted, path: wanted, kind: '?', mode: '?' }; state.index.push(entry); select.insertAdjacentHTML('beforeend', `<option value="${state.index.length - 1}">${esc(wanted)}</option>`); }
-  entry ||= state.index[0];
+  entry ||= state.index.find(e => e.mode === 'live_model') || state.index[0];
   if (!entry) throw new Error('atlas_data/index.json lists no atlases.');
   select.value = String(state.index.indexOf(entry));
   select.addEventListener('change', () => openAtlas(state.index[Number(select.value)], null));
@@ -844,7 +844,12 @@ function dominant(leaf) {
   return best;
 }
 
+// A cell a time or cell budget cut off holds only a prefix of its answers.
+const unresolved = leaf => leaf.stop_reason === 'truncated';
+const unresolvedShare = leaves => leaves.reduce((s, l) => s + (unresolved(l) ? polygonArea(l.polygon) : 0), 0) / 0.5;
+
 function cellFill(leaf, i) {
+  if (unresolved(leaf)) return 'url(#unresolved)';
   if (state.colorBy === 'brand') {
     const d = dominant(leaf);
     const same = state.leaves.filter((l, j) => j < i && dominant(l) === d).length;
@@ -862,8 +867,10 @@ function mountSimplex() {
   if (state.colorBy !== 'brand' && !state.keys.includes(state.colorBy)) state.colorBy = 'brand';
   const total = state.leaves.reduce((s, l) => s + polygonArea(l.polygon), 0);
   const problems = Math.abs(total - 0.5) > 1e-9 ? [`Cell areas sum to ${total.toFixed(6)}, not 0.5.`] : [];
+  const open = unresolvedShare(state.leaves);
   $('#view').innerHTML = `
   ${problems.length ? `<div class="warning" role="alert"><strong>Atlas check failed.</strong> ${problems.map(esc).join(' ')}</div>` : ''}
+  ${open > 0 ? `<div class="warning"><strong>Partly resolved.</strong> The generator's time or cell budget stopped ${pct(open)} of the triangle early (cross-hatched). Those cells hold only the shared prefix, not finished answers, and are not counted as outcomes.</div>` : ''}
   <section class="simplex-grid">
     <article class="panel tri-panel">
       <div class="chart-head"><h2>Drag the bid mix</h2><p class="muted small">Every point is a bid split λ = b / Σb. Each polygon is one cell: all bid mixes inside it produce exactly the same answer for this seed.</p></div>
@@ -899,7 +906,7 @@ function renderTriangle() {
     return `<g class="vertex ${BIDDER_CLASSES[i]}"><circle cx="${x}" cy="${y}" r="6"/><text x="${x + (i === 1 ? -26 : i === 2 ? 26 : 0)}" y="${y + dy}" text-anchor="${anchor}">${esc(b)}</text></g>`;
   }).join('');
   const apexes = state.atlas.splits.map(s => s.apex ? toXY(s.apex) : null).filter(Boolean).map(([x, y]) => `<circle class="apex" cx="${x}" cy="${y}" r="2.6"/>`).join('');
-  tri.innerHTML = `<defs><pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="7" height="7" class="hatch-bg"/><line x1="0" y1="0" x2="0" y2="7" class="hatch-line"/></pattern></defs>
+  tri.innerHTML = `<defs><pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="7" height="7" class="hatch-bg"/><line x1="0" y1="0" x2="0" y2="7" class="hatch-line"/></pattern><pattern id="unresolved" width="9" height="9" patternUnits="userSpaceOnUse"><rect width="9" height="9" class="unres-bg"/><path d="M0 0L9 9M9 0L0 9" class="unres-line"/></pattern></defs>
     <polygon class="tri-shadow" points="${poly([[1, 0, 0], [0, 1, 0], [0, 0, 1]])}"/>
     <g id="cells">${state.leaves.map((leaf, i) => `<polygon class="cell" data-cell="${i}" points="${poly(leaf.polygon)}" style="fill:${cellFill(leaf, i)}"><title>Cell ${i + 1}</title></polygon>`).join('')}</g>
     <polygon id="cell-outline" class="cell-outline" points=""/>
@@ -914,7 +921,7 @@ function updateColorLegend() {
   $$('[data-color]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.color === state.colorBy)));
   const legend = $('#color-legend');
   if (state.colorBy === 'brand') {
-    legend.innerHTML = `Hue: the bidder whose brand the cell's answer names first (${state.atlas.bidders.map((b, i) => `<span class="who ${BIDDER_CLASSES[i]}"><i></i>${esc(b)}</span>`).join(' ')}; grey if none). Lightness only separates neighbouring cells. Small dots are race apexes λ ∝ E where three cones met.`;
+    legend.innerHTML = `Hue: the bidder whose brand the cell's answer names first (${state.atlas.bidders.map((b, i) => `<span class="who ${BIDDER_CLASSES[i]}"><i></i>${esc(b)}</span>`).join(' ')}; grey if none). Lightness only separates neighbouring cells. Small dots are race apexes λ ∝ E where three cones met.${unresolvedShare(state.leaves) > 0 ? ' Cross-hatched: unresolved (budget stopped it).' : ''}`;
   } else {
     const share = state.leaves.reduce((s, l) => s + (l.outcomes[state.colorBy] === true ? polygonArea(l.polygon) : 0), 0) / 0.5;
     legend.innerHTML = `Solid: ${esc(prettyKey(state.colorBy))} is true (${pct(share)} of the simplex by area). Hatched: false.`;
@@ -993,10 +1000,12 @@ function updateSimplex(cellChanged = true) {
   $('#bary').innerHTML = `<p class="eyebrow">BID MIX · S = ${credits(S)} CREDITS</p>` + state.atlas.bidders.map((b, i) => `<div class="bary-row ${BIDDER_CLASSES[i]}"><span class="who ${BIDDER_CLASSES[i]}"><i></i>${esc(b)}</span><span class="bar"><i style="width:${point[i] * 100}%"></i></span><b class="mono">${pct(point[i])}</b><small class="mono">${credits(S * point[i])} cr</small></div>`).join('');
   if (!leaf) { $('#answer').textContent = 'This point lies on no recorded cell.'; return; }
   const c = raceCharges(leaf, point, S);
-  $('#cell-eyebrow').textContent = `CELL ${state.cell + 1} OF ${state.leaves.length} · ${pct(polygonArea(leaf.polygon) / 0.5)} OF ALL BID MIXES`;
+  $('#cell-eyebrow').textContent = `CELL ${state.cell + 1} OF ${state.leaves.length} · ${pct(polygonArea(leaf.polygon) / 0.5)} OF ALL BID MIXES${unresolved(leaf) ? ' · UNRESOLVED' : ''}`;
   if (cellChanged) {
     const answer = $('#answer');
-    answer.textContent = leaf.text || '(no text recorded)';
+    answer.textContent = unresolved(leaf)
+      ? `${leaf.text || ''} … [unresolved: the ${leaf.truncation?.reason === 'max_cells' ? 'cell' : 'time'} budget stopped this region after ${leaf.steps.length} steps; the answers inside it were not computed]`
+      : leaf.text || '(no text recorded)';
     if (!state.reduced) { answer.classList.remove('flash'); void answer.offsetWidth; answer.classList.add('flash'); }
   }
   $('#cell-facts').innerHTML = `

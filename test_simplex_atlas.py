@@ -311,6 +311,33 @@ class AtlasTests(unittest.TestCase):
         self.assertEqual(budget["stats"]["truncated_cells"]["time_budget"], 1)
         self.assertEqual(budget["cells"][0]["truncation"], {"reason": "time_budget", "step": 0})
 
+    def test_area_order_gives_the_same_partition_and_resolves_large_regions_first(self):
+        def partition_of(atlas):
+            return sorted((tuple(c["token_ids"]), round(c["area"], 12),
+                           tuple(np.round(np.array(c["centroid"]), 9))) for c in atlas["cells"])
+
+        depth = self.atlas()
+        area = self.atlas(order="area")
+        self.assertEqual(area["stats"]["search_order"], "area")
+        self.assertFalse(area["stats"]["truncated"])
+        self.assertEqual(partition_of(area), partition_of(depth))
+        self.assertAlmostEqual(area["stats"]["resolved_area"], 0.5, delta=1e-9)
+        # With one open branch allowed the order is exactly depth-first.
+        capped = self.atlas(order="area", max_live_branches=1)
+        self.assertEqual([c["token_ids"] for c in capped["cells"]],
+                         [c["token_ids"] for c in depth["cells"]])
+        # Under a cell budget, depth-first leaves whole top-level regions open.
+        small_depth = self.atlas(max_cells=6)
+        small_area = self.atlas(max_cells=6, order="area")
+        self.assertTrue(small_area["stats"]["truncated"])
+        self.assertGreaterEqual(small_area["stats"]["resolved_area"],
+                                small_depth["stats"]["resolved_area"])
+        records = verify(small_area, self.model, self.PREFIXES, sample=0, eos_ids={EOS},
+                         cell_ids=[c["id"] for c in small_area["cells"]])
+        self.assertTrue(all(r["matches_direct_run"] for r in records))
+        with self.assertRaises(ValueError):
+            self.atlas(order="breadth")
+
     def test_two_bidder_interval_atlas_matches_reference_interval_search(self):
         prefixes = self.PREFIXES[:2]
         atlas = self.atlas(prefixes=prefixes, tape_source="two-bidder-random-tape",

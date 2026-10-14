@@ -83,22 +83,45 @@ class AtlasFixtureTests(unittest.TestCase):
                 self.assertEqual(atlas["mode"], "synthetic_fixture")
                 self.assertIn("SYNTHETIC FIXTURE", atlas["manifest"]["label"])
                 self.assertTrue(atlas["manifest"]["simulated_credits"])
+            elif entry["path"].startswith("live-"):
+                # Real inference (H100 run, 2026-10-14), published unchanged.
+                self.assertEqual(atlas["mode"], "live_model", entry["path"])
+                self.assertNotIn("tiny-random", entry["model"])
+                manifest = atlas["manifest"]
+                revision = manifest.get("model_revision") or manifest.get("resolved_revision")
+                self.assertRegex(revision or "", r"^[0-9a-f]{40}$", entry["path"])
+                packages = manifest.get("dependencies") or manifest.get("environment", {}).get(
+                    "packages")
+                self.assertTrue(packages, entry["path"])
+                self.assertEqual(atlas["published"]["by"], "scripts/publish_atlases.py")
+                self.assertTrue(entry["title"])
+                status = atlas.get("verification_status")
+                if status == "skipped_time_budget":  # recorded as skipped, never as a match
+                    self.assertEqual(atlas["verification"], [], entry["path"])
+                else:
+                    self.assertTrue(atlas["verification"], entry["path"])
+                    self.assertTrue(all(v["matches_direct_run"] for v in atlas["verification"]),
+                                    entry["path"])
             else:
-                # Published generator output; nothing committed here is live inference.
+                # Published generator output on tiny random models, not live inference.
                 self.assertEqual(atlas["mode"], "synthetic_model_test", entry["path"])
                 self.assertIn("tiny-random", entry["model"])
                 self.assertEqual(atlas["published"]["by"], "scripts/publish_atlases.py")
                 self.assertTrue(entry["title"])
 
     def test_committed_model_test_atlases_cover_each_generator_and_stay_small(self):
-        published = {p: a for p, a in ATLASES.items() if not p.startswith("fixture-")}
-        kinds = {(a["schema"], a["kind"]) for a in published.values()}
-        self.assertEqual(kinds, {("bid-atlas-v1", "text"), ("bid-atlas-v1", "image"),
-                                 ("simplex-atlas-v1", "text")})
-        size = sum(f.stat().st_size for f in ATLAS_DATA.rglob("*") if f.is_file()
-                   and not f.relative_to(ATLAS_DATA).as_posix().startswith("fixture-")
-                   and f.name != "index.json")
-        self.assertLess(size, 1_500_000)
+        def size_of(prefix):
+            return sum(f.stat().st_size for f in ATLAS_DATA.rglob("*") if f.is_file()
+                       and f.relative_to(ATLAS_DATA).as_posix().startswith(prefix))
+
+        for prefix in ("model-test-", "live-"):
+            published = {p: a for p, a in ATLASES.items() if p.startswith(prefix)}
+            kinds = {(a["schema"], a["kind"]) for a in published.values()}
+            self.assertEqual(kinds, {("bid-atlas-v1", "text"), ("bid-atlas-v1", "image"),
+                                     ("simplex-atlas-v1", "text")}, prefix)
+        self.assertLess(size_of("model-test-"), 1_500_000)
+        # Live atlases carry real leaf images (downscaled on publish); keep the repo bounded.
+        self.assertLess(size_of("live-"), 25_000_000)
 
     def test_two_bidder_leaves_partition_and_respect_contest_uniforms(self):
         for path, atlas in PAIRS.items():

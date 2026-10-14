@@ -316,6 +316,7 @@ button.bound:hover { border-color: var(--ink); background: var(--surface); }
 .cell-labels text { font: 600 12px var(--mono); fill: var(--ink); opacity: .7; pointer-events: none; paint-order: stroke; stroke: color-mix(in oklab, var(--surface) 60%, transparent); stroke-width: 3px; }
 .apex { fill: var(--ink); opacity: .45; pointer-events: none; }
 .hatch-bg { fill: var(--surface-2); } .hatch-line { stroke: var(--line-strong); stroke-width: 2; }
+.unres-bg { fill: var(--warn); } .unres-line { stroke: var(--warn-ink); stroke-width: 1; opacity: .55; }
 .vertex circle { fill: var(--who); stroke: var(--surface); stroke-width: 2; }
 .vertex text { font: 600 15px var(--sans); fill: var(--ink); }
 .vertex.a { --who: var(--a); } .vertex.b { --who: var(--b); } .vertex.c { --who: var(--c); }

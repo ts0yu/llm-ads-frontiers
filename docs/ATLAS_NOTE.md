@@ -1,8 +1,9 @@
 # Every answer money can buy: exact bid atlases for token auctions
 
 Research note, Token Auction Lab, October 2026. Status: mechanism, algorithms
-and tests are complete. Live-model atlases have not been run yet (see §7). All
-charges are simulated credits. Nothing here claims truthful bidding over whole
+and tests are complete. Live-model atlases (Qwen3-4B text, three-bidder text,
+SDXL images) were run on an H100 on 2026-10-14; see §7 and
+[LIVE_RESULTS.md](LIVE_RESULTS.md). All charges are simulated credits. Nothing here claims truthful bidding over whole
 answers, advertiser value, or production readiness.
 
 ## 1. Summary
@@ -225,21 +226,28 @@ be checked before external use.
 The reference `auction.py`, the two-bidder decoder, Live Lab and all original
 tests are unchanged.
 
-## 7. What has not been run
+## 7. Live-model runs
 
-No real-model atlas exists yet:
-- This cloud container cannot download model weights.
-- Copying the code to the rented H100 needs the owner's explicit approval; the
-  attempt was stopped by a permission check.
+The first live-model atlases were run on a rented H100 on 2026-10-14 and are
+published in the Atlas Explorer as `live-*` runs, labelled `live_model`. Full
+results, figures and commands: [LIVE_RESULTS.md](LIVE_RESULTS.md). In short:
 
-`scripts/run_moonshots.sh` runs every stage on a Mac (MPS), a CUDA machine or
-CPU:
-- Qwen3-4B text atlases for the Fort Mason prompt and both scenarios;
-- three-hotel simplex atlases;
-- SDXL café atlases.
+- Two-bidder Qwen3-4B text atlases have 17–39 answers per seed (bound 97 for
+  T = 96). Every sampled leaf re-run directly matched its tokens and charges
+  exactly, except the last seed of each run, whose checks were skipped for time
+  and are labelled as skipped.
+- SDXL atlases have 28–31 leaves of a possible 31. Images cross-fade between
+  the two sponsors' scenes in exact steps.
+- Between the extremes, the token mixture writes brand names that belong to
+  neither sponsor ("Bayview Lodge", "Lantern Bayview") and star ratings that
+  are in neither fact sheet. This happens on up to 78% of λ for some seeds.
+  Both extremes name their sponsor exactly in all 20 two-bidder atlases.
+- Three-bidder atlases exceed the two-bidder 1 + T bound on a real model. A
+  largest-area-first search order (`--order area`) resolves far more of the
+  triangle within a time budget than depth-first.
 
-Its outputs open in the Atlas Explorer. Until then, the explorer shows clearly
-labelled synthetic fixtures.
+`scripts/run_moonshots.sh` still runs every stage on a Mac (MPS), a CUDA
+machine or CPU.
 
 ## 8. Nonclaims
 
@@ -247,6 +255,7 @@ labelled synthetic fixtures.
   uses synthetic generators.
 - One seed is one sample of the tape. Stored atlases can differ across
   hardware and software numerics.
-- CLIP outcome scores for images are a noisy heuristic.
+- CLIP outcome scores for images are a noisy heuristic, and so are the
+  string measures of `scripts/analyze_live_atlases.py`.
 - Fictional brands only. Charges are simulated credits; nothing is billed,
   sent or settled.

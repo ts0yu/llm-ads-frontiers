@@ -96,6 +96,622 @@
    "model": "tiny-random-sdxl",
    "run": "model-test-image",
    "source": "model-test-image/cafe_seed2.atlas.json"
+  },
+  {
+   "id": "live-fort-mason/live-defaults-seed1",
+   "title": "Live Lab defaults · seed 1",
+   "schema": "bid-atlas-v1",
+   "kind": "text",
+   "mode": "live_model",
+   "path": "live-fort-mason/live-defaults-seed1.json",
+   "bidders": [
+    "Bayview Hotel",
+    "Lantern House"
+   ],
+   "leaves": 28,
+   "seed": 1,
+   "model": "Qwen/Qwen3-4B-Instruct-2507",
+   "run": "live-fort-mason",
+   "source": "live-defaults/live-defaults-seed1.json"
+  },
+  {
+   "id": "live-fort-mason/live-defaults-seed2",
+   "title": "Live Lab defaults · seed 2",
+   "schema": "bid-atlas-v1",
+   "kind": "text",
+   "mode": "live_model",
+   "path": "live-fort-mason/live-defaults-seed2.json",
+   "bidders": [
+    "Bayview Hotel",
+    "Lantern House"
+   ],
+   "leaves": 31,
+   "seed": 2,
+   "model": "Qwen/Qwen3-4B-Instruct-2507",
+   "run": "live-fort-mason",
+   "source": "live-defaults/live-defaults-seed2.json"
+  },
+  {
+   "id": "live-fort-mason/live-defaults-seed3",
+   "title": "Live Lab defaults · seed 3",
+   "schema": "bid-atlas-v1",
+   "kind": "text",
+   "mode": "live_model",
+   "path": "live-fort-mason/live-defaults-seed3.json",
+   "bidders": [
+    "Bayview Hotel",
+    "Lantern House"
+   ],
+   "leaves": 39,
+   "seed": 3,
+   "model": "Qwen/Qwen3-4B-Instruct-2507",
+   "run": "live-fort-mason",
+   "source": "live-defaults/live-defaults-seed3.json"
+  },
+  {
+   "id": "live-fort-mason/live-defaults-seed4",
+   "title": "Live Lab defaults · seed 4",
+   "schema": "bid-atlas-v1",
+   "kind": "text",
+   "mode": "live_model",
+   "path": "live-fort-mason/live-defaults-seed4.json",
+   "bidders": [
+    "Bayview Hotel",
+    "Lantern House"
+   ],
+   "leaves": 34,
+   "seed": 4,
+   "model": "Qwen/Qwen3-4B-Instruct-2507",
+   "run": "live-fort-mason",
+   "source": "live-defaults/live-defaults-seed4.json"
+  },
+  {
+   "id": "live-fort-mason/live-defaults-seed5",
+   "title": "Live Lab defaults · seed 5",
+   "schema": "bid-atlas-v1",
+   "kind": "text",
+   "mode": "live_model",
+   "path": "live-fort-mason/live-defaults-seed5.json",
+   "bidders": [
+    "Bayview Hotel",
+    "Lantern House"
+   ],
+   "leaves": 29,
+   "seed": 5,
+   "model": "Qwen/Qwen3-4B-Instruct-2507",
+   "run": "live-fort-mason",
+   "source": "live-defaults/live-defaults-seed5.json"
+  },
+  {
+   "id": "live-transit-hotel/transit-hotel-seed1",
+   "title": "A shuttle and a hotel · seed 1",
+   "schema": "bid-atlas-v1",
+   "kind": "text",
+   "mode": "live_model",
+   "path": "live-transit-hotel/transit-hotel-seed1.json",
+   "bidders": [
+    "HarborHop",
+    "Lantern House"
+   ],
+   "leaves": 31,
+   "seed": 1,
+   "model": "Qwen/Qwen3-4B-Instruct-2507",
+   "run": "live-transit-hotel",
+   "source": "transit-hotel/transit-hotel-seed1.json"
+  },
+  {
+   "id": "live-transit-hotel/transit-hotel-seed2",
+   "title": "A shuttle and a hotel · seed 2",
+   "schema": "bid-atlas-v1",
+   "kind": "text",
+   "mode": "live_model",
+   "path": "live-transit-hotel/transit-hotel-seed2.json",
+   "bidders": [
+    "HarborHop",
+    "Lantern House"
+   ],
+   "leaves": 25,
+   "seed": 2,
+   "model": "Qwen/Qwen3-4B-Instruct-2507",
+   "run": "live-transit-hotel",
+   "source": "transit-hotel/transit-hotel-seed2.json"
+  },
+  {
+   "id": "live-transit-hotel/transit-hotel-seed3",
+   "title": "A shuttle and a hotel · seed 3",
+   "schema": "bid-atlas-v1",
+   "kind": "text",
+   "mode": "live_model",
+   "path": "live-transit-hotel/transit-hotel-seed3.json",
+   "bidders": [
+    "HarborHop",
+    "Lantern House"
+   ],
+   "leaves": 29,
+   "seed": 3,
+   "model": "Qwen/Qwen3-4B-Instruct-2507",
+   "run": "live-transit-hotel",
+   "source": "transit-hotel/transit-hotel-seed3.json"
+  },
+  {
+   "id": "live-transit-hotel/transit-hotel-seed4",
+   "title": "A shuttle and a hotel · seed 4",
+   "schema": "bid-atlas-v1",
+   "kind": "text",
+   "mode": "live_model",
+   "path": "live-transit-hotel/transit-hotel-seed4.json",
+   "bidders": [
+    "HarborHop",
+    "Lantern House"
+   ],
+   "leaves": 31,
+   "seed": 4,
+   "model": "Qwen/Qwen3-4B-Instruct-2507",
+   "run": "live-transit-hotel",
+   "source": "transit-hotel/transit-hotel-seed4.json"
+  },
+  {
+   "id": "live-transit-hotel/transit-hotel-seed5",
+   "title": "A shuttle and a hotel · seed 5",
+   "schema": "bid-atlas-v1",
+   "kind": "text",
+   "mode": "live_model",
+   "path": "live-transit-hotel/transit-hotel-seed5.json",
+   "bidders": [
+    "HarborHop",
+    "Lantern House"
+   ],
+   "leaves": 34,
+   "seed": 5,
+   "model": "Qwen/Qwen3-4B-Instruct-2507",
+   "run": "live-transit-hotel",
+   "source": "transit-hotel/transit-hotel-seed5.json"
+  },
+  {
+   "id": "live-image-cafe/cafe_seed1.atlas",
+   "title": "Street cafe terrace · seed 1",
+   "schema": "bid-atlas-v1",
+   "kind": "image",
+   "mode": "live_model",
+   "path": "live-image-cafe/cafe_seed1.atlas.json",
+   "bidders": [
+    "Carmello Roastworks",
+    "Tidewick Tea Bar"
+   ],
+   "leaves": 31,
+   "seed": 1,
+   "model": "stabilityai/stable-diffusion-xl-base-1.0",
+   "run": "live-image-cafe",
+   "source": "cafe/cafe_seed1.atlas.json"
+  },
+  {
+   "id": "live-image-cafe/cafe_seed2.atlas",
+   "title": "Street cafe terrace · seed 2",
+   "schema": "bid-atlas-v1",
+   "kind": "image",
+   "mode": "live_model",
+   "path": "live-image-cafe/cafe_seed2.atlas.json",
+   "bidders": [
+    "Carmello Roastworks",
+    "Tidewick Tea Bar"
+   ],
+   "leaves": 31,
+   "seed": 2,
+   "model": "stabilityai/stable-diffusion-xl-base-1.0",
+   "run": "live-image-cafe",
+   "source": "cafe/cafe_seed2.atlas.json"
+  },
+  {
+   "id": "live-image-cafe/cafe_seed3.atlas",
+   "title": "Street cafe terrace · seed 3",
+   "schema": "bid-atlas-v1",
+   "kind": "image",
+   "mode": "live_model",
+   "path": "live-image-cafe/cafe_seed3.atlas.json",
+   "bidders": [
+    "Carmello Roastworks",
+    "Tidewick Tea Bar"
+   ],
+   "leaves": 31,
+   "seed": 3,
+   "model": "stabilityai/stable-diffusion-xl-base-1.0",
+   "run": "live-image-cafe",
+   "source": "cafe/cafe_seed3.atlas.json"
+  },
+  {
+   "id": "live-image-cafe-more/cafe_seed4.atlas",
+   "title": "Street cafe terrace · seed 4",
+   "schema": "bid-atlas-v1",
+   "kind": "image",
+   "mode": "live_model",
+   "path": "live-image-cafe-more/cafe_seed4.atlas.json",
+   "bidders": [
+    "Carmello Roastworks",
+    "Tidewick Tea Bar"
+   ],
+   "leaves": 31,
+   "seed": 4,
+   "model": "stabilityai/stable-diffusion-xl-base-1.0",
+   "run": "live-image-cafe-more",
+   "source": "cafe-more/cafe_seed4.atlas.json"
+  },
+  {
+   "id": "live-image-cafe-more/cafe_seed5.atlas",
+   "title": "Street cafe terrace · seed 5",
+   "schema": "bid-atlas-v1",
+   "kind": "image",
+   "mode": "live_model",
+   "path": "live-image-cafe-more/cafe_seed5.atlas.json",
+   "bidders": [
+    "Carmello Roastworks",
+    "Tidewick Tea Bar"
+   ],
+   "leaves": 31,
+   "seed": 5,
+   "model": "stabilityai/stable-diffusion-xl-base-1.0",
+   "run": "live-image-cafe-more",
+   "source": "cafe-more/cafe_seed5.atlas.json"
+  },
+  {
+   "id": "live-image-cafe-more/cafe_seed6.atlas",
+   "title": "Street cafe terrace · seed 6",
+   "schema": "bid-atlas-v1",
+   "kind": "image",
+   "mode": "live_model",
+   "path": "live-image-cafe-more/cafe_seed6.atlas.json",
+   "bidders": [
+    "Carmello Roastworks",
+    "Tidewick Tea Bar"
+   ],
+   "leaves": 31,
+   "seed": 6,
+   "model": "stabilityai/stable-diffusion-xl-base-1.0",
+   "run": "live-image-cafe-more",
+   "source": "cafe-more/cafe_seed6.atlas.json"
+  },
+  {
+   "id": "live-image-beach/beach_seed1.atlas",
+   "title": "Beach kiosk · seed 1",
+   "schema": "bid-atlas-v1",
+   "kind": "image",
+   "mode": "live_model",
+   "path": "live-image-beach/beach_seed1.atlas.json",
+   "bidders": [
+    "Zestrel Lemon Soda",
+    "Bluvane Berry Soda"
+   ],
+   "leaves": 31,
+   "seed": 1,
+   "model": "stabilityai/stable-diffusion-xl-base-1.0",
+   "run": "live-image-beach",
+   "source": "beach/beach_seed1.atlas.json"
+  },
+  {
+   "id": "live-image-beach/beach_seed2.atlas",
+   "title": "Beach kiosk · seed 2",
+   "schema": "bid-atlas-v1",
+   "kind": "image",
+   "mode": "live_model",
+   "path": "live-image-beach/beach_seed2.atlas.json",
+   "bidders": [
+    "Zestrel Lemon Soda",
+    "Bluvane Berry Soda"
+   ],
+   "leaves": 31,
+   "seed": 2,
+   "model": "stabilityai/stable-diffusion-xl-base-1.0",
+   "run": "live-image-beach",
+   "source": "beach/beach_seed2.atlas.json"
+  },
+  {
+   "id": "live-image-beach/beach_seed3.atlas",
+   "title": "Beach kiosk · seed 3",
+   "schema": "bid-atlas-v1",
+   "kind": "image",
+   "mode": "live_model",
+   "path": "live-image-beach/beach_seed3.atlas.json",
+   "bidders": [
+    "Zestrel Lemon Soda",
+    "Bluvane Berry Soda"
+   ],
+   "leaves": 31,
+   "seed": 3,
+   "model": "stabilityai/stable-diffusion-xl-base-1.0",
+   "run": "live-image-beach",
+   "source": "beach/beach_seed3.atlas.json"
+  },
+  {
+   "id": "live-image-park/park_seed1.atlas",
+   "title": "City park billboard · seed 1",
+   "schema": "bid-atlas-v1",
+   "kind": "image",
+   "mode": "live_model",
+   "path": "live-image-park/park_seed1.atlas.json",
+   "bidders": [
+    "Fernlight Cycles",
+    "Emberly Audio"
+   ],
+   "leaves": 31,
+   "seed": 1,
+   "model": "stabilityai/stable-diffusion-xl-base-1.0",
+   "run": "live-image-park",
+   "source": "park/park_seed1.atlas.json"
+  },
+  {
+   "id": "live-image-park/park_seed2.atlas",
+   "title": "City park billboard · seed 2",
+   "schema": "bid-atlas-v1",
+   "kind": "image",
+   "mode": "live_model",
+   "path": "live-image-park/park_seed2.atlas.json",
+   "bidders": [
+    "Fernlight Cycles",
+    "Emberly Audio"
+   ],
+   "leaves": 28,
+   "seed": 2,
+   "model": "stabilityai/stable-diffusion-xl-base-1.0",
+   "run": "live-image-park",
+   "source": "park/park_seed2.atlas.json"
+  },
+  {
+   "id": "live-image-park/park_seed3.atlas",
+   "title": "City park billboard · seed 3",
+   "schema": "bid-atlas-v1",
+   "kind": "image",
+   "mode": "live_model",
+   "path": "live-image-park/park_seed3.atlas.json",
+   "bidders": [
+    "Fernlight Cycles",
+    "Emberly Audio"
+   ],
+   "leaves": 30,
+   "seed": 3,
+   "model": "stabilityai/stable-diffusion-xl-base-1.0",
+   "run": "live-image-park",
+   "source": "park/park_seed3.atlas.json"
+  },
+  {
+   "id": "live-competing-hotels/competing-hotels-seed1",
+   "title": "Two competing hotels · seed 1",
+   "schema": "bid-atlas-v1",
+   "kind": "text",
+   "mode": "live_model",
+   "path": "live-competing-hotels/competing-hotels-seed1.json",
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel"
+   ],
+   "leaves": 21,
+   "seed": 1,
+   "model": "Qwen/Qwen3-4B-Instruct-2507",
+   "run": "live-competing-hotels",
+   "source": "competing-hotels/competing-hotels-seed1.json"
+  },
+  {
+   "id": "live-competing-hotels/competing-hotels-seed10",
+   "title": "Two competing hotels · seed 10",
+   "schema": "bid-atlas-v1",
+   "kind": "text",
+   "mode": "live_model",
+   "path": "live-competing-hotels/competing-hotels-seed10.json",
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel"
+   ],
+   "leaves": 26,
+   "seed": 10,
+   "model": "Qwen/Qwen3-4B-Instruct-2507",
+   "run": "live-competing-hotels",
+   "source": "competing-hotels/competing-hotels-seed10.json"
+  },
+  {
+   "id": "live-competing-hotels/competing-hotels-seed2",
+   "title": "Two competing hotels · seed 2",
+   "schema": "bid-atlas-v1",
+   "kind": "text",
+   "mode": "live_model",
+   "path": "live-competing-hotels/competing-hotels-seed2.json",
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel"
+   ],
+   "leaves": 20,
+   "seed": 2,
+   "model": "Qwen/Qwen3-4B-Instruct-2507",
+   "run": "live-competing-hotels",
+   "source": "competing-hotels/competing-hotels-seed2.json"
+  },
+  {
+   "id": "live-competing-hotels/competing-hotels-seed3",
+   "title": "Two competing hotels · seed 3",
+   "schema": "bid-atlas-v1",
+   "kind": "text",
+   "mode": "live_model",
+   "path": "live-competing-hotels/competing-hotels-seed3.json",
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel"
+   ],
+   "leaves": 19,
+   "seed": 3,
+   "model": "Qwen/Qwen3-4B-Instruct-2507",
+   "run": "live-competing-hotels",
+   "source": "competing-hotels/competing-hotels-seed3.json"
+  },
+  {
+   "id": "live-competing-hotels/competing-hotels-seed4",
+   "title": "Two competing hotels · seed 4",
+   "schema": "bid-atlas-v1",
+   "kind": "text",
+   "mode": "live_model",
+   "path": "live-competing-hotels/competing-hotels-seed4.json",
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel"
+   ],
+   "leaves": 22,
+   "seed": 4,
+   "model": "Qwen/Qwen3-4B-Instruct-2507",
+   "run": "live-competing-hotels",
+   "source": "competing-hotels/competing-hotels-seed4.json"
+  },
+  {
+   "id": "live-competing-hotels/competing-hotels-seed5",
+   "title": "Two competing hotels · seed 5",
+   "schema": "bid-atlas-v1",
+   "kind": "text",
+   "mode": "live_model",
+   "path": "live-competing-hotels/competing-hotels-seed5.json",
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel"
+   ],
+   "leaves": 29,
+   "seed": 5,
+   "model": "Qwen/Qwen3-4B-Instruct-2507",
+   "run": "live-competing-hotels",
+   "source": "competing-hotels/competing-hotels-seed5.json"
+  },
+  {
+   "id": "live-competing-hotels/competing-hotels-seed6",
+   "title": "Two competing hotels · seed 6",
+   "schema": "bid-atlas-v1",
+   "kind": "text",
+   "mode": "live_model",
+   "path": "live-competing-hotels/competing-hotels-seed6.json",
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel"
+   ],
+   "leaves": 24,
+   "seed": 6,
+   "model": "Qwen/Qwen3-4B-Instruct-2507",
+   "run": "live-competing-hotels",
+   "source": "competing-hotels/competing-hotels-seed6.json"
+  },
+  {
+   "id": "live-competing-hotels/competing-hotels-seed7",
+   "title": "Two competing hotels · seed 7",
+   "schema": "bid-atlas-v1",
+   "kind": "text",
+   "mode": "live_model",
+   "path": "live-competing-hotels/competing-hotels-seed7.json",
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel"
+   ],
+   "leaves": 18,
+   "seed": 7,
+   "model": "Qwen/Qwen3-4B-Instruct-2507",
+   "run": "live-competing-hotels",
+   "source": "competing-hotels/competing-hotels-seed7.json"
+  },
+  {
+   "id": "live-competing-hotels/competing-hotels-seed8",
+   "title": "Two competing hotels · seed 8",
+   "schema": "bid-atlas-v1",
+   "kind": "text",
+   "mode": "live_model",
+   "path": "live-competing-hotels/competing-hotels-seed8.json",
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel"
+   ],
+   "leaves": 21,
+   "seed": 8,
+   "model": "Qwen/Qwen3-4B-Instruct-2507",
+   "run": "live-competing-hotels",
+   "source": "competing-hotels/competing-hotels-seed8.json"
+  },
+  {
+   "id": "live-competing-hotels/competing-hotels-seed9",
+   "title": "Two competing hotels · seed 9",
+   "schema": "bid-atlas-v1",
+   "kind": "text",
+   "mode": "live_model",
+   "path": "live-competing-hotels/competing-hotels-seed9.json",
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel"
+   ],
+   "leaves": 17,
+   "seed": 9,
+   "model": "Qwen/Qwen3-4B-Instruct-2507",
+   "run": "live-competing-hotels",
+   "source": "competing-hotels/competing-hotels-seed9.json"
+  },
+  {
+   "id": "live-three-hotels-depth/atlas-seed1",
+   "title": "Three competing hotels · seed 1",
+   "schema": "simplex-atlas-v1",
+   "kind": "text",
+   "mode": "live_model",
+   "path": "live-three-hotels-depth/atlas-seed1.json",
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel",
+    "Saltmarsh Inn"
+   ],
+   "leaves": 196,
+   "seed": 1,
+   "model": "Qwen/Qwen3-4B-Instruct-2507",
+   "run": "live-three-hotels-depth",
+   "source": "three-hotels/atlas-seed1.json"
+  },
+  {
+   "id": "live-three-hotels-depth/atlas-seed2",
+   "title": "Three competing hotels · seed 2",
+   "schema": "simplex-atlas-v1",
+   "kind": "text",
+   "mode": "live_model",
+   "path": "live-three-hotels-depth/atlas-seed2.json",
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel",
+    "Saltmarsh Inn"
+   ],
+   "leaves": 96,
+   "seed": 2,
+   "model": "Qwen/Qwen3-4B-Instruct-2507",
+   "run": "live-three-hotels-depth",
+   "source": "three-hotels/atlas-seed2.json"
+  },
+  {
+   "id": "live-three-hotels-depth/atlas-seed3",
+   "title": "Three competing hotels · seed 3",
+   "schema": "simplex-atlas-v1",
+   "kind": "text",
+   "mode": "live_model",
+   "path": "live-three-hotels-depth/atlas-seed3.json",
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel",
+    "Saltmarsh Inn"
+   ],
+   "leaves": 76,
+   "seed": 3,
+   "model": "Qwen/Qwen3-4B-Instruct-2507",
+   "run": "live-three-hotels-depth",
+   "source": "three-hotels/atlas-seed3.json"
+  },
+  {
+   "id": "live-three-hotels-depth/atlas-seed4",
+   "title": "Three competing hotels · seed 4",
+   "schema": "simplex-atlas-v1",
+   "kind": "text",
+   "mode": "live_model",
+   "path": "live-three-hotels-depth/atlas-seed4.json",
+   "bidders": [
+    "Lantern House",
+    "Tideglass Hotel",
+    "Saltmarsh Inn"
+   ],
+   "leaves": 144,
+   "seed": 4,
+   "model": "Qwen/Qwen3-4B-Instruct-2507",
+   "run": "live-three-hotels-depth",
+   "source": "three-hotels/atlas-seed4.json"
   }
  ]
 }
