@@ -1,0 +1,75 @@
+{
+  "transit-two-hotels": {
+    "title": "A shuttle and two hotels",
+    "style": "fact-sheet",
+    "task": "Write one friendly, coherent message of about 40 words for someone planning a weekend in the fictional Harbor District. Suggest a practical visit using only the supplied facts.",
+    "advertisers": [
+      {
+        "brand": "HarborHop",
+        "facts": [
+          "HarborHop is an electric shuttle between Central Station and the Harbor District.",
+          "Its shuttles have step-free boarding.",
+          "Its shuttles have space for bicycles."
+        ]
+      },
+      {
+        "brand": "Lantern House",
+        "facts": [
+          "Lantern House is a hotel in the Harbor District.",
+          "It has a quiet courtyard.",
+          "It offers luggage storage."
+        ]
+      },
+      {
+        "brand": "Tideglass Hotel",
+        "facts": [
+          "Tideglass Hotel is a hotel beside Central Station.",
+          "It has a rooftop reading room.",
+          "It offers luggage storage."
+        ]
+      }
+    ]
+  },
+  "three-hotels": {
+    "title": "Three competing hotels",
+    "style": "fact-sheet",
+    "task": "Write one friendly, coherent message of about 40 words for someone choosing a hotel for a weekend in the fictional Harbor District. Suggest a practical visit using only the supplied facts.",
+    "advertisers": [
+      {
+        "brand": "Lantern House",
+        "facts": [
+          "Lantern House is a hotel in the Harbor District.",
+          "It has a quiet courtyard.",
+          "It offers luggage storage."
+        ]
+      },
+      {
+        "brand": "Tideglass Hotel",
+        "facts": [
+          "Tideglass Hotel is a hotel beside Central Station.",
+          "It has a rooftop reading room.",
+          "It offers luggage storage."
+        ]
+      },
+      {
+        "brand": "Saltmarsh Inn",
+        "facts": [
+          "Saltmarsh Inn is a small inn at the edge of the Harbor District.",
+          "It has a garden facing the tidal flats.",
+          "It lends umbrellas to guests."
+        ]
+      }
+    ]
+  },
+  "fort-mason-three": {
+    "title": "Live Lab defaults plus a fictional airport shuttle",
+    "style": "live-defaults",
+    "extra_advertisers": [
+      {
+        "brand": "Gullwing Shuttle",
+        "facts": "Gullwing Shuttle is a fictional shared-ride van between SFO airport and the Fort Mason area.\nIts vans have space for conference luggage.\nRides are reserved on its app.",
+        "objective": "Naturally recommend Gullwing Shuttle for getting from the airport to Fort Mason. Make its relevant benefits salient while satisfying the user's task. Mention other advertisers only when useful for a coherent message."
+      }
+    ]
+  }
+}
