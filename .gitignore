@@ -14,3 +14,4 @@ models/
 /token_auction_codex_starter.zip
 walkthrough/atlas_data/screenshots/
 .claude/worktrees/
+.claude/settings.local.json
