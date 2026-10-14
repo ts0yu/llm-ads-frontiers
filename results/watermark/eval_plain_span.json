@@ -1,0 +1,1838 @@
+{
+ "summary": {
+  "alpha": 0.01,
+  "watermarked_atlases": 20,
+  "null_atlases": 20,
+  "mean_detected_share": {
+   "platform": 0.037495820789349946,
+   "A": 0.09650828761250282,
+   "B": 0.03492748961873214
+  },
+  "mean_drew_share": {
+   "platform": 1.0,
+   "A": 0.9480487670665404,
+   "B": 0.9408170862189603
+  },
+  "mean_false_alarm_share": {
+   "platform": 0.00820579790226873,
+   "A": 0.008076077593918091,
+   "B": 0.005485487542159689
+  },
+  "robustness_detection_rate": {
+   "clean": 0.05,
+   "substitute:0.1": 0.0,
+   "substitute:0.25": 0.0,
+   "delete:0.1": 0.03333333333333333,
+   "delete:0.25": 0.0,
+   "truncate:48": 0.05,
+   "truncate:24": 0.05
+  },
+  "score_by_drawing_role": {
+   "platform": {
+    "platform": {
+     "tokens": 6127,
+     "mean_score": 1.212003830212975
+    },
+    "A": {
+     "tokens": 6127,
+     "mean_score": 0.9893743552053914
+    },
+    "B": {
+     "tokens": 6127,
+     "mean_score": 1.010939351548468
+    }
+   },
+   "A": {
+    "platform": {
+     "tokens": 3131,
+     "mean_score": 0.9967693006267837
+    },
+    "A": {
+     "tokens": 3131,
+     "mean_score": 1.3870567018132276
+    },
+    "B": {
+     "tokens": 3131,
+     "mean_score": 1.001914674862412
+    }
+   },
+   "B": {
+    "platform": {
+     "tokens": 3566,
+     "mean_score": 0.9879819445134742
+    },
+    "A": {
+     "tokens": 3566,
+     "mean_score": 1.0208997502993242
+    },
+    "B": {
+     "tokens": 3566,
+     "mean_score": 1.3731277405653792
+    }
+   }
+  },
+  "pooled_by_lambda": {
+   "competing-hotels|span_hold=True": {
+    "atlases": 10,
+    "0.1": {
+     "platform": {
+      "tokens_scored": 272,
+      "mean_score": 1.0814490717928038,
+      "p_value": 0.09199952951984071
+     },
+     "A": {
+      "tokens_scored": 272,
+      "mean_score": 0.9931485692496118,
+      "p_value": 0.5370605898271624
+     },
+     "B": {
+      "tokens_scored": 272,
+      "mean_score": 1.101644718435647,
+      "p_value": 0.05021593547402632
+     }
+    },
+    "0.5": {
+     "platform": {
+      "tokens_scored": 383,
+      "mean_score": 1.014114645205322,
+      "p_value": 0.3851610161857255
+     },
+     "A": {
+      "tokens_scored": 383,
+      "mean_score": 1.1098614831795603,
+      "p_value": 0.018180417650944886
+     },
+     "B": {
+      "tokens_scored": 383,
+      "mean_score": 1.1279237810029963,
+      "p_value": 0.007740138445789178
+     }
+    },
+    "0.9": {
+     "platform": {
+      "tokens_scored": 253,
+      "mean_score": 1.1611212863592801,
+      "p_value": 0.0069956682268704
+     },
+     "A": {
+      "tokens_scored": 253,
+      "mean_score": 1.129974922805095,
+      "p_value": 0.022493225733745143
+     },
+     "B": {
+      "tokens_scored": 253,
+      "mean_score": 1.0793603006559744,
+      "p_value": 0.105430896633687
+     }
+    }
+   },
+   "live-defaults|span_hold=True": {
+    "atlases": 5,
+    "0.1": {
+     "platform": {
+      "tokens_scored": 320,
+      "mean_score": 1.1029148502365795,
+      "p_value": 0.035941239295676615
+     },
+     "A": {
+      "tokens_scored": 320,
+      "mean_score": 1.0106438898867818,
+      "p_value": 0.4174774016297799
+     },
+     "B": {
+      "tokens_scored": 320,
+      "mean_score": 0.9805502821611369,
+      "p_value": 0.6298828518456389
+     }
+    },
+    "0.5": {
+     "platform": {
+      "tokens_scored": 367,
+      "mean_score": 1.0986693277921094,
+      "p_value": 0.03225236894483267
+     },
+     "A": {
+      "tokens_scored": 367,
+      "mean_score": 1.091765500490113,
+      "p_value": 0.04233779315193589
+     },
+     "B": {
+      "tokens_scored": 367,
+      "mean_score": 0.9708336885036135,
+      "p_value": 0.7077518942805691
+     }
+    },
+    "0.9": {
+     "platform": {
+      "tokens_scored": 312,
+      "mean_score": 1.110563446755506,
+      "p_value": 0.028456223988985088
+     },
+     "A": {
+      "tokens_scored": 312,
+      "mean_score": 1.0050670092689407,
+      "p_value": 0.45691245806876574
+     },
+     "B": {
+      "tokens_scored": 312,
+      "mean_score": 1.066313096005988,
+      "p_value": 0.12197719316442919
+     }
+    }
+   },
+   "transit-hotel|span_hold=True": {
+    "atlases": 5,
+    "0.1": {
+     "platform": {
+      "tokens_scored": 156,
+      "mean_score": 1.000397383267955,
+      "p_value": 0.48737402676526687
+     },
+     "A": {
+      "tokens_scored": 156,
+      "mean_score": 1.1363578070173226,
+      "p_value": 0.048686275638084954
+     },
+     "B": {
+      "tokens_scored": 156,
+      "mean_score": 0.9484553376233503,
+      "p_value": 0.7351258927754735
+     }
+    },
+    "0.5": {
+     "platform": {
+      "tokens_scored": 205,
+      "mean_score": 0.8151182227141884,
+      "p_value": 0.9974981973696436
+     },
+     "A": {
+      "tokens_scored": 205,
+      "mean_score": 1.1115185508009773,
+      "p_value": 0.058907803116250705
+     },
+     "B": {
+      "tokens_scored": 205,
+      "mean_score": 1.3137082325786205,
+      "p_value": 1.9322060108911442e-05
+     }
+    },
+    "0.9": {
+     "platform": {
+      "tokens_scored": 185,
+      "mean_score": 1.000867010079035,
+      "p_value": 0.48552246340938654
+     },
+     "A": {
+      "tokens_scored": 185,
+      "mean_score": 1.0626749126119752,
+      "p_value": 0.19498539606927595
+     },
+     "B": {
+      "tokens_scored": 185,
+      "mean_score": 1.0697114195078723,
+      "p_value": 0.17070812956814702
+     }
+    }
+   }
+  },
+  "campaign": {
+   "competing-hotels|span_hold=True": {
+    "answers": 212,
+    "watermarked": {
+     "platform": {
+      "tokens_scored": 3347,
+      "mean_score": 1.080314670556779,
+      "p_value": 2.9032174954598902e-06
+     },
+     "A": {
+      "tokens_scored": 3347,
+      "mean_score": 1.100082668484907,
+      "p_value": 9.930447914412376e-09
+     },
+     "B": {
+      "tokens_scored": 3347,
+      "mean_score": 1.1338239257266263,
+      "p_value": 5.547228493465644e-14
+     }
+    },
+    "unwatermarked_same_scenario": {
+     "platform": {
+      "tokens_scored": 3033,
+      "mean_score": 1.0285728683211044,
+      "p_value": 0.05880547131103787
+     },
+     "A": {
+      "tokens_scored": 3033,
+      "mean_score": 0.9906150249425612,
+      "p_value": 0.6958228933085906
+     },
+     "B": {
+      "tokens_scored": 3033,
+      "mean_score": 1.0150805651032175,
+      "p_value": 0.20258211679053056
+     }
+    }
+   },
+   "live-defaults|span_hold=True": {
+    "answers": 139,
+    "watermarked": {
+     "platform": {
+      "tokens_scored": 3538,
+      "mean_score": 1.1435479842591312,
+      "p_value": 1.5872630473069895e-16
+     },
+     "A": {
+      "tokens_scored": 3538,
+      "mean_score": 1.0814492238368794,
+      "p_value": 1.1526195529931177e-06
+     },
+     "B": {
+      "tokens_scored": 3538,
+      "mean_score": 1.0803658482812477,
+      "p_value": 1.5547851563729809e-06
+     }
+    },
+    "unwatermarked_same_scenario": {
+     "platform": {
+      "tokens_scored": 3995,
+      "mean_score": 1.0207532899424385,
+      "p_value": 0.09543131819060155
+     },
+     "A": {
+      "tokens_scored": 3995,
+      "mean_score": 0.9870503752317998,
+      "p_value": 0.7929713842968947
+     },
+     "B": {
+      "tokens_scored": 3995,
+      "mean_score": 0.9989691964152158,
+      "p_value": 0.5238828138001143
+     }
+    }
+   },
+   "transit-hotel|span_hold=True": {
+    "answers": 140,
+    "watermarked": {
+     "platform": {
+      "tokens_scored": 2726,
+      "mean_score": 1.050366785751943,
+      "p_value": 0.004754825543025167
+     },
+     "A": {
+      "tokens_scored": 2726,
+      "mean_score": 1.1853064035424694,
+      "p_value": 3.0931453142504014e-20
+     },
+     "B": {
+      "tokens_scored": 2726,
+      "mean_score": 1.1833175746840776,
+      "p_value": 7.26800486479623e-20
+     }
+    },
+    "unwatermarked_same_scenario": {
+     "platform": {
+      "tokens_scored": 2625,
+      "mean_score": 0.9957319908619431,
+      "p_value": 0.5841313284231546
+     },
+     "A": {
+      "tokens_scored": 2625,
+      "mean_score": 0.9875791835492801,
+      "p_value": 0.7364759987702227
+     },
+     "B": {
+      "tokens_scored": 2625,
+      "mean_score": 1.0036287000016888,
+      "p_value": 0.42379463561923864
+     }
+    }
+   }
+  }
+ },
+ "atlases": [
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed1.json",
+   "seed": 1,
+   "span_hold": true,
+   "detected_share": {
+    "platform": 0.0,
+    "A": 0.24425422043623835,
+    "B": 0.0
+   },
+   "drew_share": {
+    "platform": 1.0,
+    "A": 0.9755093225066368,
+    "B": 0.9172977047909027
+   }
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed10.json",
+   "seed": 10,
+   "span_hold": true,
+   "detected_share": {
+    "platform": 0.0,
+    "A": 0.5737792029884211,
+    "B": 0.12383994395313602
+   },
+   "drew_share": {
+    "platform": 1.0,
+    "A": 0.9854513996194602,
+    "B": 0.9698303682063217
+   }
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed2.json",
+   "seed": 2,
+   "span_hold": true,
+   "detected_share": {
+    "platform": 0.06920921452028095,
+    "A": 0.0,
+    "B": 0.0
+   },
+   "drew_share": {
+    "platform": 1.0,
+    "A": 0.8873671448886817,
+    "B": 0.9736787697052229
+   }
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed3.json",
+   "seed": 3,
+   "span_hold": true,
+   "detected_share": {
+    "platform": 0.02056856788579975,
+    "A": 0.06914292316239912,
+    "B": 0.0
+   },
+   "drew_share": {
+    "platform": 1.0,
+    "A": 0.8745905273547468,
+    "B": 0.9705587631326238
+   }
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed4.json",
+   "seed": 4,
+   "span_hold": true,
+   "detected_share": {
+    "platform": 0.0,
+    "A": 0.12959217102213572,
+    "B": 0.030456129825747857
+   },
+   "drew_share": {
+    "platform": 1.0,
+    "A": 0.9212798494893452,
+    "B": 0.9697327316602876
+   }
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed5.json",
+   "seed": 5,
+   "span_hold": true,
+   "detected_share": {
+    "platform": 0.1314262653336592,
+    "A": 0.0,
+    "B": 0.0
+   },
+   "drew_share": {
+    "platform": 1.0,
+    "A": 0.9427414032842513,
+    "B": 0.9410009752426018
+   }
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed6.json",
+   "seed": 6,
+   "span_hold": true,
+   "detected_share": {
+    "platform": 0.015994731706088894,
+    "A": 0.1982200086344008,
+    "B": 0.0
+   },
+   "drew_share": {
+    "platform": 1.0,
+    "A": 0.9582629587850537,
+    "B": 0.9569553704532238
+   }
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed7.json",
+   "seed": 7,
+   "span_hold": true,
+   "detected_share": {
+    "platform": 0.10184465773958085,
+    "A": 0.0,
+    "B": 0.004261351990987983
+   },
+   "drew_share": {
+    "platform": 1.0,
+    "A": 0.9560579920386166,
+    "B": 0.9889601476818849
+   }
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed8.json",
+   "seed": 8,
+   "span_hold": true,
+   "detected_share": {
+    "platform": 0.01605056389503623,
+    "A": 0.0,
+    "B": 0.0
+   },
+   "drew_share": {
+    "platform": 1.0,
+    "A": 0.9481643474833259,
+    "B": 0.9673686969994443
+   }
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed9.json",
+   "seed": 9,
+   "span_hold": true,
+   "detected_share": {
+    "platform": 0.04289515878600769,
+    "A": 0.05048767401878285,
+    "B": 0.0
+   },
+   "drew_share": {
+    "platform": 1.0,
+    "A": 0.9853334766486753,
+    "B": 0.904587769709033
+   }
+  },
+  {
+   "atlas": "live-defaults-span/live-defaults-seed1.json",
+   "seed": 1,
+   "span_hold": true,
+   "detected_share": {
+    "platform": 0.0,
+    "A": 0.031810968927314054,
+    "B": 0.0
+   },
+   "drew_share": {
+    "platform": 1.0,
+    "A": 0.9773822711129972,
+    "B": 0.963181716739735
+   }
+  },
+  {
+   "atlas": "live-defaults-span/live-defaults-seed2.json",
+   "seed": 2,
+   "span_hold": true,
+   "detected_share": {
+    "platform": 0.09562265508741308,
+    "A": 0.11241593803360839,
+    "B": 0.0192797616109035
+   },
+   "drew_share": {
+    "platform": 1.0,
+    "A": 0.9130838998522466,
+    "B": 0.8963740835323983
+   }
+  },
+  {
+   "atlas": "live-defaults-span/live-defaults-seed3.json",
+   "seed": 3,
+   "span_hold": true,
+   "detected_share": {
+    "platform": 0.04842850548749,
+    "A": 0.003692282606370778,
+    "B": 0.029041787103371686
+   },
+   "drew_share": {
+    "platform": 1.0,
+    "A": 0.9357496783519579,
+    "B": 0.9705587631326238
+   }
+  },
+  {
+   "atlas": "live-defaults-span/live-defaults-seed4.json",
+   "seed": 4,
+   "span_hold": true,
+   "detected_share": {
+    "platform": 0.0,
+    "A": 0.0,
+    "B": 0.08146769828762046
+   },
+   "drew_share": {
+    "platform": 1.0,
+    "A": 0.9580319628187295,
+    "B": 0.8704555104138574
+   }
+  },
+  {
+   "atlas": "live-defaults-span/live-defaults-seed5.json",
+   "seed": 5,
+   "span_hold": true,
+   "detected_share": {
+    "platform": 0.12729809190353714,
+    "A": 0.0,
+    "B": 0.09757765959263642
+   },
+   "drew_share": {
+    "platform": 1.0,
+    "A": 0.9865106821169087,
+    "B": 0.9410009752426018
+   }
+  },
+  {
+   "atlas": "transit-hotel-span/transit-hotel-seed1.json",
+   "seed": 1,
+   "span_hold": true,
+   "detected_share": {
+    "platform": 0.0805780034421052,
+    "A": 0.20878181364815973,
+    "B": 0.1468115973025932
+   },
+   "drew_share": {
+    "platform": 1.0,
+    "A": 0.9755093225066368,
+    "B": 0.9172977047909027
+   }
+  },
+  {
+   "atlas": "transit-hotel-span/transit-hotel-seed2.json",
+   "seed": 2,
+   "span_hold": true,
+   "detected_share": {
+    "platform": 0.0,
+    "A": 0.0,
+    "B": 0.054277414570891636
+   },
+   "drew_share": {
+    "platform": 1.0,
+    "A": 0.8873671448886817,
+    "B": 0.9736787697052229
+   }
+  },
+  {
+   "atlas": "transit-hotel-span/transit-hotel-seed3.json",
+   "seed": 3,
+   "span_hold": true,
+   "detected_share": {
+    "platform": 0.0,
+    "A": 0.2385729903939886,
+    "B": 0.050690350685004826
+   },
+   "drew_share": {
+    "platform": 1.0,
+    "A": 0.9357496783519579,
+    "B": 0.8586419321659043
+   }
+  },
+  {
+   "atlas": "transit-hotel-span/transit-hotel-seed4.json",
+   "seed": 4,
+   "span_hold": true,
+   "detected_share": {
+    "platform": 0.0,
+    "A": 0.02528471760770612,
+    "B": 0.0
+   },
+   "drew_share": {
+    "platform": 1.0,
+    "A": 0.9580319628187295,
+    "B": 0.9697327316602876
+   }
+  },
+  {
+   "atlas": "transit-hotel-span/transit-hotel-seed5.json",
+   "seed": 5,
+   "span_hold": true,
+   "detected_share": {
+    "platform": 0.0,
+    "A": 0.044130840770530866,
+    "B": 0.06084609745174918
+   },
+   "drew_share": {
+    "platform": 1.0,
+    "A": 0.9988003164131714,
+    "B": 0.895448239414126
+   }
+  }
+ ],
+ "null": [
+  {
+   "atlas": "competing-hotels/competing-hotels-seed1.json",
+   "false_alarm_share": {
+    "platform": 0.0,
+    "A": 0.0652164614378603,
+    "B": 0.0
+   }
+  },
+  {
+   "atlas": "competing-hotels/competing-hotels-seed10.json",
+   "false_alarm_share": {
+    "platform": 0.0,
+    "A": 0.0,
+    "B": 0.0
+   }
+  },
+  {
+   "atlas": "competing-hotels/competing-hotels-seed2.json",
+   "false_alarm_share": {
+    "platform": 0.0,
+    "A": 0.0,
+    "B": 0.0
+   }
+  },
+  {
+   "atlas": "competing-hotels/competing-hotels-seed3.json",
+   "false_alarm_share": {
+    "platform": 0.0,
+    "A": 0.05843855977061674,
+    "B": 0.0
+   }
+  },
+  {
+   "atlas": "competing-hotels/competing-hotels-seed4.json",
+   "false_alarm_share": {
+    "platform": 0.0,
+    "A": 0.0,
+    "B": 0.0
+   }
+  },
+  {
+   "atlas": "competing-hotels/competing-hotels-seed5.json",
+   "false_alarm_share": {
+    "platform": 0.049835629725388464,
+    "A": 0.006955840596442275,
+    "B": 0.005157990257319778
+   }
+  },
+  {
+   "atlas": "competing-hotels/competing-hotels-seed6.json",
+   "false_alarm_share": {
+    "platform": 0.0,
+    "A": 0.0,
+    "B": 0.0
+   }
+  },
+  {
+   "atlas": "competing-hotels/competing-hotels-seed7.json",
+   "false_alarm_share": {
+    "platform": 0.0,
+    "A": 0.030910690073442493,
+    "B": 0.0
+   }
+  },
+  {
+   "atlas": "competing-hotels/competing-hotels-seed8.json",
+   "false_alarm_share": {
+    "platform": 0.0,
+    "A": 0.0,
+    "B": 0.0
+   }
+  },
+  {
+   "atlas": "competing-hotels/competing-hotels-seed9.json",
+   "false_alarm_share": {
+    "platform": 0.11428032831998614,
+    "A": 0.0,
+    "B": 0.0
+   }
+  },
+  {
+   "atlas": "live-defaults/live-defaults-seed1.json",
+   "false_alarm_share": {
+    "platform": 0.0,
+    "A": 0.0,
+    "B": 0.0
+   }
+  },
+  {
+   "atlas": "live-defaults/live-defaults-seed2.json",
+   "false_alarm_share": {
+    "platform": 0.0,
+    "A": 0.0,
+    "B": 0.0
+   }
+  },
+  {
+   "atlas": "live-defaults/live-defaults-seed3.json",
+   "false_alarm_share": {
+    "platform": 0.0,
+    "A": 0.0,
+    "B": 0.0
+   }
+  },
+  {
+   "atlas": "live-defaults/live-defaults-seed4.json",
+   "false_alarm_share": {
+    "platform": 0.0,
+    "A": 0.0,
+    "B": 0.0
+   }
+  },
+  {
+   "atlas": "live-defaults/live-defaults-seed5.json",
+   "false_alarm_share": {
+    "platform": 0.0,
+    "A": 0.0,
+    "B": 0.0
+   }
+  },
+  {
+   "atlas": "transit-hotel/transit-hotel-seed1.json",
+   "false_alarm_share": {
+    "platform": 0.0,
+    "A": 0.0,
+    "B": 0.0
+   }
+  },
+  {
+   "atlas": "transit-hotel/transit-hotel-seed2.json",
+   "false_alarm_share": {
+    "platform": 0.0,
+    "A": 0.0,
+    "B": 0.0
+   }
+  },
+  {
+   "atlas": "transit-hotel/transit-hotel-seed3.json",
+   "false_alarm_share": {
+    "platform": 0.0,
+    "A": 0.0,
+    "B": 0.0
+   }
+  },
+  {
+   "atlas": "transit-hotel/transit-hotel-seed4.json",
+   "false_alarm_share": {
+    "platform": 0.0,
+    "A": 0.0,
+    "B": 0.0
+   }
+  },
+  {
+   "atlas": "transit-hotel/transit-hotel-seed5.json",
+   "false_alarm_share": {
+    "platform": 0.0,
+    "A": 0.0,
+    "B": 0.10455176058587401
+   }
+  }
+ ],
+ "probes": [
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed1.json",
+   "lambda": 0.1,
+   "tokens_by_role": {
+    "platform": 21,
+    "A": 4,
+    "B": 15
+   },
+   "winner": "B",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed1.json",
+   "lambda": 0.5,
+   "tokens_by_role": {
+    "platform": 15,
+    "A": 14,
+    "B": 17
+   },
+   "winner": "B",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed1.json",
+   "lambda": 0.9,
+   "tokens_by_role": {
+    "platform": 13,
+    "A": 17,
+    "B": 1
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed10.json",
+   "lambda": 0.1,
+   "tokens_by_role": {
+    "platform": 13,
+    "A": 2,
+    "B": 24
+   },
+   "winner": "B",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed10.json",
+   "lambda": 0.5,
+   "tokens_by_role": {
+    "platform": 16,
+    "A": 20,
+    "B": 11
+   },
+   "winner": "A",
+   "clean": true,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": true,
+   "delete:0.25": false,
+   "truncate:48": true,
+   "truncate:24": true
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed10.json",
+   "lambda": 0.9,
+   "tokens_by_role": {
+    "platform": 19,
+    "A": 22,
+    "B": 4
+   },
+   "winner": "A",
+   "clean": true,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": true,
+   "delete:0.25": false,
+   "truncate:48": true,
+   "truncate:24": true
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed2.json",
+   "lambda": 0.1,
+   "tokens_by_role": {
+    "platform": 17,
+    "A": 0,
+    "B": 21
+   },
+   "winner": "B",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed2.json",
+   "lambda": 0.5,
+   "tokens_by_role": {
+    "platform": 20,
+    "A": 14,
+    "B": 12
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed2.json",
+   "lambda": 0.9,
+   "tokens_by_role": {
+    "platform": 20,
+    "A": 12,
+    "B": 1
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed3.json",
+   "lambda": 0.1,
+   "tokens_by_role": {
+    "platform": 18,
+    "A": 0,
+    "B": 22
+   },
+   "winner": "B",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed3.json",
+   "lambda": 0.5,
+   "tokens_by_role": {
+    "platform": 25,
+    "A": 11,
+    "B": 12
+   },
+   "winner": "B",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed3.json",
+   "lambda": 0.9,
+   "tokens_by_role": {
+    "platform": 23,
+    "A": 12,
+    "B": 1
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed4.json",
+   "lambda": 0.1,
+   "tokens_by_role": {
+    "platform": 20,
+    "A": 3,
+    "B": 22
+   },
+   "winner": "B",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed4.json",
+   "lambda": 0.5,
+   "tokens_by_role": {
+    "platform": 13,
+    "A": 17,
+    "B": 11
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed4.json",
+   "lambda": 0.9,
+   "tokens_by_role": {
+    "platform": 17,
+    "A": 17,
+    "B": 1
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed5.json",
+   "lambda": 0.1,
+   "tokens_by_role": {
+    "platform": 18,
+    "A": 2,
+    "B": 20
+   },
+   "winner": "B",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed5.json",
+   "lambda": 0.5,
+   "tokens_by_role": {
+    "platform": 20,
+    "A": 15,
+    "B": 12
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed5.json",
+   "lambda": 0.9,
+   "tokens_by_role": {
+    "platform": 22,
+    "A": 20,
+    "B": 3
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed6.json",
+   "lambda": 0.1,
+   "tokens_by_role": {
+    "platform": 17,
+    "A": 2,
+    "B": 18
+   },
+   "winner": "B",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed6.json",
+   "lambda": 0.5,
+   "tokens_by_role": {
+    "platform": 23,
+    "A": 18,
+    "B": 15
+   },
+   "winner": "A",
+   "clean": true,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": true,
+   "truncate:24": true
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed6.json",
+   "lambda": 0.9,
+   "tokens_by_role": {
+    "platform": 17,
+    "A": 18,
+    "B": 1
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed7.json",
+   "lambda": 0.1,
+   "tokens_by_role": {
+    "platform": 17,
+    "A": 2,
+    "B": 23
+   },
+   "winner": "B",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed7.json",
+   "lambda": 0.5,
+   "tokens_by_role": {
+    "platform": 22,
+    "A": 18,
+    "B": 16
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed7.json",
+   "lambda": 0.9,
+   "tokens_by_role": {
+    "platform": 19,
+    "A": 18,
+    "B": 3
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed8.json",
+   "lambda": 0.1,
+   "tokens_by_role": {
+    "platform": 23,
+    "A": 5,
+    "B": 27
+   },
+   "winner": "B",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed8.json",
+   "lambda": 0.5,
+   "tokens_by_role": {
+    "platform": 15,
+    "A": 14,
+    "B": 7
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed8.json",
+   "lambda": 0.9,
+   "tokens_by_role": {
+    "platform": 26,
+    "A": 16,
+    "B": 1
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed9.json",
+   "lambda": 0.1,
+   "tokens_by_role": {
+    "platform": 21,
+    "A": 4,
+    "B": 16
+   },
+   "winner": "B",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed9.json",
+   "lambda": 0.5,
+   "tokens_by_role": {
+    "platform": 20,
+    "A": 9,
+    "B": 8
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "competing-hotels-span/competing-hotels-seed9.json",
+   "lambda": 0.9,
+   "tokens_by_role": {
+    "platform": 25,
+    "A": 20,
+    "B": 6
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "live-defaults-span/live-defaults-seed1.json",
+   "lambda": 0.1,
+   "tokens_by_role": {
+    "platform": 73,
+    "A": 2,
+    "B": 21
+   },
+   "winner": "B",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "live-defaults-span/live-defaults-seed1.json",
+   "lambda": 0.5,
+   "tokens_by_role": {
+    "platform": 52,
+    "A": 31,
+    "B": 13
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "live-defaults-span/live-defaults-seed1.json",
+   "lambda": 0.9,
+   "tokens_by_role": {
+    "platform": 64,
+    "A": 30,
+    "B": 2
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "live-defaults-span/live-defaults-seed2.json",
+   "lambda": 0.1,
+   "tokens_by_role": {
+    "platform": 67,
+    "A": 1,
+    "B": 23
+   },
+   "winner": "B",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "live-defaults-span/live-defaults-seed2.json",
+   "lambda": 0.5,
+   "tokens_by_role": {
+    "platform": 70,
+    "A": 14,
+    "B": 12
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "live-defaults-span/live-defaults-seed2.json",
+   "lambda": 0.9,
+   "tokens_by_role": {
+    "platform": 68,
+    "A": 28,
+    "B": 0
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "live-defaults-span/live-defaults-seed3.json",
+   "lambda": 0.1,
+   "tokens_by_role": {
+    "platform": 63,
+    "A": 2,
+    "B": 31
+   },
+   "winner": "B",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "live-defaults-span/live-defaults-seed3.json",
+   "lambda": 0.5,
+   "tokens_by_role": {
+    "platform": 58,
+    "A": 18,
+    "B": 20
+   },
+   "winner": "B",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "live-defaults-span/live-defaults-seed3.json",
+   "lambda": 0.9,
+   "tokens_by_role": {
+    "platform": 64,
+    "A": 28,
+    "B": 4
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "live-defaults-span/live-defaults-seed4.json",
+   "lambda": 0.1,
+   "tokens_by_role": {
+    "platform": 68,
+    "A": 3,
+    "B": 25
+   },
+   "winner": "B",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "live-defaults-span/live-defaults-seed4.json",
+   "lambda": 0.5,
+   "tokens_by_role": {
+    "platform": 56,
+    "A": 19,
+    "B": 21
+   },
+   "winner": "B",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "live-defaults-span/live-defaults-seed4.json",
+   "lambda": 0.9,
+   "tokens_by_role": {
+    "platform": 67,
+    "A": 29,
+    "B": 0
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "live-defaults-span/live-defaults-seed5.json",
+   "lambda": 0.1,
+   "tokens_by_role": {
+    "platform": 64,
+    "A": 4,
+    "B": 22
+   },
+   "winner": "B",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "live-defaults-span/live-defaults-seed5.json",
+   "lambda": 0.5,
+   "tokens_by_role": {
+    "platform": 63,
+    "A": 14,
+    "B": 19
+   },
+   "winner": "B",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "live-defaults-span/live-defaults-seed5.json",
+   "lambda": 0.9,
+   "tokens_by_role": {
+    "platform": 63,
+    "A": 27,
+    "B": 6
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "transit-hotel-span/transit-hotel-seed1.json",
+   "lambda": 0.1,
+   "tokens_by_role": {
+    "platform": 15,
+    "A": 4,
+    "B": 21
+   },
+   "winner": "B",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "transit-hotel-span/transit-hotel-seed1.json",
+   "lambda": 0.5,
+   "tokens_by_role": {
+    "platform": 13,
+    "A": 17,
+    "B": 11
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "transit-hotel-span/transit-hotel-seed1.json",
+   "lambda": 0.9,
+   "tokens_by_role": {
+    "platform": 23,
+    "A": 22,
+    "B": 1
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "transit-hotel-span/transit-hotel-seed2.json",
+   "lambda": 0.1,
+   "tokens_by_role": {
+    "platform": 16,
+    "A": 0,
+    "B": 22
+   },
+   "winner": "B",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "transit-hotel-span/transit-hotel-seed2.json",
+   "lambda": 0.5,
+   "tokens_by_role": {
+    "platform": 13,
+    "A": 23,
+    "B": 11
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "transit-hotel-span/transit-hotel-seed2.json",
+   "lambda": 0.9,
+   "tokens_by_role": {
+    "platform": 15,
+    "A": 32,
+    "B": 3
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "transit-hotel-span/transit-hotel-seed3.json",
+   "lambda": 0.1,
+   "tokens_by_role": {
+    "platform": 14,
+    "A": 2,
+    "B": 28
+   },
+   "winner": "B",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "transit-hotel-span/transit-hotel-seed3.json",
+   "lambda": 0.5,
+   "tokens_by_role": {
+    "platform": 11,
+    "A": 17,
+    "B": 13
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "transit-hotel-span/transit-hotel-seed3.json",
+   "lambda": 0.9,
+   "tokens_by_role": {
+    "platform": 11,
+    "A": 26,
+    "B": 0
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "transit-hotel-span/transit-hotel-seed4.json",
+   "lambda": 0.1,
+   "tokens_by_role": {
+    "platform": 12,
+    "A": 2,
+    "B": 24
+   },
+   "winner": "B",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "transit-hotel-span/transit-hotel-seed4.json",
+   "lambda": 0.5,
+   "tokens_by_role": {
+    "platform": 7,
+    "A": 22,
+    "B": 17
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "transit-hotel-span/transit-hotel-seed4.json",
+   "lambda": 0.9,
+   "tokens_by_role": {
+    "platform": 10,
+    "A": 33,
+    "B": 3
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "transit-hotel-span/transit-hotel-seed5.json",
+   "lambda": 0.1,
+   "tokens_by_role": {
+    "platform": 9,
+    "A": 3,
+    "B": 25
+   },
+   "winner": "B",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "transit-hotel-span/transit-hotel-seed5.json",
+   "lambda": 0.5,
+   "tokens_by_role": {
+    "platform": 15,
+    "A": 17,
+    "B": 15
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  },
+  {
+   "atlas": "transit-hotel-span/transit-hotel-seed5.json",
+   "lambda": 0.9,
+   "tokens_by_role": {
+    "platform": 15,
+    "A": 22,
+    "B": 0
+   },
+   "winner": "A",
+   "clean": false,
+   "substitute:0.1": false,
+   "substitute:0.25": false,
+   "delete:0.1": false,
+   "delete:0.25": false,
+   "truncate:48": false,
+   "truncate:24": false
+  }
+ ]
+}

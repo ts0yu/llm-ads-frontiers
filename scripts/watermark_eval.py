@@ -138,6 +138,25 @@ def evaluate(watermarked, null, alpha=0.01, seed=0):
             pooled[label][str(lam)] = {role: {k: found[role][k] for k in
                                               ("tokens_scored", "mean_score", "p_value")}
                                        for role in wm.ROLES}
+    # Campaign audit: every distinct answer (leaf) of every atlas of a scenario, pooled,
+    # with the same pooling on unwatermarked atlases of that scenario as the null.
+    campaign = {}
+    for label, group in groups.items():
+        keys = wm.keys_for_manifest(group[0]["manifest"], group[0]["bidders"])
+        texts = [leaf["token_ids"] for a in group for leaf in a["leaves"]]
+        found = wm.detect_pooled(texts, keys)
+        scenario = group[0]["manifest"].get("scenario")
+        null_texts = [leaf["token_ids"] for _, a in null
+                      if a["manifest"].get("scenario") == scenario for leaf in a["leaves"]]
+        null_found = wm.detect_pooled(null_texts, keys) if null_texts else None
+        campaign[label] = {
+            "answers": len(texts),
+            "watermarked": {r: {k: found[r][k] for k in ("tokens_scored", "mean_score", "p_value")}
+                            for r in wm.ROLES},
+            "unwatermarked_same_scenario": None if null_found is None else {
+                r: {k: null_found[r][k] for k in ("tokens_scored", "mean_score", "p_value")}
+                for r in wm.ROLES},
+        }
     summary = {
         "alpha": alpha,
         "watermarked_atlases": len(rows),
@@ -155,6 +174,7 @@ def evaluate(watermarked, null, alpha=0.01, seed=0):
     }
     summary["score_by_drawing_role"] = truth_table
     summary["pooled_by_lambda"] = pooled
+    summary["campaign"] = campaign
     return {"summary": summary, "atlases": rows, "null": nulls, "probes": probes}
 
 

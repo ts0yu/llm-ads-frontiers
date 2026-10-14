@@ -24,6 +24,9 @@ exact charges and outcome curves. Start here:
   proofs and nonclaims.
 - [docs/SPAN_HOLD.md](docs/SPAN_HOLD.md): an opt-in variant (`--span-hold`) that
   keeps words and names whole, so a contest cannot land inside a brand name.
+- [docs/WATERMARK.md](docs/WATERMARK.md): a keyed sponsor watermark (`--watermark
+  demo`) for checking whose key shaped a text. It is reliable for a campaign's
+  answers, not for a single answer.
 - [MOONSHOTS.md](MOONSHOTS.md): the design, the JSON schemas and the labels.
 - **Atlas Playground**, `/playground.html`: computed live in the browser on
   synthetic, non-LLM generators. It has a sponsored city walk, a two-label

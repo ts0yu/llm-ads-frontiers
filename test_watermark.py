@@ -250,6 +250,40 @@ class WatermarkAtlasTests(unittest.TestCase):
                                       workdir=None, kind="midpoint")
                 self.assertTrue(record["matches_direct_run"], (span, leaf["id"]))
 
+    def test_replay_attribution_recovers_every_keyed_token(self):
+        from itertools import product
+
+        from token_auction_lab import watermark_replay as replay
+
+        probs = [0.2, 0.5, 0.05, 0.9]
+        for k in range(6):
+            brute = sum(math.prod(p if b else 1 - p for p, b in zip(probs, bits))
+                        for bits in product((0, 1), repeat=4) if sum(bits) >= k)
+            self.assertAlmostEqual(replay.poisson_binomial_upper_tail(probs, k), brute)
+        for shared in ("platform", "floor"):
+            keys = wm.demo_keys(BIDDERS, shared)
+            for span in (False, True):
+                atlas = build_atlas(self.model, self.tokenizer, PROMPTS, BIDDERS, seed=3,
+                                    temperature=1.0, max_tokens=14, mode="synthetic_model_test",
+                                    span_hold=span, watermark=keys)
+                for leaf in atlas["leaves"]:
+                    found = replay.attribute(self.model, [ids for _, ids in PROMPTS],
+                                             leaf["token_ids"], keys, temperature=1.0,
+                                             span_hold=span)
+                    seen, first = set(), {}
+                    for t, tok in enumerate(leaf["token_ids"]):
+                        pair = (tuple(leaf["token_ids"][max(0, t - wm.CONTEXT_TOKENS):t]), tok)
+                        if pair not in seen:
+                            seen.add(pair)
+                            first[t] = True
+                    for t, step in enumerate(leaf["steps"]):
+                        if t in first:
+                            self.assertIn(t, found["roles"][step["key"]]["matched_steps"],
+                                          (shared, span, leaf["id"], t, step["key"]))
+                    for role in wm.ROLES:
+                        p = found["roles"][role]["p_value"]
+                        self.assertTrue(0.0 <= p <= 1.0)
+
     def test_evaluation_script_reports_shares_false_alarms_and_edits(self):
         import importlib.util
 
