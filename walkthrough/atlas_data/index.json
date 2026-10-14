@@ -1,0 +1,49 @@
+{
+ "schema": "atlas-index-v1",
+ "note": "Paths are relative to this file. Every entry here is a SYNTHETIC FIXTURE unless its mode says otherwise.",
+ "atlases": [
+  {
+   "id": "fixture-text-hotels",
+   "title": "Fort Mason conference stay (toy corpus)",
+   "schema": "bid-atlas-v1",
+   "kind": "text",
+   "mode": "synthetic_fixture",
+   "path": "fixture-text-hotels.json",
+   "bidders": [
+    "Bayview Hotel",
+    "Lantern House"
+   ],
+   "leaves": 12,
+   "seed": 110
+  },
+  {
+   "id": "fixture-image-cafe",
+   "title": "Rainy-street café storefront (placeholder images)",
+   "schema": "bid-atlas-v1",
+   "kind": "image",
+   "mode": "synthetic_fixture",
+   "path": "fixture-image-cafe.json",
+   "bidders": [
+    "Tidewater Coffee",
+    "Ember Roasters"
+   ],
+   "leaves": 10,
+   "seed": 30
+  },
+  {
+   "id": "fixture-simplex-hotels",
+   "title": "Three hotels, one seed (toy corpus)",
+   "schema": "simplex-atlas-v1",
+   "kind": "text",
+   "mode": "synthetic_fixture",
+   "path": "fixture-simplex-hotels.json",
+   "bidders": [
+    "Bayview Hotel",
+    "Lantern House",
+    "Harbor Loft"
+   ],
+   "leaves": 15,
+   "seed": 91
+  }
+ ]
+}

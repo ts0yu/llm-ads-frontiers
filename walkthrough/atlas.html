@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Atlas Explorer: for one seed, every bid ratio and the exact answer, charges and outcomes it produces. Replay of stored atlases; simulated credits.">
+  <title>Atlas Explorer · Token Auction Lab</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%231e3936'/%3E%3Cpath d='M9 12h22M20 12v19' stroke='%23f0e5cd' stroke-width='4'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/atlas.css">
+  <script type="module" src="/atlas.mjs"></script>
+</head>
+<body>
+  <a class="skip" href="#view">Skip to the explorer</a>
+  <header class="masthead">
+    <a class="brand" href="/"><span class="brand-mark">τ</span><span>Token Auction Lab<br><strong>Atlas Explorer</strong></span></a>
+    <nav aria-label="Lab pages"><a href="/#question">Walkthrough</a><a href="/#live">Live Lab</a><a href="/atlas.html" aria-current="page">Atlas Explorer</a></nav>
+    <label class="picker"><span>Atlas</span><select id="atlas-select" aria-label="Choose an atlas"></select></label>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch theme"><span aria-hidden="true"></span></button>
+  </header>
+  <div class="labels" role="note" aria-label="Data provenance">
+    <span id="mode-badge" class="badge mode">LOADING</span>
+    <span class="badge sim">SPONSORED SIMULATION — simulated credits</span>
+    <span class="badge replay">REPLAY · no inference runs on this page</span>
+    <span id="mode-note" class="mode-note"></span>
+    <span id="meta" class="meta"></span>
+  </div>
+  <main id="atlas-root">
+    <section class="hero" id="hero"><p class="loading">Opening the atlas…</p></section>
+    <details class="explainer panel">
+      <summary><span>What an atlas shows — and what it does not claim</span><span class="chev" aria-hidden="true"></span></summary>
+      <div class="explainer-body">
+        <div>
+          <h3>One seed, every bid ratio</h3>
+          <p>The random tape for every step (shared-or-contested draw, candidate draws, contest uniform <i>u</i>) is fixed by the seed before bids are known. Bids enter only through λ = a / (a + b), in one comparison per contested step: <b>u &lt; λ</b> emits A's candidate, otherwise B's. So the whole answer is a step function of λ.</p>
+        </div>
+        <div>
+          <h3>At most 1 + T answers</h3>
+          <p>All live branches read the same <i>u</i> at step k, and their intervals partition (0, 1], so at most one branch splits per step. A T-step generation has <b>at most 1 + T distinct answers over all bid ratios</b>, deterministically. The boundaries are exactly the contest uniforms where a split happened.</p>
+        </div>
+        <div>
+          <h3>Exact charges inside an answer</h3>
+          <p>With S = a + b and λ inside a leaf, each contest won by A charges A S(1−λ)·u/(1−u); each won by B charges B S·λ·(1−u)/u. Shared steps are free. These are simulated credits.</p>
+        </div>
+        <div>
+          <h3>Proven vs measured</h3>
+          <p>Per-token stability is proven for the two-bidder construction: raising your bid can only switch a contest toward your candidate. Whether an answer-level outcome such as “mentions Bayview Hotel” is monotone in λ is <b>not</b> implied — the atlas measures it exactly, for this seed. A non-monotone band is a finding, not a bug.</p>
+        </div>
+        <div class="nonclaims">
+          <h3>Nonclaims</h3>
+          <ul>
+            <li>No truthful-bidding claim over complete answers or arbitrary advertiser utilities.</li>
+            <li>All charges are simulated credits; nothing is billed, sent, or settled.</li>
+            <li>One seed is one sample. Model numerics on other hardware can change a stored atlas.</li>
+            <li>Synthetic fixtures are toy data for UI work. CLIP scores are a noisy heuristic, not ground truth.</li>
+            <li>Three bidders use an exponential race; cells are convex, but the 1 + T bound is for two bidders only.</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+    <div id="view"></div>
+  </main>
+  <footer class="foot"><span>Token Auction Lab · Atlas Explorer</span><span>Schema: MOONSHOTS.md §4 (bid-atlas-v1, simplex-atlas-v1) · Labels: §5</span></footer>
+  <noscript>The Atlas Explorer needs JavaScript. Atlas files are plain JSON under /atlas_data/.</noscript>
+</body>
+</html>

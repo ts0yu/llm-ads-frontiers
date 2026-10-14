@@ -18,6 +18,11 @@ from token_auction_lab.live import BusyError, LiveService, StaleRunError
 
 ROOT = Path(__file__).resolve().parents[1]
 WEB = ROOT / "walkthrough"
+ATLAS_DATA = WEB / "atlas_data"
+ATLAS_TYPES = {
+    ".json": "application/json; charset=utf-8", ".jpg": "image/jpeg", ".jpeg": "image/jpeg",
+    ".png": "image/png", ".webp": "image/webp",
+}
 ARCHIVE = Path("smoke_results/mps-2026-10-13")
 SOURCE_FILES = {
     "SMOKE_RESULTS.md", "TEST_RESULTS.txt", "MECHANISM.md", "CODEX_BRIEF.md",
@@ -41,6 +46,20 @@ def evidence_path(name: str) -> Path | None:
     ):
         return None
     return path if path.is_file() else None
+
+
+def atlas_path(name: str) -> Path | None:
+    """Only atlas JSON and images inside walkthrough/atlas_data are public."""
+    try:
+        path = (ATLAS_DATA / name).resolve()
+        relative = path.relative_to(ATLAS_DATA.resolve())
+    except (ValueError, OSError):
+        return None
+    if any(part.startswith(".") for part in relative.parts):
+        return None
+    if path.suffix.lower() not in ATLAS_TYPES or not path.is_file():
+        return None
+    return path
 
 
 def load_evidence() -> dict:
@@ -172,6 +191,13 @@ class Handler(BaseHTTPRequestHandler):
                 return
             body = file.read_bytes()
             content_type = "text/plain; charset=utf-8"
+        elif route.startswith("/atlas_data/"):
+            file = atlas_path(route[len("/atlas_data/"):])
+            if file is None:
+                self.send_error(404)
+                return
+            body = file.read_bytes()
+            content_type = ATLAS_TYPES[file.suffix.lower()]
         else:
             name = "index.html" if route == "/" else route.lstrip("/")
             file = (WEB / name).resolve()
