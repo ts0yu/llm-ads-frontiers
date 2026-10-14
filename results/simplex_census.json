@@ -1,0 +1,67 @@
+{
+  "mode": "synthetic_generators",
+  "seeds": 100,
+  "world": "city walk, three sponsors",
+  "rows": [
+    {
+      "max_steps": 20,
+      "mean_cells": 116.54,
+      "max_cells": 151,
+      "mean_distinct_routes": 60.42,
+      "mean_share_passing": [
+        {
+          "sponsor": "Brindlewick Coffee",
+          "share": 0.48866627600862755
+        },
+        {
+          "sponsor": "Quillmere Books",
+          "share": 0.21554927369939572
+        },
+        {
+          "sponsor": "Tansy Market",
+          "share": 0.16702661580700823
+        }
+      ]
+    },
+    {
+      "max_steps": 40,
+      "mean_cells": 295.77,
+      "max_cells": 448,
+      "mean_distinct_routes": 167.8,
+      "mean_share_passing": [
+        {
+          "sponsor": "Brindlewick Coffee",
+          "share": 0.5355289709867705
+        },
+        {
+          "sponsor": "Quillmere Books",
+          "share": 0.29651211380863257
+        },
+        {
+          "sponsor": "Tansy Market",
+          "share": 0.4855122368814536
+        }
+      ]
+    },
+    {
+      "max_steps": 80,
+      "mean_cells": 461.6,
+      "max_cells": 778,
+      "mean_distinct_routes": 276.58,
+      "mean_share_passing": [
+        {
+          "sponsor": "Brindlewick Coffee",
+          "share": 0.5518450679718911
+        },
+        {
+          "sponsor": "Quillmere Books",
+          "share": 0.33618986515255656
+        },
+        {
+          "sponsor": "Tansy Market",
+          "share": 0.5364700271581164
+        }
+      ]
+    }
+  ]
+}

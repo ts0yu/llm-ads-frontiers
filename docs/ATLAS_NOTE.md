@@ -147,6 +147,19 @@ They show the mechanism and the analysis, not advertising behaviour.
 walks into a dithering one that often runs out of steps. This is a non-language
 analogue of incoherent text from evenly matched bids.
 
+**Three sponsors (100 seeds, `results/simplex_census.json`).** A third shop
+turns the bid ratio into a triangle of bid shares. Cells are convex polygons
+and grow much faster than 1 + T:
+
+| Max steps T | Mean cells | Max cells | Mean distinct routes |
+|---:|---:|---:|---:|
+| 20 | 116.5 | 151 | 60.4 |
+| 40 | 295.8 | 448 | 167.8 |
+| 80 | 461.6 | 778 | 276.6 |
+
+Growth slows at T = 80 because most walks reach the venue earlier. Every cell
+is checked against a direct race at its centroid in `test_playground.py`.
+
 **Outcome-level bidding (`walkthrough/bid_game.mjs`).** Averaging 200 atlases
 gives `P_i(lambda)` and the expected-charge factors `K_i(lambda)` exactly for
 those seeds: `E[pay_A] = b*K_A`, `E[pay_B] = a*K_B`.
