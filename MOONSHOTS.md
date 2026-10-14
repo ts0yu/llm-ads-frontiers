@@ -137,6 +137,14 @@ The parent's interval is recorded after all splits. N-bidder atlases use
 `"schema": "simplex-atlas-v1"`, replace `lo/hi` with `polygon` (a list of
 barycentric points), and record per-step `winner` and exponentials `E`.
 
+Display fields for the Atlas Explorer, written by the generators (they never
+affect decoding): top-level `title`; `manifest.user_prompt` (the shared user task,
+no advertiser brief) for text, `manifest.prompts.shared` for images; per split
+`a_token_text`/`b_token_text` (two bidders) or `pieces: [{cell, winner, token,
+token_text}]` plus `E` (simplex), decoded in context after the shared prefix.
+The simplex generator names its list `cells`; `scripts/publish_atlases.py`
+renames it `leaves` when publishing into `walkthrough/atlas_data/`.
+
 ## 5. Labels
 
 - Live atlases come from real model inference: `mode: live_model`.

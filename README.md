@@ -130,8 +130,25 @@ draggable triangle. No inference runs on this page. The bundled atlases in
 `walkthrough/atlas_data/` are labeled `synthetic_fixture`: toy weighted-corpus and
 placeholder-image data written by `python -m scripts.make_atlas_fixtures`
 (Pillow is needed only to redraw the placeholder JPEGs). They exercise the UI and
-its arithmetic; they say nothing about model behaviour. To show another atlas,
-place it under `walkthrough/atlas_data/` and add it to `index.json`, or open
+its arithmetic; they say nothing about model behaviour. The `model-test-*` atlases
+are labeled `synthetic_model_test`: the real generators (`token_auction_lab.atlas`,
+`simplex_atlas`, `diffusion_atlas`) run on tiny random models by
+`python scripts/make_model_test_atlases.py`, so the text is word salad and the
+images are noise by design.
+
+To view real generator output, publish its `--output` directories:
+
+```bash
+python scripts/publish_atlases.py artifacts/moonshots/text/*/ artifacts/moonshots/simplex/*/ \
+  artifacts/moonshots/image/*/ --prefix live- --max-image-side 768
+python -m token_auction_lab.walkthrough --port 8790   # then open /atlas.html
+```
+
+This copies each atlas (and its images) to `walkthrough/atlas_data/<run-name>/` and
+rewrites `index.json`, keeping other entries. Mode labels are copied verbatim; it only
+fills display fields older runs lack, renames simplex `cells` to `leaves`, and records
+every change in the file's `published` block. `bash scripts/run_moonshots.sh` runs the
+live stages and this publish step. You can also open
 `/atlas.html?atlas=<relative path>.json`. Image paths are relative to the atlas file.
 
 ## Install and test

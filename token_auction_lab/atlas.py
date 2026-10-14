@@ -38,6 +38,7 @@ from auction import RandomTape, TwoBidderAuction
 from token_auction_lab.decoder import Context, SharedPrefixDecoder
 from token_auction_lab.prompts import ADVERTISER_PROMPT_POLICY, prompt_hash
 from token_auction_lab.runner import RoundConfig, eos_ids, run_round
+from token_auction_lab.token_text import token_piece
 
 SCHEMA = "bid-atlas-v1"
 PARAMETER = "lambda = bid_A / (bid_A + bid_B)"
@@ -120,8 +121,14 @@ def build_atlas(
     mode: str = "live_model",
     fork: str = "copy",
     on_progress: Callable[[dict], None] | None = None,
+    title: str | None = None,
+    user_prompt: str | None = None,
 ) -> dict:
-    """Interval search over lambda in (0, 1]. ``fork`` is "copy" or "replay"."""
+    """Interval search over lambda in (0, 1]. ``fork`` is "copy" or "replay".
+
+    ``title`` and ``user_prompt`` (the shared user task, without advertiser
+    briefs) are display fields for the Atlas Explorer; they do not affect decoding.
+    """
     if len(prompts) != 2 or len(bidders) != 2:
         raise ValueError("The atlas is defined for exactly two bidders and two contexts.")
     if mode not in MODES:
@@ -199,6 +206,12 @@ def build_atlas(
                             "child": child_id,
                             "b_token": allocation.candidate_b,
                             "a_token": allocation.candidate_a,
+                            "b_token_text": token_piece(
+                                tokenizer, decoder.generated, allocation.candidate_b
+                            ),
+                            "a_token_text": token_piece(
+                                tokenizer, decoder.generated, allocation.candidate_a
+                            ),
                             "prefix_token_count": step,
                             "prefix_text": decode_text(tokenizer, decoder.generated),
                         }
@@ -263,6 +276,7 @@ def build_atlas(
         "schema": SCHEMA,
         "kind": "text",
         "mode": mode,
+        "title": title,
         "label": "SPONSORED SIMULATION",
         "credit_unit": "simulated",
         "bidders": list(bidders),
@@ -272,6 +286,7 @@ def build_atlas(
         "manifest": {
             **(metadata or {}),
             "created_at": datetime.now(timezone.utc).isoformat(),
+            "user_prompt": user_prompt,
             "prompts": [
                 {"text": text, "sha256": prompt_hash(text), "token_ids": list(ids)}
                 for text, ids in prompts
@@ -587,6 +602,16 @@ def _scenario_prompts(tokenizer, name: str):
     return prompts, [ad["brand"] for ad in scenario["advertisers"]], None
 
 
+def _display(name: str, inputs: dict | None) -> tuple[str, str]:
+    """Explorer title and the shared user task (no advertiser briefs, no bids)."""
+    from token_auction_lab.prompts import scenarios
+
+    if inputs is not None:
+        return "Live Lab defaults", inputs["prompt"]
+    scenario = scenarios()[name]
+    return scenario.get("title", name), scenario["task"]
+
+
 def _load(args):
     """Mirrors cli.py: device/dtype choice, a resolved revision SHA, sdpa attention."""
     from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -770,9 +795,10 @@ def main(argv: list[str] | None = None, *, mode: str = "live_model") -> None:
         label = "live-defaults"
         metadata.update(scenario=label, live_inputs_without_bids=inputs)
     else:
-        prompts, bidders, _ = _scenario_prompts(tokenizer, args.scenario)
+        prompts, bidders, inputs = _scenario_prompts(tokenizer, args.scenario)
         label = args.scenario
         metadata.update(scenario=label)
+    title, user_prompt = _display(label, inputs)
     args.output.mkdir(parents=True, exist_ok=True)
     index_path = args.output / "index.json"
     index = {
@@ -809,6 +835,8 @@ def main(argv: list[str] | None = None, *, mode: str = "live_model") -> None:
             mode=mode,
             fork=args.fork,
             on_progress=progress,
+            title=title,
+            user_prompt=user_prompt,
         )
         atlas["analysis"] = analyze(atlas)
         atlas["verification_status"] = "pending"

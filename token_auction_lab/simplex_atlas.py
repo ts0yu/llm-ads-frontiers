@@ -45,6 +45,7 @@ import numpy as np
 
 from auction import RandomTape
 from token_auction_lab.auction_n import NBidderAuction, RaceTape, critical_bid
+from token_auction_lab.token_text import token_piece
 
 SCHEMA = "simplex-atlas-v1"
 MIN_AREA = 1e-12
@@ -316,8 +317,12 @@ def build_atlas(
     check_cache: bool = True,
     mode: str = "synthetic_model_test",
     manifest: dict | None = None,
+    title: str | None = None,
 ) -> dict:
-    """Depth-first exact atlas over the bid simplex; returns `simplex-atlas-v1` JSON."""
+    """Depth-first exact atlas over the bid simplex; returns `simplex-atlas-v1` JSON.
+
+    ``title`` is a display field for the Atlas Explorer and does not affect decoding.
+    """
     from token_auction_lab.multi_decoder import MultiPrefixDecoder
 
     n = len(prefixes)
@@ -395,13 +400,19 @@ def build_atlas(
                     cells[child.id] = child
                     owners.append(child)
                 if len(pieces) > 1:
+                    texts = {t: token_piece(tokenizer, decoder.generated, t)
+                             for t in {candidates[w] for w, _ in pieces}}
                     splits.append({
                         "step": step,
                         "parent": cell.id,
                         "children": [c.id for c in owners],
                         "winners": [w for w, _ in pieces],
                         "tokens": [candidates[w] for w, _ in pieces],
+                        "E": exponentials,
                         "apex": [e / sum(exponentials) for e in exponentials],
+                        "pieces": [{"cell": c.id, "winner": w, "token": candidates[w],
+                                    "token_text": texts[candidates[w]]}
+                                   for c, (w, _) in zip(owners, pieces)],
                         "prefix_text": decode_text(tokenizer, decoder.generated),
                     })
                 for (winner, piece), owner in zip(pieces, owners):
@@ -461,6 +472,7 @@ def build_atlas(
         "schema": SCHEMA,
         "kind": "text",
         "mode": mode,
+        "title": title,
         "label": {"live_model": "LIVE MODEL OUTPUT", "synthetic_model_test":
                   "SYNTHETIC MODEL TEST (random weights)", "synthetic_fixture":
                   "SYNTHETIC FIXTURE"}.get(mode, mode),
@@ -580,6 +592,7 @@ def write_atlases(
     mode: str = "live_model",
     metadata: dict | None = None,
     log: Callable[[dict], None] | None = None,
+    title: str | None = None,
 ) -> dict:
     """One JSON per seed, written as each finishes; index.json rewritten after each."""
     from token_auction_lab.prompts import prompt_hash
@@ -609,6 +622,7 @@ def write_atlases(
             model, tokenizer, prefixes, seed=seed, temperature=temperature,
             max_tokens=max_tokens, eos_ids=eos_ids, bidders=bidders, max_cells=max_cells,
             time_budget_seconds=time_budget_seconds, mode=mode, manifest=manifest,
+            title=title,
         )
         if verify_cells:
             started = time.perf_counter()
@@ -634,7 +648,9 @@ def write_atlases(
     return index
 
 
-def main(argv: Sequence[str] | None = None) -> None:
+def main(argv: Sequence[str] | None = None, *, mode: str = "live_model") -> None:
+    """``mode`` stays live_model for real inference; tiny random models pass
+    synthetic_model_test (tests and scripts/make_model_test_atlases.py)."""
     import torch
 
     from token_auction_lab.cli import add_model_arguments, load_model, pinned_revision
@@ -681,6 +697,7 @@ def main(argv: Sequence[str] | None = None) -> None:
         "dependencies": {d.metadata["Name"]: d.version for d in distributions()},
         "scenario": args.scenario,
         "scenario_definition": scenario,
+        "user_prompt": scenario.get("task", scenario.get("prompt")),
         "advertiser_prompt_policy": PROMPT_POLICY_N,
         "local_files_only": args.local_files_only,
         "model_load_seconds": load_seconds,
@@ -694,8 +711,9 @@ def main(argv: Sequence[str] | None = None) -> None:
         max_tokens=args.max_tokens, output=args.output, bidders=brands(scenario),
         eos_ids=eos_ids(model, tokenizer), verify_cells=args.verify,
         max_cells=args.max_cells, time_budget_seconds=args.time_budget_seconds,
-        mode="live_model", metadata=metadata,
+        mode=mode, metadata=metadata,
         log=lambda s: print(json.dumps(s), flush=True),
+        title=scenario.get("title", args.scenario),
     )
 
 

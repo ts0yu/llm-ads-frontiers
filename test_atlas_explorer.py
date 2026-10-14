@@ -1,7 +1,9 @@
 """Atlas Explorer: fixture integrity, safe static route, and browser math vs Python.
 
-The atlases under walkthrough/atlas_data are SYNTHETIC FIXTURES (toy models). These
-tests check internal consistency and the explorer's arithmetic, not model quality.
+The atlases under walkthrough/atlas_data are SYNTHETIC FIXTURES (toy models) and
+SYNTHETIC MODEL TESTS (real generators on tiny random models, published with
+scripts/publish_atlases.py). These tests check internal consistency and the
+explorer's arithmetic, not model quality.
 """
 
 import json
@@ -11,6 +13,7 @@ import subprocess
 import threading
 import unittest
 from http.server import ThreadingHTTPServer
+from pathlib import Path
 from urllib.error import HTTPError
 from urllib.request import urlopen
 
@@ -56,6 +59,11 @@ def race_charges(leaf, lam, total):
     return charges
 
 
+def image_path(atlas_path_in_index, image):
+    """Image paths are relative to the atlas JSON (index paths are relative to index.json)."""
+    return (Path(atlas_path_in_index).parent / image).as_posix()
+
+
 def centroid(polygon):
     return [sum(p[k] for p in polygon) / len(polygon) for k in range(3)]
 
@@ -63,16 +71,34 @@ def centroid(polygon):
 class AtlasFixtureTests(unittest.TestCase):
     def test_index_lists_labeled_fixtures_of_each_kind(self):
         self.assertEqual(INDEX["schema"], "atlas-index-v1")
-        kinds = {(a["schema"], a["kind"]) for a in ATLASES.values()}
+        fixtures = {p: a for p, a in ATLASES.items() if p.startswith("fixture-")}
+        kinds = {(a["schema"], a["kind"]) for a in fixtures.values()}
         self.assertEqual(kinds, {("bid-atlas-v1", "text"), ("bid-atlas-v1", "image"),
                                  ("simplex-atlas-v1", "text")})
         for entry in INDEX["atlases"]:
             atlas = ATLASES[entry["path"]]
-            self.assertEqual(atlas["mode"], "synthetic_fixture")
             self.assertEqual(entry["mode"], atlas["mode"])
-            self.assertIn("SYNTHETIC FIXTURE", atlas["manifest"]["label"])
-            self.assertTrue(atlas["manifest"]["simulated_credits"])
             self.assertEqual(entry["leaves"], len(atlas["leaves"]))
+            if entry["path"] in fixtures:
+                self.assertEqual(atlas["mode"], "synthetic_fixture")
+                self.assertIn("SYNTHETIC FIXTURE", atlas["manifest"]["label"])
+                self.assertTrue(atlas["manifest"]["simulated_credits"])
+            else:
+                # Published generator output; nothing committed here is live inference.
+                self.assertEqual(atlas["mode"], "synthetic_model_test", entry["path"])
+                self.assertIn("tiny-random", entry["model"])
+                self.assertEqual(atlas["published"]["by"], "scripts/publish_atlases.py")
+                self.assertTrue(entry["title"])
+
+    def test_committed_model_test_atlases_cover_each_generator_and_stay_small(self):
+        published = {p: a for p, a in ATLASES.items() if not p.startswith("fixture-")}
+        kinds = {(a["schema"], a["kind"]) for a in published.values()}
+        self.assertEqual(kinds, {("bid-atlas-v1", "text"), ("bid-atlas-v1", "image"),
+                                 ("simplex-atlas-v1", "text")})
+        size = sum(f.stat().st_size for f in ATLAS_DATA.rglob("*") if f.is_file()
+                   and not f.relative_to(ATLAS_DATA).as_posix().startswith("fixture-")
+                   and f.name != "index.json")
+        self.assertLess(size, 1_500_000)
 
     def test_two_bidder_leaves_partition_and_respect_contest_uniforms(self):
         for path, atlas in PAIRS.items():
@@ -94,7 +120,8 @@ class AtlasFixtureTests(unittest.TestCase):
                     elif step["branch"] == "B":
                         self.assertGreaterEqual(step["u"], leaf["hi"])
                 if atlas["kind"] == "image":
-                    self.assertIsNotNone(atlas_path(leaf["image"]), leaf["image"])
+                    self.assertIsNotNone(atlas_path(image_path(path, leaf["image"])),
+                                         leaf["image"])
             self.assertTrue(all(v["matches_direct_run"] for v in atlas["verification"]))
 
     def test_simplex_cells_tile_the_triangle_and_match_recorded_winners(self):
@@ -163,6 +190,13 @@ class AtlasBrowserMathTests(unittest.TestCase):
                     if not leaf["lo"] < lam <= leaf["hi"]:
                         continue
                     total = float(rng.choice([1.0, 2.0, 100.0, 37.5]))
+                    bid_a, bid_b = total * float(lam), total * (1 - float(lam))
+                    if bid_a / (bid_a + bid_b) != lam:
+                        # At lam == hi == a contest uniform, bids (S*lam, S*(1-lam)) can
+                        # round to a ratio one ulp past the boundary, so auction.py would
+                        # (correctly) resolve the neighbouring leaf. The JS works in lam
+                        # directly; only compare bid pairs that represent lam exactly.
+                        continue
                     a, b = python_charges(leaf, float(lam), total)
                     cases.append({"atlas": path, "leaf": i, "lambda": float(lam), "S": total,
                                   "a": a, "b": b})

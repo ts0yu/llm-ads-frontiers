@@ -55,11 +55,38 @@ export function partitionProblems(leaves) {
   return problems;
 }
 
-/** Outcome keys in first-seen order. */
+/** Outcome keys in first-seen order. Only boolean and numeric outcomes can be drawn as lanes. */
 export function outcomeKeys(leaves) {
   const keys = [];
-  for (const leaf of leaves) for (const key of Object.keys(leaf.outcomes || {})) if (!keys.includes(key)) keys.push(key);
+  for (const leaf of leaves) {
+    for (const [key, value] of Object.entries(leaf.outcomes || {})) {
+      if ((typeof value === 'boolean' || typeof value === 'number') && !keys.includes(key)) keys.push(key);
+    }
+  }
   return keys;
+}
+
+/**
+ * The shared user task to show above an atlas. Fixtures store `manifest.prompts` as a
+ * string or {user | shared}; the text generators store per-advertiser prompt records
+ * (a list) plus `manifest.user_prompt`.
+ */
+export function promptText(manifest = {}) {
+  const prompts = manifest.prompts;
+  if (typeof prompts === 'string') return prompts;
+  if (prompts && !Array.isArray(prompts) && (prompts.user || prompts.shared)) return prompts.user || prompts.shared;
+  return typeof manifest.user_prompt === 'string' ? manifest.user_prompt : null;
+}
+
+/** Width / height of an image atlas, from its manifest (width/height or image_size); 1.6 if unknown. */
+export function imageAspect(manifest = {}) {
+  const [w, h] = Array.isArray(manifest.image_size) ? manifest.image_size : [manifest.width, manifest.height];
+  return Number(w) > 0 && Number(h) > 0 ? Math.min(3, Math.max(1 / 3, w / h)) : 1.6;
+}
+
+/** Simplex atlases list their cells as `leaves` (MOONSHOTS.md section 4); raw generator output says `cells`. */
+export function atlasLeaves(atlas) {
+  return atlas.leaves || atlas.cells || [];
 }
 
 /** Exact measure, switch count and monotonicity of one outcome along lambda. */
@@ -154,10 +181,10 @@ export function raceCharges(leaf, lambda, S = 1) {
 /** Human labels for the run mode (MOONSHOTS.md section 5). Viewing any stored atlas is REPLAY. */
 export function modeInfo(mode) {
   return {
-    synthetic_fixture: { badge: 'SYNTHETIC FIXTURE', tone: 'fixture', note: 'Hand-made toy data for UI development — not model output.' },
-    synthetic_model_test: { badge: 'SYNTHETIC MODEL TEST · REPLAY', tone: 'fixture', note: 'Tiny random model: checks mechanics, not text or image quality.' },
-    live_model: { badge: 'REPLAY · LIVE MODEL OUTPUT', tone: 'replay', note: 'Stored output of real local model inference, shown without repair.' },
-  }[mode] || { badge: 'UNLABELED MODE', tone: 'danger', note: `Unknown mode “${mode}”: treat as unverified.` };
+    synthetic_fixture: { badge: 'SYNTHETIC FIXTURE', tone: 'fixture', note: 'Hand-made toy data for UI development — not model output.', short: 'fixture' },
+    synthetic_model_test: { badge: 'SYNTHETIC MODEL TEST · REPLAY', tone: 'fixture', note: 'Tiny random model: checks mechanics, not text or image quality.', short: 'model test' },
+    live_model: { badge: 'REPLAY · LIVE MODEL OUTPUT', tone: 'replay', note: 'Stored output of real local model inference, shown without repair.', short: 'live model' },
+  }[mode] || { badge: 'UNLABELED MODE', tone: 'danger', note: `Unknown mode “${mode}”: treat as unverified.`, short: 'unlabeled' };
 }
 
 // ---------------------------------------------------------------------------------- UI
@@ -221,7 +248,7 @@ async function loadIndex() {
   const params = new URLSearchParams(location.search);
   const wanted = safeAtlasPath(params.get('atlas'));
   const select = $('#atlas-select');
-  select.innerHTML = state.index.map((e, i) => `<option value="${i}">${esc(e.title)} · ${esc(e.kind)}${e.schema === 'simplex-atlas-v1' ? ' · 3 bidders' : ''}</option>`).join('');
+  select.innerHTML = state.index.map((e, i) => `<option value="${i}">${esc(e.title)} · ${esc(e.kind)}${e.schema === 'simplex-atlas-v1' ? ' · 3 bidders' : ''} · ${esc(modeInfo(e.mode).short)}</option>`).join('');
   let entry = state.index.find(e => e.path === wanted);
   if (!entry && wanted) { entry = { title: wanted, path: wanted, kind: '?', mode: '?' }; state.index.push(entry); select.insertAdjacentHTML('beforeend', `<option value="${state.index.length - 1}">${esc(wanted)}</option>`); }
   entry ||= state.index[0];
@@ -236,6 +263,7 @@ async function openAtlas(entry, lambda) {
   const url = new URL(`/atlas_data/${entry.path}`, location.origin);
   const atlas = await getJSON(url);
   if (!['bid-atlas-v1', 'simplex-atlas-v1'].includes(atlas.schema)) throw new Error(`Unsupported atlas schema “${atlas.schema}”.`);
+  atlas.leaves = atlasLeaves(atlas);
   Object.assign(state, { entry, atlas, atlasUrl: url, split: null, hoverLeaf: null });
   const params = new URLSearchParams(location.search);
   params.set('atlas', entry.path);
@@ -256,14 +284,13 @@ function renderLabels() {
   badge.title = info.note;
   $('#mode-note').textContent = info.note;
   const manifest = atlas.manifest || {};
-  $('#meta').textContent = [`seed ${atlas.seed}`, `${atlas.max_steps} max steps`, manifest.model].filter(Boolean).join(' · ');
+  $('#meta').textContent = [`seed ${atlas.seed}`, `${atlas.max_steps} max steps`, manifest.model || manifest.model_id].filter(Boolean).join(' · ');
 }
 
 function renderHero() {
   const { atlas, entry } = state;
   const simplex = atlas.schema === 'simplex-atlas-v1';
-  const prompts = (atlas.manifest || {}).prompts;
-  const prompt = typeof prompts === 'string' ? prompts : prompts && (prompts.user || prompts.shared);
+  const prompt = promptText(atlas.manifest || {});
   const longest = Math.max(...atlas.leaves.map(l => l.steps.length));
   const verified = (atlas.verification || []);
   const ok = verified.filter(v => v.matches_direct_run).length;
@@ -292,6 +319,7 @@ function mountPair(lambda) {
   const problems = partitionProblems(state.leaves);
   const image = atlas.kind === 'image';
   const [A, B] = atlas.bidders;
+  $('#view').style.setProperty('--frame-aspect', String(imageAspect(atlas.manifest || {})));
   $('#view').innerHTML = `
   ${problems.length ? `<div class="warning" role="alert"><strong>Atlas check failed.</strong> ${problems.map(esc).join(' ')}</div>` : ''}
   <section class="scrub panel">
@@ -341,7 +369,7 @@ function mountPair(lambda) {
   wirePair();
   const start = lambda ?? defaultLambda();
   setLambda(start, { force: true });
-  observeResize(['#charge-chart', '#tape', '.num-plot'], () => { renderChargeChart(); renderTape(); renderNumericPlots(); });
+  observeResize(['#ticks', '#charge-chart', '#tape', '.num-plot'], () => { renderTicks(); renderChargeChart(); renderTape(); renderNumericPlots(); });
 }
 
 function defaultLambda() {
@@ -360,10 +388,30 @@ function renderTrack() {
   const track = $('#track'), ticks = $('#ticks');
   track.innerHTML = state.leaves.map((leaf, i) => `<div class="seg" data-leaf="${i}" style="left:${leaf.lo * 100}%;width:${(leaf.hi - leaf.lo) * 100}%;--seg:${leafColor(leaf)}"><span>${(leaf.hi - leaf.lo) > 0.045 ? i + 1 : ''}</span></div>`).join('')
     + '<div class="thumb" id="thumb"><span id="thumb-label"></span></div>';
+  renderTicks();
+}
+
+/**
+ * Greedy label rows for sorted tick positions (pixels): each label takes the first
+ * row whose previous label is at least `gap` px to the left; -1 hides the label
+ * (the tick mark stays). Dense real atlases have many nearby contest boundaries.
+ */
+export function tickRows(positions, gap, rows = 3) {
+  const last = new Array(rows).fill(-Infinity);
+  return positions.map(x => {
+    const row = last.findIndex(end => x - end >= gap);
+    if (row >= 0) last[row] = x;
+    return row;
+  });
+}
+
+function renderTicks() {
+  const ticks = $('#ticks');
+  if (!ticks) return;
+  const width = ticks.clientWidth || 800;
   const splits = [...state.atlas.splits].sort((x, y) => x.u - y.u);
-  let previous = null, low = false;
-  const rows = splits.map(s => { low = previous != null && s.u - previous < 0.035 && !low; previous = s.u; return low; });
-  ticks.innerHTML = splits.map((s, k) => `<button class="tick${rows[k] ? ' low' : ''}" data-split="${state.atlas.splits.indexOf(s)}" style="left:${s.u * 100}%" aria-label="Contest boundary at step ${s.step}, u = ${fmt(s.u, 6)}"><i></i><span>${s.step}</span></button>`).join('');
+  const rows = tickRows(splits.map(s => s.u * width), 22);
+  ticks.innerHTML = splits.map((s, k) => `<button class="tick row-${Math.max(0, rows[k])}${rows[k] < 0 ? ' nolabel' : ''}${state.split === state.atlas.splits.indexOf(s) ? ' is-selected' : ''}" data-split="${state.atlas.splits.indexOf(s)}" style="left:${s.u * 100}%" aria-label="Contest boundary at step ${s.step}, u = ${fmt(s.u, 6)}" title="step ${s.step} · u = ${fmt(s.u, 6)}"><i></i><span>${s.step}</span></button>`).join('');
 }
 
 function prettyKey(key) {
@@ -606,7 +654,9 @@ function showImage(leaf) {
   const front = a.classList.contains('front') ? a : b.classList.contains('front') ? b : null;
   const back = front === a ? b : a;
   const src = leaf.image ? new URL(leaf.image, state.atlasUrl).pathname : '';
-  $('#image-caption').innerHTML = `Placeholder image for answer ${state.leaf + 1}. ${state.keys.filter(k => typeof leaf.outcomes[k] === 'number').map(k => `<span class="mono">${esc(prettyKey(k))} = ${fmt(leaf.outcomes[k], 3)}</span>`).join(' · ')} <span class="muted">(noisy heuristic)</span>`;
+  const what = { synthetic_fixture: 'Placeholder image', synthetic_model_test: 'Tiny-random-model image (noise by design)', live_model: 'Model image' }[state.atlas.mode] || 'Unlabeled image';
+  const scores = state.keys.filter(k => typeof leaf.outcomes[k] === 'number').map(k => `<span class="mono">${esc(prettyKey(k))} = ${fmt(leaf.outcomes[k], 3)}</span>`);
+  $('#image-caption').innerHTML = `${what} for answer ${state.leaf + 1}.${scores.length ? ` ${scores.join(' · ')} <span class="muted">(noisy heuristic)</span>` : ''}`;
   if (front && front.getAttribute('src') === src) return;
   back.alt = `Image for answer ${state.leaf + 1}, lambda in (${fmt(leaf.lo, 3)}, ${fmt(leaf.hi, 3)}]`;
   const swap = () => { back.classList.add('front'); front?.classList.remove('front'); };
