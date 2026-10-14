@@ -29,7 +29,7 @@ function render(){
   state.chapter=live?-1:Math.max(0,chapters.findIndex(c=>c[0]===id));
   $('.workspace').classList.toggle('live-workspace',live);
   $('.replay-label').textContent=live?'LIVE LOCAL INFERENCE':'RECORDED EVIDENCE';
-  $('#chapters').innerHTML=`<a class="live-nav" href="#live" ${live?'aria-current="page"':''}><span class="number">↗</span>Live Lab <span class="badge">LIVE</span></a>`+chapters.map(([key,title],i)=>`<a href="#${key}" ${i===state.chapter?'aria-current="page"':''}><span class="number">${String(i+1).padStart(2,'0')}</span>${title}</a>`).join('');
+  $('#chapters').innerHTML=`<a class="live-nav" href="#live" ${live?'aria-current="page"':''}><span class="number">↗</span>Live Lab <span class="badge">LIVE</span></a><a class="live-nav atlas-nav" href="/atlas.html"><span class="number">◆</span>Atlas Explorer <span class="badge">REPLAY</span></a>`+chapters.map(([key,title],i)=>`<a href="#${key}" ${i===state.chapter?'aria-current="page"':''}><span class="number">${String(i+1).padStart(2,'0')}</span>${title}</a>`).join('');
   if(live){document.title='Live Lab · Token Auction Lab';mountLive();window.scrollTo({top:0});return;}
   $('#content').innerHTML=[question,auction,decoder,testPage,runs,failures,evidence][state.chapter]();
   $('#previous').disabled=state.chapter===0;

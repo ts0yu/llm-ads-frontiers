@@ -1,0 +1,5193 @@
+{
+ "schema": "bid-atlas-v1",
+ "kind": "text",
+ "mode": "synthetic_fixture",
+ "title": "Fort Mason conference stay (toy corpus)",
+ "bidders": [
+  "Bayview Hotel",
+  "Lantern House"
+ ],
+ "seed": 110,
+ "parameter": "lambda = bid_A / (bid_A + bid_B)",
+ "max_steps": 96,
+ "manifest": {
+  "label": "SYNTHETIC FIXTURE for UI development. Toy weighted-corpus model, not a language model; token IDs come from a toy word tokenizer. Charges are simulated credits.",
+  "generator": "scripts/make_atlas_fixtures.py",
+  "seed": 110,
+  "python": "3.13.16",
+  "numpy": "2.5.4",
+  "simulated_credits": true,
+  "model": "toy weighted-corpus model (scripts/make_atlas_fixtures.py), not an LLM",
+  "revision": "toy-corpus-sha256:739eca49445d3d00",
+  "tokenizer": "toy word tokenizer; fake token IDs",
+  "prompts": {
+   "user": "I'm visiting Fort Mason in San Fransisco for a conference. I get into SFO airport on Oct. 11th. Where should I stay? How should I get there? Uber?"
+  },
+  "temperature": null,
+  "sampler": "auction.py TwoBidderAuction, full distributions",
+  "eos_token_id": 2
+ },
+ "leaves": [
+  {
+   "id": 0,
+   "lo": 0.0,
+   "hi": 0.06116337080560841,
+   "parent": null,
+   "split_step": null,
+   "token_ids": [
+    1005,
+    1006,
+    1007,
+    1001,
+    1002,
+    1003,
+    1004,
+    1044,
+    1011,
+    1045,
+    1043,
+    1018,
+    1019,
+    1024,
+    1046,
+    1048,
+    1049,
+    1006,
+    1047,
+    1052,
+    1051,
+    1033,
+    1066,
+    1067,
+    1024,
+    1068,
+    1069,
+    1070,
+    1015,
+    1071,
+    1072,
+    1001,
+    1073,
+    1074,
+    1033,
+    1095,
+    1015,
+    1012,
+    1004,
+    2
+   ],
+   "text": "Hello and welcome to San Francisco! For a hotel near Fort Mason, consider Lantern House and its peaceful courtyard. From SFO, an Uber is the simplest way to get there. Enjoy the conference!",
+   "image": null,
+   "stop_reason": "eos",
+   "steps": [
+    {
+     "step": 0,
+     "u": 0.5022238301347107,
+     "shared_mass": 0.41666666666666663,
+     "branch": "B",
+     "token_id": 1005
+    },
+    {
+     "step": 1,
+     "u": 0.7026262638435498,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1006
+    },
+    {
+     "step": 2,
+     "u": 0.264760456479045,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1007
+    },
+    {
+     "step": 3,
+     "u": 0.6401122696564157,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1001
+    },
+    {
+     "step": 4,
+     "u": 0.38430959849023494,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1002
+    },
+    {
+     "step": 5,
+     "u": 0.8199582800356972,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1003
+    },
+    {
+     "step": 6,
+     "u": 0.7804740253045531,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1004
+    },
+    {
+     "step": 7,
+     "u": 0.21895670164291603,
+     "shared_mass": 0.26912938530813374,
+     "branch": "B",
+     "token_id": 1044
+    },
+    {
+     "step": 8,
+     "u": 0.4195657897544883,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1011
+    },
+    {
+     "step": 9,
+     "u": 0.2862383270414295,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1045
+    },
+    {
+     "step": 10,
+     "u": 0.18282584632402377,
+     "shared_mass": 0.6111111111111112,
+     "branch": "B",
+     "token_id": 1043
+    },
+    {
+     "step": 11,
+     "u": 0.15134039622200546,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1018
+    },
+    {
+     "step": 12,
+     "u": 0.8166951925826031,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1019
+    },
+    {
+     "step": 13,
+     "u": 0.6664553247739635,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1024
+    },
+    {
+     "step": 14,
+     "u": 0.14742000841766467,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1046
+    },
+    {
+     "step": 15,
+     "u": 0.45958326236474223,
+     "shared_mass": 0.0061312364454318,
+     "branch": "B",
+     "token_id": 1048
+    },
+    {
+     "step": 16,
+     "u": 0.6742906635725484,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1049
+    },
+    {
+     "step": 17,
+     "u": 0.6596895311046065,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1006
+    },
+    {
+     "step": 18,
+     "u": 0.7465466331199923,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1047
+    },
+    {
+     "step": 19,
+     "u": 0.027795432107698304,
+     "shared_mass": 0.5601503759398496,
+     "branch": "shared",
+     "token_id": 1052
+    },
+    {
+     "step": 20,
+     "u": 0.9632679112043654,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1051
+    },
+    {
+     "step": 21,
+     "u": 0.2426807367586994,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 22,
+     "u": 0.6211752406800287,
+     "shared_mass": 0.8185154286150508,
+     "branch": "shared",
+     "token_id": 1066
+    },
+    {
+     "step": 23,
+     "u": 0.5138604986034241,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1067
+    },
+    {
+     "step": 24,
+     "u": 0.2914320989103937,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1024
+    },
+    {
+     "step": 25,
+     "u": 0.1260198882577802,
+     "shared_mass": 0.7234042553191489,
+     "branch": "shared",
+     "token_id": 1068
+    },
+    {
+     "step": 26,
+     "u": 0.18324348507897414,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1069
+    },
+    {
+     "step": 27,
+     "u": 0.36790418394220836,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1070
+    },
+    {
+     "step": 28,
+     "u": 0.9797760600807023,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1015
+    },
+    {
+     "step": 29,
+     "u": 0.12579552533677307,
+     "shared_mass": 0.17126148705096073,
+     "branch": "B",
+     "token_id": 1071
+    },
+    {
+     "step": 30,
+     "u": 0.2775490444513524,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1072
+    },
+    {
+     "step": 31,
+     "u": 0.397738915841812,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1001
+    },
+    {
+     "step": 32,
+     "u": 0.8737411480272099,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1073
+    },
+    {
+     "step": 33,
+     "u": 0.5062965803148974,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1074
+    },
+    {
+     "step": 34,
+     "u": 0.09481746098990707,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 35,
+     "u": 0.06116337080560841,
+     "shared_mass": 0.4463183874948581,
+     "branch": "B",
+     "token_id": 1095
+    },
+    {
+     "step": 36,
+     "u": 0.9572293254192457,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1015
+    },
+    {
+     "step": 37,
+     "u": 0.5905512909495205,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1012
+    },
+    {
+     "step": 38,
+     "u": 0.8098137758785725,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1004
+    },
+    {
+     "step": 39,
+     "u": 0.2882051817988971,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 2
+    }
+   ],
+   "outcomes": {
+    "mentions:Bayview Hotel": false,
+    "mentions:Lantern House": true,
+    "mentions:bayviewhotel.com": false
+   }
+  },
+  {
+   "id": 9,
+   "lo": 0.06116337080560841,
+   "hi": 0.12579552533677307,
+   "parent": 0,
+   "split_step": 35,
+   "token_ids": [
+    1005,
+    1006,
+    1007,
+    1001,
+    1002,
+    1003,
+    1004,
+    1044,
+    1011,
+    1045,
+    1043,
+    1018,
+    1019,
+    1024,
+    1046,
+    1048,
+    1049,
+    1006,
+    1047,
+    1052,
+    1051,
+    1033,
+    1066,
+    1067,
+    1024,
+    1068,
+    1069,
+    1070,
+    1015,
+    1071,
+    1072,
+    1001,
+    1073,
+    1074,
+    1033,
+    1099,
+    1021,
+    1100,
+    1033,
+    1101,
+    1006,
+    1102,
+    1015,
+    1032,
+    1030,
+    1033,
+    2
+   ],
+   "text": "Hello and welcome to San Francisco! For a hotel near Fort Mason, consider Lantern House and its peaceful courtyard. From SFO, an Uber is the simplest way to get there. Book at bayviewhotel.com and enjoy the bay views.",
+   "image": null,
+   "stop_reason": "eos",
+   "steps": [
+    {
+     "step": 0,
+     "u": 0.5022238301347107,
+     "shared_mass": 0.41666666666666663,
+     "branch": "B",
+     "token_id": 1005
+    },
+    {
+     "step": 1,
+     "u": 0.7026262638435498,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1006
+    },
+    {
+     "step": 2,
+     "u": 0.264760456479045,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1007
+    },
+    {
+     "step": 3,
+     "u": 0.6401122696564157,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1001
+    },
+    {
+     "step": 4,
+     "u": 0.38430959849023494,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1002
+    },
+    {
+     "step": 5,
+     "u": 0.8199582800356972,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1003
+    },
+    {
+     "step": 6,
+     "u": 0.7804740253045531,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1004
+    },
+    {
+     "step": 7,
+     "u": 0.21895670164291603,
+     "shared_mass": 0.26912938530813374,
+     "branch": "B",
+     "token_id": 1044
+    },
+    {
+     "step": 8,
+     "u": 0.4195657897544883,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1011
+    },
+    {
+     "step": 9,
+     "u": 0.2862383270414295,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1045
+    },
+    {
+     "step": 10,
+     "u": 0.18282584632402377,
+     "shared_mass": 0.6111111111111112,
+     "branch": "B",
+     "token_id": 1043
+    },
+    {
+     "step": 11,
+     "u": 0.15134039622200546,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1018
+    },
+    {
+     "step": 12,
+     "u": 0.8166951925826031,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1019
+    },
+    {
+     "step": 13,
+     "u": 0.6664553247739635,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1024
+    },
+    {
+     "step": 14,
+     "u": 0.14742000841766467,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1046
+    },
+    {
+     "step": 15,
+     "u": 0.45958326236474223,
+     "shared_mass": 0.0061312364454318,
+     "branch": "B",
+     "token_id": 1048
+    },
+    {
+     "step": 16,
+     "u": 0.6742906635725484,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1049
+    },
+    {
+     "step": 17,
+     "u": 0.6596895311046065,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1006
+    },
+    {
+     "step": 18,
+     "u": 0.7465466331199923,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1047
+    },
+    {
+     "step": 19,
+     "u": 0.027795432107698304,
+     "shared_mass": 0.5601503759398496,
+     "branch": "shared",
+     "token_id": 1052
+    },
+    {
+     "step": 20,
+     "u": 0.9632679112043654,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1051
+    },
+    {
+     "step": 21,
+     "u": 0.2426807367586994,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 22,
+     "u": 0.6211752406800287,
+     "shared_mass": 0.8185154286150508,
+     "branch": "shared",
+     "token_id": 1066
+    },
+    {
+     "step": 23,
+     "u": 0.5138604986034241,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1067
+    },
+    {
+     "step": 24,
+     "u": 0.2914320989103937,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1024
+    },
+    {
+     "step": 25,
+     "u": 0.1260198882577802,
+     "shared_mass": 0.7234042553191489,
+     "branch": "shared",
+     "token_id": 1068
+    },
+    {
+     "step": 26,
+     "u": 0.18324348507897414,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1069
+    },
+    {
+     "step": 27,
+     "u": 0.36790418394220836,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1070
+    },
+    {
+     "step": 28,
+     "u": 0.9797760600807023,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1015
+    },
+    {
+     "step": 29,
+     "u": 0.12579552533677307,
+     "shared_mass": 0.17126148705096073,
+     "branch": "B",
+     "token_id": 1071
+    },
+    {
+     "step": 30,
+     "u": 0.2775490444513524,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1072
+    },
+    {
+     "step": 31,
+     "u": 0.397738915841812,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1001
+    },
+    {
+     "step": 32,
+     "u": 0.8737411480272099,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1073
+    },
+    {
+     "step": 33,
+     "u": 0.5062965803148974,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1074
+    },
+    {
+     "step": 34,
+     "u": 0.09481746098990707,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 35,
+     "u": 0.06116337080560841,
+     "shared_mass": 0.4463183874948581,
+     "branch": "A",
+     "token_id": 1099
+    },
+    {
+     "step": 36,
+     "u": 0.9572293254192457,
+     "shared_mass": 0.6111111111111112,
+     "branch": "B",
+     "token_id": 1021
+    },
+    {
+     "step": 37,
+     "u": 0.5905512909495205,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1100
+    },
+    {
+     "step": 38,
+     "u": 0.8098137758785725,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 39,
+     "u": 0.2882051817988971,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1101
+    },
+    {
+     "step": 40,
+     "u": 0.11621772362281402,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1006
+    },
+    {
+     "step": 41,
+     "u": 0.24249709685360166,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1102
+    },
+    {
+     "step": 42,
+     "u": 0.1302757459622521,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1015
+    },
+    {
+     "step": 43,
+     "u": 0.8706769256212405,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1032
+    },
+    {
+     "step": 44,
+     "u": 0.6410589907080273,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1030
+    },
+    {
+     "step": 45,
+     "u": 0.49208470845897667,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 46,
+     "u": 0.8691520125119595,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 2
+    }
+   ],
+   "outcomes": {
+    "mentions:Bayview Hotel": false,
+    "mentions:Lantern House": true,
+    "mentions:bayviewhotel.com": true
+   }
+  },
+  {
+   "id": 7,
+   "lo": 0.12579552533677307,
+   "hi": 0.18282584632402377,
+   "parent": 0,
+   "split_step": 29,
+   "token_ids": [
+    1005,
+    1006,
+    1007,
+    1001,
+    1002,
+    1003,
+    1004,
+    1044,
+    1011,
+    1045,
+    1043,
+    1018,
+    1019,
+    1024,
+    1046,
+    1048,
+    1049,
+    1006,
+    1047,
+    1052,
+    1051,
+    1033,
+    1066,
+    1067,
+    1024,
+    1068,
+    1069,
+    1070,
+    1015,
+    1076,
+    1072,
+    1001,
+    1073,
+    1074,
+    1033,
+    1099,
+    1021,
+    1100,
+    1033,
+    1101,
+    1006,
+    1102,
+    1015,
+    1032,
+    1030,
+    1033,
+    2
+   ],
+   "text": "Hello and welcome to San Francisco! For a hotel near Fort Mason, consider Lantern House and its peaceful courtyard. From SFO, an Uber is the easiest way to get there. Book at bayviewhotel.com and enjoy the bay views.",
+   "image": null,
+   "stop_reason": "eos",
+   "steps": [
+    {
+     "step": 0,
+     "u": 0.5022238301347107,
+     "shared_mass": 0.41666666666666663,
+     "branch": "B",
+     "token_id": 1005
+    },
+    {
+     "step": 1,
+     "u": 0.7026262638435498,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1006
+    },
+    {
+     "step": 2,
+     "u": 0.264760456479045,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1007
+    },
+    {
+     "step": 3,
+     "u": 0.6401122696564157,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1001
+    },
+    {
+     "step": 4,
+     "u": 0.38430959849023494,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1002
+    },
+    {
+     "step": 5,
+     "u": 0.8199582800356972,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1003
+    },
+    {
+     "step": 6,
+     "u": 0.7804740253045531,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1004
+    },
+    {
+     "step": 7,
+     "u": 0.21895670164291603,
+     "shared_mass": 0.26912938530813374,
+     "branch": "B",
+     "token_id": 1044
+    },
+    {
+     "step": 8,
+     "u": 0.4195657897544883,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1011
+    },
+    {
+     "step": 9,
+     "u": 0.2862383270414295,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1045
+    },
+    {
+     "step": 10,
+     "u": 0.18282584632402377,
+     "shared_mass": 0.6111111111111112,
+     "branch": "B",
+     "token_id": 1043
+    },
+    {
+     "step": 11,
+     "u": 0.15134039622200546,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1018
+    },
+    {
+     "step": 12,
+     "u": 0.8166951925826031,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1019
+    },
+    {
+     "step": 13,
+     "u": 0.6664553247739635,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1024
+    },
+    {
+     "step": 14,
+     "u": 0.14742000841766467,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1046
+    },
+    {
+     "step": 15,
+     "u": 0.45958326236474223,
+     "shared_mass": 0.0061312364454318,
+     "branch": "B",
+     "token_id": 1048
+    },
+    {
+     "step": 16,
+     "u": 0.6742906635725484,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1049
+    },
+    {
+     "step": 17,
+     "u": 0.6596895311046065,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1006
+    },
+    {
+     "step": 18,
+     "u": 0.7465466331199923,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1047
+    },
+    {
+     "step": 19,
+     "u": 0.027795432107698304,
+     "shared_mass": 0.5601503759398496,
+     "branch": "shared",
+     "token_id": 1052
+    },
+    {
+     "step": 20,
+     "u": 0.9632679112043654,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1051
+    },
+    {
+     "step": 21,
+     "u": 0.2426807367586994,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 22,
+     "u": 0.6211752406800287,
+     "shared_mass": 0.8185154286150508,
+     "branch": "shared",
+     "token_id": 1066
+    },
+    {
+     "step": 23,
+     "u": 0.5138604986034241,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1067
+    },
+    {
+     "step": 24,
+     "u": 0.2914320989103937,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1024
+    },
+    {
+     "step": 25,
+     "u": 0.1260198882577802,
+     "shared_mass": 0.7234042553191489,
+     "branch": "shared",
+     "token_id": 1068
+    },
+    {
+     "step": 26,
+     "u": 0.18324348507897414,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1069
+    },
+    {
+     "step": 27,
+     "u": 0.36790418394220836,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1070
+    },
+    {
+     "step": 28,
+     "u": 0.9797760600807023,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1015
+    },
+    {
+     "step": 29,
+     "u": 0.12579552533677307,
+     "shared_mass": 0.17126148705096073,
+     "branch": "A",
+     "token_id": 1076
+    },
+    {
+     "step": 30,
+     "u": 0.2775490444513524,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1072
+    },
+    {
+     "step": 31,
+     "u": 0.397738915841812,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1001
+    },
+    {
+     "step": 32,
+     "u": 0.8737411480272099,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1073
+    },
+    {
+     "step": 33,
+     "u": 0.5062965803148974,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1074
+    },
+    {
+     "step": 34,
+     "u": 0.09481746098990707,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 35,
+     "u": 0.06116337080560841,
+     "shared_mass": 0.4463183874948581,
+     "branch": "A",
+     "token_id": 1099
+    },
+    {
+     "step": 36,
+     "u": 0.9572293254192457,
+     "shared_mass": 0.6111111111111112,
+     "branch": "B",
+     "token_id": 1021
+    },
+    {
+     "step": 37,
+     "u": 0.5905512909495205,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1100
+    },
+    {
+     "step": 38,
+     "u": 0.8098137758785725,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 39,
+     "u": 0.2882051817988971,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1101
+    },
+    {
+     "step": 40,
+     "u": 0.11621772362281402,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1006
+    },
+    {
+     "step": 41,
+     "u": 0.24249709685360166,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1102
+    },
+    {
+     "step": 42,
+     "u": 0.1302757459622521,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1015
+    },
+    {
+     "step": 43,
+     "u": 0.8706769256212405,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1032
+    },
+    {
+     "step": 44,
+     "u": 0.6410589907080273,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1030
+    },
+    {
+     "step": 45,
+     "u": 0.49208470845897667,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 46,
+     "u": 0.8691520125119595,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 2
+    }
+   ],
+   "outcomes": {
+    "mentions:Bayview Hotel": false,
+    "mentions:Lantern House": true,
+    "mentions:bayviewhotel.com": true
+   }
+  },
+  {
+   "id": 4,
+   "lo": 0.18282584632402377,
+   "hi": 0.21895670164291603,
+   "parent": 0,
+   "split_step": 10,
+   "token_ids": [
+    1005,
+    1006,
+    1007,
+    1001,
+    1002,
+    1003,
+    1004,
+    1044,
+    1011,
+    1045,
+    1042,
+    1001,
+    1018,
+    1019,
+    1024,
+    1046,
+    1048,
+    1049,
+    1006,
+    1047,
+    1052,
+    1051,
+    1033,
+    1066,
+    1067,
+    1024,
+    1068,
+    1069,
+    1070,
+    1015,
+    1076,
+    1072,
+    1001,
+    1073,
+    1074,
+    1028,
+    1075,
+    1033,
+    1096,
+    1011,
+    1098,
+    1013,
+    1004,
+    2
+   ],
+   "text": "Hello and welcome to San Francisco! For a hotel close to Fort Mason, consider Lantern House and its peaceful courtyard. From SFO, an Uber is the easiest way to get there with luggage. Have a wonderful trip!",
+   "image": null,
+   "stop_reason": "eos",
+   "steps": [
+    {
+     "step": 0,
+     "u": 0.5022238301347107,
+     "shared_mass": 0.41666666666666663,
+     "branch": "B",
+     "token_id": 1005
+    },
+    {
+     "step": 1,
+     "u": 0.7026262638435498,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1006
+    },
+    {
+     "step": 2,
+     "u": 0.264760456479045,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1007
+    },
+    {
+     "step": 3,
+     "u": 0.6401122696564157,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1001
+    },
+    {
+     "step": 4,
+     "u": 0.38430959849023494,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1002
+    },
+    {
+     "step": 5,
+     "u": 0.8199582800356972,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1003
+    },
+    {
+     "step": 6,
+     "u": 0.7804740253045531,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1004
+    },
+    {
+     "step": 7,
+     "u": 0.21895670164291603,
+     "shared_mass": 0.26912938530813374,
+     "branch": "B",
+     "token_id": 1044
+    },
+    {
+     "step": 8,
+     "u": 0.4195657897544883,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1011
+    },
+    {
+     "step": 9,
+     "u": 0.2862383270414295,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1045
+    },
+    {
+     "step": 10,
+     "u": 0.18282584632402377,
+     "shared_mass": 0.6111111111111112,
+     "branch": "A",
+     "token_id": 1042
+    },
+    {
+     "step": 11,
+     "u": 0.15134039622200546,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1001
+    },
+    {
+     "step": 12,
+     "u": 0.8166951925826031,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1018
+    },
+    {
+     "step": 13,
+     "u": 0.6664553247739635,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1019
+    },
+    {
+     "step": 14,
+     "u": 0.14742000841766467,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1024
+    },
+    {
+     "step": 15,
+     "u": 0.45958326236474223,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1046
+    },
+    {
+     "step": 16,
+     "u": 0.6742906635725484,
+     "shared_mass": 0.0061312364454318,
+     "branch": "B",
+     "token_id": 1048
+    },
+    {
+     "step": 17,
+     "u": 0.6596895311046065,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1049
+    },
+    {
+     "step": 18,
+     "u": 0.7465466331199923,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1006
+    },
+    {
+     "step": 19,
+     "u": 0.027795432107698304,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1047
+    },
+    {
+     "step": 20,
+     "u": 0.9632679112043654,
+     "shared_mass": 0.5601503759398496,
+     "branch": "shared",
+     "token_id": 1052
+    },
+    {
+     "step": 21,
+     "u": 0.2426807367586994,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1051
+    },
+    {
+     "step": 22,
+     "u": 0.6211752406800287,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 23,
+     "u": 0.5138604986034241,
+     "shared_mass": 0.8185154286150508,
+     "branch": "shared",
+     "token_id": 1066
+    },
+    {
+     "step": 24,
+     "u": 0.2914320989103937,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1067
+    },
+    {
+     "step": 25,
+     "u": 0.1260198882577802,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1024
+    },
+    {
+     "step": 26,
+     "u": 0.18324348507897414,
+     "shared_mass": 0.7234042553191489,
+     "branch": "shared",
+     "token_id": 1068
+    },
+    {
+     "step": 27,
+     "u": 0.36790418394220836,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1069
+    },
+    {
+     "step": 28,
+     "u": 0.9797760600807023,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1070
+    },
+    {
+     "step": 29,
+     "u": 0.12579552533677307,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1015
+    },
+    {
+     "step": 30,
+     "u": 0.2775490444513524,
+     "shared_mass": 0.17126148705096073,
+     "branch": "shared",
+     "token_id": 1076
+    },
+    {
+     "step": 31,
+     "u": 0.397738915841812,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1072
+    },
+    {
+     "step": 32,
+     "u": 0.8737411480272099,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1001
+    },
+    {
+     "step": 33,
+     "u": 0.5062965803148974,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1073
+    },
+    {
+     "step": 34,
+     "u": 0.09481746098990707,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1074
+    },
+    {
+     "step": 35,
+     "u": 0.06116337080560841,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1028
+    },
+    {
+     "step": 36,
+     "u": 0.9572293254192457,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1075
+    },
+    {
+     "step": 37,
+     "u": 0.5905512909495205,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 38,
+     "u": 0.8098137758785725,
+     "shared_mass": 0.4463183874948581,
+     "branch": "B",
+     "token_id": 1096
+    },
+    {
+     "step": 39,
+     "u": 0.2882051817988971,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1011
+    },
+    {
+     "step": 40,
+     "u": 0.11621772362281402,
+     "shared_mass": 0.5601503759398496,
+     "branch": "A",
+     "token_id": 1098
+    },
+    {
+     "step": 41,
+     "u": 0.24249709685360166,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1013
+    },
+    {
+     "step": 42,
+     "u": 0.1302757459622521,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1004
+    },
+    {
+     "step": 43,
+     "u": 0.8706769256212405,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 2
+    }
+   ],
+   "outcomes": {
+    "mentions:Bayview Hotel": false,
+    "mentions:Lantern House": true,
+    "mentions:bayviewhotel.com": false
+   }
+  },
+  {
+   "id": 2,
+   "lo": 0.21895670164291603,
+   "hi": 0.24249709685360166,
+   "parent": 0,
+   "split_step": 7,
+   "token_ids": [
+    1005,
+    1006,
+    1007,
+    1001,
+    1002,
+    1003,
+    1004,
+    1020,
+    1021,
+    1048,
+    1049,
+    1026,
+    1015,
+    1018,
+    1019,
+    1027,
+    1024,
+    1053,
+    1054,
+    1055,
+    1057,
+    1026,
+    1011,
+    1050,
+    1051,
+    1033,
+    1066,
+    1067,
+    1024,
+    1011,
+    1077,
+    1078,
+    1069,
+    1070,
+    1015,
+    1076,
+    1079,
+    1040,
+    1080,
+    1081,
+    1033,
+    1095,
+    1015,
+    1012,
+    1004,
+    2
+   ],
+   "text": "Hello and welcome to San Francisco! Stay at Lantern House in the Fort Mason area, where you can unwind in a quiet courtyard. From SFO, a rideshare like Uber is the easiest option on arrival day. Enjoy the conference!",
+   "image": null,
+   "stop_reason": "eos",
+   "steps": [
+    {
+     "step": 0,
+     "u": 0.5022238301347107,
+     "shared_mass": 0.41666666666666663,
+     "branch": "B",
+     "token_id": 1005
+    },
+    {
+     "step": 1,
+     "u": 0.7026262638435498,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1006
+    },
+    {
+     "step": 2,
+     "u": 0.264760456479045,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1007
+    },
+    {
+     "step": 3,
+     "u": 0.6401122696564157,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1001
+    },
+    {
+     "step": 4,
+     "u": 0.38430959849023494,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1002
+    },
+    {
+     "step": 5,
+     "u": 0.8199582800356972,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1003
+    },
+    {
+     "step": 6,
+     "u": 0.7804740253045531,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1004
+    },
+    {
+     "step": 7,
+     "u": 0.21895670164291603,
+     "shared_mass": 0.26912938530813374,
+     "branch": "A",
+     "token_id": 1020
+    },
+    {
+     "step": 8,
+     "u": 0.4195657897544883,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1021
+    },
+    {
+     "step": 9,
+     "u": 0.2862383270414295,
+     "shared_mass": 0.014480850607423592,
+     "branch": "B",
+     "token_id": 1048
+    },
+    {
+     "step": 10,
+     "u": 0.18282584632402377,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1049
+    },
+    {
+     "step": 11,
+     "u": 0.15134039622200546,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1026
+    },
+    {
+     "step": 12,
+     "u": 0.8166951925826031,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1015
+    },
+    {
+     "step": 13,
+     "u": 0.6664553247739635,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1018
+    },
+    {
+     "step": 14,
+     "u": 0.14742000841766467,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1019
+    },
+    {
+     "step": 15,
+     "u": 0.45958326236474223,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1027
+    },
+    {
+     "step": 16,
+     "u": 0.6742906635725484,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1024
+    },
+    {
+     "step": 17,
+     "u": 0.6596895311046065,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1053
+    },
+    {
+     "step": 18,
+     "u": 0.7465466331199923,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1054
+    },
+    {
+     "step": 19,
+     "u": 0.027795432107698304,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1055
+    },
+    {
+     "step": 20,
+     "u": 0.9632679112043654,
+     "shared_mass": 0.5601503759398496,
+     "branch": "shared",
+     "token_id": 1057
+    },
+    {
+     "step": 21,
+     "u": 0.2426807367586994,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1026
+    },
+    {
+     "step": 22,
+     "u": 0.6211752406800287,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1011
+    },
+    {
+     "step": 23,
+     "u": 0.5138604986034241,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1050
+    },
+    {
+     "step": 24,
+     "u": 0.2914320989103937,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1051
+    },
+    {
+     "step": 25,
+     "u": 0.1260198882577802,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 26,
+     "u": 0.18324348507897414,
+     "shared_mass": 0.8185154286150508,
+     "branch": "shared",
+     "token_id": 1066
+    },
+    {
+     "step": 27,
+     "u": 0.36790418394220836,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1067
+    },
+    {
+     "step": 28,
+     "u": 0.9797760600807023,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1024
+    },
+    {
+     "step": 29,
+     "u": 0.12579552533677307,
+     "shared_mass": 0.7234042553191489,
+     "branch": "A",
+     "token_id": 1011
+    },
+    {
+     "step": 30,
+     "u": 0.2775490444513524,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1077
+    },
+    {
+     "step": 31,
+     "u": 0.397738915841812,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1078
+    },
+    {
+     "step": 32,
+     "u": 0.8737411480272099,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1069
+    },
+    {
+     "step": 33,
+     "u": 0.5062965803148974,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1070
+    },
+    {
+     "step": 34,
+     "u": 0.09481746098990707,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1015
+    },
+    {
+     "step": 35,
+     "u": 0.06116337080560841,
+     "shared_mass": 0.6111111111111112,
+     "branch": "A",
+     "token_id": 1076
+    },
+    {
+     "step": 36,
+     "u": 0.9572293254192457,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1079
+    },
+    {
+     "step": 37,
+     "u": 0.5905512909495205,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1040
+    },
+    {
+     "step": 38,
+     "u": 0.8098137758785725,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1080
+    },
+    {
+     "step": 39,
+     "u": 0.2882051817988971,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1081
+    },
+    {
+     "step": 40,
+     "u": 0.11621772362281402,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 41,
+     "u": 0.24249709685360166,
+     "shared_mass": 0.4463183874948581,
+     "branch": "B",
+     "token_id": 1095
+    },
+    {
+     "step": 42,
+     "u": 0.1302757459622521,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1015
+    },
+    {
+     "step": 43,
+     "u": 0.8706769256212405,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1012
+    },
+    {
+     "step": 44,
+     "u": 0.6410589907080273,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1004
+    },
+    {
+     "step": 45,
+     "u": 0.49208470845897667,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 2
+    }
+   ],
+   "outcomes": {
+    "mentions:Bayview Hotel": false,
+    "mentions:Lantern House": true,
+    "mentions:bayviewhotel.com": false
+   }
+  },
+  {
+   "id": 11,
+   "lo": 0.24249709685360166,
+   "hi": 0.2862383270414295,
+   "parent": 2,
+   "split_step": 41,
+   "token_ids": [
+    1005,
+    1006,
+    1007,
+    1001,
+    1002,
+    1003,
+    1004,
+    1020,
+    1021,
+    1048,
+    1049,
+    1026,
+    1015,
+    1018,
+    1019,
+    1027,
+    1024,
+    1053,
+    1054,
+    1055,
+    1057,
+    1026,
+    1011,
+    1050,
+    1051,
+    1033,
+    1066,
+    1067,
+    1024,
+    1011,
+    1077,
+    1078,
+    1069,
+    1070,
+    1015,
+    1076,
+    1079,
+    1040,
+    1080,
+    1081,
+    1033,
+    1099,
+    1103,
+    1021,
+    1100,
+    1033,
+    1101,
+    1006,
+    1102,
+    1015,
+    1032,
+    1030,
+    1033,
+    2
+   ],
+   "text": "Hello and welcome to San Francisco! Stay at Lantern House in the Fort Mason area, where you can unwind in a quiet courtyard. From SFO, a rideshare like Uber is the easiest option on arrival day. Book now at bayviewhotel.com and enjoy the bay views.",
+   "image": null,
+   "stop_reason": "eos",
+   "steps": [
+    {
+     "step": 0,
+     "u": 0.5022238301347107,
+     "shared_mass": 0.41666666666666663,
+     "branch": "B",
+     "token_id": 1005
+    },
+    {
+     "step": 1,
+     "u": 0.7026262638435498,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1006
+    },
+    {
+     "step": 2,
+     "u": 0.264760456479045,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1007
+    },
+    {
+     "step": 3,
+     "u": 0.6401122696564157,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1001
+    },
+    {
+     "step": 4,
+     "u": 0.38430959849023494,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1002
+    },
+    {
+     "step": 5,
+     "u": 0.8199582800356972,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1003
+    },
+    {
+     "step": 6,
+     "u": 0.7804740253045531,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1004
+    },
+    {
+     "step": 7,
+     "u": 0.21895670164291603,
+     "shared_mass": 0.26912938530813374,
+     "branch": "A",
+     "token_id": 1020
+    },
+    {
+     "step": 8,
+     "u": 0.4195657897544883,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1021
+    },
+    {
+     "step": 9,
+     "u": 0.2862383270414295,
+     "shared_mass": 0.014480850607423592,
+     "branch": "B",
+     "token_id": 1048
+    },
+    {
+     "step": 10,
+     "u": 0.18282584632402377,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1049
+    },
+    {
+     "step": 11,
+     "u": 0.15134039622200546,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1026
+    },
+    {
+     "step": 12,
+     "u": 0.8166951925826031,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1015
+    },
+    {
+     "step": 13,
+     "u": 0.6664553247739635,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1018
+    },
+    {
+     "step": 14,
+     "u": 0.14742000841766467,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1019
+    },
+    {
+     "step": 15,
+     "u": 0.45958326236474223,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1027
+    },
+    {
+     "step": 16,
+     "u": 0.6742906635725484,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1024
+    },
+    {
+     "step": 17,
+     "u": 0.6596895311046065,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1053
+    },
+    {
+     "step": 18,
+     "u": 0.7465466331199923,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1054
+    },
+    {
+     "step": 19,
+     "u": 0.027795432107698304,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1055
+    },
+    {
+     "step": 20,
+     "u": 0.9632679112043654,
+     "shared_mass": 0.5601503759398496,
+     "branch": "shared",
+     "token_id": 1057
+    },
+    {
+     "step": 21,
+     "u": 0.2426807367586994,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1026
+    },
+    {
+     "step": 22,
+     "u": 0.6211752406800287,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1011
+    },
+    {
+     "step": 23,
+     "u": 0.5138604986034241,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1050
+    },
+    {
+     "step": 24,
+     "u": 0.2914320989103937,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1051
+    },
+    {
+     "step": 25,
+     "u": 0.1260198882577802,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 26,
+     "u": 0.18324348507897414,
+     "shared_mass": 0.8185154286150508,
+     "branch": "shared",
+     "token_id": 1066
+    },
+    {
+     "step": 27,
+     "u": 0.36790418394220836,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1067
+    },
+    {
+     "step": 28,
+     "u": 0.9797760600807023,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1024
+    },
+    {
+     "step": 29,
+     "u": 0.12579552533677307,
+     "shared_mass": 0.7234042553191489,
+     "branch": "A",
+     "token_id": 1011
+    },
+    {
+     "step": 30,
+     "u": 0.2775490444513524,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1077
+    },
+    {
+     "step": 31,
+     "u": 0.397738915841812,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1078
+    },
+    {
+     "step": 32,
+     "u": 0.8737411480272099,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1069
+    },
+    {
+     "step": 33,
+     "u": 0.5062965803148974,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1070
+    },
+    {
+     "step": 34,
+     "u": 0.09481746098990707,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1015
+    },
+    {
+     "step": 35,
+     "u": 0.06116337080560841,
+     "shared_mass": 0.6111111111111112,
+     "branch": "A",
+     "token_id": 1076
+    },
+    {
+     "step": 36,
+     "u": 0.9572293254192457,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1079
+    },
+    {
+     "step": 37,
+     "u": 0.5905512909495205,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1040
+    },
+    {
+     "step": 38,
+     "u": 0.8098137758785725,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1080
+    },
+    {
+     "step": 39,
+     "u": 0.2882051817988971,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1081
+    },
+    {
+     "step": 40,
+     "u": 0.11621772362281402,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 41,
+     "u": 0.24249709685360166,
+     "shared_mass": 0.4463183874948581,
+     "branch": "A",
+     "token_id": 1099
+    },
+    {
+     "step": 42,
+     "u": 0.1302757459622521,
+     "shared_mass": 0.6111111111111112,
+     "branch": "shared",
+     "token_id": 1103
+    },
+    {
+     "step": 43,
+     "u": 0.8706769256212405,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1021
+    },
+    {
+     "step": 44,
+     "u": 0.6410589907080273,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1100
+    },
+    {
+     "step": 45,
+     "u": 0.49208470845897667,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 46,
+     "u": 0.8691520125119595,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1101
+    },
+    {
+     "step": 47,
+     "u": 0.3685748245897321,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1006
+    },
+    {
+     "step": 48,
+     "u": 0.40062307285451704,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1102
+    },
+    {
+     "step": 49,
+     "u": 0.5490657529852426,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1015
+    },
+    {
+     "step": 50,
+     "u": 0.5963357091031706,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1032
+    },
+    {
+     "step": 51,
+     "u": 0.16989044475659953,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1030
+    },
+    {
+     "step": 52,
+     "u": 0.26408832781998015,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 53,
+     "u": 0.1796540697457535,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 2
+    }
+   ],
+   "outcomes": {
+    "mentions:Bayview Hotel": false,
+    "mentions:Lantern House": true,
+    "mentions:bayviewhotel.com": true
+   }
+  },
+  {
+   "id": 3,
+   "lo": 0.2862383270414295,
+   "hi": 0.2882051817988971,
+   "parent": 2,
+   "split_step": 9,
+   "token_ids": [
+    1005,
+    1006,
+    1007,
+    1001,
+    1002,
+    1003,
+    1004,
+    1020,
+    1021,
+    1022,
+    1023,
+    1024,
+    1036,
+    1037,
+    1033,
+    1038,
+    1039,
+    1040,
+    1041,
+    1006,
+    1043,
+    1018,
+    1019,
+    1033,
+    1066,
+    1067,
+    1024,
+    1068,
+    1069,
+    1070,
+    1015,
+    1071,
+    1072,
+    1001,
+    1073,
+    1074,
+    1028,
+    1075,
+    1033,
+    1095,
+    1015,
+    1012,
+    1004,
+    2
+   ],
+   "text": "Hello and welcome to San Francisco! Stay at Bayview Hotel, rated 4.9 stars on Google and near Fort Mason. From SFO, an Uber is the simplest way to get there with luggage. Enjoy the conference!",
+   "image": null,
+   "stop_reason": "eos",
+   "steps": [
+    {
+     "step": 0,
+     "u": 0.5022238301347107,
+     "shared_mass": 0.41666666666666663,
+     "branch": "B",
+     "token_id": 1005
+    },
+    {
+     "step": 1,
+     "u": 0.7026262638435498,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1006
+    },
+    {
+     "step": 2,
+     "u": 0.264760456479045,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1007
+    },
+    {
+     "step": 3,
+     "u": 0.6401122696564157,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1001
+    },
+    {
+     "step": 4,
+     "u": 0.38430959849023494,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1002
+    },
+    {
+     "step": 5,
+     "u": 0.8199582800356972,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1003
+    },
+    {
+     "step": 6,
+     "u": 0.7804740253045531,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1004
+    },
+    {
+     "step": 7,
+     "u": 0.21895670164291603,
+     "shared_mass": 0.26912938530813374,
+     "branch": "A",
+     "token_id": 1020
+    },
+    {
+     "step": 8,
+     "u": 0.4195657897544883,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1021
+    },
+    {
+     "step": 9,
+     "u": 0.2862383270414295,
+     "shared_mass": 0.014480850607423592,
+     "branch": "A",
+     "token_id": 1022
+    },
+    {
+     "step": 10,
+     "u": 0.18282584632402377,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1023
+    },
+    {
+     "step": 11,
+     "u": 0.15134039622200546,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1024
+    },
+    {
+     "step": 12,
+     "u": 0.8166951925826031,
+     "shared_mass": 0.26328059950041627,
+     "branch": "B",
+     "token_id": 1036
+    },
+    {
+     "step": 13,
+     "u": 0.6664553247739635,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1037
+    },
+    {
+     "step": 14,
+     "u": 0.14742000841766467,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 15,
+     "u": 0.45958326236474223,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1038
+    },
+    {
+     "step": 16,
+     "u": 0.6742906635725484,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1039
+    },
+    {
+     "step": 17,
+     "u": 0.6596895311046065,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1040
+    },
+    {
+     "step": 18,
+     "u": 0.7465466331199923,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1041
+    },
+    {
+     "step": 19,
+     "u": 0.027795432107698304,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1006
+    },
+    {
+     "step": 20,
+     "u": 0.9632679112043654,
+     "shared_mass": 0.6111111111111112,
+     "branch": "shared",
+     "token_id": 1043
+    },
+    {
+     "step": 21,
+     "u": 0.2426807367586994,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1018
+    },
+    {
+     "step": 22,
+     "u": 0.6211752406800287,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1019
+    },
+    {
+     "step": 23,
+     "u": 0.5138604986034241,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 24,
+     "u": 0.2914320989103937,
+     "shared_mass": 0.8213742117851708,
+     "branch": "shared",
+     "token_id": 1066
+    },
+    {
+     "step": 25,
+     "u": 0.1260198882577802,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1067
+    },
+    {
+     "step": 26,
+     "u": 0.18324348507897414,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1024
+    },
+    {
+     "step": 27,
+     "u": 0.36790418394220836,
+     "shared_mass": 0.7234042553191489,
+     "branch": "B",
+     "token_id": 1068
+    },
+    {
+     "step": 28,
+     "u": 0.9797760600807023,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1069
+    },
+    {
+     "step": 29,
+     "u": 0.12579552533677307,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1070
+    },
+    {
+     "step": 30,
+     "u": 0.2775490444513524,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1015
+    },
+    {
+     "step": 31,
+     "u": 0.397738915841812,
+     "shared_mass": 0.17126148705096073,
+     "branch": "B",
+     "token_id": 1071
+    },
+    {
+     "step": 32,
+     "u": 0.8737411480272099,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1072
+    },
+    {
+     "step": 33,
+     "u": 0.5062965803148974,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1001
+    },
+    {
+     "step": 34,
+     "u": 0.09481746098990707,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1073
+    },
+    {
+     "step": 35,
+     "u": 0.06116337080560841,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1074
+    },
+    {
+     "step": 36,
+     "u": 0.9572293254192457,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1028
+    },
+    {
+     "step": 37,
+     "u": 0.5905512909495205,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1075
+    },
+    {
+     "step": 38,
+     "u": 0.8098137758785725,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 39,
+     "u": 0.2882051817988971,
+     "shared_mass": 0.3969943100377883,
+     "branch": "B",
+     "token_id": 1095
+    },
+    {
+     "step": 40,
+     "u": 0.11621772362281402,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1015
+    },
+    {
+     "step": 41,
+     "u": 0.24249709685360166,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1012
+    },
+    {
+     "step": 42,
+     "u": 0.1302757459622521,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1004
+    },
+    {
+     "step": 43,
+     "u": 0.8706769256212405,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 2
+    }
+   ],
+   "outcomes": {
+    "mentions:Bayview Hotel": true,
+    "mentions:Lantern House": false,
+    "mentions:bayviewhotel.com": false
+   }
+  },
+  {
+   "id": 10,
+   "lo": 0.2882051817988971,
+   "hi": 0.36790418394220836,
+   "parent": 3,
+   "split_step": 39,
+   "token_ids": [
+    1005,
+    1006,
+    1007,
+    1001,
+    1002,
+    1003,
+    1004,
+    1020,
+    1021,
+    1022,
+    1023,
+    1024,
+    1036,
+    1037,
+    1033,
+    1038,
+    1039,
+    1040,
+    1041,
+    1006,
+    1043,
+    1018,
+    1019,
+    1033,
+    1066,
+    1067,
+    1024,
+    1068,
+    1069,
+    1070,
+    1015,
+    1071,
+    1072,
+    1001,
+    1073,
+    1074,
+    1028,
+    1075,
+    1033,
+    1099,
+    1103,
+    1021,
+    1100,
+    1033,
+    1101,
+    1006,
+    1102,
+    1015,
+    1032,
+    1030,
+    1033,
+    2
+   ],
+   "text": "Hello and welcome to San Francisco! Stay at Bayview Hotel, rated 4.9 stars on Google and near Fort Mason. From SFO, an Uber is the simplest way to get there with luggage. Book now at bayviewhotel.com and enjoy the bay views.",
+   "image": null,
+   "stop_reason": "eos",
+   "steps": [
+    {
+     "step": 0,
+     "u": 0.5022238301347107,
+     "shared_mass": 0.41666666666666663,
+     "branch": "B",
+     "token_id": 1005
+    },
+    {
+     "step": 1,
+     "u": 0.7026262638435498,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1006
+    },
+    {
+     "step": 2,
+     "u": 0.264760456479045,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1007
+    },
+    {
+     "step": 3,
+     "u": 0.6401122696564157,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1001
+    },
+    {
+     "step": 4,
+     "u": 0.38430959849023494,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1002
+    },
+    {
+     "step": 5,
+     "u": 0.8199582800356972,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1003
+    },
+    {
+     "step": 6,
+     "u": 0.7804740253045531,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1004
+    },
+    {
+     "step": 7,
+     "u": 0.21895670164291603,
+     "shared_mass": 0.26912938530813374,
+     "branch": "A",
+     "token_id": 1020
+    },
+    {
+     "step": 8,
+     "u": 0.4195657897544883,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1021
+    },
+    {
+     "step": 9,
+     "u": 0.2862383270414295,
+     "shared_mass": 0.014480850607423592,
+     "branch": "A",
+     "token_id": 1022
+    },
+    {
+     "step": 10,
+     "u": 0.18282584632402377,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1023
+    },
+    {
+     "step": 11,
+     "u": 0.15134039622200546,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1024
+    },
+    {
+     "step": 12,
+     "u": 0.8166951925826031,
+     "shared_mass": 0.26328059950041627,
+     "branch": "B",
+     "token_id": 1036
+    },
+    {
+     "step": 13,
+     "u": 0.6664553247739635,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1037
+    },
+    {
+     "step": 14,
+     "u": 0.14742000841766467,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 15,
+     "u": 0.45958326236474223,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1038
+    },
+    {
+     "step": 16,
+     "u": 0.6742906635725484,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1039
+    },
+    {
+     "step": 17,
+     "u": 0.6596895311046065,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1040
+    },
+    {
+     "step": 18,
+     "u": 0.7465466331199923,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1041
+    },
+    {
+     "step": 19,
+     "u": 0.027795432107698304,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1006
+    },
+    {
+     "step": 20,
+     "u": 0.9632679112043654,
+     "shared_mass": 0.6111111111111112,
+     "branch": "shared",
+     "token_id": 1043
+    },
+    {
+     "step": 21,
+     "u": 0.2426807367586994,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1018
+    },
+    {
+     "step": 22,
+     "u": 0.6211752406800287,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1019
+    },
+    {
+     "step": 23,
+     "u": 0.5138604986034241,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 24,
+     "u": 0.2914320989103937,
+     "shared_mass": 0.8213742117851708,
+     "branch": "shared",
+     "token_id": 1066
+    },
+    {
+     "step": 25,
+     "u": 0.1260198882577802,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1067
+    },
+    {
+     "step": 26,
+     "u": 0.18324348507897414,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1024
+    },
+    {
+     "step": 27,
+     "u": 0.36790418394220836,
+     "shared_mass": 0.7234042553191489,
+     "branch": "B",
+     "token_id": 1068
+    },
+    {
+     "step": 28,
+     "u": 0.9797760600807023,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1069
+    },
+    {
+     "step": 29,
+     "u": 0.12579552533677307,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1070
+    },
+    {
+     "step": 30,
+     "u": 0.2775490444513524,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1015
+    },
+    {
+     "step": 31,
+     "u": 0.397738915841812,
+     "shared_mass": 0.17126148705096073,
+     "branch": "B",
+     "token_id": 1071
+    },
+    {
+     "step": 32,
+     "u": 0.8737411480272099,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1072
+    },
+    {
+     "step": 33,
+     "u": 0.5062965803148974,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1001
+    },
+    {
+     "step": 34,
+     "u": 0.09481746098990707,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1073
+    },
+    {
+     "step": 35,
+     "u": 0.06116337080560841,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1074
+    },
+    {
+     "step": 36,
+     "u": 0.9572293254192457,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1028
+    },
+    {
+     "step": 37,
+     "u": 0.5905512909495205,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1075
+    },
+    {
+     "step": 38,
+     "u": 0.8098137758785725,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 39,
+     "u": 0.2882051817988971,
+     "shared_mass": 0.3969943100377883,
+     "branch": "A",
+     "token_id": 1099
+    },
+    {
+     "step": 40,
+     "u": 0.11621772362281402,
+     "shared_mass": 0.6111111111111112,
+     "branch": "A",
+     "token_id": 1103
+    },
+    {
+     "step": 41,
+     "u": 0.24249709685360166,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1021
+    },
+    {
+     "step": 42,
+     "u": 0.1302757459622521,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1100
+    },
+    {
+     "step": 43,
+     "u": 0.8706769256212405,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 44,
+     "u": 0.6410589907080273,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1101
+    },
+    {
+     "step": 45,
+     "u": 0.49208470845897667,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1006
+    },
+    {
+     "step": 46,
+     "u": 0.8691520125119595,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1102
+    },
+    {
+     "step": 47,
+     "u": 0.3685748245897321,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1015
+    },
+    {
+     "step": 48,
+     "u": 0.40062307285451704,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1032
+    },
+    {
+     "step": 49,
+     "u": 0.5490657529852426,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1030
+    },
+    {
+     "step": 50,
+     "u": 0.5963357091031706,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 51,
+     "u": 0.16989044475659953,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 2
+    }
+   ],
+   "outcomes": {
+    "mentions:Bayview Hotel": true,
+    "mentions:Lantern House": false,
+    "mentions:bayviewhotel.com": true
+   }
+  },
+  {
+   "id": 6,
+   "lo": 0.36790418394220836,
+   "hi": 0.5022238301347107,
+   "parent": 3,
+   "split_step": 27,
+   "token_ids": [
+    1005,
+    1006,
+    1007,
+    1001,
+    1002,
+    1003,
+    1004,
+    1020,
+    1021,
+    1022,
+    1023,
+    1024,
+    1036,
+    1037,
+    1033,
+    1038,
+    1039,
+    1040,
+    1041,
+    1006,
+    1043,
+    1018,
+    1019,
+    1033,
+    1066,
+    1067,
+    1024,
+    1011,
+    1077,
+    1078,
+    1069,
+    1070,
+    1015,
+    1082,
+    1083,
+    1079,
+    1040,
+    1080,
+    1081,
+    1033,
+    1099,
+    1103,
+    1021,
+    1100,
+    1033,
+    1101,
+    1006,
+    1102,
+    1015,
+    1032,
+    1030,
+    1033,
+    2
+   ],
+   "text": "Hello and welcome to San Francisco! Stay at Bayview Hotel, rated 4.9 stars on Google and near Fort Mason. From SFO, a rideshare like Uber is the most convenient option on arrival day. Book now at bayviewhotel.com and enjoy the bay views.",
+   "image": null,
+   "stop_reason": "eos",
+   "steps": [
+    {
+     "step": 0,
+     "u": 0.5022238301347107,
+     "shared_mass": 0.41666666666666663,
+     "branch": "B",
+     "token_id": 1005
+    },
+    {
+     "step": 1,
+     "u": 0.7026262638435498,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1006
+    },
+    {
+     "step": 2,
+     "u": 0.264760456479045,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1007
+    },
+    {
+     "step": 3,
+     "u": 0.6401122696564157,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1001
+    },
+    {
+     "step": 4,
+     "u": 0.38430959849023494,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1002
+    },
+    {
+     "step": 5,
+     "u": 0.8199582800356972,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1003
+    },
+    {
+     "step": 6,
+     "u": 0.7804740253045531,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1004
+    },
+    {
+     "step": 7,
+     "u": 0.21895670164291603,
+     "shared_mass": 0.26912938530813374,
+     "branch": "A",
+     "token_id": 1020
+    },
+    {
+     "step": 8,
+     "u": 0.4195657897544883,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1021
+    },
+    {
+     "step": 9,
+     "u": 0.2862383270414295,
+     "shared_mass": 0.014480850607423592,
+     "branch": "A",
+     "token_id": 1022
+    },
+    {
+     "step": 10,
+     "u": 0.18282584632402377,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1023
+    },
+    {
+     "step": 11,
+     "u": 0.15134039622200546,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1024
+    },
+    {
+     "step": 12,
+     "u": 0.8166951925826031,
+     "shared_mass": 0.26328059950041627,
+     "branch": "B",
+     "token_id": 1036
+    },
+    {
+     "step": 13,
+     "u": 0.6664553247739635,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1037
+    },
+    {
+     "step": 14,
+     "u": 0.14742000841766467,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 15,
+     "u": 0.45958326236474223,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1038
+    },
+    {
+     "step": 16,
+     "u": 0.6742906635725484,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1039
+    },
+    {
+     "step": 17,
+     "u": 0.6596895311046065,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1040
+    },
+    {
+     "step": 18,
+     "u": 0.7465466331199923,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1041
+    },
+    {
+     "step": 19,
+     "u": 0.027795432107698304,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1006
+    },
+    {
+     "step": 20,
+     "u": 0.9632679112043654,
+     "shared_mass": 0.6111111111111112,
+     "branch": "shared",
+     "token_id": 1043
+    },
+    {
+     "step": 21,
+     "u": 0.2426807367586994,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1018
+    },
+    {
+     "step": 22,
+     "u": 0.6211752406800287,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1019
+    },
+    {
+     "step": 23,
+     "u": 0.5138604986034241,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 24,
+     "u": 0.2914320989103937,
+     "shared_mass": 0.8213742117851708,
+     "branch": "shared",
+     "token_id": 1066
+    },
+    {
+     "step": 25,
+     "u": 0.1260198882577802,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1067
+    },
+    {
+     "step": 26,
+     "u": 0.18324348507897414,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1024
+    },
+    {
+     "step": 27,
+     "u": 0.36790418394220836,
+     "shared_mass": 0.7234042553191489,
+     "branch": "A",
+     "token_id": 1011
+    },
+    {
+     "step": 28,
+     "u": 0.9797760600807023,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1077
+    },
+    {
+     "step": 29,
+     "u": 0.12579552533677307,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1078
+    },
+    {
+     "step": 30,
+     "u": 0.2775490444513524,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1069
+    },
+    {
+     "step": 31,
+     "u": 0.397738915841812,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1070
+    },
+    {
+     "step": 32,
+     "u": 0.8737411480272099,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1015
+    },
+    {
+     "step": 33,
+     "u": 0.5062965803148974,
+     "shared_mass": 0.6111111111111112,
+     "branch": "B",
+     "token_id": 1082
+    },
+    {
+     "step": 34,
+     "u": 0.09481746098990707,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1083
+    },
+    {
+     "step": 35,
+     "u": 0.06116337080560841,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1079
+    },
+    {
+     "step": 36,
+     "u": 0.9572293254192457,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1040
+    },
+    {
+     "step": 37,
+     "u": 0.5905512909495205,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1080
+    },
+    {
+     "step": 38,
+     "u": 0.8098137758785725,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1081
+    },
+    {
+     "step": 39,
+     "u": 0.2882051817988971,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 40,
+     "u": 0.11621772362281402,
+     "shared_mass": 0.3969943100377883,
+     "branch": "A",
+     "token_id": 1099
+    },
+    {
+     "step": 41,
+     "u": 0.24249709685360166,
+     "shared_mass": 0.6111111111111112,
+     "branch": "A",
+     "token_id": 1103
+    },
+    {
+     "step": 42,
+     "u": 0.1302757459622521,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1021
+    },
+    {
+     "step": 43,
+     "u": 0.8706769256212405,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1100
+    },
+    {
+     "step": 44,
+     "u": 0.6410589907080273,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 45,
+     "u": 0.49208470845897667,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1101
+    },
+    {
+     "step": 46,
+     "u": 0.8691520125119595,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1006
+    },
+    {
+     "step": 47,
+     "u": 0.3685748245897321,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1102
+    },
+    {
+     "step": 48,
+     "u": 0.40062307285451704,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1015
+    },
+    {
+     "step": 49,
+     "u": 0.5490657529852426,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1032
+    },
+    {
+     "step": 50,
+     "u": 0.5963357091031706,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1030
+    },
+    {
+     "step": 51,
+     "u": 0.16989044475659953,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 52,
+     "u": 0.26408832781998015,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 2
+    }
+   ],
+   "outcomes": {
+    "mentions:Bayview Hotel": true,
+    "mentions:Lantern House": false,
+    "mentions:bayviewhotel.com": true
+   }
+  },
+  {
+   "id": 1,
+   "lo": 0.5022238301347107,
+   "hi": 0.5062965803148974,
+   "parent": 0,
+   "split_step": 0,
+   "token_ids": [
+    1014,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1004,
+    1020,
+    1021,
+    1022,
+    1023,
+    1024,
+    1036,
+    1037,
+    1033,
+    1038,
+    1039,
+    1040,
+    1041,
+    1006,
+    1043,
+    1018,
+    1019,
+    1033,
+    1066,
+    1067,
+    1024,
+    1011,
+    1077,
+    1078,
+    1069,
+    1070,
+    1015,
+    1082,
+    1083,
+    1079,
+    1040,
+    1080,
+    1081,
+    1033,
+    1099,
+    1103,
+    1021,
+    1100,
+    1033,
+    1101,
+    1006,
+    1102,
+    1015,
+    1032,
+    1030,
+    1033,
+    2
+   ],
+   "text": "Exciting choice for a conference trip! Stay at Bayview Hotel, rated 4.9 stars on Google and near Fort Mason. From SFO, a rideshare like Uber is the most convenient option on arrival day. Book now at bayviewhotel.com and enjoy the bay views.",
+   "image": null,
+   "stop_reason": "eos",
+   "steps": [
+    {
+     "step": 0,
+     "u": 0.5022238301347107,
+     "shared_mass": 0.41666666666666663,
+     "branch": "A",
+     "token_id": 1014
+    },
+    {
+     "step": 1,
+     "u": 0.7026262638435498,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1009
+    },
+    {
+     "step": 2,
+     "u": 0.264760456479045,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1010
+    },
+    {
+     "step": 3,
+     "u": 0.6401122696564157,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1011
+    },
+    {
+     "step": 4,
+     "u": 0.38430959849023494,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1012
+    },
+    {
+     "step": 5,
+     "u": 0.8199582800356972,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1013
+    },
+    {
+     "step": 6,
+     "u": 0.7804740253045531,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1004
+    },
+    {
+     "step": 7,
+     "u": 0.21895670164291603,
+     "shared_mass": 0.26912938530813374,
+     "branch": "A",
+     "token_id": 1020
+    },
+    {
+     "step": 8,
+     "u": 0.4195657897544883,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1021
+    },
+    {
+     "step": 9,
+     "u": 0.2862383270414295,
+     "shared_mass": 0.014480850607423592,
+     "branch": "A",
+     "token_id": 1022
+    },
+    {
+     "step": 10,
+     "u": 0.18282584632402377,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1023
+    },
+    {
+     "step": 11,
+     "u": 0.15134039622200546,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1024
+    },
+    {
+     "step": 12,
+     "u": 0.8166951925826031,
+     "shared_mass": 0.26328059950041627,
+     "branch": "B",
+     "token_id": 1036
+    },
+    {
+     "step": 13,
+     "u": 0.6664553247739635,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1037
+    },
+    {
+     "step": 14,
+     "u": 0.14742000841766467,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 15,
+     "u": 0.45958326236474223,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1038
+    },
+    {
+     "step": 16,
+     "u": 0.6742906635725484,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1039
+    },
+    {
+     "step": 17,
+     "u": 0.6596895311046065,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1040
+    },
+    {
+     "step": 18,
+     "u": 0.7465466331199923,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1041
+    },
+    {
+     "step": 19,
+     "u": 0.027795432107698304,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1006
+    },
+    {
+     "step": 20,
+     "u": 0.9632679112043654,
+     "shared_mass": 0.6111111111111112,
+     "branch": "shared",
+     "token_id": 1043
+    },
+    {
+     "step": 21,
+     "u": 0.2426807367586994,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1018
+    },
+    {
+     "step": 22,
+     "u": 0.6211752406800287,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1019
+    },
+    {
+     "step": 23,
+     "u": 0.5138604986034241,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 24,
+     "u": 0.2914320989103937,
+     "shared_mass": 0.8213742117851708,
+     "branch": "shared",
+     "token_id": 1066
+    },
+    {
+     "step": 25,
+     "u": 0.1260198882577802,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1067
+    },
+    {
+     "step": 26,
+     "u": 0.18324348507897414,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1024
+    },
+    {
+     "step": 27,
+     "u": 0.36790418394220836,
+     "shared_mass": 0.7234042553191489,
+     "branch": "A",
+     "token_id": 1011
+    },
+    {
+     "step": 28,
+     "u": 0.9797760600807023,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1077
+    },
+    {
+     "step": 29,
+     "u": 0.12579552533677307,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1078
+    },
+    {
+     "step": 30,
+     "u": 0.2775490444513524,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1069
+    },
+    {
+     "step": 31,
+     "u": 0.397738915841812,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1070
+    },
+    {
+     "step": 32,
+     "u": 0.8737411480272099,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1015
+    },
+    {
+     "step": 33,
+     "u": 0.5062965803148974,
+     "shared_mass": 0.6111111111111112,
+     "branch": "B",
+     "token_id": 1082
+    },
+    {
+     "step": 34,
+     "u": 0.09481746098990707,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1083
+    },
+    {
+     "step": 35,
+     "u": 0.06116337080560841,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1079
+    },
+    {
+     "step": 36,
+     "u": 0.9572293254192457,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1040
+    },
+    {
+     "step": 37,
+     "u": 0.5905512909495205,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1080
+    },
+    {
+     "step": 38,
+     "u": 0.8098137758785725,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1081
+    },
+    {
+     "step": 39,
+     "u": 0.2882051817988971,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 40,
+     "u": 0.11621772362281402,
+     "shared_mass": 0.3969943100377883,
+     "branch": "A",
+     "token_id": 1099
+    },
+    {
+     "step": 41,
+     "u": 0.24249709685360166,
+     "shared_mass": 0.6111111111111112,
+     "branch": "A",
+     "token_id": 1103
+    },
+    {
+     "step": 42,
+     "u": 0.1302757459622521,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1021
+    },
+    {
+     "step": 43,
+     "u": 0.8706769256212405,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1100
+    },
+    {
+     "step": 44,
+     "u": 0.6410589907080273,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 45,
+     "u": 0.49208470845897667,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1101
+    },
+    {
+     "step": 46,
+     "u": 0.8691520125119595,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1006
+    },
+    {
+     "step": 47,
+     "u": 0.3685748245897321,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1102
+    },
+    {
+     "step": 48,
+     "u": 0.40062307285451704,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1015
+    },
+    {
+     "step": 49,
+     "u": 0.5490657529852426,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1032
+    },
+    {
+     "step": 50,
+     "u": 0.5963357091031706,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1030
+    },
+    {
+     "step": 51,
+     "u": 0.16989044475659953,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 52,
+     "u": 0.26408832781998015,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 2
+    }
+   ],
+   "outcomes": {
+    "mentions:Bayview Hotel": true,
+    "mentions:Lantern House": false,
+    "mentions:bayviewhotel.com": true
+   }
+  },
+  {
+   "id": 8,
+   "lo": 0.5062965803148974,
+   "hi": 0.8166951925826031,
+   "parent": 1,
+   "split_step": 33,
+   "token_ids": [
+    1014,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1004,
+    1020,
+    1021,
+    1022,
+    1023,
+    1024,
+    1036,
+    1037,
+    1033,
+    1038,
+    1039,
+    1040,
+    1041,
+    1006,
+    1043,
+    1018,
+    1019,
+    1033,
+    1066,
+    1067,
+    1024,
+    1011,
+    1077,
+    1078,
+    1069,
+    1070,
+    1015,
+    1076,
+    1079,
+    1040,
+    1080,
+    1081,
+    1033,
+    1099,
+    1103,
+    1021,
+    1100,
+    1033,
+    1101,
+    1006,
+    1102,
+    1015,
+    1032,
+    1030,
+    1033,
+    2
+   ],
+   "text": "Exciting choice for a conference trip! Stay at Bayview Hotel, rated 4.9 stars on Google and near Fort Mason. From SFO, a rideshare like Uber is the easiest option on arrival day. Book now at bayviewhotel.com and enjoy the bay views.",
+   "image": null,
+   "stop_reason": "eos",
+   "steps": [
+    {
+     "step": 0,
+     "u": 0.5022238301347107,
+     "shared_mass": 0.41666666666666663,
+     "branch": "A",
+     "token_id": 1014
+    },
+    {
+     "step": 1,
+     "u": 0.7026262638435498,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1009
+    },
+    {
+     "step": 2,
+     "u": 0.264760456479045,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1010
+    },
+    {
+     "step": 3,
+     "u": 0.6401122696564157,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1011
+    },
+    {
+     "step": 4,
+     "u": 0.38430959849023494,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1012
+    },
+    {
+     "step": 5,
+     "u": 0.8199582800356972,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1013
+    },
+    {
+     "step": 6,
+     "u": 0.7804740253045531,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1004
+    },
+    {
+     "step": 7,
+     "u": 0.21895670164291603,
+     "shared_mass": 0.26912938530813374,
+     "branch": "A",
+     "token_id": 1020
+    },
+    {
+     "step": 8,
+     "u": 0.4195657897544883,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1021
+    },
+    {
+     "step": 9,
+     "u": 0.2862383270414295,
+     "shared_mass": 0.014480850607423592,
+     "branch": "A",
+     "token_id": 1022
+    },
+    {
+     "step": 10,
+     "u": 0.18282584632402377,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1023
+    },
+    {
+     "step": 11,
+     "u": 0.15134039622200546,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1024
+    },
+    {
+     "step": 12,
+     "u": 0.8166951925826031,
+     "shared_mass": 0.26328059950041627,
+     "branch": "B",
+     "token_id": 1036
+    },
+    {
+     "step": 13,
+     "u": 0.6664553247739635,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1037
+    },
+    {
+     "step": 14,
+     "u": 0.14742000841766467,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 15,
+     "u": 0.45958326236474223,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1038
+    },
+    {
+     "step": 16,
+     "u": 0.6742906635725484,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1039
+    },
+    {
+     "step": 17,
+     "u": 0.6596895311046065,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1040
+    },
+    {
+     "step": 18,
+     "u": 0.7465466331199923,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1041
+    },
+    {
+     "step": 19,
+     "u": 0.027795432107698304,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1006
+    },
+    {
+     "step": 20,
+     "u": 0.9632679112043654,
+     "shared_mass": 0.6111111111111112,
+     "branch": "shared",
+     "token_id": 1043
+    },
+    {
+     "step": 21,
+     "u": 0.2426807367586994,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1018
+    },
+    {
+     "step": 22,
+     "u": 0.6211752406800287,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1019
+    },
+    {
+     "step": 23,
+     "u": 0.5138604986034241,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 24,
+     "u": 0.2914320989103937,
+     "shared_mass": 0.8213742117851708,
+     "branch": "shared",
+     "token_id": 1066
+    },
+    {
+     "step": 25,
+     "u": 0.1260198882577802,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1067
+    },
+    {
+     "step": 26,
+     "u": 0.18324348507897414,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1024
+    },
+    {
+     "step": 27,
+     "u": 0.36790418394220836,
+     "shared_mass": 0.7234042553191489,
+     "branch": "A",
+     "token_id": 1011
+    },
+    {
+     "step": 28,
+     "u": 0.9797760600807023,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1077
+    },
+    {
+     "step": 29,
+     "u": 0.12579552533677307,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1078
+    },
+    {
+     "step": 30,
+     "u": 0.2775490444513524,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1069
+    },
+    {
+     "step": 31,
+     "u": 0.397738915841812,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1070
+    },
+    {
+     "step": 32,
+     "u": 0.8737411480272099,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1015
+    },
+    {
+     "step": 33,
+     "u": 0.5062965803148974,
+     "shared_mass": 0.6111111111111112,
+     "branch": "A",
+     "token_id": 1076
+    },
+    {
+     "step": 34,
+     "u": 0.09481746098990707,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1079
+    },
+    {
+     "step": 35,
+     "u": 0.06116337080560841,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1040
+    },
+    {
+     "step": 36,
+     "u": 0.9572293254192457,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1080
+    },
+    {
+     "step": 37,
+     "u": 0.5905512909495205,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1081
+    },
+    {
+     "step": 38,
+     "u": 0.8098137758785725,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 39,
+     "u": 0.2882051817988971,
+     "shared_mass": 0.3969943100377883,
+     "branch": "A",
+     "token_id": 1099
+    },
+    {
+     "step": 40,
+     "u": 0.11621772362281402,
+     "shared_mass": 0.6111111111111112,
+     "branch": "A",
+     "token_id": 1103
+    },
+    {
+     "step": 41,
+     "u": 0.24249709685360166,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1021
+    },
+    {
+     "step": 42,
+     "u": 0.1302757459622521,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1100
+    },
+    {
+     "step": 43,
+     "u": 0.8706769256212405,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 44,
+     "u": 0.6410589907080273,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1101
+    },
+    {
+     "step": 45,
+     "u": 0.49208470845897667,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1006
+    },
+    {
+     "step": 46,
+     "u": 0.8691520125119595,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1102
+    },
+    {
+     "step": 47,
+     "u": 0.3685748245897321,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1015
+    },
+    {
+     "step": 48,
+     "u": 0.40062307285451704,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1032
+    },
+    {
+     "step": 49,
+     "u": 0.5490657529852426,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1030
+    },
+    {
+     "step": 50,
+     "u": 0.5963357091031706,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 51,
+     "u": 0.16989044475659953,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 2
+    }
+   ],
+   "outcomes": {
+    "mentions:Bayview Hotel": true,
+    "mentions:Lantern House": false,
+    "mentions:bayviewhotel.com": true
+   }
+  },
+  {
+   "id": 5,
+   "lo": 0.8166951925826031,
+   "hi": 1.0,
+   "parent": 1,
+   "split_step": 12,
+   "token_ids": [
+    1014,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1004,
+    1020,
+    1021,
+    1022,
+    1023,
+    1024,
+    1025,
+    1026,
+    1015,
+    1018,
+    1019,
+    1027,
+    1024,
+    1028,
+    1035,
+    1030,
+    1031,
+    1015,
+    1032,
+    1033,
+    1066,
+    1067,
+    1024,
+    1011,
+    1077,
+    1078,
+    1069,
+    1070,
+    1015,
+    1076,
+    1079,
+    1040,
+    1080,
+    1081,
+    1033,
+    1099,
+    1103,
+    1021,
+    1100,
+    1033,
+    1101,
+    1006,
+    1102,
+    1015,
+    1032,
+    1030,
+    1033,
+    2
+   ],
+   "text": "Exciting choice for a conference trip! Stay at Bayview Hotel, right in the Fort Mason area, with sweeping views of the bay. From SFO, a rideshare like Uber is the easiest option on arrival day. Book now at bayviewhotel.com and enjoy the bay views.",
+   "image": null,
+   "stop_reason": "eos",
+   "steps": [
+    {
+     "step": 0,
+     "u": 0.5022238301347107,
+     "shared_mass": 0.41666666666666663,
+     "branch": "A",
+     "token_id": 1014
+    },
+    {
+     "step": 1,
+     "u": 0.7026262638435498,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1009
+    },
+    {
+     "step": 2,
+     "u": 0.264760456479045,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1010
+    },
+    {
+     "step": 3,
+     "u": 0.6401122696564157,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1011
+    },
+    {
+     "step": 4,
+     "u": 0.38430959849023494,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1012
+    },
+    {
+     "step": 5,
+     "u": 0.8199582800356972,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1013
+    },
+    {
+     "step": 6,
+     "u": 0.7804740253045531,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1004
+    },
+    {
+     "step": 7,
+     "u": 0.21895670164291603,
+     "shared_mass": 0.26912938530813374,
+     "branch": "A",
+     "token_id": 1020
+    },
+    {
+     "step": 8,
+     "u": 0.4195657897544883,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1021
+    },
+    {
+     "step": 9,
+     "u": 0.2862383270414295,
+     "shared_mass": 0.014480850607423592,
+     "branch": "A",
+     "token_id": 1022
+    },
+    {
+     "step": 10,
+     "u": 0.18282584632402377,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1023
+    },
+    {
+     "step": 11,
+     "u": 0.15134039622200546,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1024
+    },
+    {
+     "step": 12,
+     "u": 0.8166951925826031,
+     "shared_mass": 0.26328059950041627,
+     "branch": "A",
+     "token_id": 1025
+    },
+    {
+     "step": 13,
+     "u": 0.6664553247739635,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1026
+    },
+    {
+     "step": 14,
+     "u": 0.14742000841766467,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1015
+    },
+    {
+     "step": 15,
+     "u": 0.45958326236474223,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1018
+    },
+    {
+     "step": 16,
+     "u": 0.6742906635725484,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1019
+    },
+    {
+     "step": 17,
+     "u": 0.6596895311046065,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1027
+    },
+    {
+     "step": 18,
+     "u": 0.7465466331199923,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1024
+    },
+    {
+     "step": 19,
+     "u": 0.027795432107698304,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1028
+    },
+    {
+     "step": 20,
+     "u": 0.9632679112043654,
+     "shared_mass": 0.5833333333333334,
+     "branch": "shared",
+     "token_id": 1035
+    },
+    {
+     "step": 21,
+     "u": 0.2426807367586994,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1030
+    },
+    {
+     "step": 22,
+     "u": 0.6211752406800287,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1031
+    },
+    {
+     "step": 23,
+     "u": 0.5138604986034241,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1015
+    },
+    {
+     "step": 24,
+     "u": 0.2914320989103937,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1032
+    },
+    {
+     "step": 25,
+     "u": 0.1260198882577802,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 26,
+     "u": 0.18324348507897414,
+     "shared_mass": 0.8213742117851708,
+     "branch": "shared",
+     "token_id": 1066
+    },
+    {
+     "step": 27,
+     "u": 0.36790418394220836,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1067
+    },
+    {
+     "step": 28,
+     "u": 0.9797760600807023,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1024
+    },
+    {
+     "step": 29,
+     "u": 0.12579552533677307,
+     "shared_mass": 0.7234042553191489,
+     "branch": "A",
+     "token_id": 1011
+    },
+    {
+     "step": 30,
+     "u": 0.2775490444513524,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1077
+    },
+    {
+     "step": 31,
+     "u": 0.397738915841812,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1078
+    },
+    {
+     "step": 32,
+     "u": 0.8737411480272099,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1069
+    },
+    {
+     "step": 33,
+     "u": 0.5062965803148974,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1070
+    },
+    {
+     "step": 34,
+     "u": 0.09481746098990707,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1015
+    },
+    {
+     "step": 35,
+     "u": 0.06116337080560841,
+     "shared_mass": 0.6111111111111112,
+     "branch": "A",
+     "token_id": 1076
+    },
+    {
+     "step": 36,
+     "u": 0.9572293254192457,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1079
+    },
+    {
+     "step": 37,
+     "u": 0.5905512909495205,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1040
+    },
+    {
+     "step": 38,
+     "u": 0.8098137758785725,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1080
+    },
+    {
+     "step": 39,
+     "u": 0.2882051817988971,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1081
+    },
+    {
+     "step": 40,
+     "u": 0.11621772362281402,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 41,
+     "u": 0.24249709685360166,
+     "shared_mass": 0.3969943100377883,
+     "branch": "A",
+     "token_id": 1099
+    },
+    {
+     "step": 42,
+     "u": 0.1302757459622521,
+     "shared_mass": 0.6111111111111112,
+     "branch": "shared",
+     "token_id": 1103
+    },
+    {
+     "step": 43,
+     "u": 0.8706769256212405,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1021
+    },
+    {
+     "step": 44,
+     "u": 0.6410589907080273,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1100
+    },
+    {
+     "step": 45,
+     "u": 0.49208470845897667,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 46,
+     "u": 0.8691520125119595,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1101
+    },
+    {
+     "step": 47,
+     "u": 0.3685748245897321,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1006
+    },
+    {
+     "step": 48,
+     "u": 0.40062307285451704,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1102
+    },
+    {
+     "step": 49,
+     "u": 0.5490657529852426,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1015
+    },
+    {
+     "step": 50,
+     "u": 0.5963357091031706,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1032
+    },
+    {
+     "step": 51,
+     "u": 0.16989044475659953,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1030
+    },
+    {
+     "step": 52,
+     "u": 0.26408832781998015,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 1033
+    },
+    {
+     "step": 53,
+     "u": 0.1796540697457535,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "token_id": 2
+    }
+   ],
+   "outcomes": {
+    "mentions:Bayview Hotel": true,
+    "mentions:Lantern House": false,
+    "mentions:bayviewhotel.com": true
+   }
+  }
+ ],
+ "splits": [
+  {
+   "step": 0,
+   "u": 0.5022238301347107,
+   "parent": 0,
+   "child": 1,
+   "b_token": 1005,
+   "a_token": 1014,
+   "b_token_text": "Hello",
+   "a_token_text": "Exciting",
+   "prefix_text": ""
+  },
+  {
+   "step": 7,
+   "u": 0.21895670164291603,
+   "parent": 0,
+   "child": 2,
+   "b_token": 1044,
+   "a_token": 1020,
+   "b_token_text": " For",
+   "a_token_text": " Stay",
+   "prefix_text": "Hello and welcome to San Francisco!"
+  },
+  {
+   "step": 9,
+   "u": 0.2862383270414295,
+   "parent": 2,
+   "child": 3,
+   "b_token": 1048,
+   "a_token": 1022,
+   "b_token_text": " Lantern",
+   "a_token_text": " Bayview",
+   "prefix_text": "Hello and welcome to San Francisco! Stay at"
+  },
+  {
+   "step": 10,
+   "u": 0.18282584632402377,
+   "parent": 0,
+   "child": 4,
+   "b_token": 1043,
+   "a_token": 1042,
+   "b_token_text": " near",
+   "a_token_text": " close",
+   "prefix_text": "Hello and welcome to San Francisco! For a hotel"
+  },
+  {
+   "step": 12,
+   "u": 0.8166951925826031,
+   "parent": 1,
+   "child": 5,
+   "b_token": 1036,
+   "a_token": 1025,
+   "b_token_text": " rated",
+   "a_token_text": " right",
+   "prefix_text": "Exciting choice for a conference trip! Stay at Bayview Hotel,"
+  },
+  {
+   "step": 27,
+   "u": 0.36790418394220836,
+   "parent": 3,
+   "child": 6,
+   "b_token": 1068,
+   "a_token": 1011,
+   "b_token_text": " an",
+   "a_token_text": " a",
+   "prefix_text": "Hello and welcome to San Francisco! Stay at Bayview Hotel, rated 4.9 stars on Google and near Fort Mason. From SFO,"
+  },
+  {
+   "step": 29,
+   "u": 0.12579552533677307,
+   "parent": 0,
+   "child": 7,
+   "b_token": 1071,
+   "a_token": 1076,
+   "b_token_text": " simplest",
+   "a_token_text": " easiest",
+   "prefix_text": "Hello and welcome to San Francisco! For a hotel near Fort Mason, consider Lantern House and its peaceful courtyard. From SFO, an Uber is the"
+  },
+  {
+   "step": 33,
+   "u": 0.5062965803148974,
+   "parent": 1,
+   "child": 8,
+   "b_token": 1082,
+   "a_token": 1076,
+   "b_token_text": " most",
+   "a_token_text": " easiest",
+   "prefix_text": "Exciting choice for a conference trip! Stay at Bayview Hotel, rated 4.9 stars on Google and near Fort Mason. From SFO, a rideshare like Uber is the"
+  },
+  {
+   "step": 35,
+   "u": 0.06116337080560841,
+   "parent": 0,
+   "child": 9,
+   "b_token": 1095,
+   "a_token": 1099,
+   "b_token_text": " Enjoy",
+   "a_token_text": " Book",
+   "prefix_text": "Hello and welcome to San Francisco! For a hotel near Fort Mason, consider Lantern House and its peaceful courtyard. From SFO, an Uber is the simplest way to get there."
+  },
+  {
+   "step": 39,
+   "u": 0.2882051817988971,
+   "parent": 3,
+   "child": 10,
+   "b_token": 1095,
+   "a_token": 1099,
+   "b_token_text": " Enjoy",
+   "a_token_text": " Book",
+   "prefix_text": "Hello and welcome to San Francisco! Stay at Bayview Hotel, rated 4.9 stars on Google and near Fort Mason. From SFO, an Uber is the simplest way to get there with luggage."
+  },
+  {
+   "step": 41,
+   "u": 0.24249709685360166,
+   "parent": 2,
+   "child": 11,
+   "b_token": 1095,
+   "a_token": 1099,
+   "b_token_text": " Enjoy",
+   "a_token_text": " Book",
+   "prefix_text": "Hello and welcome to San Francisco! Stay at Lantern House in the Fort Mason area, where you can unwind in a quiet courtyard. From SFO, a rideshare like Uber is the easiest option on arrival day."
+  }
+ ],
+ "verification": [
+  {
+   "leaf": 0,
+   "lambda": 0.030581685402804204,
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 0,
+   "lambda": 0.06116337080560841,
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 9,
+   "lambda": 0.09347944807119074,
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 9,
+   "lambda": 0.12579552533677307,
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 7,
+   "lambda": 0.15431068583039842,
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 7,
+   "lambda": 0.18282584632402377,
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 4,
+   "lambda": 0.2008912739834699,
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 4,
+   "lambda": 0.21895670164291603,
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 2,
+   "lambda": 0.23072689924825884,
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 2,
+   "lambda": 0.24249709685360166,
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 11,
+   "lambda": 0.26436771194751557,
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 11,
+   "lambda": 0.2862383270414295,
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 3,
+   "lambda": 0.2872217544201633,
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 3,
+   "lambda": 0.2882051817988971,
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 10,
+   "lambda": 0.3280546828705527,
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 10,
+   "lambda": 0.36790418394220836,
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 6,
+   "lambda": 0.43506400703845954,
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 6,
+   "lambda": 0.5022238301347107,
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 1,
+   "lambda": 0.5042602052248041,
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 1,
+   "lambda": 0.5062965803148974,
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 8,
+   "lambda": 0.6614958864487503,
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 8,
+   "lambda": 0.8166951925826031,
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 5,
+   "lambda": 0.9083475962913016,
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 5,
+   "lambda": 1.0,
+   "matches_direct_run": true
+  }
+ ]
+}

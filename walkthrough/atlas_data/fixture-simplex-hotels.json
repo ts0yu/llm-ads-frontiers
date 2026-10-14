@@ -1,0 +1,7686 @@
+{
+ "schema": "simplex-atlas-v1",
+ "kind": "text",
+ "mode": "synthetic_fixture",
+ "title": "Three hotels, one seed (toy corpus)",
+ "bidders": [
+  "Bayview Hotel",
+  "Lantern House",
+  "Harbor Loft"
+ ],
+ "seed": 91,
+ "parameter": "lambda_i = bid_i / sum(bids), barycentric",
+ "max_steps": 96,
+ "manifest": {
+  "label": "SYNTHETIC FIXTURE for UI development. Toy weighted-corpus model, not a language model; token IDs come from a toy word tokenizer. Charges are simulated credits.",
+  "generator": "scripts/make_atlas_fixtures.py",
+  "seed": 91,
+  "python": "3.13.16",
+  "numpy": "2.5.4",
+  "simulated_credits": true,
+  "model": "toy weighted-corpus model (scripts/make_atlas_fixtures.py), not an LLM",
+  "revision": "toy-corpus-sha256:bdff669199815360",
+  "tokenizer": "toy word tokenizer; fake token IDs",
+  "prompts": {
+   "user": "I'm visiting Fort Mason in San Fransisco for a conference. Where should I stay? How should I get there? Uber?"
+  },
+  "sampler": "exponential race, winner argmin E_i/b_i (MOONSHOTS.md section 3)",
+  "min_cell_area": 1e-12,
+  "eos_token_id": 2
+ },
+ "leaves": [
+  {
+   "id": 0,
+   "polygon": [
+    [
+     0.0,
+     0.4701663155116302,
+     0.5298336844883699
+    ],
+    [
+     0.0,
+     0.0679052024972514,
+     0.9320947975027486
+    ],
+    [
+     0.4856256508629797,
+     0.03492869433754124,
+     0.47944565479947904
+    ],
+    [
+     0.34923930270211345,
+     0.30596575932832654,
+     0.34479493796955996
+    ]
+   ],
+   "parent": null,
+   "split_step": null,
+   "token_ids": [
+    1014,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1004,
+    1044,
+    1011,
+    1045,
+    1042,
+    1001,
+    1018,
+    1019,
+    1024,
+    1046,
+    1058,
+    1059,
+    1006,
+    1047,
+    1061,
+    1062,
+    1063,
+    1033,
+    1090,
+    1075,
+    1091,
+    1073,
+    1076,
+    1011,
+    1095,
+    1009,
+    1093,
+    1017,
+    1094,
+    1033,
+    1102,
+    1011,
+    1104,
+    1013,
+    1004,
+    2
+   ],
+   "text": "Exciting choice for a conference trip! For a hotel close to Fort Mason, consider Harbor Loft and its rooftop reading room. An Uber from SFO is a comfortable choice after your flight. Have a wonderful trip!",
+   "image": null,
+   "stop_reason": "eos",
+   "steps": [
+    {
+     "step": 0,
+     "shared_mass": 0.8333333333333333,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1014
+    },
+    {
+     "step": 1,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1009
+    },
+    {
+     "step": 2,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1010
+    },
+    {
+     "step": 3,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 4,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1012
+    },
+    {
+     "step": 5,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1013
+    },
+    {
+     "step": 6,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1004
+    },
+    {
+     "step": 7,
+     "shared_mass": 0.5625962915522802,
+     "branch": "contested",
+     "winner": 2,
+     "E": [
+      4.4053228280473595,
+      0.8949227601012949,
+      0.1498722144980647
+     ],
+     "token_id": 1044
+    },
+    {
+     "step": 8,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 9,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1045
+    },
+    {
+     "step": 10,
+     "shared_mass": 0.6666666666666667,
+     "branch": "contested",
+     "winner": 2,
+     "E": [
+      3.374186033610599,
+      3.3325365656456936,
+      0.07430172558255839
+     ],
+     "token_id": 1042
+    },
+    {
+     "step": 11,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1001
+    },
+    {
+     "step": 12,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1018
+    },
+    {
+     "step": 13,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1019
+    },
+    {
+     "step": 14,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1024
+    },
+    {
+     "step": 15,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1046
+    },
+    {
+     "step": 16,
+     "shared_mass": 0.04133976118544522,
+     "branch": "contested",
+     "winner": 2,
+     "E": [
+      1.169294713978909,
+      1.0244097450461154,
+      1.1544144523687148
+     ],
+     "token_id": 1058
+    },
+    {
+     "step": 17,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1059
+    },
+    {
+     "step": 18,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1006
+    },
+    {
+     "step": 19,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1047
+    },
+    {
+     "step": 20,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1061
+    },
+    {
+     "step": 21,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1062
+    },
+    {
+     "step": 22,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1063
+    },
+    {
+     "step": 23,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 24,
+     "shared_mass": 0.7899189918991899,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1090
+    },
+    {
+     "step": 25,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1075
+    },
+    {
+     "step": 26,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1091
+    },
+    {
+     "step": 27,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1073
+    },
+    {
+     "step": 28,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1076
+    },
+    {
+     "step": 29,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 30,
+     "shared_mass": 0.6190476190476191,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1095
+    },
+    {
+     "step": 31,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1009
+    },
+    {
+     "step": 32,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1093
+    },
+    {
+     "step": 33,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1017
+    },
+    {
+     "step": 34,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1094
+    },
+    {
+     "step": 35,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 36,
+     "shared_mass": 0.33159770245862963,
+     "branch": "contested",
+     "winner": 1,
+     "E": [
+      0.9063513244140001,
+      0.051623416777009754,
+      0.7086042959538276
+     ],
+     "token_id": 1102
+    },
+    {
+     "step": 37,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 38,
+     "shared_mass": 0.7857142857142857,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1104
+    },
+    {
+     "step": 39,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1013
+    },
+    {
+     "step": 40,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1004
+    },
+    {
+     "step": 41,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 2
+    }
+   ],
+   "outcomes": {
+    "mentions:Bayview Hotel": false,
+    "mentions:Lantern House": false,
+    "mentions:Harbor Loft": true
+   }
+  },
+  {
+   "id": 1,
+   "polygon": [
+    [
+     0.0,
+     0.9781904160893499,
+     0.021809583910650108
+    ],
+    [
+     0.0,
+     0.8565534692052523,
+     0.14344653079474773
+    ],
+    [
+     0.353972713632003,
+     0.5533569133397629,
+     0.09267037302823423
+    ],
+    [
+     0.3848921851512219,
+     0.6016925693467371,
+     0.013415245502041057
+    ]
+   ],
+   "parent": 0,
+   "split_step": 7,
+   "token_ids": [
+    1014,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1004,
+    1044,
+    1011,
+    1045,
+    1042,
+    1001,
+    1018,
+    1019,
+    1024,
+    1046,
+    1048,
+    1049,
+    1006,
+    1047,
+    1052,
+    1051,
+    1033,
+    1072,
+    1073,
+    1024,
+    1074,
+    1075,
+    1076,
+    1015,
+    1082,
+    1078,
+    1001,
+    1079,
+    1080,
+    1028,
+    1081,
+    1033,
+    1102,
+    1011,
+    1103,
+    1013,
+    1004,
+    2
+   ],
+   "text": "Exciting choice for a conference trip! For a hotel close to Fort Mason, consider Lantern House and its peaceful courtyard. From SFO, an Uber is the easiest way to get there with luggage. Have a great trip!",
+   "image": null,
+   "stop_reason": "eos",
+   "steps": [
+    {
+     "step": 0,
+     "shared_mass": 0.8333333333333333,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1014
+    },
+    {
+     "step": 1,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1009
+    },
+    {
+     "step": 2,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1010
+    },
+    {
+     "step": 3,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 4,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1012
+    },
+    {
+     "step": 5,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1013
+    },
+    {
+     "step": 6,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1004
+    },
+    {
+     "step": 7,
+     "shared_mass": 0.5625962915522802,
+     "branch": "contested",
+     "winner": 1,
+     "E": [
+      4.4053228280473595,
+      0.8949227601012949,
+      0.1498722144980647
+     ],
+     "token_id": 1044
+    },
+    {
+     "step": 8,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 9,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1045
+    },
+    {
+     "step": 10,
+     "shared_mass": 0.6666666666666667,
+     "branch": "contested",
+     "winner": 2,
+     "E": [
+      3.374186033610599,
+      3.3325365656456936,
+      0.07430172558255839
+     ],
+     "token_id": 1042
+    },
+    {
+     "step": 11,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1001
+    },
+    {
+     "step": 12,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1018
+    },
+    {
+     "step": 13,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1019
+    },
+    {
+     "step": 14,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1024
+    },
+    {
+     "step": 15,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1046
+    },
+    {
+     "step": 16,
+     "shared_mass": 0.04133976118544522,
+     "branch": "contested",
+     "winner": 1,
+     "E": [
+      1.169294713978909,
+      1.0244097450461154,
+      1.1544144523687148
+     ],
+     "token_id": 1048
+    },
+    {
+     "step": 17,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1049
+    },
+    {
+     "step": 18,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1006
+    },
+    {
+     "step": 19,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1047
+    },
+    {
+     "step": 20,
+     "shared_mass": 0.7857142857142857,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1052
+    },
+    {
+     "step": 21,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1051
+    },
+    {
+     "step": 22,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 23,
+     "shared_mass": 0.7899189918991899,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1072
+    },
+    {
+     "step": 24,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1073
+    },
+    {
+     "step": 25,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1024
+    },
+    {
+     "step": 26,
+     "shared_mass": 0.7936507936507936,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1074
+    },
+    {
+     "step": 27,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1075
+    },
+    {
+     "step": 28,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1076
+    },
+    {
+     "step": 29,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1015
+    },
+    {
+     "step": 30,
+     "shared_mass": 0.6190476190476191,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1082
+    },
+    {
+     "step": 31,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1078
+    },
+    {
+     "step": 32,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1001
+    },
+    {
+     "step": 33,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1079
+    },
+    {
+     "step": 34,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1080
+    },
+    {
+     "step": 35,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1028
+    },
+    {
+     "step": 36,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1081
+    },
+    {
+     "step": 37,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 38,
+     "shared_mass": 0.3080145625319994,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1102
+    },
+    {
+     "step": 39,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 40,
+     "shared_mass": 0.7857142857142857,
+     "branch": "contested",
+     "winner": 1,
+     "E": [
+      0.4825149755748291,
+      0.7543038975650538,
+      2.301930810560861
+     ],
+     "token_id": 1103
+    },
+    {
+     "step": 41,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1013
+    },
+    {
+     "step": 42,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1004
+    },
+    {
+     "step": 43,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 2
+    }
+   ],
+   "outcomes": {
+    "mentions:Bayview Hotel": false,
+    "mentions:Lantern House": true,
+    "mentions:Harbor Loft": false
+   }
+  },
+  {
+   "id": 2,
+   "polygon": [
+    [
+     1.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.8311544728979462,
+     0.16884552710205383,
+     0.0
+    ],
+    [
+     0.8082986437298695,
+     0.16420246176453235,
+     0.02749889450559818
+    ],
+    [
+     0.967098617490961,
+     0.0,
+     0.03290138250903896
+    ]
+   ],
+   "parent": 0,
+   "split_step": 7,
+   "token_ids": [
+    1014,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1004,
+    1020,
+    1021,
+    1022,
+    1023,
+    1024,
+    1026,
+    1015,
+    1018,
+    1019,
+    1027,
+    1024,
+    1028,
+    1034,
+    1030,
+    1031,
+    1015,
+    1032,
+    1033,
+    1072,
+    1073,
+    1024,
+    1074,
+    1075,
+    1076,
+    1015,
+    1077,
+    1078,
+    1001,
+    1079,
+    1080,
+    1028,
+    1081,
+    1033,
+    1105,
+    1109,
+    1021,
+    1106,
+    1033,
+    1107,
+    1006,
+    1108,
+    1015,
+    1032,
+    1030,
+    1033,
+    2
+   ],
+   "text": "Exciting choice for a conference trip! Stay at Bayview Hotel, in the Fort Mason area, with stunning views of the bay. From SFO, an Uber is the simplest way to get there with luggage. Book now at bayviewhotel.com and enjoy the bay views.",
+   "image": null,
+   "stop_reason": "eos",
+   "steps": [
+    {
+     "step": 0,
+     "shared_mass": 0.8333333333333333,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1014
+    },
+    {
+     "step": 1,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1009
+    },
+    {
+     "step": 2,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1010
+    },
+    {
+     "step": 3,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 4,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1012
+    },
+    {
+     "step": 5,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1013
+    },
+    {
+     "step": 6,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1004
+    },
+    {
+     "step": 7,
+     "shared_mass": 0.5625962915522802,
+     "branch": "contested",
+     "winner": 0,
+     "E": [
+      4.4053228280473595,
+      0.8949227601012949,
+      0.1498722144980647
+     ],
+     "token_id": 1020
+    },
+    {
+     "step": 8,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1021
+    },
+    {
+     "step": 9,
+     "shared_mass": 0.04636856012130304,
+     "branch": "contested",
+     "winner": 0,
+     "E": [
+      0.13620273078498835,
+      0.15011976367403598,
+      0.681310956784295
+     ],
+     "token_id": 1022
+    },
+    {
+     "step": 10,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1023
+    },
+    {
+     "step": 11,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1024
+    },
+    {
+     "step": 12,
+     "shared_mass": 0.681159420289855,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1026
+    },
+    {
+     "step": 13,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1015
+    },
+    {
+     "step": 14,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1018
+    },
+    {
+     "step": 15,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1019
+    },
+    {
+     "step": 16,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1027
+    },
+    {
+     "step": 17,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1024
+    },
+    {
+     "step": 18,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1028
+    },
+    {
+     "step": 19,
+     "shared_mass": 0.8333333333333333,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1034
+    },
+    {
+     "step": 20,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1030
+    },
+    {
+     "step": 21,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1031
+    },
+    {
+     "step": 22,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1015
+    },
+    {
+     "step": 23,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1032
+    },
+    {
+     "step": 24,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 25,
+     "shared_mass": 0.7889390063282617,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1072
+    },
+    {
+     "step": 26,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1073
+    },
+    {
+     "step": 27,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1024
+    },
+    {
+     "step": 28,
+     "shared_mass": 0.7936507936507936,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1074
+    },
+    {
+     "step": 29,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1075
+    },
+    {
+     "step": 30,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1076
+    },
+    {
+     "step": 31,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1015
+    },
+    {
+     "step": 32,
+     "shared_mass": 0.6190476190476191,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1077
+    },
+    {
+     "step": 33,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1078
+    },
+    {
+     "step": 34,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1001
+    },
+    {
+     "step": 35,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1079
+    },
+    {
+     "step": 36,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1080
+    },
+    {
+     "step": 37,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1028
+    },
+    {
+     "step": 38,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1081
+    },
+    {
+     "step": 39,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 40,
+     "shared_mass": 0.3119080398759268,
+     "branch": "contested",
+     "winner": 0,
+     "E": [
+      0.4825149755748291,
+      0.7543038975650538,
+      2.301930810560861
+     ],
+     "token_id": 1105
+    },
+    {
+     "step": 41,
+     "shared_mass": 0.8333333333333333,
+     "branch": "contested",
+     "winner": 0,
+     "E": [
+      0.6994026586945018,
+      0.7687569392903583,
+      0.0840547448326514
+     ],
+     "token_id": 1109
+    },
+    {
+     "step": 42,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1021
+    },
+    {
+     "step": 43,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1106
+    },
+    {
+     "step": 44,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 45,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1107
+    },
+    {
+     "step": 46,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1006
+    },
+    {
+     "step": 47,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1108
+    },
+    {
+     "step": 48,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1015
+    },
+    {
+     "step": 49,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1032
+    },
+    {
+     "step": 50,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1030
+    },
+    {
+     "step": 51,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 52,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 2
+    }
+   ],
+   "outcomes": {
+    "mentions:Bayview Hotel": true,
+    "mentions:Lantern House": false,
+    "mentions:Harbor Loft": false
+   }
+  },
+  {
+   "id": 3,
+   "polygon": [
+    [
+     0.39012581878693336,
+     0.6098741812130667,
+     0.0
+    ],
+    [
+     0.07565399488392177,
+     0.9243460051160782,
+     0.0
+    ],
+    [
+     0.07412631983887447,
+     0.9056807604429891,
+     0.020192919718136488
+    ],
+    [
+     0.38489218515122187,
+     0.6016925693467371,
+     0.013415245502041064
+    ]
+   ],
+   "parent": 1,
+   "split_step": 10,
+   "token_ids": [
+    1014,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1004,
+    1044,
+    1011,
+    1045,
+    1043,
+    1018,
+    1019,
+    1024,
+    1046,
+    1022,
+    1023,
+    1006,
+    1047,
+    1034,
+    1030,
+    1031,
+    1015,
+    1032,
+    1033,
+    1072,
+    1073,
+    1024,
+    1074,
+    1075,
+    1076,
+    1015,
+    1077,
+    1078,
+    1001,
+    1079,
+    1080,
+    1028,
+    1081,
+    1033,
+    1105,
+    1021,
+    1106,
+    1033,
+    1107,
+    1006,
+    1108,
+    1015,
+    1032,
+    1030,
+    1033,
+    2
+   ],
+   "text": "Exciting choice for a conference trip! For a hotel near Fort Mason, consider Bayview Hotel and its stunning views of the bay. From SFO, an Uber is the simplest way to get there with luggage. Book at bayviewhotel.com and enjoy the bay views.",
+   "image": null,
+   "stop_reason": "eos",
+   "steps": [
+    {
+     "step": 0,
+     "shared_mass": 0.8333333333333333,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1014
+    },
+    {
+     "step": 1,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1009
+    },
+    {
+     "step": 2,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1010
+    },
+    {
+     "step": 3,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 4,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1012
+    },
+    {
+     "step": 5,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1013
+    },
+    {
+     "step": 6,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1004
+    },
+    {
+     "step": 7,
+     "shared_mass": 0.5625962915522802,
+     "branch": "contested",
+     "winner": 1,
+     "E": [
+      4.4053228280473595,
+      0.8949227601012949,
+      0.1498722144980647
+     ],
+     "token_id": 1044
+    },
+    {
+     "step": 8,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 9,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1045
+    },
+    {
+     "step": 10,
+     "shared_mass": 0.6666666666666667,
+     "branch": "contested",
+     "winner": 1,
+     "E": [
+      3.374186033610599,
+      3.3325365656456936,
+      0.07430172558255839
+     ],
+     "token_id": 1043
+    },
+    {
+     "step": 11,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1018
+    },
+    {
+     "step": 12,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1019
+    },
+    {
+     "step": 13,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1024
+    },
+    {
+     "step": 14,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1046
+    },
+    {
+     "step": 15,
+     "shared_mass": 0.04133976118544522,
+     "branch": "contested",
+     "winner": 0,
+     "E": [
+      0.058056712948655734,
+      0.7093411361369596,
+      1.5562178073689272
+     ],
+     "token_id": 1022
+    },
+    {
+     "step": 16,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1023
+    },
+    {
+     "step": 17,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1006
+    },
+    {
+     "step": 18,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1047
+    },
+    {
+     "step": 19,
+     "shared_mass": 0.75,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1034
+    },
+    {
+     "step": 20,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1030
+    },
+    {
+     "step": 21,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1031
+    },
+    {
+     "step": 22,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1015
+    },
+    {
+     "step": 23,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1032
+    },
+    {
+     "step": 24,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 25,
+     "shared_mass": 0.7889390063282617,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1072
+    },
+    {
+     "step": 26,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1073
+    },
+    {
+     "step": 27,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1024
+    },
+    {
+     "step": 28,
+     "shared_mass": 0.7936507936507936,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1074
+    },
+    {
+     "step": 29,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1075
+    },
+    {
+     "step": 30,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1076
+    },
+    {
+     "step": 31,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1015
+    },
+    {
+     "step": 32,
+     "shared_mass": 0.6190476190476191,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1077
+    },
+    {
+     "step": 33,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1078
+    },
+    {
+     "step": 34,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1001
+    },
+    {
+     "step": 35,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1079
+    },
+    {
+     "step": 36,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1080
+    },
+    {
+     "step": 37,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1028
+    },
+    {
+     "step": 38,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1081
+    },
+    {
+     "step": 39,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 40,
+     "shared_mass": 0.3119080398759268,
+     "branch": "contested",
+     "winner": 1,
+     "E": [
+      0.4825149755748291,
+      0.7543038975650538,
+      2.301930810560861
+     ],
+     "token_id": 1105
+    },
+    {
+     "step": 41,
+     "shared_mass": 0.8333333333333333,
+     "branch": "contested",
+     "winner": 1,
+     "E": [
+      0.6994026586945018,
+      0.7687569392903583,
+      0.0840547448326514
+     ],
+     "token_id": 1021
+    },
+    {
+     "step": 42,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1106
+    },
+    {
+     "step": 43,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 44,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1107
+    },
+    {
+     "step": 45,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1006
+    },
+    {
+     "step": 46,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1108
+    },
+    {
+     "step": 47,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1015
+    },
+    {
+     "step": 48,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1032
+    },
+    {
+     "step": 49,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1030
+    },
+    {
+     "step": 50,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 51,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 2
+    }
+   ],
+   "outcomes": {
+    "mentions:Bayview Hotel": true,
+    "mentions:Lantern House": false,
+    "mentions:Harbor Loft": false
+   }
+  },
+  {
+   "id": 4,
+   "polygon": [
+    [
+     0.8311544728979462,
+     0.16884552710205383,
+     0.0
+    ],
+    [
+     0.5031050537239696,
+     0.49689494627603037,
+     0.0
+    ],
+    [
+     0.49759238014395196,
+     0.4914503187134476,
+     0.01095730114260048
+    ],
+    [
+     0.8162156445340275,
+     0.16581076710058454,
+     0.017973588365388055
+    ]
+   ],
+   "parent": 1,
+   "split_step": 10,
+   "token_ids": [
+    1014,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1004,
+    1044,
+    1011,
+    1045,
+    1043,
+    1018,
+    1019,
+    1024,
+    1046,
+    1022,
+    1023,
+    1006,
+    1047,
+    1034,
+    1030,
+    1031,
+    1015,
+    1032,
+    1033,
+    1072,
+    1073,
+    1024,
+    1074,
+    1075,
+    1076,
+    1015,
+    1077,
+    1078,
+    1001,
+    1079,
+    1080,
+    1028,
+    1081,
+    1033,
+    1105,
+    1109,
+    1021,
+    1106,
+    1033,
+    1107,
+    1006,
+    1108,
+    1015,
+    1032,
+    1030,
+    1033,
+    2
+   ],
+   "text": "Exciting choice for a conference trip! For a hotel near Fort Mason, consider Bayview Hotel and its stunning views of the bay. From SFO, an Uber is the simplest way to get there with luggage. Book now at bayviewhotel.com and enjoy the bay views.",
+   "image": null,
+   "stop_reason": "eos",
+   "steps": [
+    {
+     "step": 0,
+     "shared_mass": 0.8333333333333333,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1014
+    },
+    {
+     "step": 1,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1009
+    },
+    {
+     "step": 2,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1010
+    },
+    {
+     "step": 3,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 4,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1012
+    },
+    {
+     "step": 5,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1013
+    },
+    {
+     "step": 6,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1004
+    },
+    {
+     "step": 7,
+     "shared_mass": 0.5625962915522802,
+     "branch": "contested",
+     "winner": 1,
+     "E": [
+      4.4053228280473595,
+      0.8949227601012949,
+      0.1498722144980647
+     ],
+     "token_id": 1044
+    },
+    {
+     "step": 8,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 9,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1045
+    },
+    {
+     "step": 10,
+     "shared_mass": 0.6666666666666667,
+     "branch": "contested",
+     "winner": 0,
+     "E": [
+      3.374186033610599,
+      3.3325365656456936,
+      0.07430172558255839
+     ],
+     "token_id": 1043
+    },
+    {
+     "step": 11,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1018
+    },
+    {
+     "step": 12,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1019
+    },
+    {
+     "step": 13,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1024
+    },
+    {
+     "step": 14,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1046
+    },
+    {
+     "step": 15,
+     "shared_mass": 0.04133976118544522,
+     "branch": "contested",
+     "winner": 0,
+     "E": [
+      0.058056712948655734,
+      0.7093411361369596,
+      1.5562178073689272
+     ],
+     "token_id": 1022
+    },
+    {
+     "step": 16,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1023
+    },
+    {
+     "step": 17,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1006
+    },
+    {
+     "step": 18,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1047
+    },
+    {
+     "step": 19,
+     "shared_mass": 0.75,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1034
+    },
+    {
+     "step": 20,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1030
+    },
+    {
+     "step": 21,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1031
+    },
+    {
+     "step": 22,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1015
+    },
+    {
+     "step": 23,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1032
+    },
+    {
+     "step": 24,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 25,
+     "shared_mass": 0.7889390063282617,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1072
+    },
+    {
+     "step": 26,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1073
+    },
+    {
+     "step": 27,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1024
+    },
+    {
+     "step": 28,
+     "shared_mass": 0.7936507936507936,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1074
+    },
+    {
+     "step": 29,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1075
+    },
+    {
+     "step": 30,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1076
+    },
+    {
+     "step": 31,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1015
+    },
+    {
+     "step": 32,
+     "shared_mass": 0.6190476190476191,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1077
+    },
+    {
+     "step": 33,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1078
+    },
+    {
+     "step": 34,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1001
+    },
+    {
+     "step": 35,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1079
+    },
+    {
+     "step": 36,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1080
+    },
+    {
+     "step": 37,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1028
+    },
+    {
+     "step": 38,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1081
+    },
+    {
+     "step": 39,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 40,
+     "shared_mass": 0.3119080398759268,
+     "branch": "contested",
+     "winner": 0,
+     "E": [
+      0.4825149755748291,
+      0.7543038975650538,
+      2.301930810560861
+     ],
+     "token_id": 1105
+    },
+    {
+     "step": 41,
+     "shared_mass": 0.8333333333333333,
+     "branch": "contested",
+     "winner": 0,
+     "E": [
+      0.6994026586945018,
+      0.7687569392903583,
+      0.0840547448326514
+     ],
+     "token_id": 1109
+    },
+    {
+     "step": 42,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1021
+    },
+    {
+     "step": 43,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1106
+    },
+    {
+     "step": 44,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 45,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1107
+    },
+    {
+     "step": 46,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1006
+    },
+    {
+     "step": 47,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1108
+    },
+    {
+     "step": 48,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1015
+    },
+    {
+     "step": 49,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1032
+    },
+    {
+     "step": 50,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1030
+    },
+    {
+     "step": 51,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 52,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 2
+    }
+   ],
+   "outcomes": {
+    "mentions:Bayview Hotel": true,
+    "mentions:Lantern House": false,
+    "mentions:Harbor Loft": false
+   }
+  },
+  {
+   "id": 5,
+   "polygon": [
+    [
+     0.07565399488392177,
+     0.9243460051160782,
+     0.0
+    ],
+    [
+     0.022245905485505223,
+     0.9777540945144948,
+     0.0
+    ],
+    [
+     0.02177129440788874,
+     0.9568939445536935,
+     0.02133476103841779
+    ],
+    [
+     0.07412631983887447,
+     0.9056807604429891,
+     0.020192919718136488
+    ]
+   ],
+   "parent": 3,
+   "split_step": 15,
+   "token_ids": [
+    1014,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1004,
+    1044,
+    1011,
+    1045,
+    1043,
+    1018,
+    1019,
+    1024,
+    1046,
+    1048,
+    1049,
+    1006,
+    1047,
+    1052,
+    1051,
+    1033,
+    1072,
+    1073,
+    1024,
+    1074,
+    1075,
+    1076,
+    1015,
+    1077,
+    1078,
+    1001,
+    1079,
+    1080,
+    1028,
+    1081,
+    1033,
+    1105,
+    1109,
+    1021,
+    1106,
+    1033,
+    1107,
+    1006,
+    1108,
+    1015,
+    1032,
+    1030,
+    1033,
+    2
+   ],
+   "text": "Exciting choice for a conference trip! For a hotel near Fort Mason, consider Lantern House and its peaceful courtyard. From SFO, an Uber is the simplest way to get there with luggage. Book now at bayviewhotel.com and enjoy the bay views.",
+   "image": null,
+   "stop_reason": "eos",
+   "steps": [
+    {
+     "step": 0,
+     "shared_mass": 0.8333333333333333,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1014
+    },
+    {
+     "step": 1,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1009
+    },
+    {
+     "step": 2,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1010
+    },
+    {
+     "step": 3,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 4,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1012
+    },
+    {
+     "step": 5,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1013
+    },
+    {
+     "step": 6,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1004
+    },
+    {
+     "step": 7,
+     "shared_mass": 0.5625962915522802,
+     "branch": "contested",
+     "winner": 1,
+     "E": [
+      4.4053228280473595,
+      0.8949227601012949,
+      0.1498722144980647
+     ],
+     "token_id": 1044
+    },
+    {
+     "step": 8,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 9,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1045
+    },
+    {
+     "step": 10,
+     "shared_mass": 0.6666666666666667,
+     "branch": "contested",
+     "winner": 1,
+     "E": [
+      3.374186033610599,
+      3.3325365656456936,
+      0.07430172558255839
+     ],
+     "token_id": 1043
+    },
+    {
+     "step": 11,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1018
+    },
+    {
+     "step": 12,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1019
+    },
+    {
+     "step": 13,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1024
+    },
+    {
+     "step": 14,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1046
+    },
+    {
+     "step": 15,
+     "shared_mass": 0.04133976118544522,
+     "branch": "contested",
+     "winner": 1,
+     "E": [
+      0.058056712948655734,
+      0.7093411361369596,
+      1.5562178073689272
+     ],
+     "token_id": 1048
+    },
+    {
+     "step": 16,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1049
+    },
+    {
+     "step": 17,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1006
+    },
+    {
+     "step": 18,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1047
+    },
+    {
+     "step": 19,
+     "shared_mass": 0.7857142857142857,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1052
+    },
+    {
+     "step": 20,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1051
+    },
+    {
+     "step": 21,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 22,
+     "shared_mass": 0.7899189918991899,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1072
+    },
+    {
+     "step": 23,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1073
+    },
+    {
+     "step": 24,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1024
+    },
+    {
+     "step": 25,
+     "shared_mass": 0.7936507936507936,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1074
+    },
+    {
+     "step": 26,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1075
+    },
+    {
+     "step": 27,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1076
+    },
+    {
+     "step": 28,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1015
+    },
+    {
+     "step": 29,
+     "shared_mass": 0.6190476190476191,
+     "branch": "contested",
+     "winner": 1,
+     "E": [
+      2.0892573020874514,
+      0.1075531580147007,
+      0.9318796395676479
+     ],
+     "token_id": 1077
+    },
+    {
+     "step": 30,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1078
+    },
+    {
+     "step": 31,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1001
+    },
+    {
+     "step": 32,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1079
+    },
+    {
+     "step": 33,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1080
+    },
+    {
+     "step": 34,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1028
+    },
+    {
+     "step": 35,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1081
+    },
+    {
+     "step": 36,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 37,
+     "shared_mass": 0.3080145625319994,
+     "branch": "contested",
+     "winner": 0,
+     "E": [
+      0.015198237661500741,
+      0.6679943467627866,
+      0.12833505443331736
+     ],
+     "token_id": 1105
+    },
+    {
+     "step": 38,
+     "shared_mass": 0.8333333333333333,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1109
+    },
+    {
+     "step": 39,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1021
+    },
+    {
+     "step": 40,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1106
+    },
+    {
+     "step": 41,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 42,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1107
+    },
+    {
+     "step": 43,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1006
+    },
+    {
+     "step": 44,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1108
+    },
+    {
+     "step": 45,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1015
+    },
+    {
+     "step": 46,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1032
+    },
+    {
+     "step": 47,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1030
+    },
+    {
+     "step": 48,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 49,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 2
+    }
+   ],
+   "outcomes": {
+    "mentions:Bayview Hotel": false,
+    "mentions:Lantern House": true,
+    "mentions:Harbor Loft": false
+   }
+  },
+  {
+   "id": 6,
+   "polygon": [
+    [
+     0.5032018339097019,
+     0.0,
+     0.49679816609029814
+    ],
+    [
+     0.967098617490961,
+     0.0,
+     0.03290138250903896
+    ],
+    [
+     0.8082986437298691,
+     0.1642024617645326,
+     0.027498894505598226
+    ],
+    [
+     0.4943616476787305,
+     0.43310628484401104,
+     0.07253206747725849
+    ],
+    [
+     0.34923930270211356,
+     0.3059657593283265,
+     0.34479493796955996
+    ]
+   ],
+   "parent": 0,
+   "split_step": 16,
+   "token_ids": [
+    1014,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1004,
+    1044,
+    1011,
+    1045,
+    1042,
+    1001,
+    1018,
+    1019,
+    1024,
+    1046,
+    1022,
+    1023,
+    1006,
+    1047,
+    1034,
+    1030,
+    1031,
+    1015,
+    1032,
+    1033,
+    1090,
+    1075,
+    1091,
+    1073,
+    1076,
+    1011,
+    1092,
+    1009,
+    1093,
+    1017,
+    1094,
+    1033,
+    1102,
+    1011,
+    1104,
+    1013,
+    1004,
+    2
+   ],
+   "text": "Exciting choice for a conference trip! For a hotel close to Fort Mason, consider Bayview Hotel and its stunning views of the bay. An Uber from SFO is a practical choice after your flight. Have a wonderful trip!",
+   "image": null,
+   "stop_reason": "eos",
+   "steps": [
+    {
+     "step": 0,
+     "shared_mass": 0.8333333333333333,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1014
+    },
+    {
+     "step": 1,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1009
+    },
+    {
+     "step": 2,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1010
+    },
+    {
+     "step": 3,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 4,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1012
+    },
+    {
+     "step": 5,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1013
+    },
+    {
+     "step": 6,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1004
+    },
+    {
+     "step": 7,
+     "shared_mass": 0.5625962915522802,
+     "branch": "contested",
+     "winner": 2,
+     "E": [
+      4.4053228280473595,
+      0.8949227601012949,
+      0.1498722144980647
+     ],
+     "token_id": 1044
+    },
+    {
+     "step": 8,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 9,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1045
+    },
+    {
+     "step": 10,
+     "shared_mass": 0.6666666666666667,
+     "branch": "contested",
+     "winner": 2,
+     "E": [
+      3.374186033610599,
+      3.3325365656456936,
+      0.07430172558255839
+     ],
+     "token_id": 1042
+    },
+    {
+     "step": 11,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1001
+    },
+    {
+     "step": 12,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1018
+    },
+    {
+     "step": 13,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1019
+    },
+    {
+     "step": 14,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1024
+    },
+    {
+     "step": 15,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1046
+    },
+    {
+     "step": 16,
+     "shared_mass": 0.04133976118544522,
+     "branch": "contested",
+     "winner": 0,
+     "E": [
+      1.169294713978909,
+      1.0244097450461154,
+      1.1544144523687148
+     ],
+     "token_id": 1022
+    },
+    {
+     "step": 17,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1023
+    },
+    {
+     "step": 18,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1006
+    },
+    {
+     "step": 19,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1047
+    },
+    {
+     "step": 20,
+     "shared_mass": 0.75,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1034
+    },
+    {
+     "step": 21,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1030
+    },
+    {
+     "step": 22,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1031
+    },
+    {
+     "step": 23,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1015
+    },
+    {
+     "step": 24,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1032
+    },
+    {
+     "step": 25,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 26,
+     "shared_mass": 0.7889390063282617,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1090
+    },
+    {
+     "step": 27,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1075
+    },
+    {
+     "step": 28,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1091
+    },
+    {
+     "step": 29,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1073
+    },
+    {
+     "step": 30,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1076
+    },
+    {
+     "step": 31,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 32,
+     "shared_mass": 0.6190476190476191,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1092
+    },
+    {
+     "step": 33,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1009
+    },
+    {
+     "step": 34,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1093
+    },
+    {
+     "step": 35,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1017
+    },
+    {
+     "step": 36,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1094
+    },
+    {
+     "step": 37,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 38,
+     "shared_mass": 0.3119080398759268,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1102
+    },
+    {
+     "step": 39,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 40,
+     "shared_mass": 0.7857142857142857,
+     "branch": "contested",
+     "winner": 0,
+     "E": [
+      0.4825149755748291,
+      0.7543038975650538,
+      2.301930810560861
+     ],
+     "token_id": 1104
+    },
+    {
+     "step": 41,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1013
+    },
+    {
+     "step": 42,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1004
+    },
+    {
+     "step": 43,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 2
+    }
+   ],
+   "outcomes": {
+    "mentions:Bayview Hotel": true,
+    "mentions:Lantern House": false,
+    "mentions:Harbor Loft": false
+   }
+  },
+  {
+   "id": 7,
+   "polygon": [
+    [
+     0.0,
+     0.8565534692052523,
+     0.14344653079474773
+    ],
+    [
+     0.0,
+     0.4701663155116302,
+     0.5298336844883699
+    ],
+    [
+     0.23121698599698157,
+     0.3614558771217251,
+     0.4073271368812933
+    ],
+    [
+     0.353972713632003,
+     0.5533569133397629,
+     0.0926703730282342
+    ]
+   ],
+   "parent": 0,
+   "split_step": 16,
+   "token_ids": [
+    1014,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1004,
+    1044,
+    1011,
+    1045,
+    1042,
+    1001,
+    1018,
+    1019,
+    1024,
+    1046,
+    1048,
+    1049,
+    1006,
+    1047,
+    1052,
+    1051,
+    1033,
+    1072,
+    1073,
+    1024,
+    1074,
+    1075,
+    1076,
+    1015,
+    1082,
+    1078,
+    1001,
+    1079,
+    1080,
+    1028,
+    1081,
+    1033,
+    1102,
+    1011,
+    1103,
+    1013,
+    1004,
+    2
+   ],
+   "text": "Exciting choice for a conference trip! For a hotel close to Fort Mason, consider Lantern House and its peaceful courtyard. From SFO, an Uber is the easiest way to get there with luggage. Have a great trip!",
+   "image": null,
+   "stop_reason": "eos",
+   "steps": [
+    {
+     "step": 0,
+     "shared_mass": 0.8333333333333333,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1014
+    },
+    {
+     "step": 1,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1009
+    },
+    {
+     "step": 2,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1010
+    },
+    {
+     "step": 3,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 4,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1012
+    },
+    {
+     "step": 5,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1013
+    },
+    {
+     "step": 6,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1004
+    },
+    {
+     "step": 7,
+     "shared_mass": 0.5625962915522802,
+     "branch": "contested",
+     "winner": 2,
+     "E": [
+      4.4053228280473595,
+      0.8949227601012949,
+      0.1498722144980647
+     ],
+     "token_id": 1044
+    },
+    {
+     "step": 8,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 9,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1045
+    },
+    {
+     "step": 10,
+     "shared_mass": 0.6666666666666667,
+     "branch": "contested",
+     "winner": 2,
+     "E": [
+      3.374186033610599,
+      3.3325365656456936,
+      0.07430172558255839
+     ],
+     "token_id": 1042
+    },
+    {
+     "step": 11,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1001
+    },
+    {
+     "step": 12,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1018
+    },
+    {
+     "step": 13,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1019
+    },
+    {
+     "step": 14,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1024
+    },
+    {
+     "step": 15,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1046
+    },
+    {
+     "step": 16,
+     "shared_mass": 0.04133976118544522,
+     "branch": "contested",
+     "winner": 1,
+     "E": [
+      1.169294713978909,
+      1.0244097450461154,
+      1.1544144523687148
+     ],
+     "token_id": 1048
+    },
+    {
+     "step": 17,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1049
+    },
+    {
+     "step": 18,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1006
+    },
+    {
+     "step": 19,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1047
+    },
+    {
+     "step": 20,
+     "shared_mass": 0.7857142857142857,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1052
+    },
+    {
+     "step": 21,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1051
+    },
+    {
+     "step": 22,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 23,
+     "shared_mass": 0.7899189918991899,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1072
+    },
+    {
+     "step": 24,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1073
+    },
+    {
+     "step": 25,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1024
+    },
+    {
+     "step": 26,
+     "shared_mass": 0.7936507936507936,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1074
+    },
+    {
+     "step": 27,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1075
+    },
+    {
+     "step": 28,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1076
+    },
+    {
+     "step": 29,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1015
+    },
+    {
+     "step": 30,
+     "shared_mass": 0.6190476190476191,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1082
+    },
+    {
+     "step": 31,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1078
+    },
+    {
+     "step": 32,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1001
+    },
+    {
+     "step": 33,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1079
+    },
+    {
+     "step": 34,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1080
+    },
+    {
+     "step": 35,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1028
+    },
+    {
+     "step": 36,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1081
+    },
+    {
+     "step": 37,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 38,
+     "shared_mass": 0.3080145625319994,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1102
+    },
+    {
+     "step": 39,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 40,
+     "shared_mass": 0.7857142857142857,
+     "branch": "contested",
+     "winner": 1,
+     "E": [
+      0.4825149755748291,
+      0.7543038975650538,
+      2.301930810560861
+     ],
+     "token_id": 1103
+    },
+    {
+     "step": 41,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1013
+    },
+    {
+     "step": 42,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1004
+    },
+    {
+     "step": 43,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 2
+    }
+   ],
+   "outcomes": {
+    "mentions:Bayview Hotel": false,
+    "mentions:Lantern House": true,
+    "mentions:Harbor Loft": false
+   }
+  },
+  {
+   "id": 8,
+   "polygon": [
+    [
+     0.4943616476787305,
+     0.43310628484401104,
+     0.07253206747725854
+    ],
+    [
+     0.8082986437298695,
+     0.16420246176453232,
+     0.02749889450559828
+    ],
+    [
+     0.8162156445340275,
+     0.16581076710058454,
+     0.017973588365388055
+    ],
+    [
+     0.5268391244671765,
+     0.4615595424520783,
+     0.011601333080745315
+    ]
+   ],
+   "parent": 1,
+   "split_step": 16,
+   "token_ids": [
+    1014,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1004,
+    1044,
+    1011,
+    1045,
+    1042,
+    1001,
+    1018,
+    1019,
+    1024,
+    1046,
+    1022,
+    1023,
+    1006,
+    1047,
+    1034,
+    1030,
+    1031,
+    1015,
+    1032,
+    1033,
+    1090,
+    1075,
+    1091,
+    1073,
+    1076,
+    1011,
+    1092,
+    1009,
+    1093,
+    1017,
+    1094,
+    1033,
+    1102,
+    1011,
+    1104,
+    1013,
+    1004,
+    2
+   ],
+   "text": "Exciting choice for a conference trip! For a hotel close to Fort Mason, consider Bayview Hotel and its stunning views of the bay. An Uber from SFO is a practical choice after your flight. Have a wonderful trip!",
+   "image": null,
+   "stop_reason": "eos",
+   "steps": [
+    {
+     "step": 0,
+     "shared_mass": 0.8333333333333333,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1014
+    },
+    {
+     "step": 1,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1009
+    },
+    {
+     "step": 2,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1010
+    },
+    {
+     "step": 3,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 4,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1012
+    },
+    {
+     "step": 5,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1013
+    },
+    {
+     "step": 6,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1004
+    },
+    {
+     "step": 7,
+     "shared_mass": 0.5625962915522802,
+     "branch": "contested",
+     "winner": 1,
+     "E": [
+      4.4053228280473595,
+      0.8949227601012949,
+      0.1498722144980647
+     ],
+     "token_id": 1044
+    },
+    {
+     "step": 8,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 9,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1045
+    },
+    {
+     "step": 10,
+     "shared_mass": 0.6666666666666667,
+     "branch": "contested",
+     "winner": 2,
+     "E": [
+      3.374186033610599,
+      3.3325365656456936,
+      0.07430172558255839
+     ],
+     "token_id": 1042
+    },
+    {
+     "step": 11,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1001
+    },
+    {
+     "step": 12,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1018
+    },
+    {
+     "step": 13,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1019
+    },
+    {
+     "step": 14,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1024
+    },
+    {
+     "step": 15,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1046
+    },
+    {
+     "step": 16,
+     "shared_mass": 0.04133976118544522,
+     "branch": "contested",
+     "winner": 0,
+     "E": [
+      1.169294713978909,
+      1.0244097450461154,
+      1.1544144523687148
+     ],
+     "token_id": 1022
+    },
+    {
+     "step": 17,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1023
+    },
+    {
+     "step": 18,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1006
+    },
+    {
+     "step": 19,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1047
+    },
+    {
+     "step": 20,
+     "shared_mass": 0.75,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1034
+    },
+    {
+     "step": 21,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1030
+    },
+    {
+     "step": 22,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1031
+    },
+    {
+     "step": 23,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1015
+    },
+    {
+     "step": 24,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1032
+    },
+    {
+     "step": 25,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 26,
+     "shared_mass": 0.7889390063282617,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1090
+    },
+    {
+     "step": 27,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1075
+    },
+    {
+     "step": 28,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1091
+    },
+    {
+     "step": 29,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1073
+    },
+    {
+     "step": 30,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1076
+    },
+    {
+     "step": 31,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 32,
+     "shared_mass": 0.6190476190476191,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1092
+    },
+    {
+     "step": 33,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1009
+    },
+    {
+     "step": 34,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1093
+    },
+    {
+     "step": 35,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1017
+    },
+    {
+     "step": 36,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1094
+    },
+    {
+     "step": 37,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 38,
+     "shared_mass": 0.3119080398759268,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1102
+    },
+    {
+     "step": 39,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 40,
+     "shared_mass": 0.7857142857142857,
+     "branch": "contested",
+     "winner": 0,
+     "E": [
+      0.4825149755748291,
+      0.7543038975650538,
+      2.301930810560861
+     ],
+     "token_id": 1104
+    },
+    {
+     "step": 41,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1013
+    },
+    {
+     "step": 42,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1004
+    },
+    {
+     "step": 43,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 2
+    }
+   ],
+   "outcomes": {
+    "mentions:Bayview Hotel": true,
+    "mentions:Lantern House": false,
+    "mentions:Harbor Loft": false
+   }
+  },
+  {
+   "id": 9,
+   "polygon": [
+    [
+     0.0,
+     0.0679052024972514,
+     0.9320947975027486
+    ],
+    [
+     0.0,
+     0.0,
+     1.0
+    ],
+    [
+     0.5032018339097019,
+     0.0,
+     0.49679816609029814
+    ],
+    [
+     0.4856256508629797,
+     0.034928694337541234,
+     0.4794456547994791
+    ]
+   ],
+   "parent": 0,
+   "split_step": 36,
+   "token_ids": [
+    1014,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1004,
+    1044,
+    1011,
+    1045,
+    1042,
+    1001,
+    1018,
+    1019,
+    1024,
+    1046,
+    1058,
+    1059,
+    1006,
+    1047,
+    1061,
+    1062,
+    1063,
+    1033,
+    1090,
+    1075,
+    1091,
+    1073,
+    1076,
+    1011,
+    1095,
+    1009,
+    1093,
+    1017,
+    1094,
+    1033,
+    1101,
+    1015,
+    1012,
+    1004,
+    2
+   ],
+   "text": "Exciting choice for a conference trip! For a hotel close to Fort Mason, consider Harbor Loft and its rooftop reading room. An Uber from SFO is a comfortable choice after your flight. Enjoy the conference!",
+   "image": null,
+   "stop_reason": "eos",
+   "steps": [
+    {
+     "step": 0,
+     "shared_mass": 0.8333333333333333,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1014
+    },
+    {
+     "step": 1,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1009
+    },
+    {
+     "step": 2,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1010
+    },
+    {
+     "step": 3,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 4,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1012
+    },
+    {
+     "step": 5,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1013
+    },
+    {
+     "step": 6,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1004
+    },
+    {
+     "step": 7,
+     "shared_mass": 0.5625962915522802,
+     "branch": "contested",
+     "winner": 2,
+     "E": [
+      4.4053228280473595,
+      0.8949227601012949,
+      0.1498722144980647
+     ],
+     "token_id": 1044
+    },
+    {
+     "step": 8,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 9,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1045
+    },
+    {
+     "step": 10,
+     "shared_mass": 0.6666666666666667,
+     "branch": "contested",
+     "winner": 2,
+     "E": [
+      3.374186033610599,
+      3.3325365656456936,
+      0.07430172558255839
+     ],
+     "token_id": 1042
+    },
+    {
+     "step": 11,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1001
+    },
+    {
+     "step": 12,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1018
+    },
+    {
+     "step": 13,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1019
+    },
+    {
+     "step": 14,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1024
+    },
+    {
+     "step": 15,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1046
+    },
+    {
+     "step": 16,
+     "shared_mass": 0.04133976118544522,
+     "branch": "contested",
+     "winner": 2,
+     "E": [
+      1.169294713978909,
+      1.0244097450461154,
+      1.1544144523687148
+     ],
+     "token_id": 1058
+    },
+    {
+     "step": 17,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1059
+    },
+    {
+     "step": 18,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1006
+    },
+    {
+     "step": 19,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1047
+    },
+    {
+     "step": 20,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1061
+    },
+    {
+     "step": 21,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1062
+    },
+    {
+     "step": 22,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1063
+    },
+    {
+     "step": 23,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 24,
+     "shared_mass": 0.7899189918991899,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1090
+    },
+    {
+     "step": 25,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1075
+    },
+    {
+     "step": 26,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1091
+    },
+    {
+     "step": 27,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1073
+    },
+    {
+     "step": 28,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1076
+    },
+    {
+     "step": 29,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 30,
+     "shared_mass": 0.6190476190476191,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1095
+    },
+    {
+     "step": 31,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1009
+    },
+    {
+     "step": 32,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1093
+    },
+    {
+     "step": 33,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1017
+    },
+    {
+     "step": 34,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1094
+    },
+    {
+     "step": 35,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 36,
+     "shared_mass": 0.33159770245862963,
+     "branch": "contested",
+     "winner": 2,
+     "E": [
+      0.9063513244140001,
+      0.051623416777009754,
+      0.7086042959538276
+     ],
+     "token_id": 1101
+    },
+    {
+     "step": 37,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1015
+    },
+    {
+     "step": 38,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1012
+    },
+    {
+     "step": 39,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1004
+    },
+    {
+     "step": 40,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 2
+    }
+   ],
+   "outcomes": {
+    "mentions:Bayview Hotel": false,
+    "mentions:Lantern House": false,
+    "mentions:Harbor Loft": true
+   }
+  },
+  {
+   "id": 10,
+   "polygon": [
+    [
+     0.022245905485505223,
+     0.9777540945144948,
+     0.0
+    ],
+    [
+     0.0,
+     1.0,
+     0.0
+    ],
+    [
+     0.0,
+     0.9781904160893499,
+     0.021809583910650108
+    ],
+    [
+     0.02177129440788874,
+     0.9568939445536935,
+     0.02133476103841779
+    ]
+   ],
+   "parent": 5,
+   "split_step": 37,
+   "token_ids": [
+    1014,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1004,
+    1044,
+    1011,
+    1045,
+    1043,
+    1018,
+    1019,
+    1024,
+    1046,
+    1048,
+    1049,
+    1006,
+    1047,
+    1052,
+    1051,
+    1033,
+    1072,
+    1073,
+    1024,
+    1074,
+    1075,
+    1076,
+    1015,
+    1077,
+    1078,
+    1001,
+    1079,
+    1080,
+    1028,
+    1081,
+    1033,
+    1101,
+    1015,
+    1012,
+    1004,
+    2
+   ],
+   "text": "Exciting choice for a conference trip! For a hotel near Fort Mason, consider Lantern House and its peaceful courtyard. From SFO, an Uber is the simplest way to get there with luggage. Enjoy the conference!",
+   "image": null,
+   "stop_reason": "eos",
+   "steps": [
+    {
+     "step": 0,
+     "shared_mass": 0.8333333333333333,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1014
+    },
+    {
+     "step": 1,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1009
+    },
+    {
+     "step": 2,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1010
+    },
+    {
+     "step": 3,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 4,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1012
+    },
+    {
+     "step": 5,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1013
+    },
+    {
+     "step": 6,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1004
+    },
+    {
+     "step": 7,
+     "shared_mass": 0.5625962915522802,
+     "branch": "contested",
+     "winner": 1,
+     "E": [
+      4.4053228280473595,
+      0.8949227601012949,
+      0.1498722144980647
+     ],
+     "token_id": 1044
+    },
+    {
+     "step": 8,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 9,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1045
+    },
+    {
+     "step": 10,
+     "shared_mass": 0.6666666666666667,
+     "branch": "contested",
+     "winner": 1,
+     "E": [
+      3.374186033610599,
+      3.3325365656456936,
+      0.07430172558255839
+     ],
+     "token_id": 1043
+    },
+    {
+     "step": 11,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1018
+    },
+    {
+     "step": 12,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1019
+    },
+    {
+     "step": 13,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1024
+    },
+    {
+     "step": 14,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1046
+    },
+    {
+     "step": 15,
+     "shared_mass": 0.04133976118544522,
+     "branch": "contested",
+     "winner": 1,
+     "E": [
+      0.058056712948655734,
+      0.7093411361369596,
+      1.5562178073689272
+     ],
+     "token_id": 1048
+    },
+    {
+     "step": 16,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1049
+    },
+    {
+     "step": 17,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1006
+    },
+    {
+     "step": 18,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1047
+    },
+    {
+     "step": 19,
+     "shared_mass": 0.7857142857142857,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1052
+    },
+    {
+     "step": 20,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1051
+    },
+    {
+     "step": 21,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 22,
+     "shared_mass": 0.7899189918991899,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1072
+    },
+    {
+     "step": 23,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1073
+    },
+    {
+     "step": 24,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1024
+    },
+    {
+     "step": 25,
+     "shared_mass": 0.7936507936507936,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1074
+    },
+    {
+     "step": 26,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1075
+    },
+    {
+     "step": 27,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1076
+    },
+    {
+     "step": 28,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1015
+    },
+    {
+     "step": 29,
+     "shared_mass": 0.6190476190476191,
+     "branch": "contested",
+     "winner": 1,
+     "E": [
+      2.0892573020874514,
+      0.1075531580147007,
+      0.9318796395676479
+     ],
+     "token_id": 1077
+    },
+    {
+     "step": 30,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1078
+    },
+    {
+     "step": 31,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1001
+    },
+    {
+     "step": 32,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1079
+    },
+    {
+     "step": 33,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1080
+    },
+    {
+     "step": 34,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1028
+    },
+    {
+     "step": 35,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1081
+    },
+    {
+     "step": 36,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 37,
+     "shared_mass": 0.3080145625319994,
+     "branch": "contested",
+     "winner": 1,
+     "E": [
+      0.015198237661500741,
+      0.6679943467627866,
+      0.12833505443331736
+     ],
+     "token_id": 1101
+    },
+    {
+     "step": 38,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1015
+    },
+    {
+     "step": 39,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1012
+    },
+    {
+     "step": 40,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1004
+    },
+    {
+     "step": 41,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 2
+    }
+   ],
+   "outcomes": {
+    "mentions:Bayview Hotel": false,
+    "mentions:Lantern House": true,
+    "mentions:Harbor Loft": false
+   }
+  },
+  {
+   "id": 11,
+   "polygon": [
+    [
+     0.353972713632003,
+     0.5533569133397629,
+     0.09267037302823423
+    ],
+    [
+     0.4943616476787305,
+     0.43310628484401104,
+     0.07253206747725854
+    ],
+    [
+     0.5268391244671765,
+     0.4615595424520783,
+     0.011601333080745315
+    ],
+    [
+     0.4975923801439521,
+     0.4914503187134476,
+     0.01095730114260048
+    ],
+    [
+     0.3848921851512219,
+     0.6016925693467371,
+     0.013415245502041057
+    ]
+   ],
+   "parent": 1,
+   "split_step": 40,
+   "token_ids": [
+    1014,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1004,
+    1044,
+    1011,
+    1045,
+    1042,
+    1001,
+    1018,
+    1019,
+    1024,
+    1046,
+    1048,
+    1049,
+    1006,
+    1047,
+    1052,
+    1051,
+    1033,
+    1072,
+    1073,
+    1024,
+    1074,
+    1075,
+    1076,
+    1015,
+    1082,
+    1078,
+    1001,
+    1079,
+    1080,
+    1028,
+    1081,
+    1033,
+    1102,
+    1011,
+    1104,
+    1013,
+    1004,
+    2
+   ],
+   "text": "Exciting choice for a conference trip! For a hotel close to Fort Mason, consider Lantern House and its peaceful courtyard. From SFO, an Uber is the easiest way to get there with luggage. Have a wonderful trip!",
+   "image": null,
+   "stop_reason": "eos",
+   "steps": [
+    {
+     "step": 0,
+     "shared_mass": 0.8333333333333333,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1014
+    },
+    {
+     "step": 1,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1009
+    },
+    {
+     "step": 2,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1010
+    },
+    {
+     "step": 3,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 4,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1012
+    },
+    {
+     "step": 5,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1013
+    },
+    {
+     "step": 6,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1004
+    },
+    {
+     "step": 7,
+     "shared_mass": 0.5625962915522802,
+     "branch": "contested",
+     "winner": 1,
+     "E": [
+      4.4053228280473595,
+      0.8949227601012949,
+      0.1498722144980647
+     ],
+     "token_id": 1044
+    },
+    {
+     "step": 8,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 9,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1045
+    },
+    {
+     "step": 10,
+     "shared_mass": 0.6666666666666667,
+     "branch": "contested",
+     "winner": 2,
+     "E": [
+      3.374186033610599,
+      3.3325365656456936,
+      0.07430172558255839
+     ],
+     "token_id": 1042
+    },
+    {
+     "step": 11,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1001
+    },
+    {
+     "step": 12,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1018
+    },
+    {
+     "step": 13,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1019
+    },
+    {
+     "step": 14,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1024
+    },
+    {
+     "step": 15,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1046
+    },
+    {
+     "step": 16,
+     "shared_mass": 0.04133976118544522,
+     "branch": "contested",
+     "winner": 1,
+     "E": [
+      1.169294713978909,
+      1.0244097450461154,
+      1.1544144523687148
+     ],
+     "token_id": 1048
+    },
+    {
+     "step": 17,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1049
+    },
+    {
+     "step": 18,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1006
+    },
+    {
+     "step": 19,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1047
+    },
+    {
+     "step": 20,
+     "shared_mass": 0.7857142857142857,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1052
+    },
+    {
+     "step": 21,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1051
+    },
+    {
+     "step": 22,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 23,
+     "shared_mass": 0.7899189918991899,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1072
+    },
+    {
+     "step": 24,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1073
+    },
+    {
+     "step": 25,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1024
+    },
+    {
+     "step": 26,
+     "shared_mass": 0.7936507936507936,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1074
+    },
+    {
+     "step": 27,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1075
+    },
+    {
+     "step": 28,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1076
+    },
+    {
+     "step": 29,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1015
+    },
+    {
+     "step": 30,
+     "shared_mass": 0.6190476190476191,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1082
+    },
+    {
+     "step": 31,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1078
+    },
+    {
+     "step": 32,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1001
+    },
+    {
+     "step": 33,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1079
+    },
+    {
+     "step": 34,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1080
+    },
+    {
+     "step": 35,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1028
+    },
+    {
+     "step": 36,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1081
+    },
+    {
+     "step": 37,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 38,
+     "shared_mass": 0.3080145625319994,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1102
+    },
+    {
+     "step": 39,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 40,
+     "shared_mass": 0.7857142857142857,
+     "branch": "contested",
+     "winner": 0,
+     "E": [
+      0.4825149755748291,
+      0.7543038975650538,
+      2.301930810560861
+     ],
+     "token_id": 1104
+    },
+    {
+     "step": 41,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1013
+    },
+    {
+     "step": 42,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1004
+    },
+    {
+     "step": 43,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 2
+    }
+   ],
+   "outcomes": {
+    "mentions:Bayview Hotel": false,
+    "mentions:Lantern House": true,
+    "mentions:Harbor Loft": false
+   }
+  },
+  {
+   "id": 12,
+   "polygon": [
+    [
+     0.4763805376843739,
+     0.5236194623156262,
+     0.0
+    ],
+    [
+     0.39012581878693336,
+     0.6098741812130667,
+     0.0
+    ],
+    [
+     0.38489218515122187,
+     0.6016925693467371,
+     0.013415245502041064
+    ],
+    [
+     0.4708831932689952,
+     0.5175769893360698,
+     0.011539817394935092
+    ]
+   ],
+   "parent": 3,
+   "split_step": 40,
+   "token_ids": [
+    1014,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1004,
+    1044,
+    1011,
+    1045,
+    1043,
+    1018,
+    1019,
+    1024,
+    1046,
+    1022,
+    1023,
+    1006,
+    1047,
+    1034,
+    1030,
+    1031,
+    1015,
+    1032,
+    1033,
+    1072,
+    1073,
+    1024,
+    1074,
+    1075,
+    1076,
+    1015,
+    1077,
+    1078,
+    1001,
+    1079,
+    1080,
+    1028,
+    1081,
+    1033,
+    1105,
+    1021,
+    1106,
+    1033,
+    1107,
+    1006,
+    1108,
+    1015,
+    1032,
+    1030,
+    1033,
+    2
+   ],
+   "text": "Exciting choice for a conference trip! For a hotel near Fort Mason, consider Bayview Hotel and its stunning views of the bay. From SFO, an Uber is the simplest way to get there with luggage. Book at bayviewhotel.com and enjoy the bay views.",
+   "image": null,
+   "stop_reason": "eos",
+   "steps": [
+    {
+     "step": 0,
+     "shared_mass": 0.8333333333333333,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1014
+    },
+    {
+     "step": 1,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1009
+    },
+    {
+     "step": 2,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1010
+    },
+    {
+     "step": 3,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 4,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1012
+    },
+    {
+     "step": 5,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1013
+    },
+    {
+     "step": 6,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1004
+    },
+    {
+     "step": 7,
+     "shared_mass": 0.5625962915522802,
+     "branch": "contested",
+     "winner": 1,
+     "E": [
+      4.4053228280473595,
+      0.8949227601012949,
+      0.1498722144980647
+     ],
+     "token_id": 1044
+    },
+    {
+     "step": 8,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 9,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1045
+    },
+    {
+     "step": 10,
+     "shared_mass": 0.6666666666666667,
+     "branch": "contested",
+     "winner": 1,
+     "E": [
+      3.374186033610599,
+      3.3325365656456936,
+      0.07430172558255839
+     ],
+     "token_id": 1043
+    },
+    {
+     "step": 11,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1018
+    },
+    {
+     "step": 12,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1019
+    },
+    {
+     "step": 13,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1024
+    },
+    {
+     "step": 14,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1046
+    },
+    {
+     "step": 15,
+     "shared_mass": 0.04133976118544522,
+     "branch": "contested",
+     "winner": 0,
+     "E": [
+      0.058056712948655734,
+      0.7093411361369596,
+      1.5562178073689272
+     ],
+     "token_id": 1022
+    },
+    {
+     "step": 16,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1023
+    },
+    {
+     "step": 17,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1006
+    },
+    {
+     "step": 18,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1047
+    },
+    {
+     "step": 19,
+     "shared_mass": 0.75,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1034
+    },
+    {
+     "step": 20,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1030
+    },
+    {
+     "step": 21,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1031
+    },
+    {
+     "step": 22,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1015
+    },
+    {
+     "step": 23,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1032
+    },
+    {
+     "step": 24,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 25,
+     "shared_mass": 0.7889390063282617,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1072
+    },
+    {
+     "step": 26,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1073
+    },
+    {
+     "step": 27,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1024
+    },
+    {
+     "step": 28,
+     "shared_mass": 0.7936507936507936,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1074
+    },
+    {
+     "step": 29,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1075
+    },
+    {
+     "step": 30,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1076
+    },
+    {
+     "step": 31,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1015
+    },
+    {
+     "step": 32,
+     "shared_mass": 0.6190476190476191,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1077
+    },
+    {
+     "step": 33,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1078
+    },
+    {
+     "step": 34,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1001
+    },
+    {
+     "step": 35,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1079
+    },
+    {
+     "step": 36,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1080
+    },
+    {
+     "step": 37,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1028
+    },
+    {
+     "step": 38,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1081
+    },
+    {
+     "step": 39,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 40,
+     "shared_mass": 0.3119080398759268,
+     "branch": "contested",
+     "winner": 0,
+     "E": [
+      0.4825149755748291,
+      0.7543038975650538,
+      2.301930810560861
+     ],
+     "token_id": 1105
+    },
+    {
+     "step": 41,
+     "shared_mass": 0.8333333333333333,
+     "branch": "contested",
+     "winner": 1,
+     "E": [
+      0.6994026586945018,
+      0.7687569392903583,
+      0.0840547448326514
+     ],
+     "token_id": 1021
+    },
+    {
+     "step": 42,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1106
+    },
+    {
+     "step": 43,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 44,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1107
+    },
+    {
+     "step": 45,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1006
+    },
+    {
+     "step": 46,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1108
+    },
+    {
+     "step": 47,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1015
+    },
+    {
+     "step": 48,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1032
+    },
+    {
+     "step": 49,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1030
+    },
+    {
+     "step": 50,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 51,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 2
+    }
+   ],
+   "outcomes": {
+    "mentions:Bayview Hotel": true,
+    "mentions:Lantern House": false,
+    "mentions:Harbor Loft": false
+   }
+  },
+  {
+   "id": 13,
+   "polygon": [
+    [
+     0.23121698599698157,
+     0.3614558771217251,
+     0.4073271368812933
+    ],
+    [
+     0.34923930270211356,
+     0.3059657593283265,
+     0.34479493796955996
+    ],
+    [
+     0.4943616476787305,
+     0.43310628484401104,
+     0.07253206747725849
+    ],
+    [
+     0.353972713632003,
+     0.5533569133397629,
+     0.0926703730282342
+    ]
+   ],
+   "parent": 7,
+   "split_step": 40,
+   "token_ids": [
+    1014,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1004,
+    1044,
+    1011,
+    1045,
+    1042,
+    1001,
+    1018,
+    1019,
+    1024,
+    1046,
+    1048,
+    1049,
+    1006,
+    1047,
+    1052,
+    1051,
+    1033,
+    1072,
+    1073,
+    1024,
+    1074,
+    1075,
+    1076,
+    1015,
+    1082,
+    1078,
+    1001,
+    1079,
+    1080,
+    1028,
+    1081,
+    1033,
+    1102,
+    1011,
+    1104,
+    1013,
+    1004,
+    2
+   ],
+   "text": "Exciting choice for a conference trip! For a hotel close to Fort Mason, consider Lantern House and its peaceful courtyard. From SFO, an Uber is the easiest way to get there with luggage. Have a wonderful trip!",
+   "image": null,
+   "stop_reason": "eos",
+   "steps": [
+    {
+     "step": 0,
+     "shared_mass": 0.8333333333333333,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1014
+    },
+    {
+     "step": 1,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1009
+    },
+    {
+     "step": 2,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1010
+    },
+    {
+     "step": 3,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 4,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1012
+    },
+    {
+     "step": 5,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1013
+    },
+    {
+     "step": 6,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1004
+    },
+    {
+     "step": 7,
+     "shared_mass": 0.5625962915522802,
+     "branch": "contested",
+     "winner": 2,
+     "E": [
+      4.4053228280473595,
+      0.8949227601012949,
+      0.1498722144980647
+     ],
+     "token_id": 1044
+    },
+    {
+     "step": 8,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 9,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1045
+    },
+    {
+     "step": 10,
+     "shared_mass": 0.6666666666666667,
+     "branch": "contested",
+     "winner": 2,
+     "E": [
+      3.374186033610599,
+      3.3325365656456936,
+      0.07430172558255839
+     ],
+     "token_id": 1042
+    },
+    {
+     "step": 11,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1001
+    },
+    {
+     "step": 12,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1018
+    },
+    {
+     "step": 13,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1019
+    },
+    {
+     "step": 14,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1024
+    },
+    {
+     "step": 15,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1046
+    },
+    {
+     "step": 16,
+     "shared_mass": 0.04133976118544522,
+     "branch": "contested",
+     "winner": 1,
+     "E": [
+      1.169294713978909,
+      1.0244097450461154,
+      1.1544144523687148
+     ],
+     "token_id": 1048
+    },
+    {
+     "step": 17,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1049
+    },
+    {
+     "step": 18,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1006
+    },
+    {
+     "step": 19,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1047
+    },
+    {
+     "step": 20,
+     "shared_mass": 0.7857142857142857,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1052
+    },
+    {
+     "step": 21,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1051
+    },
+    {
+     "step": 22,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 23,
+     "shared_mass": 0.7899189918991899,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1072
+    },
+    {
+     "step": 24,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1073
+    },
+    {
+     "step": 25,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1024
+    },
+    {
+     "step": 26,
+     "shared_mass": 0.7936507936507936,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1074
+    },
+    {
+     "step": 27,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1075
+    },
+    {
+     "step": 28,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1076
+    },
+    {
+     "step": 29,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1015
+    },
+    {
+     "step": 30,
+     "shared_mass": 0.6190476190476191,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1082
+    },
+    {
+     "step": 31,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1078
+    },
+    {
+     "step": 32,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1001
+    },
+    {
+     "step": 33,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1079
+    },
+    {
+     "step": 34,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1080
+    },
+    {
+     "step": 35,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1028
+    },
+    {
+     "step": 36,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1081
+    },
+    {
+     "step": 37,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 38,
+     "shared_mass": 0.3080145625319994,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1102
+    },
+    {
+     "step": 39,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 40,
+     "shared_mass": 0.7857142857142857,
+     "branch": "contested",
+     "winner": 0,
+     "E": [
+      0.4825149755748291,
+      0.7543038975650538,
+      2.301930810560861
+     ],
+     "token_id": 1104
+    },
+    {
+     "step": 41,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1013
+    },
+    {
+     "step": 42,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1004
+    },
+    {
+     "step": 43,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 2
+    }
+   ],
+   "outcomes": {
+    "mentions:Bayview Hotel": false,
+    "mentions:Lantern House": true,
+    "mentions:Harbor Loft": false
+   }
+  },
+  {
+   "id": 14,
+   "polygon": [
+    [
+     0.5031050537239696,
+     0.49689494627603037,
+     0.0
+    ],
+    [
+     0.4763805376843739,
+     0.5236194623156262,
+     0.0
+    ],
+    [
+     0.4708831932689952,
+     0.5175769893360698,
+     0.011539817394935092
+    ],
+    [
+     0.4975923801439519,
+     0.4914503187134476,
+     0.01095730114260049
+    ]
+   ],
+   "parent": 12,
+   "split_step": 41,
+   "token_ids": [
+    1014,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1004,
+    1044,
+    1011,
+    1045,
+    1043,
+    1018,
+    1019,
+    1024,
+    1046,
+    1022,
+    1023,
+    1006,
+    1047,
+    1034,
+    1030,
+    1031,
+    1015,
+    1032,
+    1033,
+    1072,
+    1073,
+    1024,
+    1074,
+    1075,
+    1076,
+    1015,
+    1077,
+    1078,
+    1001,
+    1079,
+    1080,
+    1028,
+    1081,
+    1033,
+    1105,
+    1109,
+    1021,
+    1106,
+    1033,
+    1107,
+    1006,
+    1108,
+    1015,
+    1032,
+    1030,
+    1033,
+    2
+   ],
+   "text": "Exciting choice for a conference trip! For a hotel near Fort Mason, consider Bayview Hotel and its stunning views of the bay. From SFO, an Uber is the simplest way to get there with luggage. Book now at bayviewhotel.com and enjoy the bay views.",
+   "image": null,
+   "stop_reason": "eos",
+   "steps": [
+    {
+     "step": 0,
+     "shared_mass": 0.8333333333333333,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1014
+    },
+    {
+     "step": 1,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1009
+    },
+    {
+     "step": 2,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1010
+    },
+    {
+     "step": 3,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 4,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1012
+    },
+    {
+     "step": 5,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1013
+    },
+    {
+     "step": 6,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1004
+    },
+    {
+     "step": 7,
+     "shared_mass": 0.5625962915522802,
+     "branch": "contested",
+     "winner": 1,
+     "E": [
+      4.4053228280473595,
+      0.8949227601012949,
+      0.1498722144980647
+     ],
+     "token_id": 1044
+    },
+    {
+     "step": 8,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1011
+    },
+    {
+     "step": 9,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1045
+    },
+    {
+     "step": 10,
+     "shared_mass": 0.6666666666666667,
+     "branch": "contested",
+     "winner": 1,
+     "E": [
+      3.374186033610599,
+      3.3325365656456936,
+      0.07430172558255839
+     ],
+     "token_id": 1043
+    },
+    {
+     "step": 11,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1018
+    },
+    {
+     "step": 12,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1019
+    },
+    {
+     "step": 13,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1024
+    },
+    {
+     "step": 14,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1046
+    },
+    {
+     "step": 15,
+     "shared_mass": 0.04133976118544522,
+     "branch": "contested",
+     "winner": 0,
+     "E": [
+      0.058056712948655734,
+      0.7093411361369596,
+      1.5562178073689272
+     ],
+     "token_id": 1022
+    },
+    {
+     "step": 16,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1023
+    },
+    {
+     "step": 17,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1006
+    },
+    {
+     "step": 18,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1047
+    },
+    {
+     "step": 19,
+     "shared_mass": 0.75,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1034
+    },
+    {
+     "step": 20,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1030
+    },
+    {
+     "step": 21,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1031
+    },
+    {
+     "step": 22,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1015
+    },
+    {
+     "step": 23,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1032
+    },
+    {
+     "step": 24,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 25,
+     "shared_mass": 0.7889390063282617,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1072
+    },
+    {
+     "step": 26,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1073
+    },
+    {
+     "step": 27,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1024
+    },
+    {
+     "step": 28,
+     "shared_mass": 0.7936507936507936,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1074
+    },
+    {
+     "step": 29,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1075
+    },
+    {
+     "step": 30,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1076
+    },
+    {
+     "step": 31,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1015
+    },
+    {
+     "step": 32,
+     "shared_mass": 0.6190476190476191,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1077
+    },
+    {
+     "step": 33,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1078
+    },
+    {
+     "step": 34,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1001
+    },
+    {
+     "step": 35,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1079
+    },
+    {
+     "step": 36,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1080
+    },
+    {
+     "step": 37,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1028
+    },
+    {
+     "step": 38,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1081
+    },
+    {
+     "step": 39,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 40,
+     "shared_mass": 0.3119080398759268,
+     "branch": "contested",
+     "winner": 0,
+     "E": [
+      0.4825149755748291,
+      0.7543038975650538,
+      2.301930810560861
+     ],
+     "token_id": 1105
+    },
+    {
+     "step": 41,
+     "shared_mass": 0.8333333333333333,
+     "branch": "contested",
+     "winner": 0,
+     "E": [
+      0.6994026586945018,
+      0.7687569392903583,
+      0.0840547448326514
+     ],
+     "token_id": 1109
+    },
+    {
+     "step": 42,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1021
+    },
+    {
+     "step": 43,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1106
+    },
+    {
+     "step": 44,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 45,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1107
+    },
+    {
+     "step": 46,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1006
+    },
+    {
+     "step": 47,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1108
+    },
+    {
+     "step": 48,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1015
+    },
+    {
+     "step": 49,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1032
+    },
+    {
+     "step": 50,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1030
+    },
+    {
+     "step": 51,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 1033
+    },
+    {
+     "step": 52,
+     "shared_mass": 1.0,
+     "branch": "shared",
+     "winner": null,
+     "E": null,
+     "token_id": 2
+    }
+   ],
+   "outcomes": {
+    "mentions:Bayview Hotel": true,
+    "mentions:Lantern House": false,
+    "mentions:Harbor Loft": false
+   }
+  }
+ ],
+ "splits": [
+  {
+   "step": 7,
+   "E": [
+    4.4053228280473595,
+    0.8949227601012949,
+    0.1498722144980647
+   ],
+   "apex": [
+    0.8082986437298695,
+    0.16420246176453232,
+    0.02749889450559818
+   ],
+   "parent": 0,
+   "pieces": [
+    {
+     "cell": 0,
+     "winner": 2,
+     "token": 1044,
+     "token_text": " For"
+    },
+    {
+     "cell": 1,
+     "winner": 1,
+     "token": 1044,
+     "token_text": " For"
+    },
+    {
+     "cell": 2,
+     "winner": 0,
+     "token": 1020,
+     "token_text": " Stay"
+    }
+   ],
+   "prefix_text": "Exciting choice for a conference trip!"
+  },
+  {
+   "step": 10,
+   "E": [
+    3.374186033610599,
+    3.3325365656456936,
+    0.07430172558255839
+   ],
+   "apex": [
+    0.497592380143952,
+    0.49145031871344746,
+    0.01095730114260048
+   ],
+   "parent": 1,
+   "pieces": [
+    {
+     "cell": 1,
+     "winner": 2,
+     "token": 1042,
+     "token_text": " close"
+    },
+    {
+     "cell": 3,
+     "winner": 1,
+     "token": 1043,
+     "token_text": " near"
+    },
+    {
+     "cell": 4,
+     "winner": 0,
+     "token": 1043,
+     "token_text": " near"
+    }
+   ],
+   "prefix_text": "Exciting choice for a conference trip! For a hotel"
+  },
+  {
+   "step": 15,
+   "E": [
+    0.058056712948655734,
+    0.7093411361369596,
+    1.5562178073689272
+   ],
+   "apex": [
+    0.02498550600973346,
+    0.3052747274130947,
+    0.6697397665771718
+   ],
+   "parent": 3,
+   "pieces": [
+    {
+     "cell": 3,
+     "winner": 0,
+     "token": 1022,
+     "token_text": " Bayview"
+    },
+    {
+     "cell": 5,
+     "winner": 1,
+     "token": 1048,
+     "token_text": " Lantern"
+    }
+   ],
+   "prefix_text": "Exciting choice for a conference trip! For a hotel near Fort Mason, consider"
+  },
+  {
+   "step": 16,
+   "E": [
+    1.169294713978909,
+    1.0244097450461154,
+    1.1544144523687148
+   ],
+   "apex": [
+    0.34923930270211356,
+    0.30596575932832654,
+    0.3447949379695599
+   ],
+   "parent": 0,
+   "pieces": [
+    {
+     "cell": 0,
+     "winner": 2,
+     "token": 1058,
+     "token_text": " Harbor"
+    },
+    {
+     "cell": 6,
+     "winner": 0,
+     "token": 1022,
+     "token_text": " Bayview"
+    },
+    {
+     "cell": 7,
+     "winner": 1,
+     "token": 1048,
+     "token_text": " Lantern"
+    }
+   ],
+   "prefix_text": "Exciting choice for a conference trip! For a hotel close to Fort Mason, consider"
+  },
+  {
+   "step": 16,
+   "E": [
+    1.169294713978909,
+    1.0244097450461154,
+    1.1544144523687148
+   ],
+   "apex": [
+    0.34923930270211356,
+    0.30596575932832654,
+    0.3447949379695599
+   ],
+   "parent": 1,
+   "pieces": [
+    {
+     "cell": 1,
+     "winner": 1,
+     "token": 1048,
+     "token_text": " Lantern"
+    },
+    {
+     "cell": 8,
+     "winner": 0,
+     "token": 1022,
+     "token_text": " Bayview"
+    }
+   ],
+   "prefix_text": "Exciting choice for a conference trip! For a hotel close to Fort Mason, consider"
+  },
+  {
+   "step": 36,
+   "E": [
+    0.9063513244140001,
+    0.051623416777009754,
+    0.7086042959538276
+   ],
+   "apex": [
+    0.5438393884797387,
+    0.03097567869655336,
+    0.42518493282370795
+   ],
+   "parent": 0,
+   "pieces": [
+    {
+     "cell": 0,
+     "winner": 1,
+     "token": 1102,
+     "token_text": " Have"
+    },
+    {
+     "cell": 9,
+     "winner": 2,
+     "token": 1101,
+     "token_text": " Enjoy"
+    }
+   ],
+   "prefix_text": "Exciting choice for a conference trip! For a hotel close to Fort Mason, consider Harbor Loft and its rooftop reading room. An Uber from SFO is a comfortable choice after your flight."
+  },
+  {
+   "step": 37,
+   "E": [
+    0.015198237661500741,
+    0.6679943467627866,
+    0.12833505443331736
+   ],
+   "apex": [
+    0.018727935973807924,
+    0.8231319733030026,
+    0.1581400907231895
+   ],
+   "parent": 5,
+   "pieces": [
+    {
+     "cell": 5,
+     "winner": 0,
+     "token": 1105,
+     "token_text": " Book"
+    },
+    {
+     "cell": 10,
+     "winner": 1,
+     "token": 1101,
+     "token_text": " Enjoy"
+    }
+   ],
+   "prefix_text": "Exciting choice for a conference trip! For a hotel near Fort Mason, consider Lantern House and its peaceful courtyard. From SFO, an Uber is the simplest way to get there with luggage."
+  },
+  {
+   "step": 40,
+   "E": [
+    0.4825149755748291,
+    0.7543038975650538,
+    2.301930810560861
+   ],
+   "apex": [
+    0.13635182443032418,
+    0.213155482864281,
+    0.6504926927053948
+   ],
+   "parent": 1,
+   "pieces": [
+    {
+     "cell": 1,
+     "winner": 1,
+     "token": 1103,
+     "token_text": " great"
+    },
+    {
+     "cell": 11,
+     "winner": 0,
+     "token": 1104,
+     "token_text": " wonderful"
+    }
+   ],
+   "prefix_text": "Exciting choice for a conference trip! For a hotel close to Fort Mason, consider Lantern House and its peaceful courtyard. From SFO, an Uber is the easiest way to get there with luggage. Have a"
+  },
+  {
+   "step": 40,
+   "E": [
+    0.4825149755748291,
+    0.7543038975650538,
+    2.301930810560861
+   ],
+   "apex": [
+    0.13635182443032418,
+    0.213155482864281,
+    0.6504926927053948
+   ],
+   "parent": 3,
+   "pieces": [
+    {
+     "cell": 3,
+     "winner": 1,
+     "token": 1105,
+     "token_text": " Book"
+    },
+    {
+     "cell": 12,
+     "winner": 0,
+     "token": 1105,
+     "token_text": " Book"
+    }
+   ],
+   "prefix_text": "Exciting choice for a conference trip! For a hotel near Fort Mason, consider Bayview Hotel and its stunning views of the bay. From SFO, an Uber is the simplest way to get there with luggage."
+  },
+  {
+   "step": 40,
+   "E": [
+    0.4825149755748291,
+    0.7543038975650538,
+    2.301930810560861
+   ],
+   "apex": [
+    0.13635182443032418,
+    0.213155482864281,
+    0.6504926927053948
+   ],
+   "parent": 7,
+   "pieces": [
+    {
+     "cell": 7,
+     "winner": 1,
+     "token": 1103,
+     "token_text": " great"
+    },
+    {
+     "cell": 13,
+     "winner": 0,
+     "token": 1104,
+     "token_text": " wonderful"
+    }
+   ],
+   "prefix_text": "Exciting choice for a conference trip! For a hotel close to Fort Mason, consider Lantern House and its peaceful courtyard. From SFO, an Uber is the easiest way to get there with luggage. Have a"
+  },
+  {
+   "step": 41,
+   "E": [
+    0.6994026586945018,
+    0.7687569392903583,
+    0.0840547448326514
+   ],
+   "apex": [
+    0.4505838139757018,
+    0.4952646796800913,
+    0.054151506344206894
+   ],
+   "parent": 12,
+   "pieces": [
+    {
+     "cell": 12,
+     "winner": 1,
+     "token": 1021,
+     "token_text": " at"
+    },
+    {
+     "cell": 14,
+     "winner": 0,
+     "token": 1109,
+     "token_text": " now"
+    }
+   ],
+   "prefix_text": "Exciting choice for a conference trip! For a hotel near Fort Mason, consider Bayview Hotel and its stunning views of the bay. From SFO, an Uber is the simplest way to get there with luggage. Book"
+  }
+ ],
+ "verification": [
+  {
+   "leaf": 0,
+   "lambda": [
+    0.2087162383912733,
+    0.21974149291868733,
+    0.5715422686900393
+   ],
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 1,
+   "lambda": [
+    0.18471622469580623,
+    0.7474483419952755,
+    0.06783543330891828
+   ],
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 2,
+   "lambda": [
+    0.9016379335296942,
+    0.08326199721664654,
+    0.015100069253659285
+   ],
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 3,
+   "lambda": [
+    0.23119957966523785,
+    0.7603983790297179,
+    0.008402041305044388
+   ],
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 4,
+   "lambda": [
+    0.6620168878249738,
+    0.3307503897980291,
+    0.007232722376997134
+   ],
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 5,
+   "lambda": [
+    0.048449378654047554,
+    0.941168701156814,
+    0.010381920189138569
+   ],
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 6,
+   "lambda": [
+    0.6244400091022752,
+    0.180654901187374,
+    0.19490508971035075
+   ],
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 7,
+   "lambda": [
+    0.14629742490724615,
+    0.5603831437945926,
+    0.2933194312981613
+   ],
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 8,
+   "lambda": [
+    0.661428765102451,
+    0.30616976404030155,
+    0.032401470857247545
+   ],
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 9,
+   "lambda": [
+    0.2472068711931704,
+    0.025708474208698158,
+    0.7270846545981314
+   ],
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 10,
+   "lambda": [
+    0.01100429997334849,
+    0.9782096137893845,
+    0.010786086237266974
+   ],
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 11,
+   "lambda": [
+    0.45153161021461685,
+    0.5082331257392074,
+    0.04023526404617593
+   ],
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 12,
+   "lambda": [
+    0.43057043372288106,
+    0.563190800552875,
+    0.006238765724244039
+   ],
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 13,
+   "lambda": [
+    0.35719766250245716,
+    0.4134712086584564,
+    0.2293311288390865
+   ],
+   "matches_direct_run": true
+  },
+  {
+   "leaf": 14,
+   "lambda": [
+    0.48699029120532267,
+    0.5073854291602935,
+    0.0056242796343838955
+   ],
+   "matches_direct_run": true
+  }
+ ]
+}

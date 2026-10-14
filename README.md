@@ -97,6 +97,20 @@ Generated text is displayed without repair, including any hallucinations.
 The separate no-ad manifest, trace, and result are saved in the run's `no-ad/`
 directory. Main-run checkpoints include `p_no_ad` for the shared-prefix observer.
 
+### Atlas Explorer
+
+Open **http://127.0.0.1:8765/atlas.html** to replay a stored bid atlas (schema in
+MOONSHOTS.md section 4): for one seed, every bid ratio λ and the exact answer,
+charges, contest boundaries and outcome measures it produces. Two-bidder text and
+image atlases use a λ scrubber; three-bidder `simplex-atlas-v1` atlases use a
+draggable triangle. No inference runs on this page. The bundled atlases in
+`walkthrough/atlas_data/` are labeled `synthetic_fixture`: toy weighted-corpus and
+placeholder-image data written by `python -m scripts.make_atlas_fixtures`
+(Pillow is needed only to redraw the placeholder JPEGs). They exercise the UI and
+its arithmetic; they say nothing about model behaviour. To show another atlas,
+place it under `walkthrough/atlas_data/` and add it to `index.json`, or open
+`/atlas.html?atlas=<relative path>.json`. Image paths are relative to the atlas file.
+
 ## Install and test
 
 The inference package requires Python 3.11 or newer. With `uv`:
@@ -114,7 +128,7 @@ versions; pip resolves within the ranges in `pyproject.toml`.
 
 The CPU auction reference only needs `pip install -r requirements.txt`.
 Without the inference dependencies, decoder tests are explicitly skipped.
-The complete suite has 38 tests: all 11 original auction tests, two prompt tests,
+The complete suite has 44 tests (six in `test_atlas_explorer.py`, below): all 11 original auction tests, two prompt tests,
 and eleven decoder tests using tiny randomly initialized Qwen models. These
 synthetic models test mechanics and cache correctness, not text quality.
 Three additional walkthrough tests check archived evidence fidelity, the source
@@ -130,6 +144,11 @@ cover both directions of private edits and common task/instruction edits.
 The new checks verify that the no-ad observer matches a full-prefix forward,
 leaves auction tokens/tapes/payments unchanged, includes no-ad candidates in the
 display table, and preserves both outputs if the independent answer fails.
+Six Atlas Explorer tests check that the synthetic fixtures partition (0, 1] (or
+tile the simplex) consistently with every recorded contest uniform, that the
+`/atlas_data/` route serves only data files inside that folder, and (with Node)
+that the browser's charges, (lo, hi] leaf lookup, outcome switch counts and
+three-bidder race charges match a Python reference built on `auction.py`.
 
 ## Run a live smoke test
 
