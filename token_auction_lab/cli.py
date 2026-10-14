@@ -16,12 +16,7 @@ from token_auction_lab.prompts import ADVERTISER_PROMPT_POLICY, render, scenario
 from token_auction_lab.runner import RoundConfig, run_round
 
 
-def main():
-    import torch
-    from huggingface_hub import HfApi
-    from transformers import AutoModelForCausalLM, AutoTokenizer
-
-    parser = argparse.ArgumentParser(description=__doc__)
+def add_model_arguments(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--model", default="Qwen/Qwen3-4B-Instruct-2507")
     parser.add_argument(
         "--revision", help="A commit SHA; resolved to a SHA before loading if omitted."
@@ -35,6 +30,80 @@ def main():
     parser.add_argument(
         "--dtype", choices=("auto", "float32", "float16", "bfloat16"), default="auto"
     )
+
+
+def pinned_revision(parser: argparse.ArgumentParser, args) -> bool:
+    pinned = bool(args.revision and re.fullmatch(r"[0-9a-f]{40}", args.revision))
+    if args.local_files_only and not pinned:
+        parser.error("--local-files-only requires --revision with a full 40-character commit SHA.")
+    return pinned
+
+
+def load_model(args, pinned: bool, seed: int):
+    """Resolve device/dtype/revision, then load ONE tokenizer and model at the same SHA.
+
+    Returns (tokenizer, model, revision, device, dtype_name, load_seconds).
+    """
+    import torch
+    from huggingface_hub import HfApi
+    from transformers import AutoModelForCausalLM, AutoTokenizer
+
+    device = args.device
+    if device == "auto":
+        device = (
+            "cuda"
+            if torch.cuda.is_available()
+            else ("mps" if torch.backends.mps.is_available() else "cpu")
+        )
+    dtype_name = args.dtype
+    if dtype_name == "auto":
+        dtype_name = (
+            "bfloat16"
+            if device == "cuda" and torch.cuda.is_bf16_supported()
+            else ("float16" if device == "cuda" else "float32")
+        )
+    # Resolve mutable refs once, then give BOTH tokenizer and model the same SHA.
+    revision = (
+        args.revision
+        if pinned
+        else HfApi().model_info(args.model, revision=args.revision).sha
+    )
+    print(
+        json.dumps(
+            {
+                "status": "loading",
+                "model": args.model,
+                "revision": revision,
+                "device": device,
+                "dtype": dtype_name,
+            }
+        ),
+        flush=True,
+    )
+    start = time.perf_counter()
+    torch.manual_seed(seed)
+    tokenizer = AutoTokenizer.from_pretrained(
+        args.model, revision=revision, local_files_only=args.local_files_only
+    )
+    model = (
+        AutoModelForCausalLM.from_pretrained(
+            args.model,
+            revision=revision,
+            dtype=getattr(torch, dtype_name),
+            attn_implementation="sdpa",
+            local_files_only=args.local_files_only,
+        )
+        .to(device)
+        .eval()
+    )
+    return tokenizer, model, revision, device, dtype_name, time.perf_counter() - start
+
+
+def main():
+    import torch
+
+    parser = argparse.ArgumentParser(description=__doc__)
+    add_model_arguments(parser)
     parser.add_argument("--scenario", choices=tuple(scenarios()), default="transit-hotel")
     parser.add_argument(
         "--bids", action="append", help="A,B pair; repeatable. Default: 1,0; 1,1; 0,1."
@@ -47,9 +116,7 @@ def main():
         "--baseline", action="store_true", help="Also run the separate no-ad baseline."
     )
     args = parser.parse_args()
-    pinned_revision = bool(args.revision and re.fullmatch(r"[0-9a-f]{40}", args.revision))
-    if args.local_files_only and not pinned_revision:
-        parser.error("--local-files-only requires --revision with a full 40-character commit SHA.")
+    pinned = pinned_revision(parser, args)
     pairs = [
         tuple(float(x) for x in pair.split(",")) for pair in (args.bids or ["1,0", "1,1", "0,1"])
     ]
@@ -70,53 +137,8 @@ def main():
                 baseline=True,
             )
         )
-    device = args.device
-    if device == "auto":
-        device = (
-            "cuda"
-            if torch.cuda.is_available()
-            else ("mps" if torch.backends.mps.is_available() else "cpu")
-        )
-    dtype_name = args.dtype
-    if dtype_name == "auto":
-        dtype_name = (
-            "bfloat16"
-            if device == "cuda" and torch.cuda.is_bf16_supported()
-            else ("float16" if device == "cuda" else "float32")
-        )
-    # Resolve mutable refs once, then give BOTH tokenizer and model the same SHA.
-    revision = (
-        args.revision
-        if pinned_revision
-        else HfApi().model_info(args.model, revision=args.revision).sha
-    )
-    print(
-        json.dumps(
-            {
-                "status": "loading",
-                "model": args.model,
-                "revision": revision,
-                "device": device,
-                "dtype": dtype_name,
-            }
-        ),
-        flush=True,
-    )
-    start = time.perf_counter()
-    torch.manual_seed(args.seed)
-    tokenizer = AutoTokenizer.from_pretrained(
-        args.model, revision=revision, local_files_only=args.local_files_only
-    )
-    model = (
-        AutoModelForCausalLM.from_pretrained(
-            args.model,
-            revision=revision,
-            dtype=getattr(torch, dtype_name),
-            attn_implementation="sdpa",
-            local_files_only=args.local_files_only,
-        )
-        .to(device)
-        .eval()
+    tokenizer, model, revision, device, dtype_name, load_seconds = load_model(
+        args, pinned, args.seed
     )
     metadata = {
         "model_id": args.model,
@@ -135,7 +157,7 @@ def main():
         "advertiser_prompt_policy": ADVERTISER_PROMPT_POLICY,
         "dependencies": {d.metadata["Name"]: d.version for d in distributions()},
         "python": platform.python_version(),
-        "model_load_seconds": time.perf_counter() - start,
+        "model_load_seconds": load_seconds,
         "model_load_scope": "disk load only"
         if args.local_files_only
         else "download/cache and load",
