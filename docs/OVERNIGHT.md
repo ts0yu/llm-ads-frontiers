@@ -49,7 +49,7 @@ buy: at most 1 + T of them, each with exact charges. The research note is
   - `E[#answers] = 1 + integral of E[#contested steps] d lambda`;
   - for N ≥ 3 bidders, the critical bid is `E_w * max_j b_j/E_j`, and the 1 + T
     bound fails.
-- The full test suite grew from 38 to 140 tests at the last full run. All pass,
+- The full test suite grew from 38 to 154 tests at the last full run. All pass,
   with none skipped for import reasons.
 
 ## What did not happen, and needs you
